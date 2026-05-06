@@ -17,14 +17,14 @@ describe('advisor app flow', () => {
     fireEvent.focus(firstSpeciesInput);
     fireEvent.change(firstSpeciesInput, { target: { value: 'Weav' } });
     expect(screen.getByRole('option', { name: 'Weavile' })).toBeInTheDocument();
-    fireEvent.keyDown(firstSpeciesInput, { key: 'Tab' });
+    expect(fireEvent.keyDown(firstSpeciesInput, { key: 'Tab' })).toBe(true);
     expect(screen.getByDisplayValue('Weavile')).toBeInTheDocument();
 
     const firstAbilityInput = screen.getAllByRole('combobox', { name: /ability/i })[0];
     fireEvent.focus(firstAbilityInput);
     fireEvent.change(firstAbilityInput, { target: { value: 'Pres' } });
     expect(screen.getByRole('option', { name: 'Pressure' })).toBeInTheDocument();
-    fireEvent.keyDown(firstAbilityInput, { key: 'Tab' });
+    expect(fireEvent.keyDown(firstAbilityInput, { key: 'Tab' })).toBe(true);
     expect(screen.getByDisplayValue('Pressure')).toBeInTheDocument();
 
     fireEvent.click(screen.getByRole('button', { name: /load sample/i }));
@@ -46,7 +46,7 @@ describe('advisor app flow', () => {
     fireEvent.change(opponentSpeciesInput, { target: { value: 'Chari' } });
     expect(screen.getByRole('option', { name: 'Charizard' })).toBeInTheDocument();
     expect(screen.queryByRole('option', { name: 'Mega Charizard Y' })).not.toBeInTheDocument();
-    fireEvent.keyDown(opponentSpeciesInput, { key: 'Tab' });
+    expect(fireEvent.keyDown(opponentSpeciesInput, { key: 'Tab' })).toBe(true);
     expect(screen.getByDisplayValue('Charizard')).toBeInTheDocument();
 
     fireEvent.click(screen.getByRole('button', { name: /common/i }));

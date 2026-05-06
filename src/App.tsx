@@ -19,7 +19,7 @@ import {
 import { abilityOptions, findSpecies, indexedData, moveOptions, normalizeKey, opponentSpeciesOptions, previewSpecies, speciesOptions } from './lib/data';
 import { filledEntries } from './lib/candidates';
 import { inferOpponentPreview } from './lib/opponentInference';
-import { recommendPlans } from './lib/scoring';
+import { recommendPlans, selectRecommendationHighlights } from './lib/scoring';
 import { createBlankOpponentTeam, createBlankTeam, exportTeamJson, importTeamJson, loadSavedTeam, saveTeam } from './lib/storage';
 import { sampleOpponentTeam, samplePlayerTeam } from './lib/sampleTeams';
 import { BLANK_ENTRY, type OpponentInference, type PokemonEntry, type Recommendation } from './lib/types';
@@ -180,7 +180,6 @@ function AutocompleteInput({ ariaLabel, options, placeholder, value, onChange }:
     }
 
     if (event.key === 'Tab' && showDropdown && activeOption && value.trim() && activeOption !== value) {
-      event.preventDefault();
       commitOption(activeOption);
       return;
     }
@@ -557,7 +556,7 @@ function App() {
   const opponentCount = filledEntries(opponents).length;
   const recommendations = useMemo(() => recommendPlans(team, opponents), [team, opponents]);
   const opponentIntel = useMemo(() => inferOpponentPreview(opponents), [opponents]);
-  const topRecommendations = recommendations.slice(0, 8);
+  const topRecommendations = useMemo(() => selectRecommendationHighlights(recommendations, 8), [recommendations]);
   const selectedRecommendation = topRecommendations[selectedIndex] ?? topRecommendations[0];
   const canShowRecommendations = playerCount >= 4 && opponentCount >= 1;
 

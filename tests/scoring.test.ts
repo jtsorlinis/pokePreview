@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { recommendPlans } from '../src/lib/scoring';
+import { recommendPlans, selectRecommendationHighlights } from '../src/lib/scoring';
 import { sampleOpponentTeam, samplePlayerTeam } from '../src/lib/sampleTeams';
 import type { PokemonEntry } from '../src/lib/types';
 
@@ -30,6 +30,21 @@ describe('recommendation scoring', () => {
     expect(recommendations[0].reasons.length).toBeGreaterThan(0);
   });
 
+  it('highlights distinct bring-4 groups before duplicate arrangements', () => {
+    const recommendations = recommendPlans(samplePlayerTeam, sampleOpponentTeam);
+    const highlights = selectRecommendationHighlights(recommendations, 8);
+    const bringKeys = highlights.map((recommendation) =>
+      recommendation.brought
+        .map((pokemon) => pokemon.id)
+        .sort()
+        .join('|')
+    );
+
+    expect(highlights).toHaveLength(8);
+    expect(highlights[0]).toBe(recommendations[0]);
+    expect(new Set(bringKeys).size).toBe(highlights.length);
+  });
+
   it('prefers plans that bring clear offensive coverage', () => {
     const coverageTeam = [
       member('team-1', 'Water Specialist', ['Water'], ['Muddy Water']),
@@ -44,6 +59,32 @@ describe('recommendation scoring', () => {
     const topNames = recommendations[0].brought.map((pokemon) => pokemon.species);
 
     expect(topNames).toContain('Water Specialist');
+  });
+
+  it('changes the top bring-4 when the preview calls for different specialists', () => {
+    const specialistTeam = [
+      member('team-1', 'Fire Specialist', ['Fire'], ['Heat Wave']),
+      member('team-2', 'Water Specialist', ['Water'], ['Muddy Water']),
+      member('team-3', 'Grass Specialist', ['Grass'], ['Energy Ball']),
+      member('team-4', 'Electric Specialist', ['Electric'], ['Thunderbolt']),
+      member('team-5', 'Ground Specialist', ['Ground'], ['Earthquake']),
+      member('team-6', 'Support Specialist', ['Normal'], ['Fake Out', 'Tailwind'])
+    ];
+    const firePreview = ['Charizard', 'Torkoal', 'Incineroar', 'Hisuian Arcanine', 'Delphox', 'Scovillain'].map((species) =>
+      opponent(species, [])
+    );
+    const waterPreview = ['Primarina', 'Milotic', 'Pelipper', 'Basculegion (Male)', 'Blastoise', 'Gyarados'].map((species) =>
+      opponent(species, [])
+    );
+
+    const fireTop = recommendPlans(specialistTeam, firePreview)[0].brought.map((pokemon) => pokemon.species);
+    const waterTop = recommendPlans(specialistTeam, waterPreview)[0].brought.map((pokemon) => pokemon.species);
+
+    expect(fireTop).toContain('Water Specialist');
+    expect(fireTop).not.toContain('Grass Specialist');
+    expect(waterTop).toContain('Grass Specialist');
+    expect(waterTop).toContain('Electric Specialist');
+    expect(fireTop.join('|')).not.toBe(waterTop.join('|'));
   });
 
   it('keeps confidence lower when the opponent preview is incomplete', () => {
@@ -102,7 +143,7 @@ describe('recommendation scoring', () => {
     expect(dualMegaPlan!.warnings.some((warning) => warning.includes('Glimmora is scored as regular'))).toBe(true);
   });
 
-  it('surfaces Weavile plus Glimmora as a strong tempo lead', () => {
+  it('does not reward Glimmora from hazard pressure', () => {
     const tempoTeam = [
       { ...member('team-1', 'Weavile', ['Dark', 'Ice'], ['Fake Out', 'Triple Axel', 'Knock Off', 'Beat Up']), speedStat: 172 },
       {
@@ -117,13 +158,32 @@ describe('recommendation scoring', () => {
     ];
 
     const recommendations = recommendPlans(tempoTeam, sampleOpponentTeam);
-    const tempoLead = recommendations.slice(0, 8).find((recommendation) => {
-      const leadIds = new Set(recommendation.leads.map((pokemon) => pokemon.id));
-      return leadIds.has('team-1') && leadIds.has('team-2');
-    });
+    const glimmoraPlans = recommendations.filter((recommendation) =>
+      recommendation.brought.some((pokemon) => pokemon.species === 'Glimmora')
+    );
 
-    expect(tempoLead).toBeDefined();
-    expect(tempoLead!.reasons.some((reason) => reason.label === 'Lead pressure')).toBe(true);
+    expect(glimmoraPlans.length).toBeGreaterThan(0);
+    expect(glimmoraPlans.flatMap((recommendation) => recommendation.tags)).not.toContain('Hazard Pressure');
+    expect(glimmoraPlans.flatMap((recommendation) => recommendation.reasons.map((reason) => reason.detail)).join(' ')).not.toMatch(/hazard/i);
+  });
+
+  it('does not force Mega Glimmora into the top plan against water-heavy previews', () => {
+    const glimmoraTeam = [
+      member('team-1', 'Mega Glimmora', [], ['Mortal Spin', 'Power Gem', 'Earth Power', 'Spiky Shield']),
+      member('team-2', 'Weavile', [], ['Fake Out', 'Triple Axel', 'Knock Off', 'Beat Up']),
+      member('team-3', 'Mega Charizard Y', [], ['Heat Wave', 'Solar Beam', 'Tailwind', 'Protect']),
+      member('team-4', 'Incineroar', [], ['Fake Out', 'Parting Shot', 'Flare Blitz', 'Throat Chop']),
+      member('team-5', 'Garchomp', [], ['Earthquake', 'Dragon Claw', 'Rock Slide', 'Protect']),
+      member('team-6', 'Primarina', [], ['Hyper Voice', 'Moonblast', 'Icy Wind', 'Protect'])
+    ];
+    const waterPreview = ['Primarina', 'Milotic', 'Pelipper', 'Basculegion (Male)', 'Blastoise', 'Gyarados'].map((species) =>
+      opponent(species, [])
+    );
+
+    const recommendations = recommendPlans(glimmoraTeam, waterPreview);
+
+    expect(recommendations[0].brought.map((pokemon) => pokemon.species)).not.toContain('Mega Glimmora');
+    expect(recommendations[0].warnings.some((warning) => warning.includes('weak to Water'))).toBe(true);
   });
 
   it('anchors Perish Trap plans around leading the trapper', () => {

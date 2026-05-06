@@ -74,7 +74,6 @@ const regularFormViability = (pokemon: PokemonEntry, data: IndexedData): number 
     : 0.25;
   const tags = new Set(meta.roleTags);
   const utilityScore =
-    (tags.has('hazard') ? 0.22 : 0) +
     (tags.has('lead-pressure') ? 0.16 : 0) +
     (tags.has('fake-out') ? 0.18 : 0) +
     (tags.has('tailwind') || tags.has('trick-room') || tags.has('speed-control') ? 0.16 : 0) +
@@ -112,8 +111,8 @@ const entryTags = (pokemon: PokemonEntry, data: IndexedData): Set<string> => {
   if (abilityText.includes('prankster')) tags.add('speed-control');
   if (abilityText.includes('drizzle') || abilityText.includes('drought')) tags.add('weather');
   if (abilityText.includes('friend guard')) tags.add('support');
-  if (abilityText.includes('toxic debris')) tags.add('hazard');
   if (abilityText.includes('shadow tag')) tags.add('trap');
+  tags.delete('hazard');
   return tags;
 };
 
@@ -160,18 +159,19 @@ const opponentEntryForScoring = (pokemon: PokemonEntry, inference: OpponentInfer
   };
 };
 
-const attackingTypes = (pokemon: PokemonEntry, data: IndexedData): PokemonType[] => {
+const attackingTypes = (pokemon: PokemonEntry, data: IndexedData, includeSpeciesTypes = false): PokemonType[] => {
+  const naturalTypes = entryTypes(pokemon, data);
   const moveTypes = nonEmptyMoves(pokemon)
     .map((moveName) => findMove(moveName, data)?.type)
     .filter((type): type is PokemonType => Boolean(type));
 
-  if (moveTypes.length > 0) return Array.from(new Set(moveTypes));
+  if (moveTypes.length > 0) return Array.from(new Set(includeSpeciesTypes ? [...moveTypes, ...naturalTypes] : moveTypes));
 
   const commonMoveTypes = (speciesMeta(pokemon, data)?.commonMoves ?? [])
     .map((moveName) => findMove(moveName, data)?.type)
     .filter((type): type is PokemonType => Boolean(type));
 
-  return Array.from(new Set([...commonMoveTypes, ...entryTypes(pokemon, data)]));
+  return Array.from(new Set([...commonMoveTypes, ...naturalTypes]));
 };
 
 const bestOffensiveMultiplier = (attacker: PokemonEntry, defender: PokemonEntry, data: IndexedData): number => {
@@ -184,11 +184,11 @@ const bestOffensiveMultiplier = (attacker: PokemonEntry, defender: PokemonEntry,
   return Math.max(...attackTypes.map((type) => effectiveness(type, defenderTypes)));
 };
 
-const threatMultiplierInto = (attacker: PokemonEntry, defender: PokemonEntry, data: IndexedData): number => {
+const threatMultiplierInto = (attacker: PokemonEntry, defender: PokemonEntry, data: IndexedData, includeSpeciesTypes = false): number => {
   const defenderTypes = entryTypes(defender, data);
   if (defenderTypes.length === 0) return 1;
 
-  const attackTypes = attackingTypes(attacker, data);
+  const attackTypes = attackingTypes(attacker, data, includeSpeciesTypes);
   if (attackTypes.length === 0) return 1;
 
   return Math.max(...attackTypes.map((type) => effectiveness(type, defenderTypes)));
@@ -254,6 +254,19 @@ const damagePressureScore = (pressure: number): number => {
   return -0.55;
 };
 
+const hasConcreteUtility = (tags: Set<string>): boolean =>
+  tags.has('fake-out') ||
+  tags.has('redirection') ||
+  tags.has('intimidate') ||
+  tags.has('speed-control') ||
+  tags.has('tailwind') ||
+  tags.has('trick-room') ||
+  tags.has('wide-guard') ||
+  tags.has('pivot') ||
+  tags.has('disruption') ||
+  tags.has('perish') ||
+  tags.has('trap');
+
 const hasPerishTrapMode = (plan: BattlePlan, data: IndexedData): boolean => {
   const tags = plan.brought.map((pokemon) => entryTags(pokemon, data));
   return tags.some((tagSet) => tagSet.has('perish')) && tags.some((tagSet) => tagSet.has('trap'));
@@ -304,6 +317,7 @@ const scoreOffense = (plan: BattlePlan, opponents: PokemonEntry[], data: Indexed
   let score = 0;
   const highValueTargets: string[] = [];
   const deadZones: string[] = [];
+  const lowValueBrought: string[] = [];
 
   opponents.forEach((opponent) => {
     const best = Math.max(...plan.brought.map((pokemon) => bestOffensiveMultiplier(pokemon, opponent, data)));
@@ -311,15 +325,45 @@ const scoreOffense = (plan: BattlePlan, opponents: PokemonEntry[], data: Indexed
     if (best >= 2) highValueTargets.push(opponent.species);
     if (best <= 0.5 || bestDamage < 0.55) deadZones.push(opponent.species);
 
-    if (best >= 4) score += 7;
-    else if (best >= 2) score += 4.5;
-    else if (best === 1) score += 1.8;
-    else if (best > 0) score -= 1.2;
-    else score -= 3;
+    if (best >= 4) score += 5.6;
+    else if (best >= 2) score += 3.5;
+    else if (best === 1) score += 1.4;
+    else if (best > 0) score -= 1.4;
+    else score -= 3.2;
 
-    if (bestDamage >= 2.4) score += 1.2;
-    else if (bestDamage >= 1.6) score += 0.6;
-    else if (bestDamage < 0.55) score -= 1.2;
+    if (bestDamage >= 2.4) score += 0.8;
+    else if (bestDamage >= 1.6) score += 0.35;
+    else if (bestDamage < 0.55) score -= 1.4;
+  });
+
+  plan.brought.forEach((pokemon) => {
+    const tags = entryTags(pokemon, data);
+    const concreteTargets = opponents.filter((opponent) => {
+      const multiplier = bestOffensiveMultiplier(pokemon, opponent, data);
+      const damage = bestDamagePressure(pokemon, opponent, data).score;
+      return multiplier >= 2 || damage >= 1.15;
+    }).length;
+    const defensiveAnchors = opponents.filter((opponent) => threatMultiplierInto(opponent, pokemon, data, true) <= 0.5).length;
+    const liabilities = opponents.filter((opponent) => {
+      const damage = bestDamagePressure(opponent, pokemon, data).score;
+      return threatMultiplierInto(opponent, pokemon, data, true) >= 2 || damage >= 1.75;
+    }).length;
+    const hasUtility = hasConcreteUtility(tags);
+
+    score += Math.min(concreteTargets, 3) * 0.35;
+    if (defensiveAnchors >= 2) score += 0.55;
+    score -= Math.max(0, liabilities - defensiveAnchors) * 0.28;
+    if (liabilities >= Math.ceil(opponents.length / 2)) score -= 0.9;
+    if (concreteTargets === 0 && !hasUtility) {
+      lowValueBrought.push(pokemon.species);
+      score -= 1.75;
+    } else if (concreteTargets <= 1 && liabilities >= Math.ceil(opponents.length / 2) && !hasUtility) {
+      lowValueBrought.push(pokemon.species);
+      score -= 1.1;
+    } else if (concreteTargets <= 2 && liabilities >= Math.ceil(opponents.length / 2)) {
+      lowValueBrought.push(pokemon.species);
+      score -= 0.8;
+    }
   });
 
   const capped = clamp(score, -10, 28);
@@ -328,6 +372,9 @@ const scoreOffense = (plan: BattlePlan, opponents: PokemonEntry[], data: Indexed
   }
   if (deadZones.length > 0) {
     addReason(reasons, 'Coverage gap', `Limited immediate pressure into ${deadZones.slice(0, 3).join(', ')}.`, -2.5, 'warning');
+  }
+  if (lowValueBrought.length > 0) {
+    addReason(reasons, 'Preview fit', `${lowValueBrought.slice(0, 2).join(', ')} ${lowValueBrought.length === 1 ? 'has' : 'have'} limited value into this preview.`, -2.2, 'warning');
   }
   return capped;
 };
@@ -345,12 +392,12 @@ const scoreDefense = (plan: BattlePlan, opponents: PokemonEntry[], data: Indexed
     if (pokemonTypes.length === 0) return;
 
     opponents.forEach((opponent) => {
-      const mult = threatMultiplierInto(opponent, pokemon, data);
+      const mult = threatMultiplierInto(opponent, pokemon, data, true);
       if (mult >= 2) vulnerable.push(`${pokemon.species} (${multiplierLabel(mult)} from ${opponent.species})`);
       if (mult <= 0.5) sturdy.push(`${pokemon.species} into ${opponent.species}`);
     });
 
-    const incomingTypes = opponents.flatMap((opponent) => attackingTypes(opponent, data));
+    const incomingTypes = opponents.flatMap((opponent) => attackingTypes(opponent, data, true));
     incomingTypes.forEach((type) => {
       if (effectiveness(type, pokemonTypes) >= 2) {
         sharedWeaknesses.set(type, (sharedWeaknesses.get(type) ?? 0) + 1);
@@ -531,15 +578,6 @@ const scoreLead = (
   const broughtTags = plan.brought.map((pokemon) => entryTags(pokemon, data));
   const leadTags = plan.leads.map((pokemon) => entryTags(pokemon, data));
   const leadNames = plan.leads.map((pokemon) => pokemon.species).join(' + ');
-  const hasHazardLead = leadTags.some((tags) => tags.has('hazard'));
-  const hasFastDisruptionLead = plan.leads.some((pokemon, index) => {
-    const speed = entrySpeed(pokemon, data) ?? 0;
-    const tags = leadTags[index];
-    return speed >= 115 && (tags.has('fake-out') || tags.has('priority') || tags.has('disruption') || tags.has('speed-control'));
-  });
-  const hasWeavileGlimmoraLead =
-    plan.leads.some((pokemon) => pokemon.species === 'Weavile') &&
-    plan.leads.some((pokemon) => pokemon.species === 'Glimmora' || pokemon.species === 'Mega Glimmora');
   const perishTrapMode = strategy.perishTrap;
   const hasTrapInFour = broughtTags.some((tags) => tags.has('trap'));
   const trapLeadIndex = leadTags.findIndex((tags) => tags.has('trap'));
@@ -586,8 +624,6 @@ const scoreLead = (
   if (leadTags.some((tags) => tags.has('redirection'))) score += 2.5;
   if (leadTags.some((tags) => tags.has('intimidate'))) score += 1.5;
   if (leadTags.some((tags) => tags.has('wide-guard'))) score += opponents.some((opponent) => entryTags(opponent, data).has('spread')) ? 2.5 : 0.8;
-  if (hasHazardLead && hasFastDisruptionLead) score += 4.4;
-  if (hasWeavileGlimmoraLead) score += 1.2;
   if (perishTrapMode && hasTrapLead) score += 6;
   if (perishTrapMode && hasTrapLead && hasPerishLead) score += 1.6;
   if (perishTrapMode && hasTrapLead && hasPerishSupportLead) score += 1.3;
@@ -614,9 +650,6 @@ const scoreLead = (
 
   if (leadTags.some((tags) => tags.has('fake-out')) || leadTags.some((tags) => tags.has('redirection'))) {
     addReason(reasons, 'Lead shape', `${leadNames} has immediate positioning tools.`, 2);
-  }
-  if (hasHazardLead && hasFastDisruptionLead) {
-    addReason(reasons, 'Lead pressure', `${leadNames} pairs fast disruption with hazard pressure.`, 3);
   }
   if (perishTrapMode && hasTrapLead) {
     addReason(reasons, 'Perish Trap lead', `${leadNames} puts the trapper on the field immediately for the Perish plan.`, 4.2);
@@ -763,7 +796,6 @@ const recommendationTags = (plan: BattlePlan, data: IndexedData): string[] => {
     if (pokemonTags.has('weather')) tags.add('Weather');
     if (pokemonTags.has('wide-guard')) tags.add('Wide Guard');
     if (pokemonTags.has('priority')) tags.add('Priority');
-    if (pokemonTags.has('hazard')) tags.add('Hazard Pressure');
     if (pokemonTags.has('perish') || pokemonTags.has('trap')) tags.add('Perish Trap');
   });
   return Array.from(tags).slice(0, 5);
@@ -804,7 +836,14 @@ const scoreSingleBattlePlan = (
   const lead = scoreLead(plan, visibleOpponents, data, reasons, warnings, inference, strategy);
   const roles = scoreRoles(plan, data, reasons, warnings);
   const meta = scoreMeta(plan, data, reasons);
-  const score = clamp(offense + defense + speed + lead + roles + meta, 0, 100);
+  const hasOpponentPreview = visibleOpponents.length > 0;
+  const score = clamp(
+    hasOpponentPreview
+      ? offense * 1.12 + defense * 1.28 + speed * 0.72 + lead * 1.1 + roles * 0.62 + meta * 0.5
+      : offense + defense + speed + lead + roles + meta,
+    0,
+    100
+  );
 
   const sortedReasons = reasons
     .sort((a, b) => Math.abs(b.weight) - Math.abs(a.weight))
@@ -835,4 +874,32 @@ export const recommendPlans = (
       ...recommendation,
       confidence: clamp(recommendation.confidence - index * 0.002 + (recommendation.score - (all.at(-1)?.score ?? 0)) / 1000, 0.25, 0.94)
     }));
+};
+
+const bringFourKey = (recommendation: Recommendation): string =>
+  recommendation.brought
+    .map((pokemon) => pokemon.id)
+    .sort()
+    .join('|');
+
+export const selectRecommendationHighlights = (recommendations: Recommendation[], limit = 8): Recommendation[] => {
+  const selected: Recommendation[] = [];
+  const seenBringFours = new Set<string>();
+
+  recommendations.forEach((recommendation) => {
+    if (selected.length >= limit) return;
+    const key = bringFourKey(recommendation);
+    if (seenBringFours.has(key)) return;
+
+    seenBringFours.add(key);
+    selected.push(recommendation);
+  });
+
+  recommendations.forEach((recommendation) => {
+    if (selected.length >= limit) return;
+    if (selected.includes(recommendation)) return;
+    selected.push(recommendation);
+  });
+
+  return selected;
 };
