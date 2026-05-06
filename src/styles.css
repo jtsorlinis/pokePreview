@@ -489,6 +489,49 @@ button {
   width: 100%;
 }
 
+.autocompleteControl {
+  min-width: 0;
+  position: relative;
+  width: 100%;
+}
+
+.autocompleteDropdown {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  box-shadow: 0 14px 34px rgba(36, 40, 32, 0.16);
+  display: grid;
+  left: 0;
+  max-height: 258px;
+  overflow: auto;
+  padding: 4px;
+  position: absolute;
+  right: 0;
+  top: calc(100% + 4px);
+  z-index: 30;
+}
+
+.autocompleteDropdown button {
+  background: transparent;
+  border: 0;
+  border-radius: 6px;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 750;
+  min-height: 30px;
+  overflow: hidden;
+  padding: 0 8px;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.autocompleteDropdown button:hover,
+.autocompleteDropdown button.isActive {
+  background: #e7f2ee;
+  color: var(--accent-strong);
+}
+
 .field input:focus,
 .field select:focus {
   border-color: var(--accent);

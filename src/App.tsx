@@ -1,4 +1,4 @@
-import { ChangeEvent, useMemo, useRef, useState } from 'react';
+import { ChangeEvent, KeyboardEvent, useId, useMemo, useRef, useState } from 'react';
 import {
   AlertTriangle,
   BarChart3,
@@ -16,7 +16,7 @@ import {
   Users,
   Wand2
 } from 'lucide-react';
-import { abilityOptions, findSpecies, indexedData, moveOptions, opponentSpeciesOptions, previewSpecies, speciesOptions } from './lib/data';
+import { abilityOptions, findSpecies, indexedData, moveOptions, normalizeKey, opponentSpeciesOptions, previewSpecies, speciesOptions } from './lib/data';
 import { filledEntries } from './lib/candidates';
 import { inferOpponentPreview } from './lib/opponentInference';
 import { recommendPlans } from './lib/scoring';
@@ -27,6 +27,27 @@ import { BLANK_ENTRY, type OpponentInference, type PokemonEntry, type Recommenda
 const formatPercent = (value: number): string => `${Math.round(value * 100)}%`;
 
 const entryLabel = (pokemon: PokemonEntry): string => pokemon.species || 'Empty slot';
+
+const AUTOCOMPLETE_LIMIT = 10;
+
+const autocompleteMatches = (options: string[], value: string): string[] => {
+  const query = normalizeKey(value);
+  if (!query) return options.slice(0, AUTOCOMPLETE_LIMIT);
+
+  const startsWith: string[] = [];
+  const includes: string[] = [];
+
+  options.forEach((option) => {
+    const key = normalizeKey(option);
+    if (key.startsWith(query)) {
+      startsWith.push(option);
+    } else if (key.includes(query)) {
+      includes.push(option);
+    }
+  });
+
+  return [...startsWith, ...includes].slice(0, AUTOCOMPLETE_LIMIT);
+};
 
 const mergePlayerEntryWithSpecies = (entry: PokemonEntry, speciesName: string): PokemonEntry => {
   const meta = findSpecies(speciesName);
@@ -112,6 +133,107 @@ function InferredTypes({ entry }: { entry: PokemonEntry }) {
   );
 }
 
+interface AutocompleteInputProps {
+  ariaLabel: string;
+  options: string[];
+  placeholder?: string;
+  value: string;
+  onChange: (value: string) => void;
+}
+
+function AutocompleteInput({ ariaLabel, options, placeholder, value, onChange }: AutocompleteInputProps) {
+  const generatedId = useId();
+  const listboxId = `${generatedId}-listbox`.replace(/:/g, '');
+  const optionBaseId = `${generatedId}-option`.replace(/:/g, '');
+  const [open, setOpen] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const matches = useMemo(() => autocompleteMatches(options, value), [options, value]);
+  const boundedActiveIndex = matches.length ? Math.min(activeIndex, matches.length - 1) : 0;
+  const activeOption = matches[boundedActiveIndex];
+  const showDropdown = open && matches.length > 0;
+
+  const commitOption = (option: string) => {
+    onChange(option);
+    setOpen(false);
+    setActiveIndex(0);
+  };
+
+  const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'ArrowDown') {
+      event.preventDefault();
+      setOpen(true);
+      setActiveIndex((current) => (matches.length ? Math.min(current + 1, matches.length - 1) : 0));
+      return;
+    }
+
+    if (event.key === 'ArrowUp') {
+      event.preventDefault();
+      setOpen(true);
+      setActiveIndex((current) => (matches.length ? Math.max(current - 1, 0) : 0));
+      return;
+    }
+
+    if (event.key === 'Enter' && showDropdown && activeOption) {
+      event.preventDefault();
+      commitOption(activeOption);
+      return;
+    }
+
+    if (event.key === 'Tab' && showDropdown && activeOption && value.trim() && activeOption !== value) {
+      event.preventDefault();
+      commitOption(activeOption);
+      return;
+    }
+
+    if (event.key === 'Escape') {
+      setOpen(false);
+    }
+  };
+
+  return (
+    <div className="autocompleteControl">
+      <input
+        aria-activedescendant={showDropdown ? `${optionBaseId}-${boundedActiveIndex}` : undefined}
+        aria-autocomplete="list"
+        aria-controls={listboxId}
+        aria-expanded={showDropdown}
+        aria-label={ariaLabel}
+        role="combobox"
+        value={value}
+        placeholder={placeholder}
+        onBlur={() => setOpen(false)}
+        onChange={(event) => {
+          onChange(event.target.value);
+          setOpen(true);
+          setActiveIndex(0);
+        }}
+        onFocus={() => setOpen(true)}
+        onKeyDown={handleKeyDown}
+      />
+      {showDropdown ? (
+        <div className="autocompleteDropdown" id={listboxId} role="listbox">
+          {matches.map((option, optionIndex) => (
+            <button
+              aria-selected={optionIndex === boundedActiveIndex}
+              className={optionIndex === boundedActiveIndex ? 'isActive' : ''}
+              id={`${optionBaseId}-${optionIndex}`}
+              key={option}
+              onMouseDown={(event) => {
+                event.preventDefault();
+                commitOption(option);
+              }}
+              role="option"
+              type="button"
+            >
+              {option}
+            </button>
+          ))}
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
 function EntryEditor({ entry, index, mode, onChange, onClear }: EntryEditorProps) {
   const meta = findSpecies(entry.species);
   const isPlayer = mode === 'player';
@@ -130,11 +252,12 @@ function EntryEditor({ entry, index, mode, onChange, onClear }: EntryEditorProps
         <div className="entryTopline">
           <label className="field speciesField">
             <span>Species</span>
-            <input
+            <AutocompleteInput
+              ariaLabel="Species"
               value={entry.species}
-              list="species-options"
+              options={speciesOptions}
               placeholder={isPlayer ? 'Choose your Pokémon' : 'Opponent Pokémon'}
-              onChange={(event) => onChange(mergePlayerEntryWithSpecies(entry, event.target.value))}
+              onChange={(value) => onChange(mergePlayerEntryWithSpecies(entry, value))}
             />
           </label>
           <label className="field smallField">
@@ -152,7 +275,7 @@ function EntryEditor({ entry, index, mode, onChange, onClear }: EntryEditorProps
               }
             />
           </label>
-          <button className="iconButton quiet" type="button" onClick={onClear} title="Clear slot" aria-label="Clear slot">
+          <button className="iconButton quiet" type="button" tabIndex={-1} onClick={onClear} title="Clear slot" aria-label="Clear slot">
             <Trash2 size={16} />
           </button>
         </div>
@@ -161,11 +284,12 @@ function EntryEditor({ entry, index, mode, onChange, onClear }: EntryEditorProps
           <InferredTypes entry={entry} />
           <label className="field">
             <span>Ability</span>
-            <input
+            <AutocompleteInput
+              ariaLabel="Ability"
               value={entry.ability ?? ''}
-              list="ability-options"
+              options={abilityOptions}
               placeholder={meta?.abilities[0] ?? 'Ability'}
-              onChange={(event) => onChange({ ...entry, ability: event.target.value })}
+              onChange={(value) => onChange({ ...entry, ability: value })}
             />
           </label>
         </div>
@@ -174,7 +298,7 @@ function EntryEditor({ entry, index, mode, onChange, onClear }: EntryEditorProps
           {entry.moves.map((move, moveIndex) => (
             <label className="field" key={`${entry.id}-move-${moveIndex}`}>
               <span>{isPlayer ? `Move ${moveIndex + 1}` : `Known move ${moveIndex + 1}`}</span>
-              <input value={move} list="move-options" placeholder="Move" onChange={(event) => updateMove(moveIndex, event.target.value)} />
+              <AutocompleteInput ariaLabel={isPlayer ? `Move ${moveIndex + 1}` : `Known move ${moveIndex + 1}`} value={move} options={moveOptions} placeholder="Move" onChange={(value) => updateMove(moveIndex, value)} />
             </label>
           ))}
         </div>
@@ -207,14 +331,15 @@ function OpponentNameEditor({
       <PokemonSprite entry={entry} />
       <label className="field">
         <span>Species</span>
-        <input
+        <AutocompleteInput
+          ariaLabel="Species"
           value={entry.species}
-          list="opponent-species-options"
+          options={opponentSpeciesOptions}
           placeholder="Opponent Pokémon"
-          onChange={(event) => onChange(mergeOpponentEntryWithSpecies(entry, event.target.value))}
+          onChange={(value) => onChange(mergeOpponentEntryWithSpecies(entry, value))}
         />
       </label>
-      <button className="iconButton quiet" type="button" onClick={onClear} title="Clear slot" aria-label="Clear slot">
+      <button className="iconButton quiet" type="button" tabIndex={-1} onClick={onClear} title="Clear slot" aria-label="Clear slot">
         <Trash2 size={16} />
       </button>
     </article>
@@ -486,27 +611,6 @@ function App() {
 
   return (
     <main className="appShell">
-      <datalist id="species-options">
-        {speciesOptions.map((species) => (
-          <option key={species} value={species} />
-        ))}
-      </datalist>
-      <datalist id="opponent-species-options">
-        {opponentSpeciesOptions.map((species) => (
-          <option key={species} value={species} />
-        ))}
-      </datalist>
-      <datalist id="move-options">
-        {moveOptions.map((move) => (
-          <option key={move} value={move} />
-        ))}
-      </datalist>
-      <datalist id="ability-options">
-        {abilityOptions.map((ability) => (
-          <option key={ability} value={ability} />
-        ))}
-      </datalist>
-
       <header className="topBar">
         <div>
           <p className="eyebrow">Regulation M-A Doubles</p>
