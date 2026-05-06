@@ -39,8 +39,11 @@ const overlayRoleTags = (species: MetaSpecies, overlayMoves: string[], overlayAb
   if (moveKeys.some((move) => ['followme', 'ragepowder'].includes(move))) tags.add('redirection');
   if (moveKeys.some((move) => ['icywind', 'electroweb', 'scaryface'].includes(move))) tags.add('speed-control');
   if (moveKeys.some((move) => ['mortalspin', 'toxicspikes', 'stealthrock', 'spikes'].includes(move))) tags.add('hazard');
+  if (moveKeys.some((move) => move === 'perishsong')) tags.add('perish');
+  if (moveKeys.some((move) => ['encore', 'disable', 'taunt'].includes(move))) tags.add('disruption');
   if (moveKeys.some((move) => ['partingshot', 'uturn', 'voltswitch', 'flipturn'].includes(move))) tags.add('pivot');
   if (moveKeys.some((move) => ['lastrespects', 'supremeoverlord'].includes(move))) tags.add('late-game');
+  if (abilityKeys.some((ability) => ability === 'shadowtag')) tags.add('trap');
   if (abilityKeys.some((ability) => ability === 'intimidate')) {
     tags.add('intimidate');
     tags.add('pivot');

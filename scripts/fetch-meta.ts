@@ -447,6 +447,8 @@ const roleTagsFromPublicSet = (moves: string[], abilities: string[], items: stri
   if (moveKeys.some((move) => ['followme', 'ragepowder'].includes(move))) tags.push('redirection', 'support');
   if (moveKeys.some((move) => ['icywind', 'electroweb', 'scaryface'].includes(move))) tags.push('speed-control');
   if (moveKeys.some((move) => ['mortalspin', 'toxicspikes', 'stealthrock', 'spikes'].includes(move))) tags.push('hazard');
+  if (moveKeys.includes('perishsong')) tags.push('perish');
+  if (moveKeys.some((move) => ['encore', 'disable', 'taunt'].includes(move))) tags.push('disruption');
   if (moveKeys.some((move) => ['rockslide', 'heatwave', 'muddywater', 'hypervoice', 'dazzlinggleam', 'eruption'].includes(move))) {
     tags.push('spread');
   }
@@ -455,6 +457,7 @@ const roleTagsFromPublicSet = (moves: string[], abilities: string[], items: stri
   }
   if (moveKeys.some((move) => ['partingshot', 'uturn', 'voltswitch', 'flipturn'].includes(move))) tags.push('pivot');
   if (moveKeys.some((move) => ['lastrespects', 'supremeoverlord'].includes(move))) tags.push('late-game');
+  if (abilityKeys.includes('shadowtag')) tags.push('trap');
   if (abilityKeys.includes('intimidate')) tags.push('intimidate', 'pivot', 'support');
   if (abilityKeys.includes('prankster')) tags.push('support', 'speed-control');
   if (abilityKeys.includes('toxicdebris')) tags.push('hazard');
@@ -474,6 +477,7 @@ const deriveArchetypes = (title: string, members: string[]): string[] => {
   if (/(whimsicott|talonflame|aerodactyl|tailwind)/.test(text)) archetypes.push('Tailwind');
   if (/(farigiraf|sinistcha|hatterene|aromatisse|slowbro|slowking|trickroom)/.test(text)) archetypes.push('Trick Room');
   if (/(glimmora|toxicspikes|hazard)/.test(text)) archetypes.push('Hazard');
+  if ((/gengar/.test(text) && /politoed/.test(text)) || /(perishsong|shadowtag)/.test(text)) archetypes.push('Perish Trap');
 
   return uniqueStrings(archetypes);
 };

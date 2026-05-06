@@ -126,6 +126,51 @@ describe('recommendation scoring', () => {
     expect(tempoLead!.reasons.some((reason) => reason.label === 'Lead pressure')).toBe(true);
   });
 
+  it('anchors Perish Trap plans around leading the trapper', () => {
+    const perishTeam = [
+      member('team-1', 'Mega Gengar', [], ['Perish Song', 'Shadow Ball', 'Sludge Bomb', 'Protect']),
+      member('team-2', 'Politoed', [], ['Perish Song', 'Icy Wind', 'Muddy Water', 'Protect']),
+      member('team-3', 'Incineroar', [], ['Fake Out', 'Parting Shot', 'Flare Blitz', 'Throat Chop']),
+      member('team-4', 'Whimsicott', [], ['Encore', 'Tailwind', 'Moonblast', 'Protect']),
+      member('team-5', 'Primarina', [], ['Hyper Voice', 'Moonblast', 'Icy Wind', 'Protect']),
+      member('team-6', 'Garchomp', [], ['Earthquake', 'Dragon Claw', 'Rock Slide', 'Protect'])
+    ];
+    const opponentPreview = ['Sneasler', 'Garchomp', 'Kingambit', 'Incineroar', 'Aerodactyl', 'Charizard'].map((species) =>
+      opponent(species, [])
+    );
+
+    const recommendations = recommendPlans(perishTeam, opponentPreview);
+    const topLeads = recommendations.slice(0, 8).map((recommendation) => recommendation.leads.map((pokemon) => pokemon.species));
+
+    expect(recommendations[0].leads.map((pokemon) => pokemon.species)).toContain('Mega Gengar');
+    expect(topLeads.every((leadNames) => leadNames.includes('Mega Gengar'))).toBe(true);
+    expect(recommendations[0].reasons.some((reason) => reason.label === 'Perish Trap lead')).toBe(true);
+  });
+
+  it('warns on passive leads and rewards counterplay into enemy Perish Trap', () => {
+    const antiPerishTeam = [
+      member('team-1', 'Primarina', [], ['Hyper Voice', 'Moonblast', 'Icy Wind', 'Protect']),
+      member('team-2', 'Milotic', [], ['Muddy Water', 'Icy Wind', 'Recover', 'Protect']),
+      member('team-3', 'Incineroar', [], ['Fake Out', 'Parting Shot', 'Flare Blitz', 'Throat Chop']),
+      member('team-4', 'Whimsicott', [], ['Encore', 'Tailwind', 'Moonblast', 'Protect']),
+      member('team-5', 'Garchomp', [], ['Earthquake', 'Dragon Claw', 'Rock Slide', 'Protect']),
+      member('team-6', 'Aegislash', [], ['Shadow Sneak', 'Iron Head', 'Poltergeist', 'Protect'])
+    ];
+    const perishPreview = ['Gengar', 'Politoed', 'Whimsicott', 'Incineroar', 'Dragonite', 'Archaludon'].map((species) =>
+      opponent(species, [])
+    );
+
+    const recommendations = recommendPlans(antiPerishTeam, perishPreview);
+    const passiveLead = recommendations.find((recommendation) => {
+      const leadIds = new Set(recommendation.leads.map((pokemon) => pokemon.id));
+      return leadIds.has('team-1') && leadIds.has('team-2');
+    });
+
+    expect(recommendations[0].reasons.some((reason) => reason.label === 'Perish counterplay')).toBe(true);
+    expect(recommendations[0].warnings.some((warning) => warning.includes('Enemy Perish Trap risk'))).toBe(false);
+    expect(passiveLead?.warnings.some((warning) => warning.includes('Enemy Perish Trap risk'))).toBe(true);
+  });
+
   it('demotes Basculegion leads when public data expects Kingambit pressure', () => {
     const basculegionTeam = [
       member('team-1', 'Basculegion (Male)', [], ['Last Respects', 'Aqua Jet', 'Wave Crash', 'Protect']),

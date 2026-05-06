@@ -10,6 +10,10 @@ const nonEmptyMoves = (pokemon: PokemonEntry): string[] => pokemon.moves.map((mo
 
 const speciesMeta = (pokemon: PokemonEntry, data: IndexedData): MetaSpecies | undefined => findSpecies(pokemon.species, data);
 
+interface StrategyContext {
+  perishTrap: boolean;
+}
+
 const demoteMegaEntry = (pokemon: PokemonEntry, data: IndexedData): PokemonEntry => {
   const species = baseSpeciesForMega(pokemon.species, data);
   const meta = findSpecies(species, data);
@@ -99,13 +103,17 @@ const entryTags = (pokemon: PokemonEntry, data: IndexedData): Set<string> => {
   const tags = new Set<string>(speciesMeta(pokemon, data)?.roleTags ?? []);
   nonEmptyMoves(pokemon).forEach((moveName) => {
     findMove(moveName, data)?.tags.forEach((tag) => tags.add(tag));
+    const moveKey = normalizeKey(moveName);
+    if (moveKey === 'perishsong') tags.add('perish');
+    if (['encore', 'disable', 'taunt'].includes(moveKey)) tags.add('disruption');
   });
-  const ability = pokemon.ability?.toLowerCase() ?? '';
-  if (ability.includes('intimidate')) tags.add('intimidate');
-  if (ability.includes('prankster')) tags.add('speed-control');
-  if (ability.includes('drizzle') || ability.includes('drought')) tags.add('weather');
-  if (ability.includes('friend guard')) tags.add('support');
-  if (ability.includes('toxic debris')) tags.add('hazard');
+  const abilityText = [pokemon.ability ?? '', ...(speciesMeta(pokemon, data)?.abilities ?? [])].join(' ').toLowerCase();
+  if (abilityText.includes('intimidate')) tags.add('intimidate');
+  if (abilityText.includes('prankster')) tags.add('speed-control');
+  if (abilityText.includes('drizzle') || abilityText.includes('drought')) tags.add('weather');
+  if (abilityText.includes('friend guard')) tags.add('support');
+  if (abilityText.includes('toxic debris')) tags.add('hazard');
+  if (abilityText.includes('shadow tag')) tags.add('trap');
   return tags;
 };
 
@@ -244,6 +252,46 @@ const damagePressureScore = (pressure: number): number => {
   if (pressure >= 1.15) return 0.55;
   if (pressure >= 0.65) return 0.05;
   return -0.55;
+};
+
+const hasPerishTrapMode = (plan: BattlePlan, data: IndexedData): boolean => {
+  const tags = plan.brought.map((pokemon) => entryTags(pokemon, data));
+  return tags.some((tagSet) => tagSet.has('perish')) && tags.some((tagSet) => tagSet.has('trap'));
+};
+
+const strategyContextFor = (team: PokemonEntry[], data: IndexedData): StrategyContext => {
+  const tags = team.map((pokemon) => entryTags(pokemon, data));
+  return {
+    perishTrap: tags.some((tagSet) => tagSet.has('perish')) && tags.some((tagSet) => tagSet.has('trap'))
+  };
+};
+
+const isPerishSupportTags = (tags: Set<string>): boolean =>
+  tags.has('perish') ||
+  tags.has('fake-out') ||
+  tags.has('redirection') ||
+  tags.has('intimidate') ||
+  tags.has('speed-control') ||
+  tags.has('tailwind') ||
+  tags.has('trick-room') ||
+  tags.has('disruption') ||
+  tags.has('pivot');
+
+const isGhostEntry = (pokemon: PokemonEntry, data: IndexedData): boolean => entryTypes(pokemon, data).includes('Ghost');
+
+const enemyPerishTrapThreat = (opponents: PokemonEntry[], inference: OpponentInference, data: IndexedData) => {
+  const opponentTags = opponents.map((pokemon) => entryTags(pokemon, data));
+  const trapper = opponents.find((_, index) => opponentTags[index].has('trap'));
+  const perishUsers = opponents.filter((_, index) => opponentTags[index].has('perish'));
+  const archetypeRead = inference.archetypes.includes('Perish Trap');
+
+  if (!trapper || (perishUsers.length === 0 && !archetypeRead)) return undefined;
+
+  return {
+    trapper,
+    perishUsers,
+    confidence: clamp((archetypeRead ? 0.25 : 0) + (perishUsers.length ? 0.35 : 0) + (trapper ? 0.35 : 0), 0.35, 0.95)
+  };
 };
 
 const addReason = (reasons: ScoreReason[], label: string, detail: string, weight: number, tone: ScoreReason['tone'] = 'positive') => {
@@ -470,8 +518,17 @@ const predictedLeadMatchup = (
   return { score, topLead, topLeadProbability, risk: topRisk?.[0] };
 };
 
-const scoreLead = (plan: BattlePlan, opponents: PokemonEntry[], data: IndexedData, reasons: ScoreReason[], warnings: string[], inference: OpponentInference): number => {
+const scoreLead = (
+  plan: BattlePlan,
+  opponents: PokemonEntry[],
+  data: IndexedData,
+  reasons: ScoreReason[],
+  warnings: string[],
+  inference: OpponentInference,
+  strategy: StrategyContext
+): number => {
   let score = 7;
+  const broughtTags = plan.brought.map((pokemon) => entryTags(pokemon, data));
   const leadTags = plan.leads.map((pokemon) => entryTags(pokemon, data));
   const leadNames = plan.leads.map((pokemon) => pokemon.species).join(' + ');
   const hasHazardLead = leadTags.some((tags) => tags.has('hazard'));
@@ -483,6 +540,30 @@ const scoreLead = (plan: BattlePlan, opponents: PokemonEntry[], data: IndexedDat
   const hasWeavileGlimmoraLead =
     plan.leads.some((pokemon) => pokemon.species === 'Weavile') &&
     plan.leads.some((pokemon) => pokemon.species === 'Glimmora' || pokemon.species === 'Mega Glimmora');
+  const perishTrapMode = strategy.perishTrap;
+  const hasTrapInFour = broughtTags.some((tags) => tags.has('trap'));
+  const trapLeadIndex = leadTags.findIndex((tags) => tags.has('trap'));
+  const hasTrapLead = trapLeadIndex >= 0;
+  const hasPerishLead = leadTags.some((tags) => tags.has('perish'));
+  const hasPerishSupportLead = leadTags.some((tags, index) => index !== trapLeadIndex && isPerishSupportTags(tags));
+  const enemyPerishThreat = enemyPerishTrapThreat(opponents, inference, data);
+  const leadHasPivot = leadTags.some((tags) => tags.has('pivot'));
+  const broughtHasPivot = broughtTags.some((tags) => tags.has('pivot'));
+  const leadHasDisruption = leadTags.some((tags) => tags.has('disruption'));
+  const leadHasGhost = plan.leads.some((pokemon) => isGhostEntry(pokemon, data));
+  const maxTrapperPressure = enemyPerishThreat
+    ? Math.max(...plan.leads.map((lead) => bestDamagePressure(lead, enemyPerishThreat.trapper, data).score))
+    : 0;
+  const fasterThanTrapper =
+    enemyPerishThreat
+      ? plan.leads.some((lead) => (entrySpeed(lead, data) ?? 0) > (entrySpeed(enemyPerishThreat.trapper, data) ?? 0) + 5)
+      : false;
+  const perishCounterplay =
+    (leadHasGhost ? 2.4 : 0) +
+    (leadHasPivot ? 2.2 : broughtHasPivot ? 0.8 : 0) +
+    (leadHasDisruption ? 1.5 : 0) +
+    (fasterThanTrapper ? 0.9 : 0) +
+    (maxTrapperPressure >= 2.4 ? 3.2 : maxTrapperPressure >= 1.55 ? 1.8 : maxTrapperPressure >= 1 ? 0.7 : 0);
   const lateGameLeadPenalty = plan.leads.reduce((total, pokemon, index) => {
     const tags = leadTags[index];
     if (!tags.has('late-game')) return total;
@@ -507,6 +588,16 @@ const scoreLead = (plan: BattlePlan, opponents: PokemonEntry[], data: IndexedDat
   if (leadTags.some((tags) => tags.has('wide-guard'))) score += opponents.some((opponent) => entryTags(opponent, data).has('spread')) ? 2.5 : 0.8;
   if (hasHazardLead && hasFastDisruptionLead) score += 4.4;
   if (hasWeavileGlimmoraLead) score += 1.2;
+  if (perishTrapMode && hasTrapLead) score += 6;
+  if (perishTrapMode && hasTrapLead && hasPerishLead) score += 1.6;
+  if (perishTrapMode && hasTrapLead && hasPerishSupportLead) score += 1.3;
+  if (perishTrapMode && !hasTrapInFour) score -= 10;
+  else if (perishTrapMode && !hasTrapLead) score -= 7.5;
+  if (enemyPerishThreat) {
+    if (perishCounterplay >= 4) score += 2.2;
+    else if (perishCounterplay >= 2.5) score += 0.4;
+    else score -= 4.8 * enemyPerishThreat.confidence;
+  }
   score += publicLeadPrior;
   score += predictedMatchup.score;
   score -= lateGameLeadPenalty;
@@ -526,6 +617,28 @@ const scoreLead = (plan: BattlePlan, opponents: PokemonEntry[], data: IndexedDat
   }
   if (hasHazardLead && hasFastDisruptionLead) {
     addReason(reasons, 'Lead pressure', `${leadNames} pairs fast disruption with hazard pressure.`, 3);
+  }
+  if (perishTrapMode && hasTrapLead) {
+    addReason(reasons, 'Perish Trap lead', `${leadNames} puts the trapper on the field immediately for the Perish plan.`, 4.2);
+  }
+  if (perishTrapMode && !hasTrapInFour) {
+    addReason(reasons, 'Perish Trap missing', `${leadNames} does not bring the trapper, so the main Perish mode is unavailable.`, -6, 'warning');
+    warnings.push('Perish Trap plan: this four does not bring the trapper, so the countdown plan is hard to execute.');
+  } else if (perishTrapMode && !hasTrapLead) {
+    addReason(reasons, 'Perish Trap delay', `${leadNames} leaves the trapper in back, so opponents can switch before the countdown plan starts.`, -5.2, 'warning');
+    warnings.push('Perish Trap plan: leading without the trapper gives the opponent more room to switch around Perish Song.');
+  }
+  if (enemyPerishThreat && perishCounterplay >= 4) {
+    addReason(reasons, 'Perish counterplay', `${leadNames} can pressure or escape ${enemyPerishThreat.trapper.species} before Perish Trap stabilizes.`, 2.1);
+  } else if (enemyPerishThreat && perishCounterplay < 2.5) {
+    addReason(
+      reasons,
+      'Enemy Perish Trap risk',
+      `${leadNames} lacks strong pressure, pivoting, or Ghost-type escape into ${enemyPerishThreat.trapper.species}.`,
+      -3.2,
+      'warning'
+    );
+    warnings.push(`Enemy Perish Trap risk: ${enemyPerishThreat.trapper.species} can trap while Perish Song pressure develops.`);
   }
   if (publicLeadPrior >= 1.5) {
     addReason(reasons, 'Public lead data', `${leadNames} has useful lead usage in public Regulation M-A data.`, 1.5, 'neutral');
@@ -651,6 +764,7 @@ const recommendationTags = (plan: BattlePlan, data: IndexedData): string[] => {
     if (pokemonTags.has('wide-guard')) tags.add('Wide Guard');
     if (pokemonTags.has('priority')) tags.add('Priority');
     if (pokemonTags.has('hazard')) tags.add('Hazard Pressure');
+    if (pokemonTags.has('perish') || pokemonTags.has('trap')) tags.add('Perish Trap');
   });
   return Array.from(tags).slice(0, 5);
 };
@@ -659,16 +773,17 @@ export const scoreBattlePlan = (
   plan: BattlePlan,
   opponents: PokemonEntry[],
   data: IndexedData = indexedData,
-  inference: OpponentInference = inferOpponentPreview(opponents, data)
+  inference: OpponentInference = inferOpponentPreview(opponents, data),
+  strategy: StrategyContext = { perishTrap: hasPerishTrapMode(plan, data) }
 ): Recommendation => {
   const variants = withMegaLimit(plan, data);
   if (variants.length > 1) {
     return variants
-      .map((variant) => scoreSingleBattlePlan(variant.plan, opponents, data, inference, variant.warning))
+      .map((variant) => scoreSingleBattlePlan(variant.plan, opponents, data, inference, strategy, variant.warning))
       .sort((a, b) => b.score - a.score)[0];
   }
 
-  return scoreSingleBattlePlan(variants[0].plan, opponents, data, inference, variants[0].warning);
+  return scoreSingleBattlePlan(variants[0].plan, opponents, data, inference, strategy, variants[0].warning);
 };
 
 const scoreSingleBattlePlan = (
@@ -676,6 +791,7 @@ const scoreSingleBattlePlan = (
   opponents: PokemonEntry[],
   data: IndexedData,
   inference: OpponentInference,
+  strategy: StrategyContext,
   megaLimitWarning?: string
 ): Recommendation => {
   const reasons: ScoreReason[] = [];
@@ -685,7 +801,7 @@ const scoreSingleBattlePlan = (
   const offense = scoreOffense(plan, visibleOpponents, data, reasons);
   const defense = scoreDefense(plan, visibleOpponents, data, reasons, warnings);
   const speed = scoreSpeed(plan, visibleOpponents, data, reasons, warnings);
-  const lead = scoreLead(plan, visibleOpponents, data, reasons, warnings, inference);
+  const lead = scoreLead(plan, visibleOpponents, data, reasons, warnings, inference, strategy);
   const roles = scoreRoles(plan, data, reasons, warnings);
   const meta = scoreMeta(plan, data, reasons);
   const score = clamp(offense + defense + speed + lead + roles + meta, 0, 100);
@@ -711,8 +827,9 @@ export const recommendPlans = (
   data: IndexedData = indexedData
 ): Recommendation[] => {
   const inference = inferOpponentPreview(opponents, data);
+  const strategy = strategyContextFor(filledEntries(team), data);
   return enumerateBattlePlans(team)
-    .map((plan) => scoreBattlePlan(plan, opponents, data, inference))
+    .map((plan) => scoreBattlePlan(plan, opponents, data, inference, strategy))
     .sort((a, b) => b.score - a.score)
     .map((recommendation, index, all) => ({
       ...recommendation,
