@@ -372,8 +372,12 @@ export const inferOpponentPreview = (opponents: PokemonEntry[], data: IndexedDat
     });
   });
 
-  const likelyLeadPairs = buildLikelyLeadPairs(previewNames, similarTeams, data);
   const setGuesses = setGuessesFor(previewNames, similarTeams, data);
+  if (setGuesses.some((guess) => guess.tags.includes('perish')) && setGuesses.some((guess) => guess.tags.includes('trap'))) {
+    archetypeScores.set('Perish Trap', (archetypeScores.get('Perish Trap') ?? 0) + 2.2);
+  }
+
+  const likelyLeadPairs = buildLikelyLeadPairs(previewNames, similarTeams, data);
   const formGuesses = inferOpponentForms(previewNames, similarTeams, data);
   const publicSetCoverage = setGuesses.filter((guess) => guess.moves.length || guess.items.length).length / previewNames.length;
   const matchCoverage = similarTeams[0] ? similarTeams[0].overlap.length / previewNames.length : 0;

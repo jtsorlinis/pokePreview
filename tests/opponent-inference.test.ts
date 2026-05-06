@@ -60,4 +60,14 @@ describe('opponent preview inference', () => {
     expect(gengarSet?.tags).toEqual(expect.arrayContaining(['perish', 'trap']));
     expect(gengarForms?.forms[0].species).toBe('Mega Gengar');
   });
+
+  it('treats enemy Gengar alone as a Perish Trap risk from likely set data', () => {
+    const opponents = ['Gengar', 'Sneasler', 'Garchomp', 'Kingambit', 'Incineroar', 'Charizard'].map(preview);
+    const intel = inferOpponentPreview(opponents);
+    const gengarSet = intel.setGuesses.find((guess) => guess.species === 'Gengar');
+
+    expect(intel.archetypes).toContain('Perish Trap');
+    expect(gengarSet?.moves).toContain('Perish Song');
+    expect(gengarSet?.tags).toEqual(expect.arrayContaining(['perish', 'trap']));
+  });
 });
