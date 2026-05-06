@@ -76,6 +76,32 @@ describe('recommendation scoring', () => {
     expect(dualMegaPlan!.warnings.some((warning) => warning.includes('Mega limit'))).toBe(true);
   });
 
+  it('values inactive Mega regular forms by public non-Mega evidence', () => {
+    const mixedMegaTeam = [
+      member('team-1', 'Mega Charizard Y', [], ['Heat Wave', 'Solar Beam', 'Weather Ball', 'Protect']),
+      member('team-2', 'Mega Glimmora', [], ['Mortal Spin', 'Power Gem', 'Earth Power', 'Spiky Shield']),
+      member('team-3', 'Sneasler', [], ['Close Combat', 'Dire Claw', 'Fake Out', 'Protect']),
+      member('team-4', 'Garchomp', [], ['Earthquake', 'Dragon Claw', 'Rock Slide', 'Protect']),
+      member('team-5', 'Incineroar', [], ['Fake Out', 'Parting Shot', 'Flare Blitz', 'Throat Chop']),
+      member('team-6', 'Primarina', [], ['Hyper Voice', 'Moonblast', 'Icy Wind', 'Protect'])
+    ];
+    const opponentPreview = ['Meganium', 'Aegislash', 'Kingambit', 'Sneasler', 'Aerodactyl', 'Milotic'].map((species) =>
+      opponent(species, [])
+    );
+
+    const recommendations = recommendPlans(mixedMegaTeam, opponentPreview);
+    const dualMegaPlan = recommendations.find((recommendation) => {
+      const broughtIds = new Set(recommendation.brought.map((pokemon) => pokemon.id));
+      return broughtIds.has('team-1') && broughtIds.has('team-2');
+    });
+
+    expect(dualMegaPlan).toBeDefined();
+    expect(dualMegaPlan!.brought.map((pokemon) => pokemon.species)).toContain('Mega Charizard Y');
+    expect(dualMegaPlan!.brought.map((pokemon) => pokemon.species)).toContain('Glimmora');
+    expect(dualMegaPlan!.brought.map((pokemon) => pokemon.species)).not.toContain('Charizard');
+    expect(dualMegaPlan!.warnings.some((warning) => warning.includes('Glimmora is scored as regular'))).toBe(true);
+  });
+
   it('surfaces Weavile plus Glimmora as a strong tempo lead', () => {
     const tempoTeam = [
       { ...member('team-1', 'Weavile', ['Dark', 'Ice'], ['Fake Out', 'Triple Axel', 'Knock Off', 'Beat Up']), speedStat: 172 },
@@ -98,5 +124,28 @@ describe('recommendation scoring', () => {
 
     expect(tempoLead).toBeDefined();
     expect(tempoLead!.reasons.some((reason) => reason.label === 'Lead pressure')).toBe(true);
+  });
+
+  it('demotes Basculegion leads when public data expects Kingambit pressure', () => {
+    const basculegionTeam = [
+      member('team-1', 'Basculegion (Male)', [], ['Last Respects', 'Aqua Jet', 'Wave Crash', 'Protect']),
+      member('team-2', 'Incineroar', [], ['Fake Out', 'Parting Shot', 'Flare Blitz', 'Throat Chop']),
+      member('team-3', 'Sneasler', [], ['Close Combat', 'Dire Claw', 'Fake Out', 'Protect']),
+      member('team-4', 'Garchomp', [], ['Earthquake', 'Dragon Claw', 'Rock Slide', 'Protect']),
+      member('team-5', 'Whimsicott', [], ['Tailwind', 'Moonblast', 'Encore', 'Protect']),
+      member('team-6', 'Primarina', [], ['Hyper Voice', 'Moonblast', 'Icy Wind', 'Protect'])
+    ];
+    const kingambitPreview = ['Sneasler', 'Garchomp', 'Kingambit', 'Incineroar', 'Aerodactyl', 'Charizard'].map((species) =>
+      opponent(species, [])
+    );
+
+    const recommendations = recommendPlans(basculegionTeam, kingambitPreview);
+    const topLeadNames = recommendations.slice(0, 8).map((recommendation) => recommendation.leads.map((pokemon) => pokemon.species));
+    const firstBasculegionLead = recommendations.find((recommendation) =>
+      recommendation.leads.some((pokemon) => pokemon.species === 'Basculegion (Male)')
+    );
+
+    expect(topLeadNames.flat()).not.toContain('Basculegion (Male)');
+    expect(firstBasculegionLead?.warnings.some((warning) => warning.includes('Basculegion (Male) into Kingambit'))).toBe(true);
   });
 });

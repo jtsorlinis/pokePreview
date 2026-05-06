@@ -23,10 +23,11 @@ const uniqueByKey = <T>(items: T[], keyFor: (item: T) => string): T[] => {
   });
 };
 
-const overlayRoleTags = (species: MetaSpecies, overlayMoves: string[], overlayAbilities: string[]): string[] => {
+const overlayRoleTags = (species: MetaSpecies, overlayMoves: string[], overlayAbilities: string[], overlayItems: string[]): string[] => {
   const tags = new Set<string>();
   const moveKeys = overlayMoves.map(normalizeKey);
   const abilityKeys = overlayAbilities.map(normalizeKey);
+  const itemKeys = overlayItems.map(normalizeKey);
 
   if (moveKeys.some((move) => move === 'fakeout')) tags.add('fake-out');
   if (moveKeys.some((move) => move === 'tailwind')) {
@@ -39,6 +40,7 @@ const overlayRoleTags = (species: MetaSpecies, overlayMoves: string[], overlayAb
   if (moveKeys.some((move) => ['icywind', 'electroweb', 'scaryface'].includes(move))) tags.add('speed-control');
   if (moveKeys.some((move) => ['mortalspin', 'toxicspikes', 'stealthrock', 'spikes'].includes(move))) tags.add('hazard');
   if (moveKeys.some((move) => ['partingshot', 'uturn', 'voltswitch', 'flipturn'].includes(move))) tags.add('pivot');
+  if (moveKeys.some((move) => ['lastrespects', 'supremeoverlord'].includes(move))) tags.add('late-game');
   if (abilityKeys.some((ability) => ability === 'intimidate')) {
     tags.add('intimidate');
     tags.add('pivot');
@@ -48,6 +50,7 @@ const overlayRoleTags = (species: MetaSpecies, overlayMoves: string[], overlayAb
     tags.add('speed-control');
   }
   if (abilityKeys.some((ability) => ability === 'toxicdebris')) tags.add('hazard');
+  if (itemKeys.some((item) => ['focussash', 'mentalherb', 'whiteherb'].includes(item))) tags.add('lead-pressure');
   if (overlayMoves.length >= 3 && species.baseStats.speed >= 110) tags.add('lead-pressure');
 
   return Array.from(tags);
@@ -66,14 +69,16 @@ const mergeMetaOverlay = (base: MetaDataset, overlay: MetaOverlayDataset): MetaD
     if (!overlaySpecies) return speciesData;
 
     const overlayMoves = overlaySpecies.commonMoves ?? [];
+    const overlayItems = overlaySpecies.commonItems ?? [];
     const overlayAbilities = overlaySpecies.abilities ?? [];
     const commonMoves = uniqueByKey([...overlayMoves, ...speciesData.commonMoves], (move) => move);
+    const commonItems = uniqueByKey([...overlayItems, ...(speciesData.commonItems ?? [])], (item) => item);
     const abilities = uniqueByKey([...speciesData.abilities, ...overlayAbilities], (ability) => ability);
     const roleTags = uniqueByKey(
       [
         ...speciesData.roleTags,
         ...(overlaySpecies.roleTags ?? []),
-        ...overlayRoleTags({ ...speciesData, baseStats: overlaySpecies.baseStats ?? speciesData.baseStats }, overlayMoves, overlayAbilities)
+        ...overlayRoleTags({ ...speciesData, baseStats: overlaySpecies.baseStats ?? speciesData.baseStats }, overlayMoves, overlayAbilities, overlayItems)
       ],
       (tag) => tag
     );
@@ -86,6 +91,7 @@ const mergeMetaOverlay = (base: MetaDataset, overlay: MetaOverlayDataset): MetaD
       sampleSize: overlaySpecies.sampleSize ?? speciesData.sampleSize,
       leadRate: overlaySpecies.leadRate ?? speciesData.leadRate,
       commonMoves,
+      commonItems,
       abilities,
       roleTags
     };
@@ -108,7 +114,8 @@ const mergeMetaOverlay = (base: MetaDataset, overlay: MetaOverlayDataset): MetaD
     updatedAt: overlay.updatedAt > base.updatedAt ? overlay.updatedAt : base.updatedAt,
     sourceNotes: uniqueByKey([...base.sourceNotes, ...overlay.sourceNotes], (note) => note),
     species,
-    pairs: Array.from(pairByKey.values())
+    pairs: Array.from(pairByKey.values()),
+    publicTeams: overlay.publicTeams ?? base.publicTeams
   };
 };
 

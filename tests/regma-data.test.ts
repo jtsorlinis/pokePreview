@@ -52,9 +52,13 @@ describe('Regulation M-A generated data', () => {
 
     expect(sneasler?.usage).toBeGreaterThan(0.4);
     expect(sneasler?.commonMoves).toContain('Dire Claw');
+    expect(sneasler?.commonItems).toContain('White Herb');
     expect(sneasler?.baseStats.speed).toBe(140);
     expect(glimmora?.baseStats.speed).toBe(106);
     expect(glimmora?.abilities).toContain('Toxic Debris');
     expect(sneaslerGarchomp?.frequency).toBeGreaterThan(0.1);
+    expect(metaDataset.publicTeams?.length).toBeGreaterThan(20);
+    expect(metaDataset.publicTeams?.every((team) => team.members.length === 6)).toBe(true);
+    expect(metaDataset.publicTeams?.some((team) => (team.teamSheet?.length ?? 0) >= 6)).toBe(true);
   });
 });

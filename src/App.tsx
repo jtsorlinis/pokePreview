@@ -18,10 +18,11 @@ import {
 } from 'lucide-react';
 import { abilityOptions, findSpecies, indexedData, moveOptions, opponentSpeciesOptions, previewSpecies, speciesOptions } from './lib/data';
 import { filledEntries } from './lib/candidates';
+import { inferOpponentPreview } from './lib/opponentInference';
 import { recommendPlans } from './lib/scoring';
 import { createBlankOpponentTeam, createBlankTeam, exportTeamJson, importTeamJson, loadSavedTeam, saveTeam } from './lib/storage';
 import { sampleOpponentTeam, samplePlayerTeam } from './lib/sampleTeams';
-import { BLANK_ENTRY, type PokemonEntry, type Recommendation } from './lib/types';
+import { BLANK_ENTRY, type OpponentInference, type PokemonEntry, type Recommendation } from './lib/types';
 
 const formatPercent = (value: number): string => `${Math.round(value * 100)}%`;
 
@@ -318,6 +319,106 @@ function DetailPanel({ recommendation }: { recommendation?: Recommendation }) {
   );
 }
 
+function OpponentIntelPanel({ inference, active }: { inference: OpponentInference; active: boolean }) {
+  if (!active) {
+    return (
+      <section className="intelPanel emptyIntel" data-testid="opponent-intel-empty">
+        <BarChart3 size={18} />
+        <h2>Preview intel</h2>
+        <p>Enter opponent names to infer likely sets, leads, and public-team matches.</p>
+      </section>
+    );
+  }
+
+  return (
+    <section className="intelPanel" data-testid="opponent-intel">
+      <div className="sectionHeader compactHeader">
+        <div>
+          <p className="eyebrow">Opponent read</p>
+          <h2>Preview intel</h2>
+        </div>
+        <span className="confidenceChip">{formatPercent(inference.confidence)}</span>
+      </div>
+
+      {inference.archetypes.length > 0 ? (
+        <div className="tagRail compactTags">
+          {inference.archetypes.map((archetype) => (
+            <span key={archetype}>{archetype}</span>
+          ))}
+        </div>
+      ) : null}
+
+      <div className="intelGrid">
+        <div className="intelBlock">
+          <strong>Likely leads</strong>
+          <div className="miniList">
+            {inference.likelyLeadPairs.slice(0, 3).map((pair) => (
+              <div className="setGuess" key={pair.members.join('-')}>
+                <span>{pair.members.join(' + ')}</span>
+                <small>{formatPercent(pair.probability)} lead probability · {pair.reasons.slice(0, 2).join(', ')}</small>
+                <small>
+                  {pair.evidence.publicPairSamples
+                    ? `Public pair sample: ${pair.evidence.publicPairSamples.toLocaleString()}`
+                    : 'Public pair sample: low or unavailable'}
+                </small>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="intelBlock">
+          <strong>Likely sets</strong>
+          <div className="miniList">
+            {inference.setGuesses.slice(0, 4).map((guess) => (
+              <div className="setGuess" key={guess.species}>
+                <span>{guess.species}</span>
+                <small>{guess.items.length ? `Items: ${guess.items.slice(0, 2).join(', ')}` : 'Items: low public sample'}</small>
+                <small>{guess.moves.length ? `Moves: ${guess.moves.slice(0, 3).join(', ')}` : 'Moves: low public sample'}</small>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="intelBlock">
+          <strong>Similar teams</strong>
+          <div className="miniList">
+            {inference.similarTeams.slice(0, 3).map((team) => (
+              <div className="setGuess" key={team.id}>
+                <span>{team.title}</span>
+                <small>
+                  {team.source === 'tournament' ? team.event ?? 'Tournament' : 'Community'} · overlap {team.overlap.length}/6
+                </small>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {inference.formGuesses.some((guess) => guess.forms.length > 1) ? (
+          <div className="intelBlock">
+            <strong>Mega reads</strong>
+            <div className="miniList">
+              {inference.formGuesses
+                .filter((guess) => guess.forms.length > 1)
+                .slice(0, 3)
+                .map((guess) => (
+                  <div className="setGuess" key={guess.previewSpecies}>
+                    <span>{guess.previewSpecies}</span>
+                    <small>
+                      {guess.forms
+                        .slice(0, 2)
+                        .map((form) => `${form.species} ${formatPercent(form.probability)}`)
+                        .join(' · ')}
+                    </small>
+                  </div>
+                ))}
+            </div>
+          </div>
+        ) : null}
+      </div>
+    </section>
+  );
+}
+
 function App() {
   const initialLoad = useMemo(() => loadSavedTeam(), []);
   const [team, setTeam] = useState<PokemonEntry[]>(() => normalizeTeamLength(initialLoad.team, 'team'));
@@ -330,6 +431,7 @@ function App() {
   const playerCount = filledEntries(team).length;
   const opponentCount = filledEntries(opponents).length;
   const recommendations = useMemo(() => recommendPlans(team, opponents), [team, opponents]);
+  const opponentIntel = useMemo(() => inferOpponentPreview(opponents), [opponents]);
   const topRecommendations = recommendations.slice(0, 8);
   const selectedRecommendation = topRecommendations[selectedIndex] ?? topRecommendations[0];
   const canShowRecommendations = playerCount >= 4 && opponentCount >= 1;
@@ -559,6 +661,7 @@ function App() {
                   />
                 ))}
               </div>
+              <OpponentIntelPanel inference={opponentIntel} active={opponentCount >= 1} />
             </section>
 
             <section className="recommendationColumn">

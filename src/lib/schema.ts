@@ -43,6 +43,7 @@ export const MetaSpeciesSchema = z.object({
   sampleSize: z.number().nonnegative().optional(),
   leadRate: z.number().min(0).max(1).optional(),
   commonMoves: z.array(z.string()),
+  commonItems: z.array(z.string()).optional(),
   roleTags: z.array(z.string())
 });
 
@@ -53,13 +54,33 @@ export const MetaPairSchema = z.object({
   sampleSize: z.number().nonnegative().optional()
 });
 
+export const PublicTeamSetSchema = z.object({
+  species: z.string(),
+  item: z.string().optional(),
+  ability: z.string().optional(),
+  moves: z.array(z.string()).max(4)
+});
+
+export const PublicTeamSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  source: z.enum(['community', 'tournament']),
+  event: z.string().optional(),
+  rank: z.number().nonnegative().optional(),
+  record: z.string().optional(),
+  archetypes: z.array(z.string()),
+  members: z.array(z.string()).min(4).max(6),
+  teamSheet: z.array(PublicTeamSetSchema).optional()
+});
+
 export const MetaDatasetSchema = z.object({
   format: z.string(),
   updatedAt: z.string(),
   sourceNotes: z.array(z.string()),
   species: z.array(MetaSpeciesSchema),
   moves: z.array(MoveDataSchema),
-  pairs: z.array(MetaPairSchema)
+  pairs: z.array(MetaPairSchema),
+  publicTeams: z.array(PublicTeamSchema).optional()
 });
 
 export const MetaSpeciesOverlaySchema = z.object({
@@ -71,6 +92,7 @@ export const MetaSpeciesOverlaySchema = z.object({
   sampleSize: z.number().nonnegative().optional(),
   leadRate: z.number().min(0).max(1).optional(),
   commonMoves: z.array(z.string()).optional(),
+  commonItems: z.array(z.string()).optional(),
   abilities: z.array(z.string()).optional(),
   roleTags: z.array(z.string()).optional(),
   baseStats: z
@@ -99,7 +121,8 @@ export const MetaOverlayDatasetSchema = z.object({
   teamCount: z.number().nonnegative().optional(),
   tournamentCount: z.number().nonnegative().optional(),
   species: z.array(MetaSpeciesOverlaySchema),
-  pairs: z.array(MetaPairOverlaySchema)
+  pairs: z.array(MetaPairOverlaySchema),
+  publicTeams: z.array(PublicTeamSchema).optional()
 });
 
 export const SavedTeamSchema = z.object({

@@ -1,8 +1,9 @@
 {
   "format": "Pokemon Champions Doubles Regulation M-A Public Meta Overlay",
-  "updatedAt": "2026-05-06T00:09:42.000Z",
+  "updatedAt": "2026-05-06T03:15:01.927Z",
   "sourceNotes": [
     "Usage, win-rate, moves, abilities, and teammate data are parsed from https://championsmeta.io/meta.",
+    "Public community and tournament team sheets are parsed from https://championsmeta.io/teams.",
     "Champions-specific visible stat tables are parsed from https://thegamehaus.com/pokemon-champions/full-list-of-pokemon-champions-stats-regulation-m-a/2026/04/11/.",
     "All sources are public, non-authenticated pages; raw HTML responses are cached in src/data/raw/meta for reproducible refreshes."
   ],
@@ -26,6 +27,11 @@
         "Rock Slide",
         "Throat Chop"
       ],
+      "commonItems": [
+        "White Herb",
+        "Focus Sash",
+        "Mental Herb"
+      ],
       "abilities": [
         "Unburden",
         "Poison Touch",
@@ -34,7 +40,8 @@
       "roleTags": [
         "fake-out",
         "support",
-        "spread"
+        "spread",
+        "lead-pressure"
       ],
       "baseStats": {
         "hp": 155,
@@ -61,6 +68,14 @@
         "Protect",
         "Will-o-wisp",
         "Taunt"
+      ],
+      "commonItems": [
+        "Sitrus Berry",
+        "Chople Berry",
+        "Shuca Berry",
+        "Leftovers",
+        "Lum Berry",
+        "Passho Berry"
       ],
       "abilities": [
         "Intimidate",
@@ -98,12 +113,21 @@
         "Swords Dance",
         "Poison Jab"
       ],
+      "commonItems": [
+        "Choice Scarf",
+        "White Herb",
+        "Soft Sand",
+        "Sitrus Berry",
+        "Lum Berry",
+        "Haban Berry"
+      ],
       "abilities": [
         "Rough Skin",
         "Sand Veil"
       ],
       "roleTags": [
-        "spread"
+        "spread",
+        "lead-pressure"
       ],
       "baseStats": {
         "hp": 183,
@@ -129,12 +153,19 @@
         "Low Kick",
         "Swords Dance"
       ],
+      "commonItems": [
+        "Black Glasses",
+        "Chople Berry",
+        "Focus Sash",
+        "Lum Berry"
+      ],
       "abilities": [
         "Defiant",
         "Supreme Overlord"
       ],
       "roleTags": [
-        "priority"
+        "priority",
+        "lead-pressure"
       ],
       "baseStats": {
         "hp": 175,
@@ -162,6 +193,12 @@
         "Icy Wind",
         "Psychic Fangs"
       ],
+      "commonItems": [
+        "Choice Scarf",
+        "Mystic Water",
+        "Focus Sash",
+        "Sitrus Berry"
+      ],
       "abilities": [
         "Adaptability",
         "Swift Swim"
@@ -169,7 +206,9 @@
       "roleTags": [
         "speed-control",
         "priority",
-        "pivot"
+        "pivot",
+        "late-game",
+        "lead-pressure"
       ],
       "baseStats": {
         "hp": 195,
@@ -197,6 +236,14 @@
         "Shadow Ball",
         "Imprison"
       ],
+      "commonItems": [
+        "Sitrus Berry",
+        "Leftovers",
+        "Occa Berry",
+        "Colbur Berry",
+        "Coba Berry",
+        "Mental Herb"
+      ],
       "abilities": [
         "Hospitality",
         "Heatproof"
@@ -205,7 +252,8 @@
         "trick-room",
         "speed-control",
         "support",
-        "redirection"
+        "redirection",
+        "lead-pressure"
       ],
       "baseStats": {
         "hp": 146,
@@ -232,6 +280,11 @@
         "Taunt",
         "Iron Head"
       ],
+      "commonItems": [
+        "Focus Sash",
+        "Aerodactylite",
+        "Lum Berry"
+      ],
       "abilities": [
         "Unnerve",
         "Rock Head",
@@ -242,7 +295,8 @@
         "speed-control",
         "support",
         "wide-guard",
-        "spread"
+        "spread",
+        "lead-pressure"
       ],
       "baseStats": {
         "hp": 155,
@@ -270,6 +324,10 @@
         "Flare Blitz",
         "Dragon Claw"
       ],
+      "commonItems": [
+        "Charizardite Y",
+        "Charizardite X"
+      ],
       "abilities": [
         "Blaze",
         "Solar Power",
@@ -295,6 +353,7 @@
       "winRate": 0.578,
       "sampleSize": 2206,
       "commonMoves": [],
+      "commonItems": [],
       "abilities": [],
       "roleTags": []
     },
@@ -314,6 +373,12 @@
         "Muddy Water",
         "Life Dew",
         "Coil"
+      ],
+      "commonItems": [
+        "Leftovers",
+        "Sitrus Berry",
+        "Mystic Water",
+        "Lum Berry"
       ],
       "abilities": [
         "Competitive",
@@ -349,6 +414,14 @@
         "Fake Tears",
         "Helping Hand"
       ],
+      "commonItems": [
+        "Focus Sash",
+        "Mental Herb",
+        "Occa Berry",
+        "Sitrus Berry",
+        "Leftovers",
+        "Fairy Feather"
+      ],
       "abilities": [
         "Prankster",
         "Chlorophyll"
@@ -356,7 +429,8 @@
       "roleTags": [
         "tailwind",
         "speed-control",
-        "support"
+        "support",
+        "lead-pressure"
       ],
       "baseStats": {
         "hp": 135,
@@ -384,11 +458,20 @@
         "Dragon Dance",
         "Stone Edge"
       ],
+      "commonItems": [
+        "Tyranitarite",
+        "Chople Berry",
+        "Choice Scarf",
+        "Focus Sash",
+        "Lum Berry",
+        "Leftovers"
+      ],
       "abilities": [
         "Sand Stream"
       ],
       "roleTags": [
-        "spread"
+        "spread",
+        "lead-pressure"
       ],
       "baseStats": {
         "hp": 175,
@@ -416,6 +499,14 @@
         "Icy Wind",
         "U-turn"
       ],
+      "commonItems": [
+        "Focus Sash",
+        "Sitrus Berry",
+        "Choice Scarf",
+        "Leftovers",
+        "Mystic Water",
+        "Quick Claw"
+      ],
       "abilities": [
         "Drizzle",
         "Keen Eye"
@@ -426,7 +517,8 @@
         "support",
         "wide-guard",
         "spread",
-        "pivot"
+        "pivot",
+        "lead-pressure"
       ],
       "baseStats": {
         "hp": 135,
@@ -453,6 +545,14 @@
         "Twin Beam",
         "Imprison"
       ],
+      "commonItems": [
+        "Sitrus Berry",
+        "Colbur Berry",
+        "Mental Herb",
+        "Leftovers",
+        "Silk Scarf",
+        "Lum Berry"
+      ],
       "abilities": [
         "Armor Tail"
       ],
@@ -460,7 +560,8 @@
         "trick-room",
         "speed-control",
         "support",
-        "spread"
+        "spread",
+        "lead-pressure"
       ],
       "baseStats": {
         "hp": 195,
@@ -488,12 +589,22 @@
         "Snarl",
         "Thunderbolt"
       ],
+      "commonItems": [
+        "Leftovers",
+        "Chople Berry",
+        "Magnet",
+        "White Herb",
+        "Choice Scarf",
+        "Sitrus Berry"
+      ],
       "abilities": [
         "Stamina",
         "Sturdy",
         "Stalwart"
       ],
-      "roleTags": [],
+      "roleTags": [
+        "lead-pressure"
+      ],
       "baseStats": {
         "hp": 165,
         "attack": 125,
@@ -520,11 +631,21 @@
         "Giga Drain",
         "Leech Seed"
       ],
+      "commonItems": [
+        "Focus Sash",
+        "Venusaurite",
+        "Leftovers",
+        "Miracle Seed",
+        "Sitrus Berry",
+        "Occa Berry"
+      ],
       "abilities": [
         "Chlorophyll",
         "Overgrow"
       ],
-      "roleTags": [],
+      "roleTags": [
+        "lead-pressure"
+      ],
       "baseStats": {
         "hp": 155,
         "attack": 102,
@@ -550,6 +671,9 @@
         "Thunderbolt",
         "Nasty Plot",
         "Taunt"
+      ],
+      "commonItems": [
+        "Froslassite"
       ],
       "abilities": [
         "Cursed Body",
@@ -583,6 +707,14 @@
         "Scale Shot",
         "Thunder"
       ],
+      "commonItems": [
+        "Dragoninite",
+        "Lum Berry",
+        "Dragon Fang",
+        "White Herb",
+        "Silk Scarf",
+        "Leftovers"
+      ],
       "abilities": [
         "Multiscale",
         "Inner Focus"
@@ -591,7 +723,8 @@
         "tailwind",
         "speed-control",
         "support",
-        "priority"
+        "priority",
+        "lead-pressure"
       ],
       "baseStats": {
         "hp": 166,
@@ -618,6 +751,13 @@
         "Bulk Up",
         "Iron Defense",
         "Protect"
+      ],
+      "commonItems": [
+        "Leftovers",
+        "Sitrus Berry",
+        "Occa Berry",
+        "Lum Berry",
+        "Quick Claw"
       ],
       "abilities": [
         "Mirror Armor",
@@ -655,6 +795,9 @@
         "Psyshock",
         "Dazzling Gleam"
       ],
+      "commonItems": [
+        "Delphoxite"
+      ],
       "abilities": [
         "Blaze",
         "Magician",
@@ -689,12 +832,17 @@
         "Icy Wind",
         "Sludge Wave"
       ],
+      "commonItems": [
+        "Gengarite",
+        "Focus Sash"
+      ],
       "abilities": [
         "Cursed Body",
         "Shadow Tag"
       ],
       "roleTags": [
-        "speed-control"
+        "speed-control",
+        "lead-pressure"
       ],
       "baseStats": {
         "hp": 135,
@@ -722,12 +870,21 @@
         "Flash Cannon",
         "Wide Guard"
       ],
+      "commonItems": [
+        "Spell Tag",
+        "Leftovers",
+        "Focus Sash",
+        "Colbur Berry",
+        "White Herb",
+        "Sitrus Berry"
+      ],
       "abilities": [
         "Stance Change"
       ],
       "roleTags": [
         "wide-guard",
-        "support"
+        "support",
+        "lead-pressure"
       ],
       "baseStats": {
         "hp": 135,
@@ -753,6 +910,9 @@
         "Synthesis",
         "Earth Power",
         "Leech Seed"
+      ],
+      "commonItems": [
+        "Meganiumite"
       ],
       "abilities": [
         "Overgrow",
@@ -787,6 +947,14 @@
         "Will-o-wisp",
         "Taunt"
       ],
+      "commonItems": [
+        "Sharp Beak",
+        "Focus Sash",
+        "No Item",
+        "None",
+        "Nothing",
+        "Charti Berry"
+      ],
       "abilities": [
         "Gale Wings",
         "Flame Body"
@@ -794,7 +962,8 @@
       "roleTags": [
         "tailwind",
         "speed-control",
-        "support"
+        "support",
+        "lead-pressure"
       ],
       "baseStats": {
         "hp": 156,
@@ -822,13 +991,22 @@
         "Population Bomb",
         "Feint"
       ],
+      "commonItems": [
+        "Chople Berry",
+        "Focus Sash",
+        "Sitrus Berry",
+        "Lum Berry",
+        "Mental Herb",
+        "Bright Powder"
+      ],
       "abilities": [
         "Friend Guard",
         "Technician"
       ],
       "roleTags": [
         "redirection",
-        "support"
+        "support",
+        "lead-pressure"
       ],
       "baseStats": {
         "hp": 149,
@@ -856,13 +1034,21 @@
         "Drill Run",
         "Horn Drill"
       ],
+      "commonItems": [
+        "Focus Sash",
+        "Excadrite",
+        "Choice Scarf",
+        "White Herb",
+        "Soft Sand"
+      ],
       "abilities": [
         "Sand Rush",
         "Mold Breaker",
         "Sand Force"
       ],
       "roleTags": [
-        "spread"
+        "spread",
+        "lead-pressure"
       ],
       "baseStats": {
         "hp": 185,
@@ -890,6 +1076,13 @@
         "Dazzling Gleam",
         "Aura Sphere"
       ],
+      "commonItems": [
+        "Gardevoirite",
+        "Choice Scarf",
+        "Sitrus Berry",
+        "Fairy Feather",
+        "Focus Sash"
+      ],
       "abilities": [
         "Trace",
         "Telepathy",
@@ -900,7 +1093,8 @@
         "trick-room",
         "speed-control",
         "support",
-        "spread"
+        "spread",
+        "lead-pressure"
       ],
       "baseStats": {
         "hp": 143,
@@ -928,6 +1122,13 @@
         "Assurance",
         "U-turn"
       ],
+      "commonItems": [
+        "Scizorite",
+        "Metal Coat",
+        "Sitrus Berry",
+        "Focus Sash",
+        "White Herb"
+      ],
       "abilities": [
         "Technician",
         "Light Metal",
@@ -935,7 +1136,8 @@
       ],
       "roleTags": [
         "priority",
-        "pivot"
+        "pivot",
+        "lead-pressure"
       ],
       "baseStats": {
         "hp": 145,
@@ -962,6 +1164,14 @@
         "Ice Beam",
         "Dazzling Gleam",
         "Hydro Cannon"
+      ],
+      "commonItems": [
+        "Leftovers",
+        "Mystic Water",
+        "Sitrus Berry",
+        "Fairy Feather",
+        "Lum Berry",
+        "Quick Claw"
       ],
       "abilities": [
         "Liquid Voice",
@@ -997,6 +1207,14 @@
         "Flamethrower",
         "Draco Meteor"
       ],
+      "commonItems": [
+        "Leftovers",
+        "Dragon Fang",
+        "Sitrus Berry",
+        "Haban Berry",
+        "Choice Scarf",
+        "Roseli Berry"
+      ],
       "abilities": [
         "Soundproof",
         "Overcoat",
@@ -1029,12 +1247,20 @@
         "Helping Hand",
         "Overheat"
       ],
+      "commonItems": [
+        "Charcoal",
+        "Leftovers",
+        "Sitrus Berry",
+        "Quick Claw",
+        "Focus Sash"
+      ],
       "abilities": [
         "Drought",
         "White Smoke"
       ],
       "roleTags": [
-        "spread"
+        "spread",
+        "lead-pressure"
       ],
       "baseStats": {
         "hp": 145,
@@ -1061,6 +1287,10 @@
         "Protect",
         "Body Slam",
         "Crunch"
+      ],
+      "commonItems": [
+        "Kangaskhanite",
+        "Silk Scarf"
       ],
       "abilities": [
         "Scrappy",
@@ -1097,6 +1327,14 @@
         "Muddy Water",
         "Ice Beam"
       ],
+      "commonItems": [
+        "Leftovers",
+        "Sitrus Berry",
+        "Mystic Water",
+        "Wacan Berry",
+        "Choice Scarf",
+        "Quick Claw"
+      ],
       "abilities": [
         "Drizzle",
         "Water Absorb"
@@ -1131,6 +1369,10 @@
         "Psychic",
         "Giga Drain"
       ],
+      "commonItems": [
+        "Floettite",
+        "Choice Scarf"
+      ],
       "abilities": [
         "Flower Veil",
         "Fairy Aura",
@@ -1156,6 +1398,7 @@
       "winRate": 0.557,
       "sampleSize": 449,
       "commonMoves": [],
+      "commonItems": [],
       "abilities": [],
       "roleTags": [],
       "baseStats": {
@@ -1184,12 +1427,20 @@
         "Mortal Spin",
         "Dazzling Gleam"
       ],
+      "commonItems": [
+        "Glimmoranite",
+        "Focus Sash",
+        "Choice Scarf",
+        "Leftovers",
+        "Glimmorite"
+      ],
       "abilities": [
         "Toxic Debris"
       ],
       "roleTags": [
         "hazard",
-        "spread"
+        "spread",
+        "lead-pressure"
       ],
       "baseStats": {
         "hp": 158,
@@ -1217,12 +1468,21 @@
         "Detect",
         "Shadow Ball"
       ],
+      "commonItems": [
+        "Fairy Feather",
+        "Leftovers",
+        "Sitrus Berry",
+        "Choice Scarf",
+        "Quick Claw",
+        "Focus Sash"
+      ],
       "abilities": [
         "Pixilate",
         "Cute Charm"
       ],
       "roleTags": [
-        "spread"
+        "spread",
+        "lead-pressure"
       ],
       "baseStats": {
         "hp": 170,
@@ -1241,6 +1501,7 @@
       "winRate": 0.561,
       "sampleSize": 412,
       "commonMoves": [],
+      "commonItems": [],
       "abilities": [],
       "roleTags": []
     },
@@ -1260,6 +1521,9 @@
         "Giga Drain",
         "Leaf Storm",
         "Helping Hand"
+      ],
+      "commonItems": [
+        "Scovillainite"
       ],
       "abilities": [
         "Moody",
@@ -1297,6 +1561,13 @@
         "Bulk Up",
         "Drain Punch"
       ],
+      "commonItems": [
+        "Mystic Water",
+        "Choice Scarf",
+        "Leftovers",
+        "Sitrus Berry",
+        "Lum Berry"
+      ],
       "abilities": [
         "Zero To Hero"
       ],
@@ -1321,6 +1592,14 @@
         "Tailwind",
         "Flamethrower"
       ],
+      "commonItems": [
+        "Choice Scarf",
+        "Sitrus Berry",
+        "Chople Berry",
+        "Focus Sash",
+        "Roseli Berry",
+        "Black Glasses"
+      ],
       "abilities": [
         "Levitate"
       ],
@@ -1328,7 +1607,8 @@
         "tailwind",
         "speed-control",
         "support",
-        "spread"
+        "spread",
+        "lead-pressure"
       ],
       "baseStats": {
         "hp": 167,
@@ -1356,13 +1636,22 @@
         "Draco Meteor",
         "U-turn"
       ],
+      "commonItems": [
+        "Focus Sash",
+        "Dragon Fang",
+        "Colbur Berry",
+        "Lum Berry",
+        "Spell Tag",
+        "Choice Scarf"
+      ],
       "abilities": [
         "Clear Body",
         "Infiltrator",
         "Cursed Body"
       ],
       "roleTags": [
-        "pivot"
+        "pivot",
+        "lead-pressure"
       ],
       "baseStats": {
         "hp": 163,
@@ -1389,6 +1678,14 @@
         "Thunder Wave",
         "Icy Wind",
         "Encore"
+      ],
+      "commonItems": [
+        "Sitrus Berry",
+        "Leftovers",
+        "Clefablite",
+        "Kebia Berry",
+        "Lum Berry",
+        "Babiri Berry"
       ],
       "abilities": [
         "Unaware",
@@ -1426,6 +1723,14 @@
         "Ice Fang",
         "Earthquake"
       ],
+      "commonItems": [
+        "Gyaradosite",
+        "Leftovers",
+        "Lum Berry",
+        "Sitrus Berry",
+        "Wacan Berry",
+        "Focus Sash"
+      ],
       "abilities": [
         "Intimidate",
         "Moxie"
@@ -1433,7 +1738,8 @@
       "roleTags": [
         "intimidate",
         "pivot",
-        "support"
+        "support",
+        "lead-pressure"
       ],
       "baseStats": {
         "hp": 170,
@@ -1452,6 +1758,7 @@
       "winRate": 0.59,
       "sampleSize": 334,
       "commonMoves": [],
+      "commonItems": [],
       "abilities": [],
       "roleTags": [],
       "baseStats": {
@@ -1480,6 +1787,14 @@
         "Reflect",
         "Will-o-wisp"
       ],
+      "commonItems": [
+        "Roseli Berry",
+        "Focus Sash",
+        "Sitrus Berry",
+        "Mental Herb",
+        "Black Glasses",
+        "Leftovers"
+      ],
       "abilities": [
         "Prankster",
         "Keen Eye"
@@ -1487,7 +1802,8 @@
       "roleTags": [
         "fake-out",
         "support",
-        "speed-control"
+        "speed-control",
+        "lead-pressure"
       ],
       "baseStats": {
         "hp": 125,
@@ -1515,6 +1831,14 @@
         "Water Pulse",
         "Ice Beam"
       ],
+      "commonItems": [
+        "Blastoisinite",
+        "Leftovers",
+        "Rindo Berry",
+        "White Herb",
+        "Mystic Water",
+        "Sitrus Berry"
+      ],
       "abilities": [
         "Rain Dish",
         "Torrent",
@@ -1522,7 +1846,8 @@
       ],
       "roleTags": [
         "fake-out",
-        "support"
+        "support",
+        "lead-pressure"
       ],
       "baseStats": {
         "hp": 154,
@@ -1549,6 +1874,10 @@
         "Stone Edge",
         "Rock Slide",
         "Head Smash"
+      ],
+      "commonItems": [
+        "Aggronite",
+        "Leftovers"
       ],
       "abilities": [
         "Sturdy",
@@ -5985,6 +6314,1881 @@
       ],
       "frequency": 0.0045,
       "sampleSize": 57
+    }
+  ],
+  "publicTeams": [
+    {
+      "id": "cmo3eu0ts001b10cwgab217xg",
+      "title": "Trick Room Mega Golurk/Meganium",
+      "source": "community",
+      "rank": 1,
+      "archetypes": [
+        "Rain",
+        "Trick Room"
+      ],
+      "members": [
+        "Farigiraf",
+        "Meganium",
+        "Golurk",
+        "Aromatisse",
+        "Goodra (Hisuian Form)",
+        "Politoed"
+      ]
+    },
+    {
+      "id": "cmo0zqzmb000etiy16t9b969j",
+      "title": "Master Ball ready team",
+      "source": "community",
+      "rank": 2,
+      "archetypes": [
+        "Tailwind"
+      ],
+      "members": [
+        "Gardevoir",
+        "Primarina",
+        "Whimsicott",
+        "Sneasler",
+        "Arcanine (Hisuian Form)",
+        "Kingambit"
+      ]
+    },
+    {
+      "id": "cmo02j0zt00055up5m8penajn",
+      "title": "Rain + Meganium",
+      "source": "community",
+      "rank": 3,
+      "archetypes": [
+        "Rain"
+      ],
+      "members": [
+        "Incineroar",
+        "Sneasler",
+        "Pelipper",
+        "Archaludon",
+        "Meganium",
+        "Basculegion (Male)"
+      ]
+    },
+    {
+      "id": "cmo335eca002fwzoihgj36rej",
+      "title": "Sand Levi",
+      "source": "community",
+      "rank": 4,
+      "archetypes": [
+        "Sand",
+        "Trick Room"
+      ],
+      "members": [
+        "Tyranitar",
+        "Excadrill",
+        "Hydreigon",
+        "Sinistcha",
+        "Gyarados",
+        "Rotom (Heat Rotom)"
+      ]
+    },
+    {
+      "id": "cmo2kgsao00e45mvhyg3n3o8b",
+      "title": "Bulky sand team",
+      "source": "community",
+      "rank": 5,
+      "archetypes": [
+        "Sand",
+        "Tailwind"
+      ],
+      "members": [
+        "Tyranitar",
+        "Garchomp",
+        "Milotic",
+        "Whimsicott",
+        "Delphox",
+        "Corviknight"
+      ]
+    },
+    {
+      "id": "cmoa1d0ao000ngy42bvv8syfi",
+      "title": "Mega Scizor 1.0",
+      "source": "community",
+      "rank": 6,
+      "archetypes": [
+        "Tailwind",
+        "Trick Room"
+      ],
+      "members": [
+        "Sneasler",
+        "Garchomp",
+        "Sinistcha",
+        "Aerodactyl",
+        "Scizor",
+        "Milotic"
+      ]
+    },
+    {
+      "id": "cmnzl6rlz00017fd1gk8q09b4",
+      "title": "Mega Floette - Mega Delphox",
+      "source": "community",
+      "rank": 7,
+      "archetypes": [
+        "Rain"
+      ],
+      "members": [
+        "Floette",
+        "Kingambit",
+        "Garchomp",
+        "Delphox",
+        "Basculegion (Male)",
+        "Sneasler"
+      ]
+    },
+    {
+      "id": "cmnzl2ljq0001xw6rgdl1p13o",
+      "title": "Mega Floette - Aerodactyl",
+      "source": "community",
+      "rank": 8,
+      "archetypes": [
+        "Tailwind"
+      ],
+      "members": [
+        "Floette",
+        "Aerodactyl",
+        "Sneasler",
+        "Incineroar",
+        "Garchomp",
+        "Kingambit"
+      ]
+    },
+    {
+      "id": "cmo286zs70009ix931advnt0g",
+      "title": "Meganium Team 2",
+      "source": "community",
+      "rank": 9,
+      "archetypes": [
+        "Tailwind"
+      ],
+      "members": [
+        "Gengar",
+        "Meganium",
+        "Incineroar",
+        "Aerodactyl",
+        "Maushold",
+        "Garchomp"
+      ]
+    },
+    {
+      "id": "cmo1xpabn002852ehe8kyqy04",
+      "title": "Copy of Ninetails Sun",
+      "source": "community",
+      "rank": 10,
+      "archetypes": [
+        "Sun"
+      ],
+      "members": [
+        "Venusaur",
+        "Ninetales",
+        "Dragonite",
+        "Typhlosion (Hisuian Form)",
+        "Gardevoir",
+        "Arcanine (Hisuian Form)"
+      ]
+    },
+    {
+      "id": "tournament-event-1-11",
+      "title": "Tournament team #1",
+      "source": "tournament",
+      "rank": 1,
+      "record": "9-2-0",
+      "archetypes": [
+        "Tailwind",
+        "Sun"
+      ],
+      "members": [
+        "Kingambit",
+        "Incineroar",
+        "Aerodactyl",
+        "Sneasler",
+        "Charizard",
+        "Floette"
+      ],
+      "teamSheet": [
+        {
+          "species": "Kingambit",
+          "item": "Black Glasses",
+          "ability": "Defiant",
+          "moves": [
+            "Kowtow Cleave",
+            "Iron Head",
+            "Sucker Punch",
+            "Protect"
+          ]
+        },
+        {
+          "species": "Incineroar",
+          "item": "Shuca Berry",
+          "ability": "Intimidate",
+          "moves": [
+            "Fake Out",
+            "Flare Blitz",
+            "Throat Chop",
+            "Parting Shot"
+          ]
+        },
+        {
+          "species": "Aerodactyl",
+          "item": "Focus Sash",
+          "ability": "Unnerve",
+          "moves": [
+            "Rock Slide",
+            "Protect",
+            "Tailwind",
+            "Dual Wingbeat"
+          ]
+        },
+        {
+          "species": "Sneasler",
+          "item": "White Herb",
+          "ability": "Unburden",
+          "moves": [
+            "Dire Claw",
+            "Close Combat",
+            "Fake Out",
+            "Protect"
+          ]
+        },
+        {
+          "species": "Charizard",
+          "item": "Charizardite Y",
+          "ability": "Solar Power",
+          "moves": [
+            "Heat Wave",
+            "Weather Ball",
+            "Solar Beam",
+            "Protect"
+          ]
+        },
+        {
+          "species": "Floette",
+          "item": "Floettite",
+          "ability": "Flower Veil",
+          "moves": [
+            "Draining Kiss",
+            "Dazzling Gleam",
+            "Calm Mind",
+            "Protect"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tournament-event-2-12",
+      "title": "Tournament team #2",
+      "source": "tournament",
+      "rank": 2,
+      "record": "9-2-0",
+      "archetypes": [
+        "Tailwind",
+        "Snow"
+      ],
+      "members": [
+        "Sneasler",
+        "Kingambit",
+        "Aerodactyl",
+        "Garchomp",
+        "Froslass",
+        "Rotom (Wash Rotom)"
+      ],
+      "teamSheet": [
+        {
+          "species": "Sneasler",
+          "item": "White Herb",
+          "ability": "Unburden",
+          "moves": [
+            "Dire Claw",
+            "Close Combat",
+            "Fake Out",
+            "Protect"
+          ]
+        },
+        {
+          "species": "Kingambit",
+          "item": "Chople Berry",
+          "ability": "Defiant",
+          "moves": [
+            "Kowtow Cleave",
+            "Sucker Punch",
+            "Iron Head",
+            "Protect"
+          ]
+        },
+        {
+          "species": "Aerodactyl",
+          "item": "Focus Sash",
+          "ability": "Unnerve",
+          "moves": [
+            "Rock Slide",
+            "Dual Wingbeat",
+            "Tailwind",
+            "Protect"
+          ]
+        },
+        {
+          "species": "Garchomp",
+          "item": "Lum Berry",
+          "ability": "Rough Skin",
+          "moves": [
+            "Dragon Claw",
+            "Stone Edge",
+            "Earthquake",
+            "Protect"
+          ]
+        },
+        {
+          "species": "Froslass",
+          "item": "Froslassite",
+          "ability": "Cursed Body",
+          "moves": [
+            "Blizzard",
+            "Shadow Ball",
+            "Aurora Veil",
+            "Protect"
+          ]
+        },
+        {
+          "species": "Rotom (Wash Rotom)",
+          "item": "Sitrus Berry",
+          "ability": "Levitate",
+          "moves": [
+            "Thunderbolt",
+            "Hydro Pump",
+            "Will-O-Wisp",
+            "Protect"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tournament-event-3-13",
+      "title": "Tournament team #3",
+      "source": "tournament",
+      "rank": 3,
+      "record": "8-2-0",
+      "archetypes": [
+        "Rain",
+        "Tailwind"
+      ],
+      "members": [
+        "Dragonite",
+        "Basculegion (Male)",
+        "Pelipper",
+        "Scizor",
+        "Archaludon",
+        "Incineroar"
+      ],
+      "teamSheet": [
+        {
+          "species": "Dragonite",
+          "item": "Dragoninite",
+          "ability": "Inner Focus",
+          "moves": [
+            "Draco Meteor",
+            "Hurricane",
+            "Focus Blast",
+            "Protect"
+          ]
+        },
+        {
+          "species": "Basculegion (Male)",
+          "item": "Choice Scarf",
+          "ability": "Adaptability",
+          "moves": [
+            "Wave Crash",
+            "Last Respects",
+            "Icy Wind",
+            "Flip Turn"
+          ]
+        },
+        {
+          "species": "Pelipper",
+          "item": "Focus Sash",
+          "ability": "Drizzle",
+          "moves": [
+            "Weather Ball",
+            "Hurricane",
+            "Tailwind",
+            "Protect"
+          ]
+        },
+        {
+          "species": "Scizor",
+          "item": "Scizorite",
+          "ability": "Technician",
+          "moves": [
+            "Bullet Punch",
+            "Bug Bite",
+            "Swords Dance",
+            "Protect"
+          ]
+        },
+        {
+          "species": "Archaludon",
+          "item": "Leftovers",
+          "ability": "Stamina",
+          "moves": [
+            "Draco Meteor",
+            "Electro Shot",
+            "Aura Sphere",
+            "Protect"
+          ]
+        },
+        {
+          "species": "Incineroar",
+          "item": "Black Glasses",
+          "ability": "Intimidate",
+          "moves": [
+            "Fake Out",
+            "Darkest Lariat",
+            "Flare Blitz",
+            "Parting Shot"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tournament-event-4-14",
+      "title": "Tournament team #4",
+      "source": "tournament",
+      "rank": 4,
+      "record": "7-3-0",
+      "archetypes": [
+        "Rain",
+        "Tailwind"
+      ],
+      "members": [
+        "Pelipper",
+        "Archaludon",
+        "Basculegion (Male)",
+        "Sneasler",
+        "Dragonite",
+        "Scizor"
+      ],
+      "teamSheet": [
+        {
+          "species": "Pelipper",
+          "item": "Sitrus Berry",
+          "ability": "Drizzle",
+          "moves": [
+            "Weather Ball",
+            "Hurricane",
+            "Wide Guard",
+            "Tailwind"
+          ]
+        },
+        {
+          "species": "Archaludon",
+          "item": "Leftovers",
+          "ability": "Stamina",
+          "moves": [
+            "Draco Meteor",
+            "Flash Cannon",
+            "Electro Shot",
+            "Aura Sphere"
+          ]
+        },
+        {
+          "species": "Basculegion (Male)",
+          "item": "Mystic Water",
+          "ability": "Adaptability",
+          "moves": [
+            "Last Respects",
+            "Aqua Jet",
+            "Wave Crash",
+            "Protect"
+          ]
+        },
+        {
+          "species": "Scizor",
+          "item": "Scizorite",
+          "ability": "Technician",
+          "moves": [
+            "Bullet Punch",
+            "Bug Bite",
+            "Protect",
+            "Dual Wingbeat"
+          ]
+        },
+        {
+          "species": "Sneasler",
+          "item": "Focus Sash",
+          "ability": "Poison Touch",
+          "moves": [
+            "Dire Claw",
+            "Close Combat",
+            "Rain Dance",
+            "Fake Out"
+          ]
+        },
+        {
+          "species": "Dragonite",
+          "item": "Dragoninite",
+          "ability": "Inner Focus",
+          "moves": [
+            "Flamethrower",
+            "Protect",
+            "Draco Meteor",
+            "Hurricane"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tournament-event-5-15",
+      "title": "Tournament team #5",
+      "source": "tournament",
+      "rank": 5,
+      "record": "8-1-0",
+      "archetypes": [
+        "Rain",
+        "Tailwind"
+      ],
+      "members": [
+        "Scovillain",
+        "Basculegion (Male)",
+        "Kommo-o",
+        "Kingambit",
+        "Sneasler",
+        "Aerodactyl"
+      ]
+    },
+    {
+      "id": "tournament-event-1-16",
+      "title": "Tournament team #1",
+      "source": "tournament",
+      "rank": 1,
+      "record": "19-1-0",
+      "archetypes": [
+        "Rain",
+        "Sun",
+        "Tailwind"
+      ],
+      "members": [
+        "Charizard",
+        "Floette",
+        "Garchomp",
+        "Kingambit",
+        "Aerodactyl",
+        "Basculegion (Male)"
+      ]
+    },
+    {
+      "id": "tournament-event-2-17",
+      "title": "Tournament team #2",
+      "source": "tournament",
+      "rank": 2,
+      "record": "17-3-0",
+      "archetypes": [
+        "Rain",
+        "Snow"
+      ],
+      "members": [
+        "Sneasler",
+        "Kingambit",
+        "Basculegion (Male)",
+        "Froslass",
+        "Milotic",
+        "Dragonite"
+      ]
+    },
+    {
+      "id": "tournament-event-3-18",
+      "title": "Tournament team #3",
+      "source": "tournament",
+      "rank": 3,
+      "record": "16-3-0",
+      "archetypes": [
+        "Tailwind"
+      ],
+      "members": [
+        "Aerodactyl",
+        "Garchomp",
+        "Aegislash",
+        "Floette",
+        "Rotom (Wash Rotom)",
+        "Incineroar"
+      ],
+      "teamSheet": [
+        {
+          "species": "Rotom (Wash Rotom)",
+          "item": "Choice Scarf",
+          "ability": "Levitate",
+          "moves": [
+            "Will-O-Wisp",
+            "Hydro Pump",
+            "Thunderbolt",
+            "Electroweb"
+          ]
+        },
+        {
+          "species": "Incineroar",
+          "item": "Sitrus Berry",
+          "ability": "Intimidate",
+          "moves": [
+            "Fake Out",
+            "Parting Shot",
+            "Helping Hand",
+            "Flare Blitz"
+          ]
+        },
+        {
+          "species": "Aegislash",
+          "item": "Spell Tag",
+          "ability": "Stance Change",
+          "moves": [
+            "Poltergeist",
+            "Close Combat",
+            "Shadow Sneak",
+            "King's Shield"
+          ]
+        },
+        {
+          "species": "Mega Floette",
+          "item": "Floettite",
+          "ability": "Flower Veil",
+          "moves": [
+            "Moonblast",
+            "Dazzling Gleam",
+            "Light of Ruin",
+            "Protect"
+          ]
+        },
+        {
+          "species": "Garchomp",
+          "item": "Soft Sand",
+          "ability": "Rough Skin",
+          "moves": [
+            "Earthquake",
+            "Stomping Tantrum",
+            "Rock Slide",
+            "Protect"
+          ]
+        },
+        {
+          "species": "Aerodactyl",
+          "item": "Focus Sash",
+          "ability": "Unnerve",
+          "moves": [
+            "Rock Slide",
+            "Dual Wingbeat",
+            "Tailwind",
+            "Protect"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tournament-event-4-19",
+      "title": "Tournament team #4",
+      "source": "tournament",
+      "rank": 4,
+      "record": "16-3-0",
+      "archetypes": [
+        "Sun"
+      ],
+      "members": [
+        "Gengar",
+        "Sneasler",
+        "Incineroar",
+        "Kingambit",
+        "Ninetales (Alolan Form)",
+        "Dragonite"
+      ]
+    },
+    {
+      "id": "tournament-event-5-20",
+      "title": "Tournament team #5",
+      "source": "tournament",
+      "rank": 5,
+      "record": "16-2-0",
+      "archetypes": [
+        "Rain",
+        "Tailwind"
+      ],
+      "members": [
+        "Aerodactyl",
+        "Kommo-o",
+        "Kingambit",
+        "Scovillain",
+        "Sneasler",
+        "Basculegion (Male)"
+      ]
+    },
+    {
+      "id": "tournament-event-1-21",
+      "title": "Tournament team #1",
+      "source": "tournament",
+      "rank": 1,
+      "record": "9-0-0",
+      "archetypes": [
+        "Sun",
+        "Tailwind",
+        "Rain"
+      ],
+      "members": [
+        "Mega Charizard Y",
+        "Whimsicott",
+        "Garchomp",
+        "Sneasler",
+        "Basculegion (Male)",
+        "Kingambit"
+      ],
+      "teamSheet": [
+        {
+          "species": "Mega Charizard Y",
+          "item": "Charizardite Y",
+          "ability": "Blaze",
+          "moves": [
+            "Heat Wave",
+            "Weather Ball",
+            "Solar Beam",
+            "Protect"
+          ]
+        },
+        {
+          "species": "Whimsicott",
+          "item": "Focus Sash",
+          "ability": "Prankster",
+          "moves": [
+            "Moonblast",
+            "Sunny Day",
+            "Tailwind",
+            "Protect"
+          ]
+        },
+        {
+          "species": "Garchomp",
+          "item": "Sitrus Berry",
+          "ability": "Rough Skin",
+          "moves": [
+            "Dragon Claw",
+            "Earthquake",
+            "Rock Slide",
+            "Protect"
+          ]
+        },
+        {
+          "species": "Sneasler",
+          "item": "White Herb",
+          "ability": "Unburden",
+          "moves": [
+            "Fake Out",
+            "Close Combat",
+            "Dire Claw",
+            "Protect"
+          ]
+        },
+        {
+          "species": "Basculegion (Male)",
+          "item": "Choice Scarf",
+          "ability": "Adaptability",
+          "moves": [
+            "Wave Crash",
+            "Flip Turn",
+            "Last Respects",
+            "Aqua Jet"
+          ]
+        },
+        {
+          "species": "Kingambit",
+          "item": "Black Glasses",
+          "ability": "Defiant",
+          "moves": [
+            "Kowtow Cleave",
+            "Sucker Punch",
+            "Iron Head",
+            "Protect"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tournament-event-2-22",
+      "title": "Tournament team #2",
+      "source": "tournament",
+      "rank": 2,
+      "record": "7-2-0",
+      "archetypes": [
+        "Rain",
+        "Tailwind"
+      ],
+      "members": [
+        "Pelipper",
+        "Archaludon",
+        "Basculegion (Male)",
+        "Scizor",
+        "Sneasler",
+        "Dragonite"
+      ],
+      "teamSheet": [
+        {
+          "species": "Pelipper",
+          "item": "Sitrus Berry",
+          "ability": "Drizzle",
+          "moves": [
+            "Weather Ball",
+            "Hurricane",
+            "Wide Guard",
+            "Tailwind"
+          ]
+        },
+        {
+          "species": "Archaludon",
+          "item": "Leftovers",
+          "ability": "Stamina",
+          "moves": [
+            "Draco Meteor",
+            "Flash Cannon",
+            "Electro Shot",
+            "Aura Sphere"
+          ]
+        },
+        {
+          "species": "Basculegion (Male)",
+          "item": "Mystic Water",
+          "ability": "Adaptability",
+          "moves": [
+            "Last Respects",
+            "Aqua Jet",
+            "Wave Crash",
+            "Protect"
+          ]
+        },
+        {
+          "species": "Scizor",
+          "item": "Scizorite",
+          "ability": "Technician",
+          "moves": [
+            "Bullet Punch",
+            "Bug Bite",
+            "Protect",
+            "Dual Wingbeat"
+          ]
+        },
+        {
+          "species": "Sneasler",
+          "item": "Focus Sash",
+          "ability": "Poison Touch",
+          "moves": [
+            "Dire Claw",
+            "Close Combat",
+            "Rain Dance",
+            "Fake Out"
+          ]
+        },
+        {
+          "species": "Dragonite",
+          "item": "Dragoninite",
+          "ability": "Inner Focus",
+          "moves": [
+            "Flamethrower",
+            "Protect",
+            "Draco Meteor",
+            "Hurricane"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tournament-event-3-23",
+      "title": "Tournament team #3",
+      "source": "tournament",
+      "rank": 3,
+      "record": "7-1-0",
+      "archetypes": [
+        "Sand",
+        "Tailwind",
+        "Trick-Room"
+      ],
+      "members": [
+        "Mega Tyranitar",
+        "Excadrill",
+        "Incineroar",
+        "Kommo-o",
+        "Sinistcha",
+        "Corviknight"
+      ],
+      "teamSheet": [
+        {
+          "species": "Mega Tyranitar",
+          "item": "Tyranitarite",
+          "ability": "Sand Stream",
+          "moves": [
+            "Rock Slide",
+            "low kick",
+            "Protect",
+            "Knock Off"
+          ]
+        },
+        {
+          "species": "Excadrill",
+          "item": "Focus Sash",
+          "ability": "Sand Rush",
+          "moves": [
+            "Earthquake",
+            "Iron Head",
+            "Rock Slide",
+            "Protect"
+          ]
+        },
+        {
+          "species": "Incineroar",
+          "item": "Passho Berry",
+          "ability": "Intimidate",
+          "moves": [
+            "Fake Out",
+            "Flare Blitz",
+            "Throat Chop",
+            "Parting Shot"
+          ]
+        },
+        {
+          "species": "Kommo-o",
+          "item": "Haban Berry",
+          "ability": "Overcoat",
+          "moves": [
+            "Clanging Scales",
+            "Clangorous Soul",
+            "Aura Sphere",
+            "Protect"
+          ]
+        },
+        {
+          "species": "Sinistcha",
+          "item": "Sitrus Berry",
+          "ability": "Hospitality",
+          "moves": [
+            "Matcha Gotcha",
+            "Rage Powder",
+            "Trick Room",
+            "Strength Sap"
+          ]
+        },
+        {
+          "species": "Corviknight",
+          "item": "Leftovers",
+          "ability": "Mirror Armor",
+          "moves": [
+            "Brave Bird",
+            "Tailwind",
+            "Roost",
+            "Bulk Up"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tournament-event-4-24",
+      "title": "Tournament team #4",
+      "source": "tournament",
+      "rank": 4,
+      "record": "6-2-0",
+      "archetypes": [
+        "Sun"
+      ],
+      "members": [
+        "Charizard",
+        "Milotic",
+        "Incineroar",
+        "Sneasler",
+        "Venusaur",
+        "Garchomp"
+      ],
+      "teamSheet": [
+        {
+          "species": "Charizard",
+          "item": "Charizardite Y",
+          "ability": "Blaze",
+          "moves": [
+            "Heat Wave",
+            "Weather Ball",
+            "Solar Beam",
+            "Protect"
+          ]
+        },
+        {
+          "species": "Milotic",
+          "item": "Leftovers",
+          "ability": "Competitive",
+          "moves": [
+            "Muddy Water",
+            "Coil",
+            "Hypnosis",
+            "Recover"
+          ]
+        },
+        {
+          "species": "Incineroar",
+          "item": "Chople Berry",
+          "ability": "Intimidate",
+          "moves": [
+            "Throat Chop",
+            "Parting Shot",
+            "Fake Out",
+            "Flare Blitz"
+          ]
+        },
+        {
+          "species": "Sneasler",
+          "item": "White Herb",
+          "ability": "Unburden",
+          "moves": [
+            "Fake Out",
+            "Close Combat",
+            "Dire Claw",
+            "Protect"
+          ]
+        },
+        {
+          "species": "Venusaur",
+          "item": "Focus Sash",
+          "ability": "Chlorophyll",
+          "moves": [
+            "Energy Ball",
+            "Sludge Bomb",
+            "Sleep Powder",
+            "Protect"
+          ]
+        },
+        {
+          "species": "Garchomp",
+          "item": "Sitrus Berry",
+          "ability": "Rough Skin",
+          "moves": [
+            "Dragon Claw",
+            "Rock Slide",
+            "Earthquake",
+            "Protect"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tournament-event-5-25",
+      "title": "Tournament team #5",
+      "source": "tournament",
+      "rank": 5,
+      "record": "5-2-0",
+      "archetypes": [
+        "Sun",
+        "Trick-Room"
+      ],
+      "members": [
+        "Hatterene",
+        "Incineroar",
+        "Farigiraf",
+        "Charizard",
+        "Torkoal",
+        "Kingambit"
+      ],
+      "teamSheet": [
+        {
+          "species": "Hatterene",
+          "item": "Fairy Feather",
+          "ability": "Magic Bounce",
+          "moves": [
+            "Psychic",
+            "Dazzling Gleam",
+            "Trick Room",
+            "Protect"
+          ]
+        },
+        {
+          "species": "Incineroar",
+          "item": "White Herb",
+          "ability": "Intimidate",
+          "moves": [
+            "Flare Blitz",
+            "Darkest Lariat",
+            "Close Combat",
+            "Fake Out"
+          ]
+        },
+        {
+          "species": "Farigiraf",
+          "item": "Sitrus Berry",
+          "ability": "Armor Tail",
+          "moves": [
+            "Hyper Voice",
+            "Psychic",
+            "Trick Room",
+            "Protect"
+          ]
+        },
+        {
+          "species": "Charizard",
+          "item": "Charizardite Y",
+          "ability": "Solar Power",
+          "moves": [
+            "Heat Wave",
+            "Overheat",
+            "Solar Beam",
+            "Protect"
+          ]
+        },
+        {
+          "species": "Torkoal",
+          "item": "Charcoal",
+          "ability": "Drought",
+          "moves": [
+            "Eruption",
+            "Earth Power",
+            "Weather Ball",
+            "Protect"
+          ]
+        },
+        {
+          "species": "Kingambit",
+          "item": "Black Glasses",
+          "ability": "Defiant",
+          "moves": [
+            "Kowtow Cleave",
+            "Sucker Punch",
+            "Iron Head",
+            "Swords Dance"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tournament-event-1-26",
+      "title": "Tournament team #1",
+      "source": "tournament",
+      "rank": 1,
+      "record": "7-1-0",
+      "archetypes": [
+        "Tailwind",
+        "Trick-Room"
+      ],
+      "members": [
+        "Meganium",
+        "Aegislash",
+        "Ceruledge",
+        "Farigiraf",
+        "Aerodactyl",
+        "Milotic"
+      ],
+      "teamSheet": [
+        {
+          "species": "Meganium",
+          "item": "Meganiumite",
+          "ability": "Overgrow",
+          "moves": [
+            "Solar Beam",
+            "Dazzling Gleam",
+            "Weather Ball",
+            "Protect"
+          ]
+        },
+        {
+          "species": "Aegislash",
+          "item": "Spell Tag",
+          "ability": "Stance Change",
+          "moves": [
+            "Poltergeist",
+            "Iron Head",
+            "Shadow Sneak",
+            "King's Shield"
+          ]
+        },
+        {
+          "species": "Ceruledge",
+          "item": "Colbur Berry",
+          "ability": "Flash Fire",
+          "moves": [
+            "Bitter Blade",
+            "Shadow Sneak",
+            "Swords Dance",
+            "Protect"
+          ]
+        },
+        {
+          "species": "Farigiraf",
+          "item": "Sitrus Berry",
+          "ability": "Armor Tail",
+          "moves": [
+            "Trick Room",
+            "Helping Hand",
+            "Psychic",
+            "Protect"
+          ]
+        },
+        {
+          "species": "Aerodactyl",
+          "item": "Focus Sash",
+          "ability": "Unnerve",
+          "moves": [
+            "Rock Slide",
+            "Dual Wingbeat",
+            "Tailwind",
+            "Protect"
+          ]
+        },
+        {
+          "species": "Milotic",
+          "item": "Leftovers",
+          "ability": "Competitive",
+          "moves": [
+            "Scald",
+            "Icy Wind",
+            "Recover",
+            "Helping Hand"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tournament-event-2-27",
+      "title": "Tournament team #2",
+      "source": "tournament",
+      "rank": 2,
+      "record": "7-1-0",
+      "archetypes": [
+        "Rain",
+        "Tailwind",
+        "Trick Room"
+      ],
+      "members": [
+        "Mega Meganium",
+        "Aerodactyl",
+        "Sneasler",
+        "Basculegion (Male)",
+        "Farigiraf",
+        "Kingambit"
+      ]
+    },
+    {
+      "id": "tournament-event-3-28",
+      "title": "Tournament team #3",
+      "source": "tournament",
+      "rank": 3,
+      "record": "5-2-0",
+      "archetypes": [
+        "Rain",
+        "Tailwind"
+      ],
+      "members": [
+        "Meganium",
+        "Basculegion (Male)",
+        "Sneasler",
+        "Pelipper",
+        "Archaludon",
+        "Kingambit"
+      ],
+      "teamSheet": [
+        {
+          "species": "Meganium",
+          "item": "Meganiumite",
+          "ability": "Overgrow",
+          "moves": [
+            "Solar Beam",
+            "Dazzling Gleam",
+            "Protect",
+            "Weather Ball"
+          ]
+        },
+        {
+          "species": "Basculegion (Male)",
+          "item": "Choice Scarf",
+          "ability": "Adaptability",
+          "moves": [
+            "Last Respects",
+            "Liquidation",
+            "Flip Turn",
+            "Wave Crash"
+          ]
+        },
+        {
+          "species": "Sneasler",
+          "item": "White Herb",
+          "ability": "Pressure",
+          "moves": [
+            "Fake Out",
+            "Dire Claw",
+            "Protect",
+            "Close Combat"
+          ]
+        },
+        {
+          "species": "Pelipper",
+          "item": "Focus Sash",
+          "ability": "Drizzle",
+          "moves": [
+            "Tailwind",
+            "Hurricane",
+            "Weather Ball",
+            "Protect"
+          ]
+        },
+        {
+          "species": "Archaludon",
+          "item": "Leftovers",
+          "ability": "Stamina",
+          "moves": [
+            "Electro Shot",
+            "Draco Meteor",
+            "Snarl",
+            "Protect"
+          ]
+        },
+        {
+          "species": "Kingambit",
+          "item": "Black Glasses",
+          "ability": "Defiant",
+          "moves": [
+            "Kowtow Cleave",
+            "Sucker Punch",
+            "Protect",
+            "Iron Defense"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tournament-event-4-29",
+      "title": "Tournament team #4",
+      "source": "tournament",
+      "rank": 4,
+      "record": "5-2-0",
+      "archetypes": [
+        "Tailwind"
+      ],
+      "members": [
+        "Rotom (Wash Rotom)",
+        "Incineroar",
+        "Aegislash",
+        "Mega Floette",
+        "Garchomp",
+        "Aerodactyl"
+      ],
+      "teamSheet": [
+        {
+          "species": "Rotom (Wash Rotom)",
+          "item": "Choice Scarf",
+          "ability": "Levitate",
+          "moves": [
+            "Will-O-Wisp",
+            "Hydro Pump",
+            "Thunderbolt",
+            "Electroweb"
+          ]
+        },
+        {
+          "species": "Incineroar",
+          "item": "Sitrus Berry",
+          "ability": "Intimidate",
+          "moves": [
+            "Fake Out",
+            "Parting Shot",
+            "Helping Hand",
+            "Flare Blitz"
+          ]
+        },
+        {
+          "species": "Aegislash",
+          "item": "Spell Tag",
+          "ability": "Stance Change",
+          "moves": [
+            "Poltergeist",
+            "Close Combat",
+            "Shadow Sneak",
+            "King's Shield"
+          ]
+        },
+        {
+          "species": "Mega Floette",
+          "item": "Floettite",
+          "ability": "Flower Veil",
+          "moves": [
+            "Moonblast",
+            "Dazzling Gleam",
+            "Light of Ruin",
+            "Protect"
+          ]
+        },
+        {
+          "species": "Garchomp",
+          "item": "Soft Sand",
+          "ability": "Rough Skin",
+          "moves": [
+            "Earthquake",
+            "Stomping Tantrum",
+            "Rock Slide",
+            "Protect"
+          ]
+        },
+        {
+          "species": "Aerodactyl",
+          "item": "Focus Sash",
+          "ability": "Unnerve",
+          "moves": [
+            "Rock Slide",
+            "Dual Wingbeat",
+            "Tailwind",
+            "Protect"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tournament-event-5-30",
+      "title": "Tournament team #5",
+      "source": "tournament",
+      "rank": 5,
+      "record": "5-1-0",
+      "archetypes": [
+        "Rain",
+        "Tailwind"
+      ],
+      "members": [
+        "Meganium",
+        "Kingambit",
+        "Aerodactyl",
+        "Sneasler",
+        "Politoed",
+        "Basculegion (Male)"
+      ],
+      "teamSheet": [
+        {
+          "species": "Meganium",
+          "item": "Meganiumite",
+          "ability": "Overgrow",
+          "moves": [
+            "Solar Beam",
+            "Weather Ball",
+            "Dazzling Gleam",
+            "Protect"
+          ]
+        },
+        {
+          "species": "Kingambit",
+          "item": "Black Glasses",
+          "ability": "Defiant",
+          "moves": [
+            "Kowtow Cleave",
+            "Iron Head",
+            "Sucker Punch",
+            "Protect"
+          ]
+        },
+        {
+          "species": "Aerodactyl",
+          "item": "Focus Sash",
+          "ability": "Unnerve",
+          "moves": [
+            "Rock Slide",
+            "Dual Wingbeat",
+            "Tailwind",
+            "Protect"
+          ]
+        },
+        {
+          "species": "Sneasler",
+          "item": "White Herb",
+          "ability": "Unburden",
+          "moves": [
+            "Dire Claw",
+            "Close Combat",
+            "Fake Out",
+            "Protect"
+          ]
+        },
+        {
+          "species": "Politoed",
+          "item": "Sitrus Berry",
+          "ability": "Drizzle",
+          "moves": [
+            "Weather Ball",
+            "Icy Wind",
+            "Helping Hand",
+            "Protect"
+          ]
+        },
+        {
+          "species": "Basculegion (Male)",
+          "item": "Mystic Water",
+          "ability": "Swift Swim",
+          "moves": [
+            "Wave Crash",
+            "Last Respects",
+            "Aqua Jet",
+            "Protect"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tournament-event-1-31",
+      "title": "Tournament team #1",
+      "source": "tournament",
+      "rank": 1,
+      "record": "9-2-0",
+      "archetypes": [
+        "Trick Room"
+      ],
+      "members": [
+        "Mega Floette",
+        "Sinistcha",
+        "Garchomp",
+        "Rotom (Wash Rotom)",
+        "Aegislash",
+        "Sneasler"
+      ],
+      "teamSheet": [
+        {
+          "species": "Mega Floette",
+          "item": "Floettite",
+          "ability": "Flower Veil",
+          "moves": [
+            "Dazzling Gleam",
+            "Draining Kiss",
+            "Calm Mind",
+            "Protect"
+          ]
+        },
+        {
+          "species": "Sinistcha",
+          "item": "Sitrus Berry",
+          "ability": "Hospitality",
+          "moves": [
+            "Matcha Gotcha",
+            "Rage Powder",
+            "Life Dew",
+            "Curse"
+          ]
+        },
+        {
+          "species": "Garchomp",
+          "item": "White Herb",
+          "ability": "Rough Skin",
+          "moves": [
+            "Rock Slide",
+            "Earthquake",
+            "Dragon Claw",
+            "Protect"
+          ]
+        },
+        {
+          "species": "Rotom (Wash Rotom)",
+          "item": "Choice Scarf",
+          "ability": "Levitate",
+          "moves": [
+            "Thunderbolt",
+            "Volt Switch",
+            "Hydro Pump",
+            "Electroweb"
+          ]
+        },
+        {
+          "species": "Aegislash",
+          "item": "Spell Tag",
+          "ability": "Stance Change",
+          "moves": [
+            "Poltergeist",
+            "Shadow Sneak",
+            "Iron Head",
+            "King's Shield"
+          ]
+        },
+        {
+          "species": "Sneasler",
+          "item": "Focus Sash",
+          "ability": "Unburden",
+          "moves": [
+            "Dire Claw",
+            "Close Combat",
+            "Throat Chop",
+            "Fake Out"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tournament-event-2-32",
+      "title": "Tournament team #2",
+      "source": "tournament",
+      "rank": 2,
+      "record": "9-2-0",
+      "archetypes": [
+        "Tailwind",
+        "Snow"
+      ],
+      "members": [
+        "Froslass",
+        "Sneasler",
+        "Whimsicott",
+        "Delphox",
+        "Garchomp",
+        "Kingambit"
+      ],
+      "teamSheet": [
+        {
+          "species": "Froslass",
+          "item": "Froslassite",
+          "ability": "Cursed Body",
+          "moves": [
+            "Protect",
+            "Aurora Veil",
+            "Blizzard",
+            "Shadow Ball"
+          ]
+        },
+        {
+          "species": "Sneasler",
+          "item": "White Herb",
+          "ability": "Unburden",
+          "moves": [
+            "Protect",
+            "Dire Claw",
+            "Close Combat",
+            "Fake Out"
+          ]
+        },
+        {
+          "species": "Whimsicott",
+          "item": "Focus Sash",
+          "ability": "Prankster",
+          "moves": [
+            "Protect",
+            "Encore",
+            "Tailwind",
+            "Moonblast"
+          ]
+        },
+        {
+          "species": "Delphox",
+          "item": "Delphoxite",
+          "ability": "Blaze",
+          "moves": [
+            "Protect",
+            "Substitute",
+            "Heat Wave",
+            "Psychic"
+          ]
+        },
+        {
+          "species": "Garchomp",
+          "item": "Choice Scarf",
+          "ability": "Rough Skin",
+          "moves": [
+            "Stomping Tantrum",
+            "Earthquake",
+            "Dragon Claw",
+            "Rock Slide"
+          ]
+        },
+        {
+          "species": "Kingambit",
+          "item": "Black Glasses",
+          "ability": "Defiant",
+          "moves": [
+            "Protect",
+            "Swords Dance",
+            "Kowtow Cleave",
+            "Sucker Punch"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tournament-event-3-33",
+      "title": "Tournament team #3",
+      "source": "tournament",
+      "rank": 3,
+      "record": "8-2-0",
+      "archetypes": [
+        "Rain",
+        "Tailwind",
+        "Trick-Room"
+      ],
+      "members": [
+        "Politoed",
+        "Dragonite",
+        "Vivillon",
+        "Kingambit",
+        "Farigiraf",
+        "Sneasler"
+      ],
+      "teamSheet": [
+        {
+          "species": "Politoed",
+          "item": "Mystic Water",
+          "ability": "Drizzle",
+          "moves": [
+            "Weather Ball",
+            "Muddy Water",
+            "Helping Hand",
+            "Protect"
+          ]
+        },
+        {
+          "species": "Dragonite",
+          "item": "Dragoninite",
+          "ability": "Multiscale",
+          "moves": [
+            "Protect",
+            "Dragon Pulse",
+            "Thunder",
+            "Hurricane"
+          ]
+        },
+        {
+          "species": "Vivillon",
+          "item": "Focus Sash",
+          "ability": "Compound Eyes",
+          "moves": [
+            "Protect",
+            "Sleep Powder",
+            "Hurricane",
+            "Tailwind"
+          ]
+        },
+        {
+          "species": "Kingambit",
+          "item": "Leftovers",
+          "ability": "Defiant",
+          "moves": [
+            "Sucker Punch",
+            "Iron Head",
+            "Protect",
+            "Swords Dance"
+          ]
+        },
+        {
+          "species": "Farigiraf",
+          "item": "Colbur Berry",
+          "ability": "Armor Tail",
+          "moves": [
+            "Protect",
+            "Hyper Voice",
+            "Psychic",
+            "Trick Room"
+          ]
+        },
+        {
+          "species": "Sneasler",
+          "item": "White Herb",
+          "ability": "Unburden",
+          "moves": [
+            "Close Combat",
+            "Dire Claw",
+            "Protect",
+            "Fake Out"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tournament-event-4-34",
+      "title": "Tournament team #4",
+      "source": "tournament",
+      "rank": 4,
+      "record": "7-3-0",
+      "archetypes": [
+        "Sun"
+      ],
+      "members": [
+        "Rotom (Wash Rotom)",
+        "Corviknight",
+        "Sneasler",
+        "Dragapult",
+        "Charizard",
+        "Garchomp"
+      ],
+      "teamSheet": [
+        {
+          "species": "Rotom (Wash Rotom)",
+          "item": "Sitrus Berry",
+          "ability": "Levitate",
+          "moves": [
+            "Will-O-Wisp",
+            "Protect",
+            "Thunderbolt",
+            "Hydro Pump"
+          ]
+        },
+        {
+          "species": "Corviknight",
+          "item": "Leftovers",
+          "ability": "Mirror Armor",
+          "moves": [
+            "Bulk Up",
+            "Brave Bird",
+            "Roost",
+            "Iron Head"
+          ]
+        },
+        {
+          "species": "Sneasler",
+          "item": "King",
+          "ability": "Unburden",
+          "moves": [
+            "Dire Claw",
+            "Close Combat",
+            "Fling",
+            "Fake Out"
+          ]
+        },
+        {
+          "species": "Dragapult",
+          "item": "Focus Sash",
+          "ability": "Clear Body",
+          "moves": [
+            "Protect",
+            "Dragon Darts",
+            "Phantom Force",
+            "Dragon Dance"
+          ]
+        },
+        {
+          "species": "Charizard",
+          "item": "Charizardite Y",
+          "ability": "Solar Power",
+          "moves": [
+            "Dragon Pulse",
+            "Solar Beam",
+            "Protect",
+            "Heat Wave"
+          ]
+        },
+        {
+          "species": "Garchomp",
+          "item": "Choice Scarf",
+          "ability": "Sand Veil",
+          "moves": [
+            "Rock Slide",
+            "Poison Jab",
+            "Dragon Claw",
+            "Earthquake"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tournament-event-5-35",
+      "title": "Tournament team #5",
+      "source": "tournament",
+      "rank": 5,
+      "record": "8-1-0",
+      "archetypes": [
+        "Rain",
+        "Tailwind",
+        "Trick Room"
+      ],
+      "members": [
+        "Mega Meganium",
+        "Sneasler",
+        "Basculegion (Male)",
+        "Aerodactyl",
+        "Farigiraf",
+        "Kingambit"
+      ]
     }
   ]
 }

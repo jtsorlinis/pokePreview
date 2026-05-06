@@ -42,6 +42,7 @@ export interface PokemonEntry {
   teraType?: PokemonType | '';
   speedStat?: number | null;
   notes?: string;
+  inactiveMegaSpecies?: string;
 }
 
 export interface MetaSpecies {
@@ -63,6 +64,7 @@ export interface MetaSpecies {
   sampleSize?: number;
   leadRate?: number;
   commonMoves: string[];
+  commonItems?: string[];
   roleTags: string[];
 }
 
@@ -73,6 +75,25 @@ export interface MetaPair {
   sampleSize?: number;
 }
 
+export interface PublicTeam {
+  id: string;
+  title: string;
+  source: 'community' | 'tournament';
+  event?: string;
+  rank?: number;
+  record?: string;
+  archetypes: string[];
+  members: string[];
+  teamSheet?: PublicTeamSet[];
+}
+
+export interface PublicTeamSet {
+  species: string;
+  item?: string;
+  ability?: string;
+  moves: string[];
+}
+
 export interface MetaDataset {
   format: string;
   updatedAt: string;
@@ -80,6 +101,7 @@ export interface MetaDataset {
   species: MetaSpecies[];
   moves: MoveData[];
   pairs: MetaPair[];
+  publicTeams?: PublicTeam[];
 }
 
 export interface MetaSpeciesOverlay {
@@ -91,6 +113,7 @@ export interface MetaSpeciesOverlay {
   sampleSize?: number;
   leadRate?: number;
   commonMoves?: string[];
+  commonItems?: string[];
   abilities?: string[];
   roleTags?: string[];
   baseStats?: MetaSpecies['baseStats'];
@@ -111,6 +134,7 @@ export interface MetaOverlayDataset {
   tournamentCount?: number;
   species: MetaSpeciesOverlay[];
   pairs: MetaPairOverlay[];
+  publicTeams?: PublicTeam[];
 }
 
 export interface IndexedData extends MetaDataset {
@@ -146,6 +170,62 @@ export interface Recommendation extends BattlePlan {
     roles: number;
     meta: number;
   };
+}
+
+export interface OpponentSetGuess {
+  species: string;
+  moves: string[];
+  items: string[];
+  abilities: string[];
+  tags: string[];
+}
+
+export interface SimilarPublicTeam {
+  id: string;
+  title: string;
+  source: PublicTeam['source'];
+  event?: string;
+  rank?: number;
+  record?: string;
+  archetypes: string[];
+  members: string[];
+  teamSheet?: PublicTeamSet[];
+  overlap: string[];
+  score: number;
+}
+
+export interface OpponentFormGuess {
+  previewSpecies: string;
+  forms: Array<{
+    species: string;
+    probability: number;
+    evidence: string[];
+  }>;
+}
+
+export interface LikelyLeadPair {
+  members: [string, string];
+  score: number;
+  probability: number;
+  confidence: number;
+  reasons: string[];
+  evidence: {
+    publicPairFrequency?: number;
+    publicPairSamples?: number;
+    similarTeams: number;
+    leadPrior: number;
+    pairPrior: number;
+    teamPrior: number;
+  };
+}
+
+export interface OpponentInference {
+  setGuesses: OpponentSetGuess[];
+  formGuesses: OpponentFormGuess[];
+  similarTeams: SimilarPublicTeam[];
+  likelyLeadPairs: LikelyLeadPair[];
+  archetypes: string[];
+  confidence: number;
 }
 
 export const BLANK_ENTRY = (id: string): PokemonEntry => ({

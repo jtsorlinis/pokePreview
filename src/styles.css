@@ -782,6 +782,118 @@ button {
   min-height: 130px;
 }
 
+.intelPanel {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(36, 40, 32, 0.06);
+  margin-top: 12px;
+  padding: 14px;
+}
+
+.emptyIntel {
+  align-items: center;
+  color: var(--muted);
+  display: grid;
+  justify-items: center;
+  min-height: 132px;
+  text-align: center;
+}
+
+.emptyIntel h2 {
+  color: var(--ink);
+  font-size: 17px;
+  margin: 6px 0 0;
+}
+
+.emptyIntel p {
+  font-size: 13px;
+  line-height: 1.4;
+  margin: 4px 0 0;
+  max-width: 300px;
+}
+
+.compactHeader {
+  margin-bottom: 6px;
+}
+
+.confidenceChip {
+  background: #17201c;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 900;
+  padding: 7px 9px;
+}
+
+.compactTags {
+  margin: 8px 0 12px;
+}
+
+.intelGrid {
+  display: grid;
+  gap: 10px;
+}
+
+.intelBlock {
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: 7px;
+  padding-top: 10px;
+}
+
+.intelBlock > strong {
+  font-size: 13px;
+}
+
+.miniList {
+  display: grid;
+  gap: 6px;
+}
+
+.miniList:empty::after {
+  color: var(--muted);
+  content: "No strong public signal";
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.miniListRow,
+.setGuess {
+  background: #fbfaf6;
+  border: 1px solid #e3dbcd;
+  border-radius: 8px;
+  display: grid;
+  gap: 3px;
+  padding: 8px;
+}
+
+.miniListRow {
+  align-items: center;
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+
+.miniListRow span,
+.setGuess span {
+  font-size: 13px;
+  font-weight: 850;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.miniListRow small,
+.setGuess small {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 750;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 @media (max-width: 1320px) {
   .workspace,
   .battleColumns {

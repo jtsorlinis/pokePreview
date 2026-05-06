@@ -4,13 +4,14 @@ import path from 'node:path';
 import process from 'node:process';
 import generatedData from '../src/data/regma.generated.json';
 import { MetaDatasetSchema, MetaOverlayDatasetSchema } from '../src/lib/schema';
-import type { MetaDataset, MetaOverlayDataset, MetaSpecies } from '../src/lib/types';
+import type { MetaDataset, MetaOverlayDataset, MetaSpecies, PublicTeam, PublicTeamSet } from '../src/lib/types';
 
 const root = process.cwd();
 const rawDir = path.join(root, 'src/data/raw/meta');
 const overlayPath = path.join(root, 'src/data/regma-meta.generated.json');
 
 const CHAMPIONS_META_URL = 'https://championsmeta.io/meta';
+const CHAMPIONS_TEAMS_URL = 'https://championsmeta.io/teams';
 const CHAMPIONS_BASE_URL = 'https://championsmeta.io';
 const THE_GAME_HAUS_STATS_URL =
   'https://thegamehaus.com/pokemon-champions/full-list-of-pokemon-champions-stats-regulation-m-a/2026/04/11/';
@@ -136,24 +137,46 @@ const buildNameResolver = (dataset: MetaDataset): NameResolver => {
     'Alolan-Ninetales': 'Ninetales (Alolan Form)',
     'Hisuian Arcanine': 'Arcanine (Hisuian Form)',
     'Hisuian-Arcanine': 'Arcanine (Hisuian Form)',
+    'Arcanine Hisui': 'Arcanine (Hisuian Form)',
+    'Arcanine-Hisui': 'Arcanine (Hisuian Form)',
     'Galarian Slowbro': 'Slowbro (Galarian Form)',
     'Galarian-Slowbro': 'Slowbro (Galarian Form)',
+    'Slowbro Galar': 'Slowbro (Galarian Form)',
+    'Slowbro-Galar': 'Slowbro (Galarian Form)',
     'Galarian Slowking': 'Slowking (Galarian Form)',
     'Galarian-Slowking': 'Slowking (Galarian Form)',
+    'Slowking Galar': 'Slowking (Galarian Form)',
+    'Slowking-Galar': 'Slowking (Galarian Form)',
     'Hisuian Typhlosion': 'Typhlosion (Hisuian Form)',
     'Hisuian-Typhlosion': 'Typhlosion (Hisuian Form)',
+    'Typhlosion Hisui': 'Typhlosion (Hisuian Form)',
+    'Typhlosion-Hisui': 'Typhlosion (Hisuian Form)',
     'Hisuian Samurott': 'Samurott (Hisuian Form)',
     'Hisuian-Samurott': 'Samurott (Hisuian Form)',
+    'Samurott Hisui': 'Samurott (Hisuian Form)',
+    'Samurott-Hisui': 'Samurott (Hisuian Form)',
     'Hisuian Zoroark': 'Zoroark (Hisuian Form)',
     'Hisuian-Zoroark': 'Zoroark (Hisuian Form)',
+    'Zoroark Hisui': 'Zoroark (Hisuian Form)',
+    'Zoroark-Hisui': 'Zoroark (Hisuian Form)',
     'Galarian Stunfisk': 'Stunfisk (Galarian Form)',
     'Galarian-Stunfisk': 'Stunfisk (Galarian Form)',
+    'Stunfisk Galar': 'Stunfisk (Galarian Form)',
+    'Stunfisk-Galar': 'Stunfisk (Galarian Form)',
     'Hisuian Goodra': 'Goodra (Hisuian Form)',
     'Hisuian-Goodra': 'Goodra (Hisuian Form)',
+    'Goodra Hisui': 'Goodra (Hisuian Form)',
+    'Goodra-Hisui': 'Goodra (Hisuian Form)',
     'Hisuian Avalugg': 'Avalugg (Hisuian Form)',
     'Hisuian-Avalugg': 'Avalugg (Hisuian Form)',
+    'Avalugg Hisui': 'Avalugg (Hisuian Form)',
+    'Avalugg-Hisui': 'Avalugg (Hisuian Form)',
     'Hisuian Decidueye': 'Decidueye (Hisuian Form)',
     'Hisuian-Decidueye': 'Decidueye (Hisuian Form)',
+    'Decidueye Hisui': 'Decidueye (Hisuian Form)',
+    'Decidueye-Hisui': 'Decidueye (Hisuian Form)',
+    'Raichu Alola': 'Raichu (Alolan Form)',
+    'Ninetales Alola': 'Ninetales (Alolan Form)',
     'Wash Rotom': 'Rotom (Wash Rotom)',
     'Wash-Rotom': 'Rotom (Wash Rotom)',
     'Rotom Wash': 'Rotom (Wash Rotom)',
@@ -220,7 +243,125 @@ const resolveName = (rawName: string, resolver: NameResolver): string | undefine
     if (direct) return direct;
   }
 
+  const megaSuffix = cleaned.match(/^(.+?)[-\s]+mega(?:[-\s]+([xy]))?$/i);
+  if (megaSuffix) {
+    const candidate = `Mega ${titleCase(megaSuffix[1])}${megaSuffix[2] ? ` ${megaSuffix[2].toUpperCase()}` : ''}`;
+    const direct = resolver.byKey.get(normalizeKey(candidate));
+    if (direct) return direct;
+  }
+
+  const megaPrefix = cleaned.match(/^mega[-\s]+(.+?)(?:[-\s]+([xy]))?$/i);
+  if (megaPrefix) {
+    const candidate = `Mega ${titleCase(megaPrefix[1])}${megaPrefix[2] ? ` ${megaPrefix[2].toUpperCase()}` : ''}`;
+    const direct = resolver.byKey.get(normalizeKey(candidate));
+    if (direct) return direct;
+  }
+
   return undefined;
+};
+
+const extractJsonObject = (text: string, startIndex: number): string | null => {
+  let depth = 0;
+  let inString = false;
+  let escaped = false;
+
+  for (let index = startIndex; index < text.length; index += 1) {
+    const char = text[index];
+    if (inString) {
+      if (escaped) escaped = false;
+      else if (char === '\\') escaped = true;
+      else if (char === '"') inString = false;
+      continue;
+    }
+
+    if (char === '"') inString = true;
+    else if (char === '{') depth += 1;
+    else if (char === '}') {
+      depth -= 1;
+      if (depth === 0) return text.slice(startIndex, index + 1);
+    }
+  }
+
+  return null;
+};
+
+const memberKeyFor = (members: string[]): string =>
+  members
+    .map((member) => normalizeKey(member.replace(/^Mega\s+/, '')))
+    .sort()
+    .join('|');
+
+const publicSetFromRaw = (rawSet: unknown, resolver: NameResolver): PublicTeamSet | null => {
+  const set = rawSet as { pokemon?: unknown; item?: unknown; ability?: unknown; moves?: unknown };
+  if (typeof set.pokemon !== 'string') return null;
+
+  const species = resolveName(set.pokemon, resolver);
+  if (!species) return null;
+
+  const moves = Array.isArray(set.moves)
+    ? set.moves.filter((move): move is string => typeof move === 'string').map(cleanText).filter(Boolean).slice(0, 4)
+    : [];
+
+  return {
+    species,
+    item: typeof set.item === 'string' ? cleanText(set.item) : undefined,
+    ability: typeof set.ability === 'string' ? cleanText(set.ability) : undefined,
+    moves
+  };
+};
+
+const parseEmbeddedTeams = (html: string, resolver: NameResolver): PublicTeam[] => {
+  const text = html.replace(/\\"/g, '"');
+  const teams = new Map<string, PublicTeam>();
+  const starts = Array.from(text.matchAll(/"team":\{/g), (match) => (match.index ?? 0) + '"team":'.length);
+
+  starts.forEach((start) => {
+    const json = extractJsonObject(text, start);
+    if (!json) return;
+
+    try {
+      const rawTeam = JSON.parse(json) as {
+        id?: unknown;
+        placement?: unknown;
+        pokemon?: unknown;
+        teamSheet?: unknown;
+        record?: unknown;
+        archetypes?: unknown;
+      };
+      if (typeof rawTeam.id !== 'string' || !Array.isArray(rawTeam.pokemon)) return;
+
+      const members = uniqueStrings(
+        rawTeam.pokemon
+          .filter((pokemon): pokemon is string => typeof pokemon === 'string')
+          .map((pokemon) => resolveName(pokemon, resolver))
+      );
+      if (members.length < 4) return;
+
+      const teamSheet = Array.isArray(rawTeam.teamSheet)
+        ? rawTeam.teamSheet.map((set) => publicSetFromRaw(set, resolver)).filter((set): set is PublicTeamSet => Boolean(set))
+        : undefined;
+      const rank = typeof rawTeam.placement === 'number' ? rawTeam.placement : undefined;
+      const archetypes = Array.isArray(rawTeam.archetypes)
+        ? rawTeam.archetypes.filter((archetype): archetype is string => typeof archetype === 'string').map(titleCase)
+        : [];
+      const title = `Public team #${rank ?? teams.size + 1}`;
+
+      teams.set(rawTeam.id, {
+        id: rawTeam.id,
+        title,
+        source: 'tournament',
+        rank,
+        record: typeof rawTeam.record === 'string' ? rawTeam.record : undefined,
+        archetypes: uniqueStrings([...archetypes, ...deriveArchetypes(title, members)]),
+        members: members.slice(0, 6),
+        teamSheet: teamSheet?.length ? teamSheet : undefined
+      });
+    } catch {
+      // React flight chunks can contain unrelated object shapes; ignore parse misses.
+    }
+  });
+
+  return Array.from(teams.values());
 };
 
 const parseUsageDashboard = (html: string, resolver: NameResolver) => {
@@ -293,9 +434,10 @@ const sectionItems = ($: cheerio.CheerioAPI, title: string): PercentItem[] => {
   return items;
 };
 
-const roleTagsFromPublicSet = (moves: string[], abilities: string[]): string[] => {
+const roleTagsFromPublicSet = (moves: string[], abilities: string[], items: string[]): string[] => {
   const moveKeys = moves.map(normalizeKey);
   const abilityKeys = abilities.map(normalizeKey);
+  const itemKeys = items.map(normalizeKey);
   const tags: string[] = [];
 
   if (moveKeys.includes('fakeout')) tags.push('fake-out', 'support');
@@ -312,11 +454,28 @@ const roleTagsFromPublicSet = (moves: string[], abilities: string[]): string[] =
     tags.push('priority');
   }
   if (moveKeys.some((move) => ['partingshot', 'uturn', 'voltswitch', 'flipturn'].includes(move))) tags.push('pivot');
+  if (moveKeys.some((move) => ['lastrespects', 'supremeoverlord'].includes(move))) tags.push('late-game');
   if (abilityKeys.includes('intimidate')) tags.push('intimidate', 'pivot', 'support');
   if (abilityKeys.includes('prankster')) tags.push('support', 'speed-control');
   if (abilityKeys.includes('toxicdebris')) tags.push('hazard');
+  if (itemKeys.some((item) => ['focussash', 'mentalherb', 'whiteherb'].includes(item))) tags.push('lead-pressure');
 
   return uniqueStrings(tags);
+};
+
+const deriveArchetypes = (title: string, members: string[]): string[] => {
+  const text = normalizeKey(`${title} ${members.join(' ')}`);
+  const archetypes: string[] = [];
+
+  if (/(pelipper|politoed|archaludon|basculegion|rain)/.test(text)) archetypes.push('Rain');
+  if (/(charizard|ninetales|venusaur|torkoal|typhlosion|sun|drought)/.test(text)) archetypes.push('Sun');
+  if (/(tyranitar|excadrill|hippowdon|sand)/.test(text)) archetypes.push('Sand');
+  if (/(alolanninetales|froslass|snow|abomasnow)/.test(text)) archetypes.push('Snow');
+  if (/(whimsicott|talonflame|aerodactyl|tailwind)/.test(text)) archetypes.push('Tailwind');
+  if (/(farigiraf|sinistcha|hatterene|aromatisse|slowbro|slowking|trickroom)/.test(text)) archetypes.push('Trick Room');
+  if (/(glimmora|toxicspikes|hazard)/.test(text)) archetypes.push('Hazard');
+
+  return uniqueStrings(archetypes);
 };
 
 const parseSpeciesPage = async (
@@ -332,13 +491,14 @@ const parseSpeciesPage = async (
   const rankMatch = bodyText.match(/#\s*(\d+)\s*Usage Rank/i);
   const leadMatch = bodyText.match(/([\d.]+)%\s*Lead Rate/i);
   const moves = sectionItems($, 'Moves').map((item) => item.name);
+  const items = sectionItems($, 'Items').map((item) => item.name);
   const abilities = sectionItems($, 'Abilities').map((item) => item.name);
   const teammates = sectionItems($, 'Teammates');
   const usage = summaryMatch ? toRate(summaryMatch[1]) : row.usage;
   const winRate = summaryMatch ? toRate(summaryMatch[2]) : row.winRate;
   const sampleSize = summaryMatch ? Number(summaryMatch[3].replace(/,/g, '')) : row.sampleSize;
   const leadRate = leadMatch ? toRate(leadMatch[1]) : undefined;
-  const roleTags = roleTagsFromPublicSet(moves, abilities);
+  const roleTags = roleTagsFromPublicSet(moves, abilities, items);
 
   const pairs = teammates
     .map((teammate) => {
@@ -365,11 +525,90 @@ const parseSpeciesPage = async (
       sampleSize,
       leadRate,
       commonMoves: uniqueStrings(moves).slice(0, 8),
+      commonItems: uniqueStrings(items).slice(0, 6),
       abilities: uniqueStrings(abilities),
       roleTags
     },
     pairs
   };
+};
+
+const parsePublicTeams = async (resolver: NameResolver): Promise<PublicTeam[]> => {
+  const html = await fetchCached(CHAMPIONS_TEAMS_URL, 'championsmeta-teams.html');
+  if (!html) return [];
+
+  const $ = cheerio.load(html);
+  const teams: PublicTeam[] = [];
+  const seen = new Set<string>();
+  const embeddedTeams = parseEmbeddedTeams(html, resolver);
+  const embeddedById = new Map(embeddedTeams.map((team) => [team.id, team]));
+  const embeddedByMembers = new Map(embeddedTeams.map((team) => [memberKeyFor(team.members), team]));
+
+  $('*').each((_, element) => {
+    const container = $(element);
+    const images = container.find('img');
+    const text = cleanText(container.text());
+    if (images.length !== 6 || text.length === 0) return;
+
+    const childTeamContainers = container.children().filter((__, child) => {
+      const childElement = $(child);
+      return childElement.find('img').length === 6 && cleanText(childElement.text()).length > 0;
+    });
+    if (childTeamContainers.length > 0) return;
+
+    const members = uniqueStrings(
+      images
+        .map((__, image) => resolveName($(image).attr('alt') ?? '', resolver))
+        .get()
+    );
+    if (members.length < 4) return;
+
+    const teamLink = container.find('a[href^="/teams/"]').first();
+    const href = teamLink.attr('href');
+    const isCommunity = Boolean(href);
+    const source: PublicTeam['source'] = isCommunity ? 'community' : 'tournament';
+    const titleFromHeading = cleanText(container.find('h3').first().text());
+    const rankRecordMatch = text.match(/^(\d)(\d{1,2}-\d+-\d+)/);
+    const rank = isCommunity ? numeric(text.match(/#\s*(\d+)/)?.[1] ?? '') : rankRecordMatch ? Number(rankRecordMatch[1]) : undefined;
+    const record = rankRecordMatch?.[2];
+
+    let event: string | undefined;
+    if (!isCommunity) {
+      let eventContainer = container.parent();
+      for (let index = 0; index < 5 && eventContainer.find('img').length < 30; index += 1) {
+        eventContainer = eventContainer.parent();
+      }
+      event = cleanText(eventContainer.find('h3').first().text()) || undefined;
+    }
+
+    const title = isCommunity ? titleFromHeading || `Community team ${teams.length + 1}` : `${event ?? 'Tournament team'} #${rank ?? teams.length + 1}`;
+    const id = href?.split('/').pop() ?? `tournament-${normalizeKey(event ?? 'event')}-${rank ?? teams.length + 1}-${teams.length + 1}`;
+    const embedded = embeddedById.get(id) ?? embeddedByMembers.get(memberKeyFor(members));
+    const key = `${source}:${id}:${members.map(normalizeKey).join('|')}`;
+    if (seen.has(key)) return;
+    seen.add(key);
+
+    teams.push({
+      id,
+      title,
+      source,
+      event,
+      rank,
+      record: record ?? embedded?.record,
+      archetypes: uniqueStrings([...(embedded?.archetypes ?? []), ...deriveArchetypes(`${title} ${text}`, members)]),
+      members: members.slice(0, 6),
+      teamSheet: embedded?.teamSheet
+    });
+  });
+
+  const seenIds = new Set(teams.map((team) => team.id));
+  const seenMemberKeys = new Set(teams.map((team) => memberKeyFor(team.members)));
+  embeddedTeams.forEach((team) => {
+    if (seenIds.has(team.id) || seenMemberKeys.has(memberKeyFor(team.members))) return;
+    teams.push(team);
+  });
+
+  return teams;
 };
 
 const parseGameHausStats = async (resolver: NameResolver): Promise<Map<string, MetaSpecies['baseStats']>> => {
@@ -443,6 +682,7 @@ const main = async () => {
   const dashboardHtml = await fetchCached(CHAMPIONS_META_URL, 'championsmeta-meta.html');
   const usage = dashboardHtml ? parseUsageDashboard(dashboardHtml, resolver) : { rows: [], teamCount: undefined, tournamentCount: undefined };
   const statsByName = await parseGameHausStats(resolver);
+  const publicTeams = await parsePublicTeams(resolver);
   const speciesByName = new Map<string, OverlaySpecies>();
   const pairs: OverlayPair[] = [];
 
@@ -475,18 +715,20 @@ const main = async () => {
     updatedAt: new Date().toISOString(),
     sourceNotes: [
       `Usage, win-rate, moves, abilities, and teammate data are parsed from ${CHAMPIONS_META_URL}.`,
+      `Public community and tournament team sheets are parsed from ${CHAMPIONS_TEAMS_URL}.`,
       `Champions-specific visible stat tables are parsed from ${THE_GAME_HAUS_STATS_URL}.`,
       'All sources are public, non-authenticated pages; raw HTML responses are cached in src/data/raw/meta for reproducible refreshes.'
     ],
     teamCount: usage.teamCount,
     tournamentCount: usage.tournamentCount,
     species: Array.from(speciesByName.values()).sort((first, second) => (second.usage ?? 0) - (first.usage ?? 0)),
-    pairs: mergePairs(pairs)
+    pairs: mergePairs(pairs),
+    publicTeams
   });
 
   await writeFile(overlayPath, `${JSON.stringify(overlay, null, 2)}\n`);
   console.log(
-    `Wrote public meta overlay for ${overlay.species.length} species and ${overlay.pairs.length} pairs from ${
+    `Wrote public meta overlay for ${overlay.species.length} species, ${overlay.pairs.length} pairs, and ${overlay.publicTeams?.length ?? 0} public teams from ${
       overlay.teamCount ?? 0
     } teams.`
   );

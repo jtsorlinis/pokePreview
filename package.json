@@ -3,9 +3,13 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
+  "homepage": "https://jtsorlinis.github.io/pokePreview/",
   "scripts": {
     "dev": "vite --host 127.0.0.1",
     "build": "tsc --noEmit -p tsconfig.json && vite build",
+    "build:pages": "tsc --noEmit -p tsconfig.json && vite build --base=${GITHUB_PAGES_BASE:-/pokePreview/}",
+    "predeploy": "npm run build:pages",
+    "deploy": "gh-pages -d dist",
     "preview": "vite preview --host 127.0.0.1",
     "test": "vitest run",
     "test:watch": "vitest",
