@@ -10,6 +10,11 @@ const nonEmptyMoves = (pokemon: PokemonEntry): string[] => pokemon.moves.map((mo
 
 const speciesMeta = (pokemon: PokemonEntry, data: IndexedData): MetaSpecies | undefined => findSpecies(pokemon.species, data);
 
+const hasExplicitMove = (pokemon: PokemonEntry, moveKey: string): boolean =>
+  nonEmptyMoves(pokemon).some((moveName) => normalizeKey(moveName) === moveKey);
+
+const hasExplicitPerishSong = (pokemon: PokemonEntry): boolean => hasExplicitMove(pokemon, 'perishsong');
+
 interface StrategyContext {
   perishTrap: boolean;
 }
@@ -114,6 +119,11 @@ const entryTags = (pokemon: PokemonEntry, data: IndexedData): Set<string> => {
   if (abilityText.includes('shadow tag')) tags.add('trap');
   tags.delete('hazard');
   return tags;
+};
+
+const hasTrapSignal = (pokemon: PokemonEntry, data: IndexedData): boolean => {
+  const abilityText = [pokemon.ability ?? '', ...(speciesMeta(pokemon, data)?.abilities ?? [])].join(' ').toLowerCase();
+  return abilityText.includes('shadow tag') || (speciesMeta(pokemon, data)?.roleTags ?? []).includes('trap');
 };
 
 const inferredFormFor = (species: string, inference: OpponentInference | undefined, data: IndexedData): string => {
@@ -268,14 +278,12 @@ const hasConcreteUtility = (tags: Set<string>): boolean =>
   tags.has('trap');
 
 const hasPerishTrapMode = (plan: BattlePlan, data: IndexedData): boolean => {
-  const tags = plan.brought.map((pokemon) => entryTags(pokemon, data));
-  return tags.some((tagSet) => tagSet.has('perish')) && tags.some((tagSet) => tagSet.has('trap'));
+  return plan.brought.some(hasExplicitPerishSong) && plan.brought.some((pokemon) => hasTrapSignal(pokemon, data));
 };
 
 const strategyContextFor = (team: PokemonEntry[], data: IndexedData): StrategyContext => {
-  const tags = team.map((pokemon) => entryTags(pokemon, data));
   return {
-    perishTrap: tags.some((tagSet) => tagSet.has('perish')) && tags.some((tagSet) => tagSet.has('trap'))
+    perishTrap: team.some(hasExplicitPerishSong) && team.some((pokemon) => hasTrapSignal(pokemon, data))
   };
 };
 
@@ -582,7 +590,7 @@ const scoreLead = (
   const hasTrapInFour = broughtTags.some((tags) => tags.has('trap'));
   const trapLeadIndex = leadTags.findIndex((tags) => tags.has('trap'));
   const hasTrapLead = trapLeadIndex >= 0;
-  const hasPerishLead = leadTags.some((tags) => tags.has('perish'));
+  const hasPerishLead = plan.leads.some(hasExplicitPerishSong);
   const hasPerishSupportLead = leadTags.some((tags, index) => index !== trapLeadIndex && isPerishSupportTags(tags));
   const enemyPerishThreat = enemyPerishTrapThreat(opponents, inference, data);
   const leadHasPivot = leadTags.some((tags) => tags.has('pivot'));
@@ -787,6 +795,7 @@ const confidenceFor = (plan: BattlePlan, opponents: PokemonEntry[], data: Indexe
 
 const recommendationTags = (plan: BattlePlan, data: IndexedData): string[] => {
   const tags = new Set<string>();
+  const hasPerishTrapPlan = plan.brought.some(hasExplicitPerishSong) && plan.brought.some((pokemon) => hasTrapSignal(pokemon, data));
   plan.brought.forEach((pokemon) => {
     const pokemonTags = entryTags(pokemon, data);
     if (pokemonTags.has('tailwind')) tags.add('Tailwind');
@@ -796,8 +805,8 @@ const recommendationTags = (plan: BattlePlan, data: IndexedData): string[] => {
     if (pokemonTags.has('weather')) tags.add('Weather');
     if (pokemonTags.has('wide-guard')) tags.add('Wide Guard');
     if (pokemonTags.has('priority')) tags.add('Priority');
-    if (pokemonTags.has('perish') || pokemonTags.has('trap')) tags.add('Perish Trap');
   });
+  if (hasPerishTrapPlan) tags.add('Perish Trap');
   return Array.from(tags).slice(0, 5);
 };
 

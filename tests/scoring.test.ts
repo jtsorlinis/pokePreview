@@ -207,6 +207,30 @@ describe('recommendation scoring', () => {
     expect(recommendations[0].reasons.some((reason) => reason.label === 'Perish Trap lead')).toBe(true);
   });
 
+  it('does not activate own Perish Trap mode from public set tags alone', () => {
+    const nonPerishGengarTeam = [
+      member('team-1', 'Mega Gengar', [], ['Shadow Ball', 'Sludge Bomb', 'Icy Wind', 'Protect']),
+      member('team-2', 'Politoed', [], ['Weather Ball', 'Icy Wind', 'Helping Hand', 'Protect']),
+      member('team-3', 'Incineroar', [], ['Fake Out', 'Parting Shot', 'Flare Blitz', 'Throat Chop']),
+      member('team-4', 'Whimsicott', [], ['Encore', 'Tailwind', 'Moonblast', 'Protect']),
+      member('team-5', 'Primarina', [], ['Hyper Voice', 'Moonblast', 'Icy Wind', 'Protect']),
+      member('team-6', 'Garchomp', [], ['Earthquake', 'Dragon Claw', 'Rock Slide', 'Protect'])
+    ];
+    const opponentPreview = ['Sneasler', 'Garchomp', 'Kingambit', 'Incineroar', 'Aerodactyl', 'Charizard'].map((species) =>
+      opponent(species, [])
+    );
+
+    const recommendations = recommendPlans(nonPerishGengarTeam, opponentPreview);
+    const topReasons = recommendations.slice(0, 8).flatMap((recommendation) => recommendation.reasons.map((reason) => reason.label));
+    const topWarnings = recommendations.slice(0, 8).flatMap((recommendation) => recommendation.warnings);
+
+    expect(topReasons).not.toContain('Perish Trap lead');
+    expect(topReasons).not.toContain('Perish Trap delay');
+    expect(topReasons).not.toContain('Perish Trap missing');
+    expect(topWarnings.join(' ')).not.toMatch(/Perish Trap plan/);
+    expect(recommendations[0].tags).not.toContain('Perish Trap');
+  });
+
   it('warns on passive leads and rewards counterplay into enemy Perish Trap', () => {
     const antiPerishTeam = [
       member('team-1', 'Primarina', [], ['Hyper Voice', 'Moonblast', 'Icy Wind', 'Protect']),
