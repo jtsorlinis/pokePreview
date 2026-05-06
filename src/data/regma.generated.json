@@ -1,0 +1,8190 @@
+{
+  "format": "Pokemon Champions Doubles Regulation M-A",
+  "updatedAt": "2026-05-05T22:55:49.169Z",
+  "sourceNotes": [
+    "Legal roster synced from https://bulbapedia.bulbagarden.net/wiki/Regulation_Set_M-A.",
+    "Pokémon types, base stats, abilities, and sprite URLs are refreshed from public PokéAPI data where available.",
+    "Champions-exclusive Mega Evolutions that are not in PokéAPI currently fall back to their base species data."
+  ],
+  "species": [
+    {
+      "species": "Venusaur",
+      "displayName": "Venusaur",
+      "types": [
+        "Grass",
+        "Poison"
+      ],
+      "baseStats": {
+        "hp": 80,
+        "attack": 82,
+        "defense": 83,
+        "specialAttack": 100,
+        "specialDefense": 100,
+        "speed": 80
+      },
+      "abilities": [
+        "Overgrow",
+        "Chlorophyll"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/3.png",
+      "usage": 0.12,
+      "winRate": 0.51,
+      "sampleSize": 90,
+      "commonMoves": [
+        "Sleep Powder",
+        "Giga Drain",
+        "Sludge Bomb",
+        "Protect"
+      ],
+      "roleTags": [
+        "special-attacker",
+        "sleep",
+        "speed"
+      ]
+    },
+    {
+      "species": "Charizard",
+      "displayName": "Charizard",
+      "types": [
+        "Fire",
+        "Flying"
+      ],
+      "baseStats": {
+        "hp": 78,
+        "attack": 84,
+        "defense": 78,
+        "specialAttack": 109,
+        "specialDefense": 85,
+        "speed": 100
+      },
+      "abilities": [
+        "Blaze",
+        "Solar Power"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/6.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Blastoise",
+      "displayName": "Blastoise",
+      "types": [
+        "Water"
+      ],
+      "baseStats": {
+        "hp": 79,
+        "attack": 83,
+        "defense": 100,
+        "specialAttack": 85,
+        "specialDefense": 105,
+        "speed": 78
+      },
+      "abilities": [
+        "Torrent",
+        "Rain Dish"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/9.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Beedrill",
+      "displayName": "Beedrill",
+      "types": [
+        "Bug",
+        "Poison"
+      ],
+      "baseStats": {
+        "hp": 65,
+        "attack": 90,
+        "defense": 40,
+        "specialAttack": 45,
+        "specialDefense": 80,
+        "speed": 75
+      },
+      "abilities": [
+        "Swarm",
+        "Sniper"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/15.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Pidgeot",
+      "displayName": "Pidgeot",
+      "types": [
+        "Normal",
+        "Flying"
+      ],
+      "baseStats": {
+        "hp": 83,
+        "attack": 80,
+        "defense": 75,
+        "specialAttack": 70,
+        "specialDefense": 70,
+        "speed": 101
+      },
+      "abilities": [
+        "Keen Eye",
+        "Tangled Feet",
+        "Big Pecks"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/18.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Arbok",
+      "displayName": "Arbok",
+      "types": [
+        "Poison"
+      ],
+      "baseStats": {
+        "hp": 60,
+        "attack": 95,
+        "defense": 69,
+        "specialAttack": 65,
+        "specialDefense": 79,
+        "speed": 80
+      },
+      "abilities": [
+        "Intimidate",
+        "Shed Skin",
+        "Unnerve"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/24.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Pikachu",
+      "displayName": "Pikachu",
+      "types": [
+        "Electric"
+      ],
+      "baseStats": {
+        "hp": 35,
+        "attack": 55,
+        "defense": 40,
+        "specialAttack": 50,
+        "specialDefense": 50,
+        "speed": 90
+      },
+      "abilities": [
+        "Static",
+        "Lightning Rod"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Raichu",
+      "displayName": "Raichu",
+      "types": [
+        "Electric"
+      ],
+      "baseStats": {
+        "hp": 60,
+        "attack": 90,
+        "defense": 55,
+        "specialAttack": 90,
+        "specialDefense": 80,
+        "speed": 110
+      },
+      "abilities": [
+        "Static",
+        "Lightning Rod"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/26.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Raichu (Alolan Form)",
+      "displayName": "Raichu (Alolan Form)",
+      "types": [
+        "Electric",
+        "Psychic"
+      ],
+      "baseStats": {
+        "hp": 60,
+        "attack": 85,
+        "defense": 50,
+        "specialAttack": 95,
+        "specialDefense": 85,
+        "speed": 110
+      },
+      "abilities": [
+        "Surge Surfer"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10100.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Clefable",
+      "displayName": "Clefable",
+      "types": [
+        "Fairy"
+      ],
+      "baseStats": {
+        "hp": 95,
+        "attack": 70,
+        "defense": 73,
+        "specialAttack": 95,
+        "specialDefense": 90,
+        "speed": 60
+      },
+      "abilities": [
+        "Cute Charm",
+        "Magic Guard",
+        "Unaware"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/36.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": [
+        "support",
+        "redirection"
+      ]
+    },
+    {
+      "species": "Ninetales",
+      "displayName": "Ninetales",
+      "types": [
+        "Fire"
+      ],
+      "baseStats": {
+        "hp": 73,
+        "attack": 76,
+        "defense": 75,
+        "specialAttack": 81,
+        "specialDefense": 100,
+        "speed": 100
+      },
+      "abilities": [
+        "Flash Fire",
+        "Drought"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/38.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Ninetales (Alolan Form)",
+      "displayName": "Ninetales (Alolan Form)",
+      "types": [
+        "Ice",
+        "Fairy"
+      ],
+      "baseStats": {
+        "hp": 73,
+        "attack": 67,
+        "defense": 75,
+        "specialAttack": 81,
+        "specialDefense": 100,
+        "speed": 109
+      },
+      "abilities": [
+        "Snow Cloak",
+        "Snow Warning"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10104.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Arcanine",
+      "displayName": "Arcanine",
+      "types": [
+        "Fire"
+      ],
+      "baseStats": {
+        "hp": 90,
+        "attack": 110,
+        "defense": 80,
+        "specialAttack": 100,
+        "specialDefense": 80,
+        "speed": 95
+      },
+      "abilities": [
+        "Intimidate",
+        "Flash Fire",
+        "Justified"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/59.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Arcanine (Hisuian Form)",
+      "displayName": "Arcanine (Hisuian Form)",
+      "types": [
+        "Fire",
+        "Rock"
+      ],
+      "baseStats": {
+        "hp": 95,
+        "attack": 115,
+        "defense": 80,
+        "specialAttack": 95,
+        "specialDefense": 80,
+        "speed": 90
+      },
+      "abilities": [
+        "Intimidate",
+        "Flash Fire",
+        "Rock Head"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10230.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Alakazam",
+      "displayName": "Alakazam",
+      "types": [
+        "Psychic"
+      ],
+      "baseStats": {
+        "hp": 55,
+        "attack": 50,
+        "defense": 45,
+        "specialAttack": 135,
+        "specialDefense": 95,
+        "speed": 120
+      },
+      "abilities": [
+        "Synchronize",
+        "Inner Focus",
+        "Magic Guard"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/65.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Machamp",
+      "displayName": "Machamp",
+      "types": [
+        "Fighting"
+      ],
+      "baseStats": {
+        "hp": 90,
+        "attack": 130,
+        "defense": 80,
+        "specialAttack": 65,
+        "specialDefense": 85,
+        "speed": 55
+      },
+      "abilities": [
+        "Guts",
+        "No Guard",
+        "Steadfast"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/68.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Victreebel",
+      "displayName": "Victreebel",
+      "types": [
+        "Grass",
+        "Poison"
+      ],
+      "baseStats": {
+        "hp": 80,
+        "attack": 105,
+        "defense": 65,
+        "specialAttack": 100,
+        "specialDefense": 70,
+        "speed": 70
+      },
+      "abilities": [
+        "Chlorophyll",
+        "Gluttony"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/71.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Slowbro",
+      "displayName": "Slowbro",
+      "types": [
+        "Water",
+        "Psychic"
+      ],
+      "baseStats": {
+        "hp": 95,
+        "attack": 75,
+        "defense": 110,
+        "specialAttack": 100,
+        "specialDefense": 80,
+        "speed": 30
+      },
+      "abilities": [
+        "Oblivious",
+        "Own Tempo",
+        "Regenerator"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/80.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Slowbro (Galarian Form)",
+      "displayName": "Slowbro (Galarian Form)",
+      "types": [
+        "Poison",
+        "Psychic"
+      ],
+      "baseStats": {
+        "hp": 95,
+        "attack": 100,
+        "defense": 95,
+        "specialAttack": 100,
+        "specialDefense": 70,
+        "speed": 30
+      },
+      "abilities": [
+        "Quick Draw",
+        "Own Tempo",
+        "Regenerator"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10165.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Gengar",
+      "displayName": "Gengar",
+      "types": [
+        "Ghost",
+        "Poison"
+      ],
+      "baseStats": {
+        "hp": 60,
+        "attack": 65,
+        "defense": 60,
+        "specialAttack": 130,
+        "specialDefense": 75,
+        "speed": 110
+      },
+      "abilities": [
+        "Cursed Body"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/94.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Kangaskhan",
+      "displayName": "Kangaskhan",
+      "types": [
+        "Normal"
+      ],
+      "baseStats": {
+        "hp": 105,
+        "attack": 95,
+        "defense": 80,
+        "specialAttack": 40,
+        "specialDefense": 80,
+        "speed": 90
+      },
+      "abilities": [
+        "Early Bird",
+        "Scrappy",
+        "Inner Focus"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/115.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Starmie",
+      "displayName": "Starmie",
+      "types": [
+        "Water",
+        "Psychic"
+      ],
+      "baseStats": {
+        "hp": 60,
+        "attack": 75,
+        "defense": 85,
+        "specialAttack": 100,
+        "specialDefense": 85,
+        "speed": 115
+      },
+      "abilities": [
+        "Illuminate",
+        "Natural Cure",
+        "Analytic"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/121.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Pinsir",
+      "displayName": "Pinsir",
+      "types": [
+        "Bug"
+      ],
+      "baseStats": {
+        "hp": 65,
+        "attack": 125,
+        "defense": 100,
+        "specialAttack": 55,
+        "specialDefense": 70,
+        "speed": 85
+      },
+      "abilities": [
+        "Hyper Cutter",
+        "Mold Breaker",
+        "Moxie"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/127.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Tauros",
+      "displayName": "Tauros",
+      "types": [
+        "Normal"
+      ],
+      "baseStats": {
+        "hp": 75,
+        "attack": 100,
+        "defense": 95,
+        "specialAttack": 40,
+        "specialDefense": 70,
+        "speed": 110
+      },
+      "abilities": [
+        "Intimidate",
+        "Anger Point",
+        "Sheer Force"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/128.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Tauros (Paldean Form Combat Breed)",
+      "displayName": "Tauros (Paldean Form Combat Breed)",
+      "types": [
+        "Fighting"
+      ],
+      "baseStats": {
+        "hp": 75,
+        "attack": 110,
+        "defense": 105,
+        "specialAttack": 30,
+        "specialDefense": 70,
+        "speed": 100
+      },
+      "abilities": [
+        "Intimidate",
+        "Anger Point",
+        "Cud Chew"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10250.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Tauros (Paldean Form Blaze Breed)",
+      "displayName": "Tauros (Paldean Form Blaze Breed)",
+      "types": [
+        "Fighting",
+        "Fire"
+      ],
+      "baseStats": {
+        "hp": 75,
+        "attack": 110,
+        "defense": 105,
+        "specialAttack": 30,
+        "specialDefense": 70,
+        "speed": 100
+      },
+      "abilities": [
+        "Intimidate",
+        "Anger Point",
+        "Cud Chew"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10251.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Tauros (Paldean Form Aqua Breed)",
+      "displayName": "Tauros (Paldean Form Aqua Breed)",
+      "types": [
+        "Fighting",
+        "Water"
+      ],
+      "baseStats": {
+        "hp": 75,
+        "attack": 110,
+        "defense": 105,
+        "specialAttack": 30,
+        "specialDefense": 70,
+        "speed": 100
+      },
+      "abilities": [
+        "Intimidate",
+        "Anger Point",
+        "Cud Chew"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10252.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Gyarados",
+      "displayName": "Gyarados",
+      "types": [
+        "Water",
+        "Flying"
+      ],
+      "baseStats": {
+        "hp": 95,
+        "attack": 125,
+        "defense": 79,
+        "specialAttack": 60,
+        "specialDefense": 100,
+        "speed": 81
+      },
+      "abilities": [
+        "Intimidate",
+        "Moxie"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/130.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Ditto",
+      "displayName": "Ditto",
+      "types": [
+        "Normal"
+      ],
+      "baseStats": {
+        "hp": 48,
+        "attack": 48,
+        "defense": 48,
+        "specialAttack": 48,
+        "specialDefense": 48,
+        "speed": 48
+      },
+      "abilities": [
+        "Limber",
+        "Imposter"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/132.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Vaporeon",
+      "displayName": "Vaporeon",
+      "types": [
+        "Water"
+      ],
+      "baseStats": {
+        "hp": 130,
+        "attack": 65,
+        "defense": 60,
+        "specialAttack": 110,
+        "specialDefense": 95,
+        "speed": 65
+      },
+      "abilities": [
+        "Water Absorb",
+        "Hydration"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/134.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Jolteon",
+      "displayName": "Jolteon",
+      "types": [
+        "Electric"
+      ],
+      "baseStats": {
+        "hp": 65,
+        "attack": 65,
+        "defense": 60,
+        "specialAttack": 110,
+        "specialDefense": 95,
+        "speed": 130
+      },
+      "abilities": [
+        "Volt Absorb",
+        "Quick Feet"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/135.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Flareon",
+      "displayName": "Flareon",
+      "types": [
+        "Fire"
+      ],
+      "baseStats": {
+        "hp": 65,
+        "attack": 130,
+        "defense": 60,
+        "specialAttack": 95,
+        "specialDefense": 110,
+        "speed": 65
+      },
+      "abilities": [
+        "Flash Fire",
+        "Guts"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/136.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Aerodactyl",
+      "displayName": "Aerodactyl",
+      "types": [
+        "Rock",
+        "Flying"
+      ],
+      "baseStats": {
+        "hp": 80,
+        "attack": 105,
+        "defense": 65,
+        "specialAttack": 60,
+        "specialDefense": 75,
+        "speed": 130
+      },
+      "abilities": [
+        "Rock Head",
+        "Pressure",
+        "Unnerve"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/142.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Snorlax",
+      "displayName": "Snorlax",
+      "types": [
+        "Normal"
+      ],
+      "baseStats": {
+        "hp": 160,
+        "attack": 110,
+        "defense": 65,
+        "specialAttack": 65,
+        "specialDefense": 110,
+        "speed": 30
+      },
+      "abilities": [
+        "Immunity",
+        "Thick Fat",
+        "Gluttony"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/143.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Dragonite",
+      "displayName": "Dragonite",
+      "types": [
+        "Dragon",
+        "Flying"
+      ],
+      "baseStats": {
+        "hp": 91,
+        "attack": 134,
+        "defense": 95,
+        "specialAttack": 100,
+        "specialDefense": 100,
+        "speed": 80
+      },
+      "abilities": [
+        "Inner Focus",
+        "Multiscale"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/149.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Meganium",
+      "displayName": "Meganium",
+      "types": [
+        "Grass"
+      ],
+      "baseStats": {
+        "hp": 80,
+        "attack": 82,
+        "defense": 100,
+        "specialAttack": 83,
+        "specialDefense": 100,
+        "speed": 80
+      },
+      "abilities": [
+        "Overgrow",
+        "Leaf Guard"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/154.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Typhlosion",
+      "displayName": "Typhlosion",
+      "types": [
+        "Fire"
+      ],
+      "baseStats": {
+        "hp": 78,
+        "attack": 84,
+        "defense": 78,
+        "specialAttack": 109,
+        "specialDefense": 85,
+        "speed": 100
+      },
+      "abilities": [
+        "Blaze",
+        "Flash Fire"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/157.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Typhlosion (Hisuian Form)",
+      "displayName": "Typhlosion (Hisuian Form)",
+      "types": [
+        "Fire",
+        "Ghost"
+      ],
+      "baseStats": {
+        "hp": 73,
+        "attack": 84,
+        "defense": 78,
+        "specialAttack": 119,
+        "specialDefense": 85,
+        "speed": 95
+      },
+      "abilities": [
+        "Blaze",
+        "Frisk"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10233.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Feraligatr",
+      "displayName": "Feraligatr",
+      "types": [
+        "Water"
+      ],
+      "baseStats": {
+        "hp": 85,
+        "attack": 105,
+        "defense": 100,
+        "specialAttack": 79,
+        "specialDefense": 83,
+        "speed": 78
+      },
+      "abilities": [
+        "Torrent",
+        "Sheer Force"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/160.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Ariados",
+      "displayName": "Ariados",
+      "types": [
+        "Bug",
+        "Poison"
+      ],
+      "baseStats": {
+        "hp": 70,
+        "attack": 90,
+        "defense": 70,
+        "specialAttack": 60,
+        "specialDefense": 70,
+        "speed": 40
+      },
+      "abilities": [
+        "Swarm",
+        "Insomnia",
+        "Sniper"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/168.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Ampharos",
+      "displayName": "Ampharos",
+      "types": [
+        "Electric"
+      ],
+      "baseStats": {
+        "hp": 90,
+        "attack": 75,
+        "defense": 85,
+        "specialAttack": 115,
+        "specialDefense": 90,
+        "speed": 55
+      },
+      "abilities": [
+        "Static",
+        "Plus"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/181.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Azumarill",
+      "displayName": "Azumarill",
+      "types": [
+        "Water",
+        "Fairy"
+      ],
+      "baseStats": {
+        "hp": 100,
+        "attack": 50,
+        "defense": 80,
+        "specialAttack": 60,
+        "specialDefense": 80,
+        "speed": 50
+      },
+      "abilities": [
+        "Thick Fat",
+        "Huge Power",
+        "Sap Sipper"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/184.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Politoed",
+      "displayName": "Politoed",
+      "types": [
+        "Water"
+      ],
+      "baseStats": {
+        "hp": 90,
+        "attack": 75,
+        "defense": 75,
+        "specialAttack": 90,
+        "specialDefense": 100,
+        "speed": 70
+      },
+      "abilities": [
+        "Water Absorb",
+        "Damp",
+        "Drizzle"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/186.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Espeon",
+      "displayName": "Espeon",
+      "types": [
+        "Psychic"
+      ],
+      "baseStats": {
+        "hp": 65,
+        "attack": 65,
+        "defense": 60,
+        "specialAttack": 130,
+        "specialDefense": 95,
+        "speed": 110
+      },
+      "abilities": [
+        "Synchronize",
+        "Magic Bounce"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/196.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Umbreon",
+      "displayName": "Umbreon",
+      "types": [
+        "Dark"
+      ],
+      "baseStats": {
+        "hp": 95,
+        "attack": 65,
+        "defense": 110,
+        "specialAttack": 60,
+        "specialDefense": 130,
+        "speed": 65
+      },
+      "abilities": [
+        "Synchronize",
+        "Inner Focus"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/197.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Slowking",
+      "displayName": "Slowking",
+      "types": [
+        "Water",
+        "Psychic"
+      ],
+      "baseStats": {
+        "hp": 95,
+        "attack": 75,
+        "defense": 80,
+        "specialAttack": 100,
+        "specialDefense": 110,
+        "speed": 30
+      },
+      "abilities": [
+        "Oblivious",
+        "Own Tempo",
+        "Regenerator"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/199.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Slowking (Galarian Form)",
+      "displayName": "Slowking (Galarian Form)",
+      "types": [
+        "Poison",
+        "Psychic"
+      ],
+      "baseStats": {
+        "hp": 95,
+        "attack": 65,
+        "defense": 80,
+        "specialAttack": 110,
+        "specialDefense": 110,
+        "speed": 30
+      },
+      "abilities": [
+        "Curious Medicine",
+        "Own Tempo",
+        "Regenerator"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10172.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Forretress",
+      "displayName": "Forretress",
+      "types": [
+        "Bug",
+        "Steel"
+      ],
+      "baseStats": {
+        "hp": 75,
+        "attack": 90,
+        "defense": 140,
+        "specialAttack": 60,
+        "specialDefense": 60,
+        "speed": 40
+      },
+      "abilities": [
+        "Sturdy",
+        "Overcoat"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/205.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Steelix",
+      "displayName": "Steelix",
+      "types": [
+        "Steel",
+        "Ground"
+      ],
+      "baseStats": {
+        "hp": 75,
+        "attack": 85,
+        "defense": 200,
+        "specialAttack": 55,
+        "specialDefense": 65,
+        "speed": 30
+      },
+      "abilities": [
+        "Rock Head",
+        "Sturdy",
+        "Sheer Force"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/208.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Scizor",
+      "displayName": "Scizor",
+      "types": [
+        "Bug",
+        "Steel"
+      ],
+      "baseStats": {
+        "hp": 70,
+        "attack": 130,
+        "defense": 100,
+        "specialAttack": 55,
+        "specialDefense": 80,
+        "speed": 65
+      },
+      "abilities": [
+        "Swarm",
+        "Technician",
+        "Light Metal"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/212.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Heracross",
+      "displayName": "Heracross",
+      "types": [
+        "Bug",
+        "Fighting"
+      ],
+      "baseStats": {
+        "hp": 80,
+        "attack": 125,
+        "defense": 75,
+        "specialAttack": 40,
+        "specialDefense": 95,
+        "speed": 85
+      },
+      "abilities": [
+        "Swarm",
+        "Guts",
+        "Moxie"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/214.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Skarmory",
+      "displayName": "Skarmory",
+      "types": [
+        "Steel",
+        "Flying"
+      ],
+      "baseStats": {
+        "hp": 65,
+        "attack": 80,
+        "defense": 140,
+        "specialAttack": 40,
+        "specialDefense": 70,
+        "speed": 70
+      },
+      "abilities": [
+        "Keen Eye",
+        "Sturdy",
+        "Weak Armor"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/227.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Houndoom",
+      "displayName": "Houndoom",
+      "types": [
+        "Dark",
+        "Fire"
+      ],
+      "baseStats": {
+        "hp": 75,
+        "attack": 90,
+        "defense": 50,
+        "specialAttack": 110,
+        "specialDefense": 80,
+        "speed": 95
+      },
+      "abilities": [
+        "Early Bird",
+        "Flash Fire",
+        "Unnerve"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/229.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Tyranitar",
+      "displayName": "Tyranitar",
+      "types": [
+        "Rock",
+        "Dark"
+      ],
+      "baseStats": {
+        "hp": 100,
+        "attack": 134,
+        "defense": 110,
+        "specialAttack": 95,
+        "specialDefense": 100,
+        "speed": 61
+      },
+      "abilities": [
+        "Sand Stream",
+        "Unnerve"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/248.png",
+      "usage": 0.16,
+      "winRate": 0.51,
+      "sampleSize": 90,
+      "commonMoves": [
+        "Rock Slide",
+        "Crunch",
+        "Low Kick",
+        "Protect"
+      ],
+      "roleTags": [
+        "physical-attacker",
+        "weather"
+      ]
+    },
+    {
+      "species": "Pelipper",
+      "displayName": "Pelipper",
+      "types": [
+        "Water",
+        "Flying"
+      ],
+      "baseStats": {
+        "hp": 60,
+        "attack": 50,
+        "defense": 100,
+        "specialAttack": 95,
+        "specialDefense": 70,
+        "speed": 65
+      },
+      "abilities": [
+        "Keen Eye",
+        "Drizzle",
+        "Rain Dish"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/279.png",
+      "usage": 0.14,
+      "winRate": 0.51,
+      "sampleSize": 90,
+      "commonMoves": [
+        "Tailwind",
+        "Hurricane",
+        "Weather Ball",
+        "Wide Guard"
+      ],
+      "roleTags": [
+        "support",
+        "weather",
+        "tailwind",
+        "wide-guard"
+      ]
+    },
+    {
+      "species": "Gardevoir",
+      "displayName": "Gardevoir",
+      "types": [
+        "Psychic",
+        "Fairy"
+      ],
+      "baseStats": {
+        "hp": 68,
+        "attack": 65,
+        "defense": 65,
+        "specialAttack": 125,
+        "specialDefense": 115,
+        "speed": 80
+      },
+      "abilities": [
+        "Synchronize",
+        "Trace",
+        "Telepathy"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/282.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Sableye",
+      "displayName": "Sableye",
+      "types": [
+        "Dark",
+        "Ghost"
+      ],
+      "baseStats": {
+        "hp": 50,
+        "attack": 75,
+        "defense": 75,
+        "specialAttack": 65,
+        "specialDefense": 65,
+        "speed": 50
+      },
+      "abilities": [
+        "Keen Eye",
+        "Stall",
+        "Prankster"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/302.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Aggron",
+      "displayName": "Aggron",
+      "types": [
+        "Steel",
+        "Rock"
+      ],
+      "baseStats": {
+        "hp": 70,
+        "attack": 110,
+        "defense": 180,
+        "specialAttack": 60,
+        "specialDefense": 60,
+        "speed": 50
+      },
+      "abilities": [
+        "Sturdy",
+        "Rock Head",
+        "Heavy Metal"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/306.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Medicham",
+      "displayName": "Medicham",
+      "types": [
+        "Fighting",
+        "Psychic"
+      ],
+      "baseStats": {
+        "hp": 60,
+        "attack": 60,
+        "defense": 75,
+        "specialAttack": 60,
+        "specialDefense": 75,
+        "speed": 80
+      },
+      "abilities": [
+        "Pure Power",
+        "Telepathy"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/308.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Manectric",
+      "displayName": "Manectric",
+      "types": [
+        "Electric"
+      ],
+      "baseStats": {
+        "hp": 70,
+        "attack": 75,
+        "defense": 60,
+        "specialAttack": 105,
+        "specialDefense": 60,
+        "speed": 105
+      },
+      "abilities": [
+        "Static",
+        "Lightning Rod",
+        "Minus"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/310.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Sharpedo",
+      "displayName": "Sharpedo",
+      "types": [
+        "Water",
+        "Dark"
+      ],
+      "baseStats": {
+        "hp": 70,
+        "attack": 120,
+        "defense": 40,
+        "specialAttack": 95,
+        "specialDefense": 40,
+        "speed": 95
+      },
+      "abilities": [
+        "Rough Skin",
+        "Speed Boost"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/319.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Camerupt",
+      "displayName": "Camerupt",
+      "types": [
+        "Fire",
+        "Ground"
+      ],
+      "baseStats": {
+        "hp": 70,
+        "attack": 100,
+        "defense": 70,
+        "specialAttack": 105,
+        "specialDefense": 75,
+        "speed": 40
+      },
+      "abilities": [
+        "Magma Armor",
+        "Solid Rock",
+        "Anger Point"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/323.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Torkoal",
+      "displayName": "Torkoal",
+      "types": [
+        "Fire"
+      ],
+      "baseStats": {
+        "hp": 70,
+        "attack": 85,
+        "defense": 140,
+        "specialAttack": 85,
+        "specialDefense": 70,
+        "speed": 20
+      },
+      "abilities": [
+        "White Smoke",
+        "Drought",
+        "Shell Armor"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/324.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Altaria",
+      "displayName": "Altaria",
+      "types": [
+        "Dragon",
+        "Flying"
+      ],
+      "baseStats": {
+        "hp": 75,
+        "attack": 70,
+        "defense": 90,
+        "specialAttack": 70,
+        "specialDefense": 105,
+        "speed": 80
+      },
+      "abilities": [
+        "Natural Cure",
+        "Cloud Nine"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/334.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Milotic",
+      "displayName": "Milotic",
+      "types": [
+        "Water"
+      ],
+      "baseStats": {
+        "hp": 95,
+        "attack": 60,
+        "defense": 79,
+        "specialAttack": 100,
+        "specialDefense": 125,
+        "speed": 81
+      },
+      "abilities": [
+        "Marvel Scale",
+        "Competitive",
+        "Cute Charm"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/350.png",
+      "usage": 0.13,
+      "winRate": 0.51,
+      "sampleSize": 90,
+      "commonMoves": [
+        "Muddy Water",
+        "Icy Wind",
+        "Recover",
+        "Protect"
+      ],
+      "roleTags": [
+        "special-attacker",
+        "support"
+      ]
+    },
+    {
+      "species": "Castform",
+      "displayName": "Castform",
+      "types": [
+        "Normal"
+      ],
+      "baseStats": {
+        "hp": 70,
+        "attack": 70,
+        "defense": 70,
+        "specialAttack": 70,
+        "specialDefense": 70,
+        "speed": 70
+      },
+      "abilities": [
+        "Forecast"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/351.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Banette",
+      "displayName": "Banette",
+      "types": [
+        "Ghost"
+      ],
+      "baseStats": {
+        "hp": 64,
+        "attack": 115,
+        "defense": 65,
+        "specialAttack": 83,
+        "specialDefense": 63,
+        "speed": 65
+      },
+      "abilities": [
+        "Insomnia",
+        "Frisk",
+        "Cursed Body"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/354.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Chimecho",
+      "displayName": "Chimecho",
+      "types": [
+        "Psychic"
+      ],
+      "baseStats": {
+        "hp": 75,
+        "attack": 50,
+        "defense": 80,
+        "specialAttack": 95,
+        "specialDefense": 90,
+        "speed": 65
+      },
+      "abilities": [
+        "Levitate"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/358.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Absol",
+      "displayName": "Absol",
+      "types": [
+        "Dark"
+      ],
+      "baseStats": {
+        "hp": 65,
+        "attack": 130,
+        "defense": 60,
+        "specialAttack": 75,
+        "specialDefense": 60,
+        "speed": 75
+      },
+      "abilities": [
+        "Pressure",
+        "Super Luck",
+        "Justified"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/359.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Glalie",
+      "displayName": "Glalie",
+      "types": [
+        "Ice"
+      ],
+      "baseStats": {
+        "hp": 80,
+        "attack": 80,
+        "defense": 80,
+        "specialAttack": 80,
+        "specialDefense": 80,
+        "speed": 80
+      },
+      "abilities": [
+        "Inner Focus",
+        "Ice Body",
+        "Moody"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/362.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Torterra",
+      "displayName": "Torterra",
+      "types": [
+        "Grass",
+        "Ground"
+      ],
+      "baseStats": {
+        "hp": 95,
+        "attack": 109,
+        "defense": 105,
+        "specialAttack": 75,
+        "specialDefense": 85,
+        "speed": 56
+      },
+      "abilities": [
+        "Overgrow",
+        "Shell Armor"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/389.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Infernape",
+      "displayName": "Infernape",
+      "types": [
+        "Fire",
+        "Fighting"
+      ],
+      "baseStats": {
+        "hp": 76,
+        "attack": 104,
+        "defense": 71,
+        "specialAttack": 104,
+        "specialDefense": 71,
+        "speed": 108
+      },
+      "abilities": [
+        "Blaze",
+        "Iron Fist"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/392.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Empoleon",
+      "displayName": "Empoleon",
+      "types": [
+        "Water",
+        "Steel"
+      ],
+      "baseStats": {
+        "hp": 84,
+        "attack": 86,
+        "defense": 88,
+        "specialAttack": 111,
+        "specialDefense": 101,
+        "speed": 60
+      },
+      "abilities": [
+        "Torrent",
+        "Competitive"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/395.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Luxray",
+      "displayName": "Luxray",
+      "types": [
+        "Electric"
+      ],
+      "baseStats": {
+        "hp": 80,
+        "attack": 120,
+        "defense": 79,
+        "specialAttack": 95,
+        "specialDefense": 79,
+        "speed": 70
+      },
+      "abilities": [
+        "Rivalry",
+        "Intimidate",
+        "Guts"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/405.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Roserade",
+      "displayName": "Roserade",
+      "types": [
+        "Grass",
+        "Poison"
+      ],
+      "baseStats": {
+        "hp": 60,
+        "attack": 70,
+        "defense": 65,
+        "specialAttack": 125,
+        "specialDefense": 105,
+        "speed": 90
+      },
+      "abilities": [
+        "Natural Cure",
+        "Poison Point",
+        "Technician"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/407.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Rampardos",
+      "displayName": "Rampardos",
+      "types": [
+        "Rock"
+      ],
+      "baseStats": {
+        "hp": 97,
+        "attack": 165,
+        "defense": 60,
+        "specialAttack": 65,
+        "specialDefense": 50,
+        "speed": 58
+      },
+      "abilities": [
+        "Mold Breaker",
+        "Sheer Force"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/409.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Bastiodon",
+      "displayName": "Bastiodon",
+      "types": [
+        "Rock",
+        "Steel"
+      ],
+      "baseStats": {
+        "hp": 60,
+        "attack": 52,
+        "defense": 168,
+        "specialAttack": 47,
+        "specialDefense": 138,
+        "speed": 30
+      },
+      "abilities": [
+        "Sturdy",
+        "Soundproof"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/411.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Lopunny",
+      "displayName": "Lopunny",
+      "types": [
+        "Normal"
+      ],
+      "baseStats": {
+        "hp": 65,
+        "attack": 76,
+        "defense": 84,
+        "specialAttack": 54,
+        "specialDefense": 96,
+        "speed": 105
+      },
+      "abilities": [
+        "Cute Charm",
+        "Klutz",
+        "Limber"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/428.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Spiritomb",
+      "displayName": "Spiritomb",
+      "types": [
+        "Ghost",
+        "Dark"
+      ],
+      "baseStats": {
+        "hp": 50,
+        "attack": 92,
+        "defense": 108,
+        "specialAttack": 92,
+        "specialDefense": 108,
+        "speed": 35
+      },
+      "abilities": [
+        "Pressure",
+        "Infiltrator"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/442.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Garchomp",
+      "displayName": "Garchomp",
+      "types": [
+        "Dragon",
+        "Ground"
+      ],
+      "baseStats": {
+        "hp": 108,
+        "attack": 130,
+        "defense": 95,
+        "specialAttack": 80,
+        "specialDefense": 85,
+        "speed": 102
+      },
+      "abilities": [
+        "Sand Veil",
+        "Rough Skin"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/445.png",
+      "usage": 0.17,
+      "winRate": 0.51,
+      "sampleSize": 90,
+      "commonMoves": [
+        "Earthquake",
+        "Dragon Claw",
+        "Rock Slide",
+        "Protect"
+      ],
+      "roleTags": [
+        "physical-attacker",
+        "spread"
+      ]
+    },
+    {
+      "species": "Lucario",
+      "displayName": "Lucario",
+      "types": [
+        "Fighting",
+        "Steel"
+      ],
+      "baseStats": {
+        "hp": 70,
+        "attack": 110,
+        "defense": 70,
+        "specialAttack": 115,
+        "specialDefense": 70,
+        "speed": 90
+      },
+      "abilities": [
+        "Steadfast",
+        "Inner Focus",
+        "Justified"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/448.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Hippowdon",
+      "displayName": "Hippowdon",
+      "types": [
+        "Ground"
+      ],
+      "baseStats": {
+        "hp": 108,
+        "attack": 112,
+        "defense": 118,
+        "specialAttack": 68,
+        "specialDefense": 72,
+        "speed": 47
+      },
+      "abilities": [
+        "Sand Stream",
+        "Sand Force"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/450.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Toxicroak",
+      "displayName": "Toxicroak",
+      "types": [
+        "Poison",
+        "Fighting"
+      ],
+      "baseStats": {
+        "hp": 83,
+        "attack": 106,
+        "defense": 65,
+        "specialAttack": 86,
+        "specialDefense": 65,
+        "speed": 85
+      },
+      "abilities": [
+        "Anticipation",
+        "Dry Skin",
+        "Poison Touch"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/454.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Abomasnow",
+      "displayName": "Abomasnow",
+      "types": [
+        "Grass",
+        "Ice"
+      ],
+      "baseStats": {
+        "hp": 90,
+        "attack": 92,
+        "defense": 75,
+        "specialAttack": 92,
+        "specialDefense": 85,
+        "speed": 60
+      },
+      "abilities": [
+        "Snow Warning",
+        "Soundproof"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/460.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Weavile",
+      "displayName": "Weavile",
+      "types": [
+        "Dark",
+        "Ice"
+      ],
+      "baseStats": {
+        "hp": 70,
+        "attack": 120,
+        "defense": 65,
+        "specialAttack": 45,
+        "specialDefense": 85,
+        "speed": 125
+      },
+      "abilities": [
+        "Pressure",
+        "Pickpocket"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/461.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [
+        "Fake Out",
+        "Triple Axel",
+        "Knock Off",
+        "Beat Up"
+      ],
+      "roleTags": [
+        "physical-attacker",
+        "speed",
+        "disruption",
+        "fake-out"
+      ]
+    },
+    {
+      "species": "Rhyperior",
+      "displayName": "Rhyperior",
+      "types": [
+        "Ground",
+        "Rock"
+      ],
+      "baseStats": {
+        "hp": 115,
+        "attack": 140,
+        "defense": 130,
+        "specialAttack": 55,
+        "specialDefense": 55,
+        "speed": 40
+      },
+      "abilities": [
+        "Lightning Rod",
+        "Solid Rock",
+        "Reckless"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/464.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Leafeon",
+      "displayName": "Leafeon",
+      "types": [
+        "Grass"
+      ],
+      "baseStats": {
+        "hp": 65,
+        "attack": 110,
+        "defense": 130,
+        "specialAttack": 60,
+        "specialDefense": 65,
+        "speed": 95
+      },
+      "abilities": [
+        "Leaf Guard",
+        "Chlorophyll"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/470.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Glaceon",
+      "displayName": "Glaceon",
+      "types": [
+        "Ice"
+      ],
+      "baseStats": {
+        "hp": 65,
+        "attack": 60,
+        "defense": 110,
+        "specialAttack": 130,
+        "specialDefense": 95,
+        "speed": 65
+      },
+      "abilities": [
+        "Snow Cloak",
+        "Ice Body"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/471.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Gliscor",
+      "displayName": "Gliscor",
+      "types": [
+        "Ground",
+        "Flying"
+      ],
+      "baseStats": {
+        "hp": 75,
+        "attack": 95,
+        "defense": 125,
+        "specialAttack": 45,
+        "specialDefense": 75,
+        "speed": 95
+      },
+      "abilities": [
+        "Hyper Cutter",
+        "Sand Veil",
+        "Poison Heal"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/472.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Mamoswine",
+      "displayName": "Mamoswine",
+      "types": [
+        "Ice",
+        "Ground"
+      ],
+      "baseStats": {
+        "hp": 110,
+        "attack": 130,
+        "defense": 80,
+        "specialAttack": 70,
+        "specialDefense": 60,
+        "speed": 80
+      },
+      "abilities": [
+        "Oblivious",
+        "Snow Cloak",
+        "Thick Fat"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/473.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Gallade",
+      "displayName": "Gallade",
+      "types": [
+        "Psychic",
+        "Fighting"
+      ],
+      "baseStats": {
+        "hp": 68,
+        "attack": 125,
+        "defense": 65,
+        "specialAttack": 65,
+        "specialDefense": 115,
+        "speed": 80
+      },
+      "abilities": [
+        "Steadfast",
+        "Sharpness",
+        "Justified"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/475.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Froslass",
+      "displayName": "Froslass",
+      "types": [
+        "Ice",
+        "Ghost"
+      ],
+      "baseStats": {
+        "hp": 70,
+        "attack": 80,
+        "defense": 70,
+        "specialAttack": 80,
+        "specialDefense": 70,
+        "speed": 110
+      },
+      "abilities": [
+        "Snow Cloak",
+        "Cursed Body"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/478.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Rotom",
+      "displayName": "Rotom",
+      "types": [
+        "Electric",
+        "Ghost"
+      ],
+      "baseStats": {
+        "hp": 50,
+        "attack": 50,
+        "defense": 77,
+        "specialAttack": 95,
+        "specialDefense": 77,
+        "speed": 91
+      },
+      "abilities": [
+        "Levitate"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/479.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Rotom (Heat Rotom)",
+      "displayName": "Rotom (Heat Rotom)",
+      "types": [
+        "Electric",
+        "Fire"
+      ],
+      "baseStats": {
+        "hp": 50,
+        "attack": 65,
+        "defense": 107,
+        "specialAttack": 105,
+        "specialDefense": 107,
+        "speed": 86
+      },
+      "abilities": [
+        "Levitate"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10008.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Rotom (Wash Rotom)",
+      "displayName": "Rotom (Wash Rotom)",
+      "types": [
+        "Electric",
+        "Water"
+      ],
+      "baseStats": {
+        "hp": 50,
+        "attack": 65,
+        "defense": 107,
+        "specialAttack": 105,
+        "specialDefense": 107,
+        "speed": 86
+      },
+      "abilities": [
+        "Levitate"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10009.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Rotom (Frost Rotom)",
+      "displayName": "Rotom (Frost Rotom)",
+      "types": [
+        "Electric",
+        "Ice"
+      ],
+      "baseStats": {
+        "hp": 50,
+        "attack": 65,
+        "defense": 107,
+        "specialAttack": 105,
+        "specialDefense": 107,
+        "speed": 86
+      },
+      "abilities": [
+        "Levitate"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10010.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Rotom (Fan Rotom)",
+      "displayName": "Rotom (Fan Rotom)",
+      "types": [
+        "Electric",
+        "Flying"
+      ],
+      "baseStats": {
+        "hp": 50,
+        "attack": 65,
+        "defense": 107,
+        "specialAttack": 105,
+        "specialDefense": 107,
+        "speed": 86
+      },
+      "abilities": [
+        "Levitate"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10011.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Rotom (Mow Rotom)",
+      "displayName": "Rotom (Mow Rotom)",
+      "types": [
+        "Electric",
+        "Grass"
+      ],
+      "baseStats": {
+        "hp": 50,
+        "attack": 65,
+        "defense": 107,
+        "specialAttack": 105,
+        "specialDefense": 107,
+        "speed": 86
+      },
+      "abilities": [
+        "Levitate"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10012.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Serperior",
+      "displayName": "Serperior",
+      "types": [
+        "Grass"
+      ],
+      "baseStats": {
+        "hp": 75,
+        "attack": 75,
+        "defense": 95,
+        "specialAttack": 75,
+        "specialDefense": 95,
+        "speed": 113
+      },
+      "abilities": [
+        "Overgrow",
+        "Contrary"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/497.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Emboar",
+      "displayName": "Emboar",
+      "types": [
+        "Fire",
+        "Fighting"
+      ],
+      "baseStats": {
+        "hp": 110,
+        "attack": 123,
+        "defense": 65,
+        "specialAttack": 100,
+        "specialDefense": 65,
+        "speed": 65
+      },
+      "abilities": [
+        "Blaze",
+        "Reckless"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/500.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Samurott",
+      "displayName": "Samurott",
+      "types": [
+        "Water"
+      ],
+      "baseStats": {
+        "hp": 95,
+        "attack": 100,
+        "defense": 85,
+        "specialAttack": 108,
+        "specialDefense": 70,
+        "speed": 70
+      },
+      "abilities": [
+        "Torrent",
+        "Shell Armor"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/503.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Samurott (Hisuian Form)",
+      "displayName": "Samurott (Hisuian Form)",
+      "types": [
+        "Water",
+        "Dark"
+      ],
+      "baseStats": {
+        "hp": 90,
+        "attack": 108,
+        "defense": 80,
+        "specialAttack": 100,
+        "specialDefense": 65,
+        "speed": 85
+      },
+      "abilities": [
+        "Torrent",
+        "Sharpness"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10236.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Watchog",
+      "displayName": "Watchog",
+      "types": [
+        "Normal"
+      ],
+      "baseStats": {
+        "hp": 60,
+        "attack": 85,
+        "defense": 69,
+        "specialAttack": 60,
+        "specialDefense": 69,
+        "speed": 77
+      },
+      "abilities": [
+        "Illuminate",
+        "Keen Eye",
+        "Analytic"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/505.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Liepard",
+      "displayName": "Liepard",
+      "types": [
+        "Dark"
+      ],
+      "baseStats": {
+        "hp": 64,
+        "attack": 88,
+        "defense": 50,
+        "specialAttack": 88,
+        "specialDefense": 50,
+        "speed": 106
+      },
+      "abilities": [
+        "Limber",
+        "Unburden",
+        "Prankster"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/510.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Simisage",
+      "displayName": "Simisage",
+      "types": [
+        "Grass"
+      ],
+      "baseStats": {
+        "hp": 75,
+        "attack": 98,
+        "defense": 63,
+        "specialAttack": 98,
+        "specialDefense": 63,
+        "speed": 101
+      },
+      "abilities": [
+        "Gluttony",
+        "Overgrow"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/512.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Simisear",
+      "displayName": "Simisear",
+      "types": [
+        "Fire"
+      ],
+      "baseStats": {
+        "hp": 75,
+        "attack": 98,
+        "defense": 63,
+        "specialAttack": 98,
+        "specialDefense": 63,
+        "speed": 101
+      },
+      "abilities": [
+        "Gluttony",
+        "Blaze"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/514.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Simipour",
+      "displayName": "Simipour",
+      "types": [
+        "Water"
+      ],
+      "baseStats": {
+        "hp": 75,
+        "attack": 98,
+        "defense": 63,
+        "specialAttack": 98,
+        "specialDefense": 63,
+        "speed": 101
+      },
+      "abilities": [
+        "Gluttony",
+        "Torrent"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/516.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Excadrill",
+      "displayName": "Excadrill",
+      "types": [
+        "Ground",
+        "Steel"
+      ],
+      "baseStats": {
+        "hp": 110,
+        "attack": 135,
+        "defense": 60,
+        "specialAttack": 50,
+        "specialDefense": 65,
+        "speed": 88
+      },
+      "abilities": [
+        "Sand Rush",
+        "Sand Force",
+        "Mold Breaker"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/530.png",
+      "usage": 0.15,
+      "winRate": 0.51,
+      "sampleSize": 90,
+      "commonMoves": [
+        "Earthquake",
+        "Iron Head",
+        "Rock Slide",
+        "Protect"
+      ],
+      "roleTags": [
+        "physical-attacker",
+        "speed"
+      ]
+    },
+    {
+      "species": "Audino",
+      "displayName": "Audino",
+      "types": [
+        "Normal"
+      ],
+      "baseStats": {
+        "hp": 103,
+        "attack": 60,
+        "defense": 86,
+        "specialAttack": 60,
+        "specialDefense": 86,
+        "speed": 50
+      },
+      "abilities": [
+        "Healer",
+        "Regenerator",
+        "Klutz"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/531.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Conkeldurr",
+      "displayName": "Conkeldurr",
+      "types": [
+        "Fighting"
+      ],
+      "baseStats": {
+        "hp": 105,
+        "attack": 140,
+        "defense": 95,
+        "specialAttack": 55,
+        "specialDefense": 65,
+        "speed": 45
+      },
+      "abilities": [
+        "Guts",
+        "Sheer Force",
+        "Iron Fist"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/534.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Whimsicott",
+      "displayName": "Whimsicott",
+      "types": [
+        "Grass",
+        "Fairy"
+      ],
+      "baseStats": {
+        "hp": 60,
+        "attack": 67,
+        "defense": 85,
+        "specialAttack": 77,
+        "specialDefense": 75,
+        "speed": 116
+      },
+      "abilities": [
+        "Prankster",
+        "Infiltrator",
+        "Chlorophyll"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/547.png",
+      "usage": 0.24,
+      "winRate": 0.51,
+      "sampleSize": 90,
+      "commonMoves": [
+        "Tailwind",
+        "Encore",
+        "Moonblast",
+        "Protect"
+      ],
+      "roleTags": [
+        "support",
+        "speed-control",
+        "tailwind"
+      ]
+    },
+    {
+      "species": "Krookodile",
+      "displayName": "Krookodile",
+      "types": [
+        "Ground",
+        "Dark"
+      ],
+      "baseStats": {
+        "hp": 95,
+        "attack": 117,
+        "defense": 80,
+        "specialAttack": 65,
+        "specialDefense": 70,
+        "speed": 92
+      },
+      "abilities": [
+        "Intimidate",
+        "Moxie",
+        "Anger Point"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/553.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Cofagrigus",
+      "displayName": "Cofagrigus",
+      "types": [
+        "Ghost"
+      ],
+      "baseStats": {
+        "hp": 58,
+        "attack": 50,
+        "defense": 145,
+        "specialAttack": 95,
+        "specialDefense": 105,
+        "speed": 30
+      },
+      "abilities": [
+        "Mummy"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/563.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Garbodor",
+      "displayName": "Garbodor",
+      "types": [
+        "Poison"
+      ],
+      "baseStats": {
+        "hp": 80,
+        "attack": 95,
+        "defense": 82,
+        "specialAttack": 60,
+        "specialDefense": 82,
+        "speed": 75
+      },
+      "abilities": [
+        "Stench",
+        "Weak Armor",
+        "Aftermath"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/569.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Zoroark",
+      "displayName": "Zoroark",
+      "types": [
+        "Dark"
+      ],
+      "baseStats": {
+        "hp": 60,
+        "attack": 105,
+        "defense": 60,
+        "specialAttack": 120,
+        "specialDefense": 60,
+        "speed": 105
+      },
+      "abilities": [
+        "Illusion"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/571.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Zoroark (Hisuian Form)",
+      "displayName": "Zoroark (Hisuian Form)",
+      "types": [
+        "Normal",
+        "Ghost"
+      ],
+      "baseStats": {
+        "hp": 55,
+        "attack": 100,
+        "defense": 60,
+        "specialAttack": 125,
+        "specialDefense": 60,
+        "speed": 110
+      },
+      "abilities": [
+        "Illusion"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10239.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Reuniclus",
+      "displayName": "Reuniclus",
+      "types": [
+        "Psychic"
+      ],
+      "baseStats": {
+        "hp": 110,
+        "attack": 65,
+        "defense": 75,
+        "specialAttack": 125,
+        "specialDefense": 85,
+        "speed": 30
+      },
+      "abilities": [
+        "Overcoat",
+        "Magic Guard",
+        "Regenerator"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/579.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Vanilluxe",
+      "displayName": "Vanilluxe",
+      "types": [
+        "Ice"
+      ],
+      "baseStats": {
+        "hp": 71,
+        "attack": 95,
+        "defense": 85,
+        "specialAttack": 110,
+        "specialDefense": 95,
+        "speed": 79
+      },
+      "abilities": [
+        "Ice Body",
+        "Snow Warning",
+        "Weak Armor"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/584.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Emolga",
+      "displayName": "Emolga",
+      "types": [
+        "Electric",
+        "Flying"
+      ],
+      "baseStats": {
+        "hp": 55,
+        "attack": 75,
+        "defense": 60,
+        "specialAttack": 75,
+        "specialDefense": 60,
+        "speed": 103
+      },
+      "abilities": [
+        "Static",
+        "Motor Drive"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/587.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Chandelure",
+      "displayName": "Chandelure",
+      "types": [
+        "Ghost",
+        "Fire"
+      ],
+      "baseStats": {
+        "hp": 60,
+        "attack": 55,
+        "defense": 90,
+        "specialAttack": 145,
+        "specialDefense": 90,
+        "speed": 80
+      },
+      "abilities": [
+        "Flash Fire",
+        "Flame Body",
+        "Infiltrator"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/609.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Beartic",
+      "displayName": "Beartic",
+      "types": [
+        "Ice"
+      ],
+      "baseStats": {
+        "hp": 95,
+        "attack": 130,
+        "defense": 80,
+        "specialAttack": 70,
+        "specialDefense": 80,
+        "speed": 50
+      },
+      "abilities": [
+        "Snow Cloak",
+        "Slush Rush",
+        "Swift Swim"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/614.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Stunfisk",
+      "displayName": "Stunfisk",
+      "types": [
+        "Ground",
+        "Electric"
+      ],
+      "baseStats": {
+        "hp": 109,
+        "attack": 66,
+        "defense": 84,
+        "specialAttack": 81,
+        "specialDefense": 99,
+        "speed": 32
+      },
+      "abilities": [
+        "Static",
+        "Limber",
+        "Sand Veil"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/618.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Stunfisk (Galarian Form)",
+      "displayName": "Stunfisk (Galarian Form)",
+      "types": [
+        "Ground",
+        "Steel"
+      ],
+      "baseStats": {
+        "hp": 109,
+        "attack": 81,
+        "defense": 99,
+        "specialAttack": 66,
+        "specialDefense": 84,
+        "speed": 32
+      },
+      "abilities": [
+        "Mimicry"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10180.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Golurk",
+      "displayName": "Golurk",
+      "types": [
+        "Ground",
+        "Ghost"
+      ],
+      "baseStats": {
+        "hp": 89,
+        "attack": 124,
+        "defense": 80,
+        "specialAttack": 55,
+        "specialDefense": 80,
+        "speed": 55
+      },
+      "abilities": [
+        "Iron Fist",
+        "Klutz",
+        "No Guard"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/623.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Hydreigon",
+      "displayName": "Hydreigon",
+      "types": [
+        "Dark",
+        "Dragon"
+      ],
+      "baseStats": {
+        "hp": 92,
+        "attack": 105,
+        "defense": 90,
+        "specialAttack": 125,
+        "specialDefense": 90,
+        "speed": 98
+      },
+      "abilities": [
+        "Levitate"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/635.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Volcarona",
+      "displayName": "Volcarona",
+      "types": [
+        "Bug",
+        "Fire"
+      ],
+      "baseStats": {
+        "hp": 85,
+        "attack": 60,
+        "defense": 65,
+        "specialAttack": 135,
+        "specialDefense": 105,
+        "speed": 100
+      },
+      "abilities": [
+        "Flame Body",
+        "Swarm"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/637.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Chesnaught",
+      "displayName": "Chesnaught",
+      "types": [
+        "Grass",
+        "Fighting"
+      ],
+      "baseStats": {
+        "hp": 88,
+        "attack": 107,
+        "defense": 122,
+        "specialAttack": 74,
+        "specialDefense": 75,
+        "speed": 64
+      },
+      "abilities": [
+        "Overgrow",
+        "Bulletproof"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/652.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Delphox",
+      "displayName": "Delphox",
+      "types": [
+        "Fire",
+        "Psychic"
+      ],
+      "baseStats": {
+        "hp": 75,
+        "attack": 69,
+        "defense": 72,
+        "specialAttack": 114,
+        "specialDefense": 100,
+        "speed": 104
+      },
+      "abilities": [
+        "Blaze",
+        "Magician"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/655.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Greninja",
+      "displayName": "Greninja",
+      "types": [
+        "Water",
+        "Dark"
+      ],
+      "baseStats": {
+        "hp": 72,
+        "attack": 95,
+        "defense": 67,
+        "specialAttack": 103,
+        "specialDefense": 71,
+        "speed": 122
+      },
+      "abilities": [
+        "Torrent",
+        "Protean"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/658.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Diggersby",
+      "displayName": "Diggersby",
+      "types": [
+        "Normal",
+        "Ground"
+      ],
+      "baseStats": {
+        "hp": 85,
+        "attack": 56,
+        "defense": 77,
+        "specialAttack": 50,
+        "specialDefense": 77,
+        "speed": 78
+      },
+      "abilities": [
+        "Pickup",
+        "Cheek Pouch",
+        "Huge Power"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/660.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Talonflame",
+      "displayName": "Talonflame",
+      "types": [
+        "Fire",
+        "Flying"
+      ],
+      "baseStats": {
+        "hp": 78,
+        "attack": 81,
+        "defense": 71,
+        "specialAttack": 74,
+        "specialDefense": 69,
+        "speed": 126
+      },
+      "abilities": [
+        "Flame Body",
+        "Gale Wings"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/663.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Vivillon",
+      "displayName": "Vivillon",
+      "types": [
+        "Bug",
+        "Flying"
+      ],
+      "baseStats": {
+        "hp": 80,
+        "attack": 52,
+        "defense": 50,
+        "specialAttack": 90,
+        "specialDefense": 50,
+        "speed": 89
+      },
+      "abilities": [
+        "Shield Dust",
+        "Compound Eyes",
+        "Friend Guard"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/666.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Floette",
+      "displayName": "Floette",
+      "types": [
+        "Fairy"
+      ],
+      "baseStats": {
+        "hp": 54,
+        "attack": 45,
+        "defense": 47,
+        "specialAttack": 75,
+        "specialDefense": 98,
+        "speed": 52
+      },
+      "abilities": [
+        "Flower Veil",
+        "Symbiosis"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/670.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Florges",
+      "displayName": "Florges",
+      "types": [
+        "Fairy"
+      ],
+      "baseStats": {
+        "hp": 78,
+        "attack": 65,
+        "defense": 68,
+        "specialAttack": 112,
+        "specialDefense": 154,
+        "speed": 75
+      },
+      "abilities": [
+        "Flower Veil",
+        "Symbiosis"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/671.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Pangoro",
+      "displayName": "Pangoro",
+      "types": [
+        "Fighting",
+        "Dark"
+      ],
+      "baseStats": {
+        "hp": 95,
+        "attack": 124,
+        "defense": 78,
+        "specialAttack": 69,
+        "specialDefense": 71,
+        "speed": 58
+      },
+      "abilities": [
+        "Iron Fist",
+        "Mold Breaker",
+        "Scrappy"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/675.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Furfrou",
+      "displayName": "Furfrou",
+      "types": [
+        "Normal"
+      ],
+      "baseStats": {
+        "hp": 75,
+        "attack": 80,
+        "defense": 60,
+        "specialAttack": 65,
+        "specialDefense": 90,
+        "speed": 102
+      },
+      "abilities": [
+        "Fur Coat"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/676.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Meowstic (Male)",
+      "displayName": "Meowstic (Male)",
+      "types": [
+        "Psychic"
+      ],
+      "baseStats": {
+        "hp": 74,
+        "attack": 48,
+        "defense": 76,
+        "specialAttack": 83,
+        "specialDefense": 81,
+        "speed": 104
+      },
+      "abilities": [
+        "Keen Eye",
+        "Infiltrator",
+        "Prankster"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/678.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Meowstic (Female)",
+      "displayName": "Meowstic (Female)",
+      "types": [
+        "Psychic"
+      ],
+      "baseStats": {
+        "hp": 74,
+        "attack": 48,
+        "defense": 76,
+        "specialAttack": 83,
+        "specialDefense": 81,
+        "speed": 104
+      },
+      "abilities": [
+        "Keen Eye",
+        "Infiltrator",
+        "Competitive"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10025.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Aegislash",
+      "displayName": "Aegislash",
+      "types": [
+        "Steel",
+        "Ghost"
+      ],
+      "baseStats": {
+        "hp": 60,
+        "attack": 50,
+        "defense": 140,
+        "specialAttack": 50,
+        "specialDefense": 140,
+        "speed": 60
+      },
+      "abilities": [
+        "Stance Change"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/681.png",
+      "usage": 0.12,
+      "winRate": 0.51,
+      "sampleSize": 90,
+      "commonMoves": [
+        "Make It Rain",
+        "Shadow Ball",
+        "Wide Guard",
+        "Protect"
+      ],
+      "roleTags": [
+        "mixed-attacker",
+        "wide-guard"
+      ]
+    },
+    {
+      "species": "Aromatisse",
+      "displayName": "Aromatisse",
+      "types": [
+        "Fairy"
+      ],
+      "baseStats": {
+        "hp": 101,
+        "attack": 72,
+        "defense": 72,
+        "specialAttack": 99,
+        "specialDefense": 89,
+        "speed": 29
+      },
+      "abilities": [
+        "Healer",
+        "Aroma Veil"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/683.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Slurpuff",
+      "displayName": "Slurpuff",
+      "types": [
+        "Fairy"
+      ],
+      "baseStats": {
+        "hp": 82,
+        "attack": 80,
+        "defense": 86,
+        "specialAttack": 85,
+        "specialDefense": 75,
+        "speed": 72
+      },
+      "abilities": [
+        "Sweet Veil",
+        "Unburden"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/685.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Clawitzer",
+      "displayName": "Clawitzer",
+      "types": [
+        "Water"
+      ],
+      "baseStats": {
+        "hp": 71,
+        "attack": 73,
+        "defense": 88,
+        "specialAttack": 120,
+        "specialDefense": 89,
+        "speed": 59
+      },
+      "abilities": [
+        "Mega Launcher"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/693.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Heliolisk",
+      "displayName": "Heliolisk",
+      "types": [
+        "Electric",
+        "Normal"
+      ],
+      "baseStats": {
+        "hp": 62,
+        "attack": 55,
+        "defense": 52,
+        "specialAttack": 109,
+        "specialDefense": 94,
+        "speed": 109
+      },
+      "abilities": [
+        "Dry Skin",
+        "Sand Veil",
+        "Solar Power"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/695.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Tyrantrum",
+      "displayName": "Tyrantrum",
+      "types": [
+        "Rock",
+        "Dragon"
+      ],
+      "baseStats": {
+        "hp": 82,
+        "attack": 121,
+        "defense": 119,
+        "specialAttack": 69,
+        "specialDefense": 59,
+        "speed": 71
+      },
+      "abilities": [
+        "Strong Jaw",
+        "Rock Head"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/697.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Aurorus",
+      "displayName": "Aurorus",
+      "types": [
+        "Rock",
+        "Ice"
+      ],
+      "baseStats": {
+        "hp": 123,
+        "attack": 77,
+        "defense": 72,
+        "specialAttack": 99,
+        "specialDefense": 92,
+        "speed": 58
+      },
+      "abilities": [
+        "Refrigerate",
+        "Snow Warning"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/699.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Sylveon",
+      "displayName": "Sylveon",
+      "types": [
+        "Fairy"
+      ],
+      "baseStats": {
+        "hp": 95,
+        "attack": 65,
+        "defense": 65,
+        "specialAttack": 110,
+        "specialDefense": 130,
+        "speed": 60
+      },
+      "abilities": [
+        "Cute Charm",
+        "Pixilate"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/700.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Hawlucha",
+      "displayName": "Hawlucha",
+      "types": [
+        "Fighting",
+        "Flying"
+      ],
+      "baseStats": {
+        "hp": 78,
+        "attack": 92,
+        "defense": 75,
+        "specialAttack": 74,
+        "specialDefense": 63,
+        "speed": 118
+      },
+      "abilities": [
+        "Limber",
+        "Unburden",
+        "Mold Breaker"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/701.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Dedenne",
+      "displayName": "Dedenne",
+      "types": [
+        "Electric",
+        "Fairy"
+      ],
+      "baseStats": {
+        "hp": 67,
+        "attack": 58,
+        "defense": 57,
+        "specialAttack": 81,
+        "specialDefense": 67,
+        "speed": 101
+      },
+      "abilities": [
+        "Cheek Pouch",
+        "Pickup",
+        "Plus"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/702.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Goodra",
+      "displayName": "Goodra",
+      "types": [
+        "Dragon"
+      ],
+      "baseStats": {
+        "hp": 90,
+        "attack": 100,
+        "defense": 70,
+        "specialAttack": 110,
+        "specialDefense": 150,
+        "speed": 80
+      },
+      "abilities": [
+        "Sap Sipper",
+        "Hydration",
+        "Gooey"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/706.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Goodra (Hisuian Form)",
+      "displayName": "Goodra (Hisuian Form)",
+      "types": [
+        "Steel",
+        "Dragon"
+      ],
+      "baseStats": {
+        "hp": 80,
+        "attack": 100,
+        "defense": 100,
+        "specialAttack": 110,
+        "specialDefense": 150,
+        "speed": 60
+      },
+      "abilities": [
+        "Sap Sipper",
+        "Shell Armor",
+        "Gooey"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10242.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Klefki",
+      "displayName": "Klefki",
+      "types": [
+        "Steel",
+        "Fairy"
+      ],
+      "baseStats": {
+        "hp": 57,
+        "attack": 80,
+        "defense": 91,
+        "specialAttack": 80,
+        "specialDefense": 87,
+        "speed": 75
+      },
+      "abilities": [
+        "Prankster",
+        "Magician"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/707.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Trevenant",
+      "displayName": "Trevenant",
+      "types": [
+        "Ghost",
+        "Grass"
+      ],
+      "baseStats": {
+        "hp": 85,
+        "attack": 110,
+        "defense": 76,
+        "specialAttack": 65,
+        "specialDefense": 82,
+        "speed": 56
+      },
+      "abilities": [
+        "Natural Cure",
+        "Frisk",
+        "Harvest"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/709.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Gourgeist (Medium Variety)",
+      "displayName": "Gourgeist (Medium Variety)",
+      "types": [
+        "Ghost",
+        "Grass"
+      ],
+      "baseStats": {
+        "hp": 65,
+        "attack": 90,
+        "defense": 122,
+        "specialAttack": 58,
+        "specialDefense": 75,
+        "speed": 84
+      },
+      "abilities": [
+        "Pickup",
+        "Frisk",
+        "Insomnia"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/711.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Gourgeist (Small Variety)",
+      "displayName": "Gourgeist (Small Variety)",
+      "types": [
+        "Ghost",
+        "Grass"
+      ],
+      "baseStats": {
+        "hp": 55,
+        "attack": 85,
+        "defense": 122,
+        "specialAttack": 58,
+        "specialDefense": 75,
+        "speed": 99
+      },
+      "abilities": [
+        "Pickup",
+        "Frisk",
+        "Insomnia"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10030.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Gourgeist (Large Variety)",
+      "displayName": "Gourgeist (Large Variety)",
+      "types": [
+        "Ghost",
+        "Grass"
+      ],
+      "baseStats": {
+        "hp": 75,
+        "attack": 95,
+        "defense": 122,
+        "specialAttack": 58,
+        "specialDefense": 75,
+        "speed": 69
+      },
+      "abilities": [
+        "Pickup",
+        "Frisk",
+        "Insomnia"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10031.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Gourgeist (Jumbo Variety)",
+      "displayName": "Gourgeist (Jumbo Variety)",
+      "types": [
+        "Ghost",
+        "Grass"
+      ],
+      "baseStats": {
+        "hp": 85,
+        "attack": 100,
+        "defense": 122,
+        "specialAttack": 58,
+        "specialDefense": 75,
+        "speed": 54
+      },
+      "abilities": [
+        "Pickup",
+        "Frisk",
+        "Insomnia"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10032.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Avalugg",
+      "displayName": "Avalugg",
+      "types": [
+        "Ice"
+      ],
+      "baseStats": {
+        "hp": 95,
+        "attack": 117,
+        "defense": 184,
+        "specialAttack": 44,
+        "specialDefense": 46,
+        "speed": 28
+      },
+      "abilities": [
+        "Own Tempo",
+        "Ice Body",
+        "Sturdy"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/713.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Avalugg (Hisuian Form)",
+      "displayName": "Avalugg (Hisuian Form)",
+      "types": [
+        "Ice",
+        "Rock"
+      ],
+      "baseStats": {
+        "hp": 95,
+        "attack": 127,
+        "defense": 184,
+        "specialAttack": 34,
+        "specialDefense": 36,
+        "speed": 38
+      },
+      "abilities": [
+        "Strong Jaw",
+        "Ice Body",
+        "Sturdy"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10243.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Noivern",
+      "displayName": "Noivern",
+      "types": [
+        "Flying",
+        "Dragon"
+      ],
+      "baseStats": {
+        "hp": 85,
+        "attack": 70,
+        "defense": 80,
+        "specialAttack": 97,
+        "specialDefense": 80,
+        "speed": 123
+      },
+      "abilities": [
+        "Frisk",
+        "Infiltrator",
+        "Telepathy"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/715.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Decidueye",
+      "displayName": "Decidueye",
+      "types": [
+        "Grass",
+        "Ghost"
+      ],
+      "baseStats": {
+        "hp": 78,
+        "attack": 107,
+        "defense": 75,
+        "specialAttack": 100,
+        "specialDefense": 100,
+        "speed": 70
+      },
+      "abilities": [
+        "Overgrow",
+        "Long Reach"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/724.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Decidueye (Hisuian Form)",
+      "displayName": "Decidueye (Hisuian Form)",
+      "types": [
+        "Grass",
+        "Fighting"
+      ],
+      "baseStats": {
+        "hp": 88,
+        "attack": 112,
+        "defense": 80,
+        "specialAttack": 95,
+        "specialDefense": 95,
+        "speed": 60
+      },
+      "abilities": [
+        "Overgrow",
+        "Scrappy"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10244.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Incineroar",
+      "displayName": "Incineroar",
+      "types": [
+        "Fire",
+        "Dark"
+      ],
+      "baseStats": {
+        "hp": 95,
+        "attack": 115,
+        "defense": 90,
+        "specialAttack": 80,
+        "specialDefense": 90,
+        "speed": 60
+      },
+      "abilities": [
+        "Blaze",
+        "Intimidate"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/727.png",
+      "usage": 0.32,
+      "winRate": 0.51,
+      "sampleSize": 90,
+      "commonMoves": [
+        "Fake Out",
+        "Flare Blitz",
+        "Knock Off",
+        "Parting Shot"
+      ],
+      "roleTags": [
+        "support",
+        "pivot",
+        "fake-out",
+        "intimidate"
+      ]
+    },
+    {
+      "species": "Primarina",
+      "displayName": "Primarina",
+      "types": [
+        "Water",
+        "Fairy"
+      ],
+      "baseStats": {
+        "hp": 80,
+        "attack": 74,
+        "defense": 74,
+        "specialAttack": 126,
+        "specialDefense": 116,
+        "speed": 60
+      },
+      "abilities": [
+        "Torrent",
+        "Liquid Voice"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/730.png",
+      "usage": 0.14,
+      "winRate": 0.51,
+      "sampleSize": 90,
+      "commonMoves": [
+        "Hyper Voice",
+        "Moonblast",
+        "Icy Wind",
+        "Protect"
+      ],
+      "roleTags": [
+        "special-attacker",
+        "spread"
+      ]
+    },
+    {
+      "species": "Toucannon",
+      "displayName": "Toucannon",
+      "types": [
+        "Normal",
+        "Flying"
+      ],
+      "baseStats": {
+        "hp": 80,
+        "attack": 120,
+        "defense": 75,
+        "specialAttack": 75,
+        "specialDefense": 75,
+        "speed": 60
+      },
+      "abilities": [
+        "Keen Eye",
+        "Skill Link",
+        "Sheer Force"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/733.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Crabominable",
+      "displayName": "Crabominable",
+      "types": [
+        "Fighting",
+        "Ice"
+      ],
+      "baseStats": {
+        "hp": 97,
+        "attack": 132,
+        "defense": 77,
+        "specialAttack": 62,
+        "specialDefense": 67,
+        "speed": 43
+      },
+      "abilities": [
+        "Hyper Cutter",
+        "Iron Fist",
+        "Anger Point"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/740.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Lycanroc (Midday Form)",
+      "displayName": "Lycanroc (Midday Form)",
+      "types": [
+        "Rock"
+      ],
+      "baseStats": {
+        "hp": 75,
+        "attack": 115,
+        "defense": 65,
+        "specialAttack": 55,
+        "specialDefense": 65,
+        "speed": 112
+      },
+      "abilities": [
+        "Keen Eye",
+        "Sand Rush",
+        "Steadfast"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/745.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Lycanroc (Midnight Form)",
+      "displayName": "Lycanroc (Midnight Form)",
+      "types": [
+        "Rock"
+      ],
+      "baseStats": {
+        "hp": 85,
+        "attack": 115,
+        "defense": 75,
+        "specialAttack": 55,
+        "specialDefense": 75,
+        "speed": 82
+      },
+      "abilities": [
+        "Keen Eye",
+        "Vital Spirit",
+        "No Guard"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10126.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Lycanroc (Dusk Form)",
+      "displayName": "Lycanroc (Dusk Form)",
+      "types": [
+        "Rock"
+      ],
+      "baseStats": {
+        "hp": 75,
+        "attack": 117,
+        "defense": 65,
+        "specialAttack": 55,
+        "specialDefense": 65,
+        "speed": 110
+      },
+      "abilities": [
+        "Tough Claws"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10152.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Toxapex",
+      "displayName": "Toxapex",
+      "types": [
+        "Poison",
+        "Water"
+      ],
+      "baseStats": {
+        "hp": 50,
+        "attack": 63,
+        "defense": 152,
+        "specialAttack": 53,
+        "specialDefense": 142,
+        "speed": 35
+      },
+      "abilities": [
+        "Merciless",
+        "Limber",
+        "Regenerator"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/748.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Mudsdale",
+      "displayName": "Mudsdale",
+      "types": [
+        "Ground"
+      ],
+      "baseStats": {
+        "hp": 100,
+        "attack": 125,
+        "defense": 100,
+        "specialAttack": 55,
+        "specialDefense": 85,
+        "speed": 35
+      },
+      "abilities": [
+        "Own Tempo",
+        "Stamina",
+        "Inner Focus"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/750.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Araquanid",
+      "displayName": "Araquanid",
+      "types": [
+        "Water",
+        "Bug"
+      ],
+      "baseStats": {
+        "hp": 68,
+        "attack": 70,
+        "defense": 92,
+        "specialAttack": 50,
+        "specialDefense": 132,
+        "speed": 42
+      },
+      "abilities": [
+        "Water Bubble",
+        "Water Absorb"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/752.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Salazzle",
+      "displayName": "Salazzle",
+      "types": [
+        "Poison",
+        "Fire"
+      ],
+      "baseStats": {
+        "hp": 68,
+        "attack": 64,
+        "defense": 60,
+        "specialAttack": 111,
+        "specialDefense": 60,
+        "speed": 117
+      },
+      "abilities": [
+        "Corrosion",
+        "Oblivious"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/758.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Tsareena",
+      "displayName": "Tsareena",
+      "types": [
+        "Grass"
+      ],
+      "baseStats": {
+        "hp": 72,
+        "attack": 120,
+        "defense": 98,
+        "specialAttack": 50,
+        "specialDefense": 98,
+        "speed": 72
+      },
+      "abilities": [
+        "Leaf Guard",
+        "Queenly Majesty",
+        "Sweet Veil"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/763.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Oranguru",
+      "displayName": "Oranguru",
+      "types": [
+        "Normal",
+        "Psychic"
+      ],
+      "baseStats": {
+        "hp": 90,
+        "attack": 60,
+        "defense": 80,
+        "specialAttack": 90,
+        "specialDefense": 110,
+        "speed": 60
+      },
+      "abilities": [
+        "Inner Focus",
+        "Telepathy",
+        "Symbiosis"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/765.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Passimian",
+      "displayName": "Passimian",
+      "types": [
+        "Fighting"
+      ],
+      "baseStats": {
+        "hp": 100,
+        "attack": 120,
+        "defense": 90,
+        "specialAttack": 40,
+        "specialDefense": 60,
+        "speed": 80
+      },
+      "abilities": [
+        "Receiver",
+        "Defiant"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/766.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Mimikyu",
+      "displayName": "Mimikyu",
+      "types": [
+        "Ghost",
+        "Fairy"
+      ],
+      "baseStats": {
+        "hp": 55,
+        "attack": 90,
+        "defense": 80,
+        "specialAttack": 50,
+        "specialDefense": 105,
+        "speed": 96
+      },
+      "abilities": [
+        "Disguise"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/778.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Drampa",
+      "displayName": "Drampa",
+      "types": [
+        "Normal",
+        "Dragon"
+      ],
+      "baseStats": {
+        "hp": 78,
+        "attack": 60,
+        "defense": 85,
+        "specialAttack": 135,
+        "specialDefense": 91,
+        "speed": 36
+      },
+      "abilities": [
+        "Berserk",
+        "Sap Sipper",
+        "Cloud Nine"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/780.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Kommo-o",
+      "displayName": "Kommo-o",
+      "types": [
+        "Dragon",
+        "Fighting"
+      ],
+      "baseStats": {
+        "hp": 75,
+        "attack": 110,
+        "defense": 125,
+        "specialAttack": 100,
+        "specialDefense": 105,
+        "speed": 85
+      },
+      "abilities": [
+        "Bulletproof",
+        "Soundproof",
+        "Overcoat"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/784.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Corviknight",
+      "displayName": "Corviknight",
+      "types": [
+        "Flying",
+        "Steel"
+      ],
+      "baseStats": {
+        "hp": 98,
+        "attack": 87,
+        "defense": 105,
+        "specialAttack": 53,
+        "specialDefense": 85,
+        "speed": 67
+      },
+      "abilities": [
+        "Pressure",
+        "Unnerve",
+        "Mirror Armor"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/823.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Flapple",
+      "displayName": "Flapple",
+      "types": [
+        "Grass",
+        "Dragon"
+      ],
+      "baseStats": {
+        "hp": 70,
+        "attack": 110,
+        "defense": 80,
+        "specialAttack": 95,
+        "specialDefense": 60,
+        "speed": 70
+      },
+      "abilities": [
+        "Ripen",
+        "Gluttony",
+        "Hustle"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/841.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Appletun",
+      "displayName": "Appletun",
+      "types": [
+        "Grass",
+        "Dragon"
+      ],
+      "baseStats": {
+        "hp": 110,
+        "attack": 85,
+        "defense": 80,
+        "specialAttack": 100,
+        "specialDefense": 80,
+        "speed": 30
+      },
+      "abilities": [
+        "Ripen",
+        "Gluttony",
+        "Thick Fat"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/842.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Sandaconda",
+      "displayName": "Sandaconda",
+      "types": [
+        "Ground"
+      ],
+      "baseStats": {
+        "hp": 72,
+        "attack": 107,
+        "defense": 125,
+        "specialAttack": 65,
+        "specialDefense": 70,
+        "speed": 71
+      },
+      "abilities": [
+        "Sand Spit",
+        "Shed Skin",
+        "Sand Veil"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/844.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Polteageist",
+      "displayName": "Polteageist",
+      "types": [
+        "Ghost"
+      ],
+      "baseStats": {
+        "hp": 60,
+        "attack": 65,
+        "defense": 65,
+        "specialAttack": 134,
+        "specialDefense": 114,
+        "speed": 70
+      },
+      "abilities": [
+        "Weak Armor",
+        "Cursed Body"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/855.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Hatterene",
+      "displayName": "Hatterene",
+      "types": [
+        "Psychic",
+        "Fairy"
+      ],
+      "baseStats": {
+        "hp": 57,
+        "attack": 90,
+        "defense": 95,
+        "specialAttack": 136,
+        "specialDefense": 103,
+        "speed": 29
+      },
+      "abilities": [
+        "Healer",
+        "Anticipation",
+        "Magic Bounce"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/858.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Mr. Rime",
+      "displayName": "Mr. Rime",
+      "types": [
+        "Ice",
+        "Psychic"
+      ],
+      "baseStats": {
+        "hp": 80,
+        "attack": 85,
+        "defense": 75,
+        "specialAttack": 110,
+        "specialDefense": 100,
+        "speed": 70
+      },
+      "abilities": [
+        "Tangled Feet",
+        "Screen Cleaner",
+        "Ice Body"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/866.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Runerigus",
+      "displayName": "Runerigus",
+      "types": [
+        "Ground",
+        "Ghost"
+      ],
+      "baseStats": {
+        "hp": 58,
+        "attack": 95,
+        "defense": 145,
+        "specialAttack": 50,
+        "specialDefense": 105,
+        "speed": 30
+      },
+      "abilities": [
+        "Wandering Spirit"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/867.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Alcremie",
+      "displayName": "Alcremie",
+      "types": [
+        "Fairy"
+      ],
+      "baseStats": {
+        "hp": 65,
+        "attack": 60,
+        "defense": 75,
+        "specialAttack": 110,
+        "specialDefense": 121,
+        "speed": 64
+      },
+      "abilities": [
+        "Sweet Veil",
+        "Aroma Veil"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/869.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Morpeko",
+      "displayName": "Morpeko",
+      "types": [
+        "Electric",
+        "Dark"
+      ],
+      "baseStats": {
+        "hp": 58,
+        "attack": 95,
+        "defense": 58,
+        "specialAttack": 70,
+        "specialDefense": 58,
+        "speed": 97
+      },
+      "abilities": [
+        "Hunger Switch"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/877.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Dragapult",
+      "displayName": "Dragapult",
+      "types": [
+        "Dragon",
+        "Ghost"
+      ],
+      "baseStats": {
+        "hp": 88,
+        "attack": 120,
+        "defense": 75,
+        "specialAttack": 100,
+        "specialDefense": 75,
+        "speed": 142
+      },
+      "abilities": [
+        "Clear Body",
+        "Infiltrator",
+        "Cursed Body"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/887.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Wyrdeer",
+      "displayName": "Wyrdeer",
+      "types": [
+        "Normal",
+        "Psychic"
+      ],
+      "baseStats": {
+        "hp": 103,
+        "attack": 105,
+        "defense": 72,
+        "specialAttack": 105,
+        "specialDefense": 75,
+        "speed": 65
+      },
+      "abilities": [
+        "Intimidate",
+        "Frisk",
+        "Sap Sipper"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/899.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Kleavor",
+      "displayName": "Kleavor",
+      "types": [
+        "Bug",
+        "Rock"
+      ],
+      "baseStats": {
+        "hp": 70,
+        "attack": 135,
+        "defense": 95,
+        "specialAttack": 45,
+        "specialDefense": 70,
+        "speed": 85
+      },
+      "abilities": [
+        "Swarm",
+        "Sheer Force",
+        "Sharpness"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/900.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Basculegion (Male)",
+      "displayName": "Basculegion (Male)",
+      "types": [
+        "Water",
+        "Ghost"
+      ],
+      "baseStats": {
+        "hp": 120,
+        "attack": 112,
+        "defense": 65,
+        "specialAttack": 80,
+        "specialDefense": 75,
+        "speed": 78
+      },
+      "abilities": [
+        "Swift Swim",
+        "Adaptability",
+        "Mold Breaker"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/902.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Basculegion (Female)",
+      "displayName": "Basculegion (Female)",
+      "types": [
+        "Water",
+        "Ghost"
+      ],
+      "baseStats": {
+        "hp": 120,
+        "attack": 92,
+        "defense": 65,
+        "specialAttack": 100,
+        "specialDefense": 75,
+        "speed": 78
+      },
+      "abilities": [
+        "Swift Swim",
+        "Adaptability",
+        "Mold Breaker"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10248.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Sneasler",
+      "displayName": "Sneasler",
+      "types": [
+        "Fighting",
+        "Poison"
+      ],
+      "baseStats": {
+        "hp": 80,
+        "attack": 130,
+        "defense": 60,
+        "specialAttack": 40,
+        "specialDefense": 80,
+        "speed": 120
+      },
+      "abilities": [
+        "Pressure",
+        "Unburden",
+        "Poison Touch"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/903.png",
+      "usage": 0.1,
+      "winRate": 0.51,
+      "sampleSize": 90,
+      "commonMoves": [],
+      "roleTags": [
+        "physical-attacker",
+        "fake-out",
+        "speed"
+      ]
+    },
+    {
+      "species": "Meowscarada",
+      "displayName": "Meowscarada",
+      "types": [
+        "Grass",
+        "Dark"
+      ],
+      "baseStats": {
+        "hp": 76,
+        "attack": 110,
+        "defense": 70,
+        "specialAttack": 81,
+        "specialDefense": 70,
+        "speed": 123
+      },
+      "abilities": [
+        "Overgrow",
+        "Protean"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/908.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Skeledirge",
+      "displayName": "Skeledirge",
+      "types": [
+        "Fire",
+        "Ghost"
+      ],
+      "baseStats": {
+        "hp": 104,
+        "attack": 75,
+        "defense": 100,
+        "specialAttack": 110,
+        "specialDefense": 75,
+        "speed": 66
+      },
+      "abilities": [
+        "Blaze",
+        "Unaware"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/911.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Quaquaval",
+      "displayName": "Quaquaval",
+      "types": [
+        "Water",
+        "Fighting"
+      ],
+      "baseStats": {
+        "hp": 85,
+        "attack": 120,
+        "defense": 80,
+        "specialAttack": 85,
+        "specialDefense": 75,
+        "speed": 85
+      },
+      "abilities": [
+        "Torrent",
+        "Moxie"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/914.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Maushold",
+      "displayName": "Maushold",
+      "types": [
+        "Normal"
+      ],
+      "baseStats": {
+        "hp": 74,
+        "attack": 75,
+        "defense": 70,
+        "specialAttack": 65,
+        "specialDefense": 75,
+        "speed": 111
+      },
+      "abilities": [
+        "Friend Guard",
+        "Cheek Pouch",
+        "Technician"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/925.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": [
+        "support",
+        "redirection",
+        "speed"
+      ]
+    },
+    {
+      "species": "Garganacl",
+      "displayName": "Garganacl",
+      "types": [
+        "Rock"
+      ],
+      "baseStats": {
+        "hp": 100,
+        "attack": 100,
+        "defense": 130,
+        "specialAttack": 45,
+        "specialDefense": 90,
+        "speed": 35
+      },
+      "abilities": [
+        "Purifying Salt",
+        "Sturdy",
+        "Clear Body"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/934.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Armarouge",
+      "displayName": "Armarouge",
+      "types": [
+        "Fire",
+        "Psychic"
+      ],
+      "baseStats": {
+        "hp": 85,
+        "attack": 60,
+        "defense": 100,
+        "specialAttack": 125,
+        "specialDefense": 80,
+        "speed": 75
+      },
+      "abilities": [
+        "Flash Fire",
+        "Weak Armor"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/936.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Ceruledge",
+      "displayName": "Ceruledge",
+      "types": [
+        "Fire",
+        "Ghost"
+      ],
+      "baseStats": {
+        "hp": 75,
+        "attack": 125,
+        "defense": 80,
+        "specialAttack": 60,
+        "specialDefense": 100,
+        "speed": 85
+      },
+      "abilities": [
+        "Flash Fire",
+        "Weak Armor"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/937.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Bellibolt",
+      "displayName": "Bellibolt",
+      "types": [
+        "Electric"
+      ],
+      "baseStats": {
+        "hp": 109,
+        "attack": 64,
+        "defense": 91,
+        "specialAttack": 103,
+        "specialDefense": 83,
+        "speed": 45
+      },
+      "abilities": [
+        "Electromorphosis",
+        "Static",
+        "Damp"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/939.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Scovillain",
+      "displayName": "Scovillain",
+      "types": [
+        "Grass",
+        "Fire"
+      ],
+      "baseStats": {
+        "hp": 65,
+        "attack": 108,
+        "defense": 65,
+        "specialAttack": 108,
+        "specialDefense": 65,
+        "speed": 75
+      },
+      "abilities": [
+        "Chlorophyll",
+        "Insomnia",
+        "Moody"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/952.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Espathra",
+      "displayName": "Espathra",
+      "types": [
+        "Psychic"
+      ],
+      "baseStats": {
+        "hp": 95,
+        "attack": 60,
+        "defense": 60,
+        "specialAttack": 101,
+        "specialDefense": 60,
+        "speed": 105
+      },
+      "abilities": [
+        "Opportunist",
+        "Frisk",
+        "Speed Boost"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/956.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Tinkaton",
+      "displayName": "Tinkaton",
+      "types": [
+        "Fairy",
+        "Steel"
+      ],
+      "baseStats": {
+        "hp": 85,
+        "attack": 75,
+        "defense": 77,
+        "specialAttack": 70,
+        "specialDefense": 105,
+        "speed": 94
+      },
+      "abilities": [
+        "Mold Breaker",
+        "Own Tempo",
+        "Pickpocket"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/959.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Palafin",
+      "displayName": "Palafin",
+      "types": [
+        "Water"
+      ],
+      "baseStats": {
+        "hp": 100,
+        "attack": 70,
+        "defense": 72,
+        "specialAttack": 53,
+        "specialDefense": 62,
+        "speed": 100
+      },
+      "abilities": [
+        "Zero To Hero"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/964.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Orthworm",
+      "displayName": "Orthworm",
+      "types": [
+        "Steel"
+      ],
+      "baseStats": {
+        "hp": 70,
+        "attack": 85,
+        "defense": 145,
+        "specialAttack": 60,
+        "specialDefense": 55,
+        "speed": 65
+      },
+      "abilities": [
+        "Earth Eater",
+        "Sand Veil"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/968.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Glimmora",
+      "displayName": "Glimmora",
+      "types": [
+        "Rock",
+        "Poison"
+      ],
+      "baseStats": {
+        "hp": 83,
+        "attack": 55,
+        "defense": 90,
+        "specialAttack": 130,
+        "specialDefense": 81,
+        "speed": 86
+      },
+      "abilities": [
+        "Toxic Debris",
+        "Corrosion"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/970.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [
+        "Mortal Spin",
+        "Power Gem",
+        "Earth Power",
+        "Spiky Shield"
+      ],
+      "roleTags": [
+        "special-attacker",
+        "hazard",
+        "lead-pressure"
+      ]
+    },
+    {
+      "species": "Farigiraf",
+      "displayName": "Farigiraf",
+      "types": [
+        "Normal",
+        "Psychic"
+      ],
+      "baseStats": {
+        "hp": 120,
+        "attack": 90,
+        "defense": 70,
+        "specialAttack": 110,
+        "specialDefense": 70,
+        "speed": 60
+      },
+      "abilities": [
+        "Cud Chew",
+        "Armor Tail",
+        "Sap Sipper"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/981.png",
+      "usage": 0.12,
+      "winRate": 0.51,
+      "sampleSize": 90,
+      "commonMoves": [
+        "Trick Room",
+        "Helping Hand",
+        "Psychic",
+        "Protect"
+      ],
+      "roleTags": [
+        "support",
+        "trick-room",
+        "priority-block"
+      ]
+    },
+    {
+      "species": "Kingambit",
+      "displayName": "Kingambit",
+      "types": [
+        "Dark",
+        "Steel"
+      ],
+      "baseStats": {
+        "hp": 100,
+        "attack": 135,
+        "defense": 120,
+        "specialAttack": 60,
+        "specialDefense": 85,
+        "speed": 50
+      },
+      "abilities": [
+        "Defiant",
+        "Supreme Overlord",
+        "Pressure"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/983.png",
+      "usage": 0.11,
+      "winRate": 0.51,
+      "sampleSize": 90,
+      "commonMoves": [
+        "Kowtow Cleave",
+        "Sucker Punch",
+        "Iron Head",
+        "Protect"
+      ],
+      "roleTags": [
+        "physical-attacker",
+        "priority"
+      ]
+    },
+    {
+      "species": "Sinistcha",
+      "displayName": "Sinistcha",
+      "types": [
+        "Grass",
+        "Ghost"
+      ],
+      "baseStats": {
+        "hp": 71,
+        "attack": 60,
+        "defense": 106,
+        "specialAttack": 121,
+        "specialDefense": 80,
+        "speed": 70
+      },
+      "abilities": [
+        "Hospitality",
+        "Heatproof"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1013.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Archaludon",
+      "displayName": "Archaludon",
+      "types": [
+        "Steel",
+        "Dragon"
+      ],
+      "baseStats": {
+        "hp": 90,
+        "attack": 105,
+        "defense": 130,
+        "specialAttack": 125,
+        "specialDefense": 65,
+        "speed": 85
+      },
+      "abilities": [
+        "Stamina",
+        "Sturdy",
+        "Stalwart"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1018.png",
+      "usage": 0.16,
+      "winRate": 0.51,
+      "sampleSize": 90,
+      "commonMoves": [
+        "Electro Shot",
+        "Draco Meteor",
+        "Body Press",
+        "Protect"
+      ],
+      "roleTags": [
+        "special-attacker",
+        "rain"
+      ]
+    },
+    {
+      "species": "Hydrapple",
+      "displayName": "Hydrapple",
+      "types": [
+        "Grass",
+        "Dragon"
+      ],
+      "baseStats": {
+        "hp": 106,
+        "attack": 80,
+        "defense": 110,
+        "specialAttack": 120,
+        "specialDefense": 80,
+        "speed": 44
+      },
+      "abilities": [
+        "Supersweet Syrup",
+        "Regenerator",
+        "Sticky Hold"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1019.png",
+      "usage": 0.025,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": []
+    },
+    {
+      "species": "Mega Venusaur",
+      "displayName": "Mega Venusaur",
+      "types": [
+        "Grass",
+        "Poison"
+      ],
+      "baseStats": {
+        "hp": 80,
+        "attack": 100,
+        "defense": 123,
+        "specialAttack": 122,
+        "specialDefense": 120,
+        "speed": 80
+      },
+      "abilities": [
+        "Thick Fat"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10033.png",
+      "usage": 0.04,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": [
+        "attacker"
+      ]
+    },
+    {
+      "species": "Mega Charizard X",
+      "displayName": "Mega Charizard X",
+      "types": [
+        "Fire",
+        "Dragon"
+      ],
+      "baseStats": {
+        "hp": 78,
+        "attack": 130,
+        "defense": 111,
+        "specialAttack": 130,
+        "specialDefense": 85,
+        "speed": 100
+      },
+      "abilities": [
+        "Tough Claws"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10034.png",
+      "usage": 0.04,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": [
+        "attacker"
+      ]
+    },
+    {
+      "species": "Mega Charizard Y",
+      "displayName": "Mega Charizard Y",
+      "types": [
+        "Fire",
+        "Flying"
+      ],
+      "baseStats": {
+        "hp": 78,
+        "attack": 104,
+        "defense": 78,
+        "specialAttack": 159,
+        "specialDefense": 115,
+        "speed": 100
+      },
+      "abilities": [
+        "Drought"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10035.png",
+      "usage": 0.18,
+      "winRate": 0.51,
+      "sampleSize": 90,
+      "commonMoves": [
+        "Heat Wave",
+        "Solar Beam",
+        "Tailwind",
+        "Protect"
+      ],
+      "roleTags": [
+        "special-attacker",
+        "spread",
+        "weather"
+      ]
+    },
+    {
+      "species": "Mega Blastoise",
+      "displayName": "Mega Blastoise",
+      "types": [
+        "Water"
+      ],
+      "baseStats": {
+        "hp": 79,
+        "attack": 103,
+        "defense": 120,
+        "specialAttack": 135,
+        "specialDefense": 115,
+        "speed": 78
+      },
+      "abilities": [
+        "Mega Launcher"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10036.png",
+      "usage": 0.04,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": [
+        "attacker"
+      ]
+    },
+    {
+      "species": "Mega Beedrill",
+      "displayName": "Mega Beedrill",
+      "types": [
+        "Bug",
+        "Poison"
+      ],
+      "baseStats": {
+        "hp": 65,
+        "attack": 150,
+        "defense": 40,
+        "specialAttack": 15,
+        "specialDefense": 80,
+        "speed": 145
+      },
+      "abilities": [
+        "Adaptability"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10090.png",
+      "usage": 0.04,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": [
+        "attacker"
+      ]
+    },
+    {
+      "species": "Mega Pidgeot",
+      "displayName": "Mega Pidgeot",
+      "types": [
+        "Normal",
+        "Flying"
+      ],
+      "baseStats": {
+        "hp": 83,
+        "attack": 80,
+        "defense": 75,
+        "specialAttack": 70,
+        "specialDefense": 70,
+        "speed": 101
+      },
+      "abilities": [
+        "Keen Eye",
+        "Tangled Feet",
+        "Big Pecks"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/18.png",
+      "usage": 0.04,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": [
+        "attacker"
+      ]
+    },
+    {
+      "species": "Mega Clefable",
+      "displayName": "Mega Clefable",
+      "types": [
+        "Fairy"
+      ],
+      "baseStats": {
+        "hp": 95,
+        "attack": 70,
+        "defense": 73,
+        "specialAttack": 95,
+        "specialDefense": 90,
+        "speed": 60
+      },
+      "abilities": [
+        "Cute Charm",
+        "Magic Guard",
+        "Unaware"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/36.png",
+      "usage": 0.04,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": [
+        "attacker"
+      ]
+    },
+    {
+      "species": "Mega Alakazam",
+      "displayName": "Mega Alakazam",
+      "types": [
+        "Psychic"
+      ],
+      "baseStats": {
+        "hp": 55,
+        "attack": 50,
+        "defense": 65,
+        "specialAttack": 175,
+        "specialDefense": 105,
+        "speed": 150
+      },
+      "abilities": [
+        "Trace"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10037.png",
+      "usage": 0.04,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": [
+        "attacker"
+      ]
+    },
+    {
+      "species": "Mega Victreebel",
+      "displayName": "Mega Victreebel",
+      "types": [
+        "Grass",
+        "Poison"
+      ],
+      "baseStats": {
+        "hp": 80,
+        "attack": 105,
+        "defense": 65,
+        "specialAttack": 100,
+        "specialDefense": 70,
+        "speed": 70
+      },
+      "abilities": [
+        "Chlorophyll",
+        "Gluttony"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/71.png",
+      "usage": 0.04,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": [
+        "attacker"
+      ]
+    },
+    {
+      "species": "Mega Slowbro",
+      "displayName": "Mega Slowbro",
+      "types": [
+        "Water",
+        "Psychic"
+      ],
+      "baseStats": {
+        "hp": 95,
+        "attack": 75,
+        "defense": 180,
+        "specialAttack": 130,
+        "specialDefense": 80,
+        "speed": 30
+      },
+      "abilities": [
+        "Shell Armor"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10071.png",
+      "usage": 0.04,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": [
+        "attacker"
+      ]
+    },
+    {
+      "species": "Mega Gengar",
+      "displayName": "Mega Gengar",
+      "types": [
+        "Ghost",
+        "Poison"
+      ],
+      "baseStats": {
+        "hp": 60,
+        "attack": 65,
+        "defense": 80,
+        "specialAttack": 170,
+        "specialDefense": 95,
+        "speed": 130
+      },
+      "abilities": [
+        "Shadow Tag"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10038.png",
+      "usage": 0.04,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": [
+        "attacker"
+      ]
+    },
+    {
+      "species": "Mega Kangaskhan",
+      "displayName": "Mega Kangaskhan",
+      "types": [
+        "Normal"
+      ],
+      "baseStats": {
+        "hp": 105,
+        "attack": 125,
+        "defense": 100,
+        "specialAttack": 60,
+        "specialDefense": 100,
+        "speed": 100
+      },
+      "abilities": [
+        "Parental Bond"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10039.png",
+      "usage": 0.04,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": [
+        "physical-attacker",
+        "fake-out",
+        "priority"
+      ]
+    },
+    {
+      "species": "Mega Starmie",
+      "displayName": "Mega Starmie",
+      "types": [
+        "Water",
+        "Psychic"
+      ],
+      "baseStats": {
+        "hp": 60,
+        "attack": 75,
+        "defense": 85,
+        "specialAttack": 100,
+        "specialDefense": 85,
+        "speed": 115
+      },
+      "abilities": [
+        "Illuminate",
+        "Natural Cure",
+        "Analytic"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/121.png",
+      "usage": 0.04,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": [
+        "attacker"
+      ]
+    },
+    {
+      "species": "Mega Pinsir",
+      "displayName": "Mega Pinsir",
+      "types": [
+        "Bug",
+        "Flying"
+      ],
+      "baseStats": {
+        "hp": 65,
+        "attack": 155,
+        "defense": 120,
+        "specialAttack": 65,
+        "specialDefense": 90,
+        "speed": 105
+      },
+      "abilities": [
+        "Aerilate"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10040.png",
+      "usage": 0.04,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": [
+        "attacker"
+      ]
+    },
+    {
+      "species": "Mega Gyarados",
+      "displayName": "Mega Gyarados",
+      "types": [
+        "Water",
+        "Dark"
+      ],
+      "baseStats": {
+        "hp": 95,
+        "attack": 155,
+        "defense": 109,
+        "specialAttack": 70,
+        "specialDefense": 130,
+        "speed": 81
+      },
+      "abilities": [
+        "Mold Breaker"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10041.png",
+      "usage": 0.04,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": [
+        "attacker"
+      ]
+    },
+    {
+      "species": "Mega Aerodactyl",
+      "displayName": "Mega Aerodactyl",
+      "types": [
+        "Rock",
+        "Flying"
+      ],
+      "baseStats": {
+        "hp": 80,
+        "attack": 135,
+        "defense": 85,
+        "specialAttack": 70,
+        "specialDefense": 95,
+        "speed": 150
+      },
+      "abilities": [
+        "Tough Claws"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10042.png",
+      "usage": 0.04,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": [
+        "attacker"
+      ]
+    },
+    {
+      "species": "Mega Dragonite",
+      "displayName": "Mega Dragonite",
+      "types": [
+        "Dragon",
+        "Flying"
+      ],
+      "baseStats": {
+        "hp": 91,
+        "attack": 134,
+        "defense": 95,
+        "specialAttack": 100,
+        "specialDefense": 100,
+        "speed": 80
+      },
+      "abilities": [
+        "Inner Focus",
+        "Multiscale"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/149.png",
+      "usage": 0.04,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": [
+        "attacker"
+      ]
+    },
+    {
+      "species": "Mega Meganium",
+      "displayName": "Mega Meganium",
+      "types": [
+        "Grass"
+      ],
+      "baseStats": {
+        "hp": 80,
+        "attack": 82,
+        "defense": 100,
+        "specialAttack": 83,
+        "specialDefense": 100,
+        "speed": 80
+      },
+      "abilities": [
+        "Overgrow",
+        "Leaf Guard"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/154.png",
+      "usage": 0.04,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": [
+        "attacker"
+      ]
+    },
+    {
+      "species": "Mega Feraligatr",
+      "displayName": "Mega Feraligatr",
+      "types": [
+        "Water"
+      ],
+      "baseStats": {
+        "hp": 85,
+        "attack": 105,
+        "defense": 100,
+        "specialAttack": 79,
+        "specialDefense": 83,
+        "speed": 78
+      },
+      "abilities": [
+        "Torrent",
+        "Sheer Force"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/160.png",
+      "usage": 0.04,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": [
+        "attacker"
+      ]
+    },
+    {
+      "species": "Mega Ampharos",
+      "displayName": "Mega Ampharos",
+      "types": [
+        "Electric",
+        "Dragon"
+      ],
+      "baseStats": {
+        "hp": 90,
+        "attack": 95,
+        "defense": 105,
+        "specialAttack": 165,
+        "specialDefense": 110,
+        "speed": 45
+      },
+      "abilities": [
+        "Mold Breaker"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10045.png",
+      "usage": 0.04,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": [
+        "attacker"
+      ]
+    },
+    {
+      "species": "Mega Steelix",
+      "displayName": "Mega Steelix",
+      "types": [
+        "Steel",
+        "Ground"
+      ],
+      "baseStats": {
+        "hp": 75,
+        "attack": 125,
+        "defense": 230,
+        "specialAttack": 55,
+        "specialDefense": 95,
+        "speed": 30
+      },
+      "abilities": [
+        "Sand Force"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10072.png",
+      "usage": 0.04,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": [
+        "attacker"
+      ]
+    },
+    {
+      "species": "Mega Scizor",
+      "displayName": "Mega Scizor",
+      "types": [
+        "Bug",
+        "Steel"
+      ],
+      "baseStats": {
+        "hp": 70,
+        "attack": 150,
+        "defense": 140,
+        "specialAttack": 65,
+        "specialDefense": 100,
+        "speed": 75
+      },
+      "abilities": [
+        "Technician"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10046.png",
+      "usage": 0.04,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": [
+        "attacker"
+      ]
+    },
+    {
+      "species": "Mega Heracross",
+      "displayName": "Mega Heracross",
+      "types": [
+        "Bug",
+        "Fighting"
+      ],
+      "baseStats": {
+        "hp": 80,
+        "attack": 185,
+        "defense": 115,
+        "specialAttack": 40,
+        "specialDefense": 105,
+        "speed": 75
+      },
+      "abilities": [
+        "Skill Link"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10047.png",
+      "usage": 0.04,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": [
+        "attacker"
+      ]
+    },
+    {
+      "species": "Mega Skarmory",
+      "displayName": "Mega Skarmory",
+      "types": [
+        "Steel",
+        "Flying"
+      ],
+      "baseStats": {
+        "hp": 65,
+        "attack": 80,
+        "defense": 140,
+        "specialAttack": 40,
+        "specialDefense": 70,
+        "speed": 70
+      },
+      "abilities": [
+        "Keen Eye",
+        "Sturdy",
+        "Weak Armor"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/227.png",
+      "usage": 0.04,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": [
+        "attacker"
+      ]
+    },
+    {
+      "species": "Mega Houndoom",
+      "displayName": "Mega Houndoom",
+      "types": [
+        "Dark",
+        "Fire"
+      ],
+      "baseStats": {
+        "hp": 75,
+        "attack": 90,
+        "defense": 90,
+        "specialAttack": 140,
+        "specialDefense": 90,
+        "speed": 115
+      },
+      "abilities": [
+        "Solar Power"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10048.png",
+      "usage": 0.04,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": [
+        "attacker"
+      ]
+    },
+    {
+      "species": "Mega Tyranitar",
+      "displayName": "Mega Tyranitar",
+      "types": [
+        "Rock",
+        "Dark"
+      ],
+      "baseStats": {
+        "hp": 100,
+        "attack": 164,
+        "defense": 150,
+        "specialAttack": 95,
+        "specialDefense": 120,
+        "speed": 71
+      },
+      "abilities": [
+        "Sand Stream"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10049.png",
+      "usage": 0.04,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": [
+        "attacker"
+      ]
+    },
+    {
+      "species": "Mega Gardevoir",
+      "displayName": "Mega Gardevoir",
+      "types": [
+        "Psychic",
+        "Fairy"
+      ],
+      "baseStats": {
+        "hp": 68,
+        "attack": 85,
+        "defense": 65,
+        "specialAttack": 165,
+        "specialDefense": 135,
+        "speed": 100
+      },
+      "abilities": [
+        "Pixilate"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10051.png",
+      "usage": 0.04,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": [
+        "attacker"
+      ]
+    },
+    {
+      "species": "Mega Sableye",
+      "displayName": "Mega Sableye",
+      "types": [
+        "Dark",
+        "Ghost"
+      ],
+      "baseStats": {
+        "hp": 50,
+        "attack": 85,
+        "defense": 125,
+        "specialAttack": 85,
+        "specialDefense": 115,
+        "speed": 20
+      },
+      "abilities": [
+        "Magic Bounce"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10066.png",
+      "usage": 0.04,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": [
+        "attacker"
+      ]
+    },
+    {
+      "species": "Mega Aggron",
+      "displayName": "Mega Aggron",
+      "types": [
+        "Steel"
+      ],
+      "baseStats": {
+        "hp": 70,
+        "attack": 140,
+        "defense": 230,
+        "specialAttack": 60,
+        "specialDefense": 80,
+        "speed": 50
+      },
+      "abilities": [
+        "Filter"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10053.png",
+      "usage": 0.04,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": [
+        "attacker"
+      ]
+    },
+    {
+      "species": "Mega Medicham",
+      "displayName": "Mega Medicham",
+      "types": [
+        "Fighting",
+        "Psychic"
+      ],
+      "baseStats": {
+        "hp": 60,
+        "attack": 100,
+        "defense": 85,
+        "specialAttack": 80,
+        "specialDefense": 85,
+        "speed": 100
+      },
+      "abilities": [
+        "Pure Power"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10054.png",
+      "usage": 0.04,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": [
+        "attacker"
+      ]
+    },
+    {
+      "species": "Mega Manectric",
+      "displayName": "Mega Manectric",
+      "types": [
+        "Electric"
+      ],
+      "baseStats": {
+        "hp": 70,
+        "attack": 75,
+        "defense": 80,
+        "specialAttack": 135,
+        "specialDefense": 80,
+        "speed": 135
+      },
+      "abilities": [
+        "Intimidate"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10055.png",
+      "usage": 0.04,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": [
+        "attacker"
+      ]
+    },
+    {
+      "species": "Mega Sharpedo",
+      "displayName": "Mega Sharpedo",
+      "types": [
+        "Water",
+        "Dark"
+      ],
+      "baseStats": {
+        "hp": 70,
+        "attack": 140,
+        "defense": 70,
+        "specialAttack": 110,
+        "specialDefense": 65,
+        "speed": 105
+      },
+      "abilities": [
+        "Strong Jaw"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10070.png",
+      "usage": 0.04,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": [
+        "attacker"
+      ]
+    },
+    {
+      "species": "Mega Camerupt",
+      "displayName": "Mega Camerupt",
+      "types": [
+        "Fire",
+        "Ground"
+      ],
+      "baseStats": {
+        "hp": 70,
+        "attack": 120,
+        "defense": 100,
+        "specialAttack": 145,
+        "specialDefense": 105,
+        "speed": 20
+      },
+      "abilities": [
+        "Sheer Force"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10087.png",
+      "usage": 0.04,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": [
+        "attacker"
+      ]
+    },
+    {
+      "species": "Mega Altaria",
+      "displayName": "Mega Altaria",
+      "types": [
+        "Dragon",
+        "Fairy"
+      ],
+      "baseStats": {
+        "hp": 75,
+        "attack": 110,
+        "defense": 110,
+        "specialAttack": 110,
+        "specialDefense": 105,
+        "speed": 80
+      },
+      "abilities": [
+        "Pixilate"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10067.png",
+      "usage": 0.04,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": [
+        "attacker"
+      ]
+    },
+    {
+      "species": "Mega Banette",
+      "displayName": "Mega Banette",
+      "types": [
+        "Ghost"
+      ],
+      "baseStats": {
+        "hp": 64,
+        "attack": 165,
+        "defense": 75,
+        "specialAttack": 93,
+        "specialDefense": 83,
+        "speed": 75
+      },
+      "abilities": [
+        "Prankster"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10056.png",
+      "usage": 0.04,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": [
+        "attacker"
+      ]
+    },
+    {
+      "species": "Mega Chimecho",
+      "displayName": "Mega Chimecho",
+      "types": [
+        "Psychic"
+      ],
+      "baseStats": {
+        "hp": 75,
+        "attack": 50,
+        "defense": 80,
+        "specialAttack": 95,
+        "specialDefense": 90,
+        "speed": 65
+      },
+      "abilities": [
+        "Levitate"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/358.png",
+      "usage": 0.04,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": [
+        "attacker"
+      ]
+    },
+    {
+      "species": "Mega Absol",
+      "displayName": "Mega Absol",
+      "types": [
+        "Dark"
+      ],
+      "baseStats": {
+        "hp": 65,
+        "attack": 150,
+        "defense": 60,
+        "specialAttack": 115,
+        "specialDefense": 60,
+        "speed": 115
+      },
+      "abilities": [
+        "Magic Bounce"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10057.png",
+      "usage": 0.04,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": [
+        "attacker"
+      ]
+    },
+    {
+      "species": "Mega Glalie",
+      "displayName": "Mega Glalie",
+      "types": [
+        "Ice"
+      ],
+      "baseStats": {
+        "hp": 80,
+        "attack": 120,
+        "defense": 80,
+        "specialAttack": 120,
+        "specialDefense": 80,
+        "speed": 100
+      },
+      "abilities": [
+        "Refrigerate"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10074.png",
+      "usage": 0.04,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": [
+        "attacker"
+      ]
+    },
+    {
+      "species": "Mega Lopunny",
+      "displayName": "Mega Lopunny",
+      "types": [
+        "Normal",
+        "Fighting"
+      ],
+      "baseStats": {
+        "hp": 65,
+        "attack": 136,
+        "defense": 94,
+        "specialAttack": 54,
+        "specialDefense": 96,
+        "speed": 135
+      },
+      "abilities": [
+        "Scrappy"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10088.png",
+      "usage": 0.04,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": [
+        "attacker"
+      ]
+    },
+    {
+      "species": "Mega Garchomp",
+      "displayName": "Mega Garchomp",
+      "types": [
+        "Dragon",
+        "Ground"
+      ],
+      "baseStats": {
+        "hp": 108,
+        "attack": 170,
+        "defense": 115,
+        "specialAttack": 120,
+        "specialDefense": 95,
+        "speed": 92
+      },
+      "abilities": [
+        "Sand Force"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10058.png",
+      "usage": 0.2,
+      "winRate": 0.51,
+      "sampleSize": 90,
+      "commonMoves": [
+        "Earthquake",
+        "Dragon Claw",
+        "Rock Slide",
+        "Protect"
+      ],
+      "roleTags": [
+        "physical-attacker",
+        "spread"
+      ]
+    },
+    {
+      "species": "Mega Lucario",
+      "displayName": "Mega Lucario",
+      "types": [
+        "Fighting",
+        "Steel"
+      ],
+      "baseStats": {
+        "hp": 70,
+        "attack": 145,
+        "defense": 88,
+        "specialAttack": 140,
+        "specialDefense": 70,
+        "speed": 112
+      },
+      "abilities": [
+        "Adaptability"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10059.png",
+      "usage": 0.04,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": [
+        "attacker"
+      ]
+    },
+    {
+      "species": "Mega Abomasnow",
+      "displayName": "Mega Abomasnow",
+      "types": [
+        "Grass",
+        "Ice"
+      ],
+      "baseStats": {
+        "hp": 90,
+        "attack": 132,
+        "defense": 105,
+        "specialAttack": 132,
+        "specialDefense": 105,
+        "speed": 30
+      },
+      "abilities": [
+        "Snow Warning"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10060.png",
+      "usage": 0.04,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": [
+        "attacker"
+      ]
+    },
+    {
+      "species": "Mega Gallade",
+      "displayName": "Mega Gallade",
+      "types": [
+        "Psychic",
+        "Fighting"
+      ],
+      "baseStats": {
+        "hp": 68,
+        "attack": 165,
+        "defense": 95,
+        "specialAttack": 65,
+        "specialDefense": 115,
+        "speed": 110
+      },
+      "abilities": [
+        "Inner Focus"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10068.png",
+      "usage": 0.04,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": [
+        "attacker"
+      ]
+    },
+    {
+      "species": "Mega Froslass",
+      "displayName": "Mega Froslass",
+      "types": [
+        "Ice",
+        "Ghost"
+      ],
+      "baseStats": {
+        "hp": 70,
+        "attack": 80,
+        "defense": 70,
+        "specialAttack": 80,
+        "specialDefense": 70,
+        "speed": 110
+      },
+      "abilities": [
+        "Snow Cloak",
+        "Cursed Body"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/478.png",
+      "usage": 0.04,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": [
+        "attacker"
+      ]
+    },
+    {
+      "species": "Mega Emboar",
+      "displayName": "Mega Emboar",
+      "types": [
+        "Fire",
+        "Fighting"
+      ],
+      "baseStats": {
+        "hp": 110,
+        "attack": 123,
+        "defense": 65,
+        "specialAttack": 100,
+        "specialDefense": 65,
+        "speed": 65
+      },
+      "abilities": [
+        "Blaze",
+        "Reckless"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/500.png",
+      "usage": 0.04,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": [
+        "attacker"
+      ]
+    },
+    {
+      "species": "Mega Excadrill",
+      "displayName": "Mega Excadrill",
+      "types": [
+        "Ground",
+        "Steel"
+      ],
+      "baseStats": {
+        "hp": 110,
+        "attack": 135,
+        "defense": 60,
+        "specialAttack": 50,
+        "specialDefense": 65,
+        "speed": 88
+      },
+      "abilities": [
+        "Sand Rush",
+        "Sand Force",
+        "Mold Breaker"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/530.png",
+      "usage": 0.04,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": [
+        "attacker"
+      ]
+    },
+    {
+      "species": "Mega Audino",
+      "displayName": "Mega Audino",
+      "types": [
+        "Normal",
+        "Fairy"
+      ],
+      "baseStats": {
+        "hp": 103,
+        "attack": 60,
+        "defense": 126,
+        "specialAttack": 80,
+        "specialDefense": 126,
+        "speed": 50
+      },
+      "abilities": [
+        "Healer"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10069.png",
+      "usage": 0.04,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": [
+        "attacker"
+      ]
+    },
+    {
+      "species": "Mega Chandelure",
+      "displayName": "Mega Chandelure",
+      "types": [
+        "Ghost",
+        "Fire"
+      ],
+      "baseStats": {
+        "hp": 60,
+        "attack": 55,
+        "defense": 90,
+        "specialAttack": 145,
+        "specialDefense": 90,
+        "speed": 80
+      },
+      "abilities": [
+        "Flash Fire",
+        "Flame Body",
+        "Infiltrator"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/609.png",
+      "usage": 0.04,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": [
+        "attacker"
+      ]
+    },
+    {
+      "species": "Mega Golurk",
+      "displayName": "Mega Golurk",
+      "types": [
+        "Ground",
+        "Ghost"
+      ],
+      "baseStats": {
+        "hp": 89,
+        "attack": 124,
+        "defense": 80,
+        "specialAttack": 55,
+        "specialDefense": 80,
+        "speed": 55
+      },
+      "abilities": [
+        "Iron Fist",
+        "Klutz",
+        "No Guard"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/623.png",
+      "usage": 0.04,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": [
+        "attacker"
+      ]
+    },
+    {
+      "species": "Mega Chesnaught",
+      "displayName": "Mega Chesnaught",
+      "types": [
+        "Grass",
+        "Fighting"
+      ],
+      "baseStats": {
+        "hp": 88,
+        "attack": 107,
+        "defense": 122,
+        "specialAttack": 74,
+        "specialDefense": 75,
+        "speed": 64
+      },
+      "abilities": [
+        "Overgrow",
+        "Bulletproof"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/652.png",
+      "usage": 0.04,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": [
+        "attacker"
+      ]
+    },
+    {
+      "species": "Mega Delphox",
+      "displayName": "Mega Delphox",
+      "types": [
+        "Fire",
+        "Psychic"
+      ],
+      "baseStats": {
+        "hp": 75,
+        "attack": 69,
+        "defense": 72,
+        "specialAttack": 114,
+        "specialDefense": 100,
+        "speed": 104
+      },
+      "abilities": [
+        "Blaze",
+        "Magician"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/655.png",
+      "usage": 0.04,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": [
+        "attacker"
+      ]
+    },
+    {
+      "species": "Mega Greninja",
+      "displayName": "Mega Greninja",
+      "types": [
+        "Water",
+        "Dark"
+      ],
+      "baseStats": {
+        "hp": 72,
+        "attack": 95,
+        "defense": 67,
+        "specialAttack": 103,
+        "specialDefense": 71,
+        "speed": 122
+      },
+      "abilities": [
+        "Torrent",
+        "Protean"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/658.png",
+      "usage": 0.04,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": [
+        "attacker"
+      ]
+    },
+    {
+      "species": "Mega Floette",
+      "displayName": "Mega Floette",
+      "types": [
+        "Fairy"
+      ],
+      "baseStats": {
+        "hp": 54,
+        "attack": 45,
+        "defense": 47,
+        "specialAttack": 75,
+        "specialDefense": 98,
+        "speed": 52
+      },
+      "abilities": [
+        "Flower Veil",
+        "Symbiosis"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/670.png",
+      "usage": 0.04,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": [
+        "attacker"
+      ]
+    },
+    {
+      "species": "Mega Meowstic",
+      "displayName": "Mega Meowstic",
+      "types": [
+        "Psychic"
+      ],
+      "baseStats": {
+        "hp": 74,
+        "attack": 48,
+        "defense": 76,
+        "specialAttack": 83,
+        "specialDefense": 81,
+        "speed": 104
+      },
+      "abilities": [
+        "Keen Eye",
+        "Infiltrator",
+        "Prankster"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/678.png",
+      "usage": 0.04,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": [
+        "attacker"
+      ]
+    },
+    {
+      "species": "Mega Hawlucha",
+      "displayName": "Mega Hawlucha",
+      "types": [
+        "Fighting",
+        "Flying"
+      ],
+      "baseStats": {
+        "hp": 78,
+        "attack": 92,
+        "defense": 75,
+        "specialAttack": 74,
+        "specialDefense": 63,
+        "speed": 118
+      },
+      "abilities": [
+        "Limber",
+        "Unburden",
+        "Mold Breaker"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/701.png",
+      "usage": 0.04,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": [
+        "attacker"
+      ]
+    },
+    {
+      "species": "Mega Crabominable",
+      "displayName": "Mega Crabominable",
+      "types": [
+        "Fighting",
+        "Ice"
+      ],
+      "baseStats": {
+        "hp": 97,
+        "attack": 132,
+        "defense": 77,
+        "specialAttack": 62,
+        "specialDefense": 67,
+        "speed": 43
+      },
+      "abilities": [
+        "Hyper Cutter",
+        "Iron Fist",
+        "Anger Point"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/740.png",
+      "usage": 0.04,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": [
+        "attacker"
+      ]
+    },
+    {
+      "species": "Mega Drampa",
+      "displayName": "Mega Drampa",
+      "types": [
+        "Normal",
+        "Dragon"
+      ],
+      "baseStats": {
+        "hp": 78,
+        "attack": 60,
+        "defense": 85,
+        "specialAttack": 135,
+        "specialDefense": 91,
+        "speed": 36
+      },
+      "abilities": [
+        "Berserk",
+        "Sap Sipper",
+        "Cloud Nine"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/780.png",
+      "usage": 0.04,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": [
+        "attacker"
+      ]
+    },
+    {
+      "species": "Mega Scovillain",
+      "displayName": "Mega Scovillain",
+      "types": [
+        "Grass",
+        "Fire"
+      ],
+      "baseStats": {
+        "hp": 65,
+        "attack": 108,
+        "defense": 65,
+        "specialAttack": 108,
+        "specialDefense": 65,
+        "speed": 75
+      },
+      "abilities": [
+        "Chlorophyll",
+        "Insomnia",
+        "Moody"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/952.png",
+      "usage": 0.04,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [],
+      "roleTags": [
+        "attacker"
+      ]
+    },
+    {
+      "species": "Mega Glimmora",
+      "displayName": "Mega Glimmora",
+      "types": [
+        "Rock",
+        "Poison"
+      ],
+      "baseStats": {
+        "hp": 83,
+        "attack": 55,
+        "defense": 90,
+        "specialAttack": 130,
+        "specialDefense": 81,
+        "speed": 86
+      },
+      "abilities": [
+        "Toxic Debris",
+        "Corrosion"
+      ],
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/970.png",
+      "usage": 0.04,
+      "winRate": 0.5,
+      "sampleSize": 20,
+      "commonMoves": [
+        "Mortal Spin",
+        "Power Gem",
+        "Earth Power",
+        "Spiky Shield"
+      ],
+      "roleTags": [
+        "special-attacker",
+        "hazard",
+        "lead-pressure"
+      ]
+    }
+  ],
+  "moves": [
+    {
+      "name": "Aqua Jet",
+      "type": "Water",
+      "category": "Physical",
+      "power": 40,
+      "tags": [
+        "priority"
+      ]
+    },
+    {
+      "name": "Astral Barrage",
+      "type": "Ghost",
+      "category": "Special",
+      "power": 120,
+      "tags": [
+        "spread"
+      ]
+    },
+    {
+      "name": "Beat Up",
+      "type": "Dark",
+      "category": "Physical",
+      "tags": [
+        "utility",
+        "multi-hit",
+        "disruption"
+      ]
+    },
+    {
+      "name": "Behemoth Blade",
+      "type": "Steel",
+      "category": "Physical",
+      "power": 100,
+      "tags": [
+        "damage"
+      ]
+    },
+    {
+      "name": "Bleakwind Storm",
+      "type": "Flying",
+      "category": "Special",
+      "power": 100,
+      "tags": [
+        "speed-control",
+        "spread"
+      ]
+    },
+    {
+      "name": "Body Press",
+      "type": "Fighting",
+      "category": "Physical",
+      "power": 80,
+      "tags": [
+        "damage"
+      ]
+    },
+    {
+      "name": "Close Combat",
+      "type": "Fighting",
+      "category": "Physical",
+      "power": 120,
+      "tags": [
+        "damage"
+      ]
+    },
+    {
+      "name": "Collision Course",
+      "type": "Fighting",
+      "category": "Physical",
+      "power": 100,
+      "tags": [
+        "damage"
+      ]
+    },
+    {
+      "name": "Crunch",
+      "type": "Dark",
+      "category": "Physical",
+      "power": 80,
+      "tags": [
+        "damage"
+      ]
+    },
+    {
+      "name": "Dark Pulse",
+      "type": "Dark",
+      "category": "Special",
+      "power": 80,
+      "tags": [
+        "damage"
+      ]
+    },
+    {
+      "name": "Dazzling Gleam",
+      "type": "Fairy",
+      "category": "Special",
+      "power": 80,
+      "tags": [
+        "spread"
+      ]
+    },
+    {
+      "name": "Detect",
+      "type": "Fighting",
+      "category": "Status",
+      "tags": [
+        "protect"
+      ]
+    },
+    {
+      "name": "Draco Meteor",
+      "type": "Dragon",
+      "category": "Special",
+      "power": 130,
+      "tags": [
+        "damage"
+      ]
+    },
+    {
+      "name": "Dragon Claw",
+      "type": "Dragon",
+      "category": "Physical",
+      "power": 80,
+      "tags": [
+        "damage"
+      ]
+    },
+    {
+      "name": "Earth Power",
+      "type": "Ground",
+      "category": "Special",
+      "power": 90,
+      "tags": [
+        "damage"
+      ]
+    },
+    {
+      "name": "Earthquake",
+      "type": "Ground",
+      "category": "Physical",
+      "power": 100,
+      "tags": [
+        "spread"
+      ]
+    },
+    {
+      "name": "Electro Drift",
+      "type": "Electric",
+      "category": "Special",
+      "power": 100,
+      "tags": [
+        "damage"
+      ]
+    },
+    {
+      "name": "Electro Shot",
+      "type": "Electric",
+      "category": "Special",
+      "power": 130,
+      "tags": [
+        "rain"
+      ]
+    },
+    {
+      "name": "Encore",
+      "type": "Normal",
+      "category": "Status",
+      "tags": [
+        "control"
+      ]
+    },
+    {
+      "name": "Expanding Force",
+      "type": "Psychic",
+      "category": "Special",
+      "power": 80,
+      "tags": [
+        "spread"
+      ]
+    },
+    {
+      "name": "Extreme Speed",
+      "type": "Normal",
+      "category": "Physical",
+      "power": 80,
+      "tags": [
+        "priority"
+      ]
+    },
+    {
+      "name": "Fake Out",
+      "type": "Normal",
+      "category": "Physical",
+      "power": 40,
+      "tags": [
+        "priority",
+        "fake-out",
+        "flinch"
+      ]
+    },
+    {
+      "name": "Flare Blitz",
+      "type": "Fire",
+      "category": "Physical",
+      "power": 120,
+      "tags": [
+        "damage"
+      ]
+    },
+    {
+      "name": "Follow Me",
+      "type": "Normal",
+      "category": "Status",
+      "tags": [
+        "redirection"
+      ]
+    },
+    {
+      "name": "Giga Drain",
+      "type": "Grass",
+      "category": "Special",
+      "power": 75,
+      "tags": [
+        "recovery"
+      ]
+    },
+    {
+      "name": "Glacial Lance",
+      "type": "Ice",
+      "category": "Physical",
+      "power": 120,
+      "tags": [
+        "spread"
+      ]
+    },
+    {
+      "name": "Grassy Glide",
+      "type": "Grass",
+      "category": "Physical",
+      "power": 55,
+      "tags": [
+        "priority"
+      ]
+    },
+    {
+      "name": "Heat Wave",
+      "type": "Fire",
+      "category": "Special",
+      "power": 95,
+      "tags": [
+        "spread"
+      ]
+    },
+    {
+      "name": "Heavy Slam",
+      "type": "Steel",
+      "category": "Physical",
+      "power": 100,
+      "tags": [
+        "damage"
+      ]
+    },
+    {
+      "name": "Helping Hand",
+      "type": "Normal",
+      "category": "Status",
+      "tags": [
+        "support"
+      ]
+    },
+    {
+      "name": "High Horsepower",
+      "type": "Ground",
+      "category": "Physical",
+      "power": 95,
+      "tags": [
+        "damage"
+      ]
+    },
+    {
+      "name": "Horn Leech",
+      "type": "Grass",
+      "category": "Physical",
+      "power": 75,
+      "tags": [
+        "recovery"
+      ]
+    },
+    {
+      "name": "Hurricane",
+      "type": "Flying",
+      "category": "Special",
+      "power": 110,
+      "tags": [
+        "damage"
+      ]
+    },
+    {
+      "name": "Hyper Voice",
+      "type": "Normal",
+      "category": "Special",
+      "power": 90,
+      "tags": [
+        "spread"
+      ]
+    },
+    {
+      "name": "Ice Beam",
+      "type": "Ice",
+      "category": "Special",
+      "power": 90,
+      "tags": [
+        "damage"
+      ]
+    },
+    {
+      "name": "Ice Spinner",
+      "type": "Ice",
+      "category": "Physical",
+      "power": 80,
+      "tags": [
+        "damage"
+      ]
+    },
+    {
+      "name": "Icy Wind",
+      "type": "Ice",
+      "category": "Special",
+      "power": 55,
+      "tags": [
+        "speed-control",
+        "spread"
+      ]
+    },
+    {
+      "name": "Iron Head",
+      "type": "Steel",
+      "category": "Physical",
+      "power": 80,
+      "tags": [
+        "damage"
+      ]
+    },
+    {
+      "name": "Ivy Cudgel",
+      "type": "Grass",
+      "category": "Physical",
+      "power": 100,
+      "tags": [
+        "damage"
+      ]
+    },
+    {
+      "name": "Knock Off",
+      "type": "Dark",
+      "category": "Physical",
+      "power": 65,
+      "tags": [
+        "damage",
+        "utility"
+      ]
+    },
+    {
+      "name": "Kowtow Cleave",
+      "type": "Dark",
+      "category": "Physical",
+      "power": 85,
+      "tags": [
+        "damage"
+      ]
+    },
+    {
+      "name": "Low Kick",
+      "type": "Fighting",
+      "category": "Physical",
+      "power": 80,
+      "tags": [
+        "damage"
+      ]
+    },
+    {
+      "name": "Make It Rain",
+      "type": "Steel",
+      "category": "Special",
+      "power": 120,
+      "tags": [
+        "spread"
+      ]
+    },
+    {
+      "name": "Moonblast",
+      "type": "Fairy",
+      "category": "Special",
+      "power": 95,
+      "tags": [
+        "damage"
+      ]
+    },
+    {
+      "name": "Mortal Spin",
+      "type": "Poison",
+      "category": "Physical",
+      "power": 30,
+      "tags": [
+        "spread",
+        "utility",
+        "poison"
+      ]
+    },
+    {
+      "name": "Muddy Water",
+      "type": "Water",
+      "category": "Special",
+      "power": 90,
+      "tags": [
+        "spread"
+      ]
+    },
+    {
+      "name": "Nuzzle",
+      "type": "Electric",
+      "category": "Physical",
+      "power": 20,
+      "tags": [
+        "speed-control"
+      ]
+    },
+    {
+      "name": "Origin Pulse",
+      "type": "Water",
+      "category": "Special",
+      "power": 110,
+      "tags": [
+        "spread"
+      ]
+    },
+    {
+      "name": "Parting Shot",
+      "type": "Dark",
+      "category": "Status",
+      "tags": [
+        "pivot",
+        "debuff"
+      ]
+    },
+    {
+      "name": "Poison Jab",
+      "type": "Poison",
+      "category": "Physical",
+      "power": 80,
+      "tags": [
+        "damage"
+      ]
+    },
+    {
+      "name": "Power Gem",
+      "type": "Rock",
+      "category": "Special",
+      "power": 80,
+      "tags": [
+        "damage"
+      ]
+    },
+    {
+      "name": "Precipice Blades",
+      "type": "Ground",
+      "category": "Physical",
+      "power": 120,
+      "tags": [
+        "spread"
+      ]
+    },
+    {
+      "name": "Protect",
+      "type": "Normal",
+      "category": "Status",
+      "tags": [
+        "protect"
+      ]
+    },
+    {
+      "name": "Psychic",
+      "type": "Psychic",
+      "category": "Special",
+      "power": 90,
+      "tags": [
+        "damage"
+      ]
+    },
+    {
+      "name": "Psychic Fangs",
+      "type": "Psychic",
+      "category": "Physical",
+      "power": 85,
+      "tags": [
+        "damage"
+      ]
+    },
+    {
+      "name": "Rage Powder",
+      "type": "Bug",
+      "category": "Status",
+      "tags": [
+        "redirection"
+      ]
+    },
+    {
+      "name": "Rain Dance",
+      "type": "Water",
+      "category": "Status",
+      "tags": [
+        "weather"
+      ]
+    },
+    {
+      "name": "Recover",
+      "type": "Normal",
+      "category": "Status",
+      "tags": [
+        "recovery"
+      ]
+    },
+    {
+      "name": "Rock Slide",
+      "type": "Rock",
+      "category": "Physical",
+      "power": 75,
+      "tags": [
+        "spread"
+      ]
+    },
+    {
+      "name": "Sacred Sword",
+      "type": "Fighting",
+      "category": "Physical",
+      "power": 90,
+      "tags": [
+        "damage"
+      ]
+    },
+    {
+      "name": "Shadow Ball",
+      "type": "Ghost",
+      "category": "Special",
+      "power": 80,
+      "tags": [
+        "damage"
+      ]
+    },
+    {
+      "name": "Sleep Powder",
+      "type": "Grass",
+      "category": "Status",
+      "tags": [
+        "sleep",
+        "control"
+      ]
+    },
+    {
+      "name": "Sludge Bomb",
+      "type": "Poison",
+      "category": "Special",
+      "power": 90,
+      "tags": [
+        "damage"
+      ]
+    },
+    {
+      "name": "Snarl",
+      "type": "Dark",
+      "category": "Special",
+      "power": 55,
+      "tags": [
+        "spread",
+        "debuff"
+      ]
+    },
+    {
+      "name": "Solar Beam",
+      "type": "Grass",
+      "category": "Special",
+      "power": 120,
+      "tags": [
+        "damage"
+      ]
+    },
+    {
+      "name": "Spiky Shield",
+      "type": "Grass",
+      "category": "Status",
+      "tags": [
+        "protect"
+      ]
+    },
+    {
+      "name": "Spore",
+      "type": "Grass",
+      "category": "Status",
+      "tags": [
+        "sleep",
+        "control"
+      ]
+    },
+    {
+      "name": "Stealth Rock",
+      "type": "Rock",
+      "category": "Status",
+      "tags": [
+        "hazard"
+      ]
+    },
+    {
+      "name": "Stomping Tantrum",
+      "type": "Ground",
+      "category": "Physical",
+      "power": 75,
+      "tags": [
+        "damage"
+      ]
+    },
+    {
+      "name": "Sucker Punch",
+      "type": "Dark",
+      "category": "Physical",
+      "power": 70,
+      "tags": [
+        "priority"
+      ]
+    },
+    {
+      "name": "Sunny Day",
+      "type": "Fire",
+      "category": "Status",
+      "tags": [
+        "weather"
+      ]
+    },
+    {
+      "name": "Surging Strikes",
+      "type": "Water",
+      "category": "Physical",
+      "power": 75,
+      "tags": [
+        "damage"
+      ]
+    },
+    {
+      "name": "Tailwind",
+      "type": "Flying",
+      "category": "Status",
+      "tags": [
+        "speed-control",
+        "tailwind"
+      ]
+    },
+    {
+      "name": "Taunt",
+      "type": "Dark",
+      "category": "Status",
+      "tags": [
+        "control"
+      ]
+    },
+    {
+      "name": "Tera Starstorm",
+      "type": "Normal",
+      "category": "Special",
+      "power": 120,
+      "tags": [
+        "spread"
+      ]
+    },
+    {
+      "name": "Thunder Wave",
+      "type": "Electric",
+      "category": "Status",
+      "tags": [
+        "speed-control"
+      ]
+    },
+    {
+      "name": "Thunderclap",
+      "type": "Electric",
+      "category": "Special",
+      "power": 70,
+      "tags": [
+        "priority"
+      ]
+    },
+    {
+      "name": "Toxic Spikes",
+      "type": "Poison",
+      "category": "Status",
+      "tags": [
+        "hazard"
+      ]
+    },
+    {
+      "name": "Trick Room",
+      "type": "Psychic",
+      "category": "Status",
+      "tags": [
+        "speed-control",
+        "trick-room"
+      ]
+    },
+    {
+      "name": "Triple Axel",
+      "type": "Ice",
+      "category": "Physical",
+      "power": 20,
+      "tags": [
+        "damage",
+        "multi-hit"
+      ]
+    },
+    {
+      "name": "U-turn",
+      "type": "Bug",
+      "category": "Physical",
+      "power": 70,
+      "tags": [
+        "pivot"
+      ]
+    },
+    {
+      "name": "Volt Switch",
+      "type": "Electric",
+      "category": "Special",
+      "power": 70,
+      "tags": [
+        "pivot"
+      ]
+    },
+    {
+      "name": "Water Spout",
+      "type": "Water",
+      "category": "Special",
+      "power": 150,
+      "tags": [
+        "spread"
+      ]
+    },
+    {
+      "name": "Weather Ball",
+      "type": "Normal",
+      "category": "Special",
+      "power": 50,
+      "tags": [
+        "weather"
+      ]
+    },
+    {
+      "name": "Wicked Blow",
+      "type": "Dark",
+      "category": "Physical",
+      "power": 75,
+      "tags": [
+        "damage"
+      ]
+    },
+    {
+      "name": "Wide Guard",
+      "type": "Rock",
+      "category": "Status",
+      "tags": [
+        "wide-guard",
+        "spread-answer"
+      ]
+    },
+    {
+      "name": "Will-O-Wisp",
+      "type": "Fire",
+      "category": "Status",
+      "tags": [
+        "burn",
+        "control"
+      ]
+    },
+    {
+      "name": "Wood Hammer",
+      "type": "Grass",
+      "category": "Physical",
+      "power": 120,
+      "tags": [
+        "damage"
+      ]
+    }
+  ],
+  "pairs": [
+    {
+      "members": [
+        "Mega Charizard Y",
+        "Venusaur"
+      ],
+      "frequency": 0.16,
+      "winRate": 0.53,
+      "sampleSize": 110
+    },
+    {
+      "members": [
+        "Tyranitar",
+        "Excadrill"
+      ],
+      "frequency": 0.13,
+      "winRate": 0.52,
+      "sampleSize": 95
+    },
+    {
+      "members": [
+        "Pelipper",
+        "Archaludon"
+      ],
+      "frequency": 0.11,
+      "winRate": 0.52,
+      "sampleSize": 86
+    },
+    {
+      "members": [
+        "Incineroar",
+        "Primarina"
+      ],
+      "frequency": 0.1,
+      "winRate": 0.51,
+      "sampleSize": 75
+    },
+    {
+      "members": [
+        "Whimsicott",
+        "Mega Garchomp"
+      ],
+      "frequency": 0.1,
+      "winRate": 0.52,
+      "sampleSize": 72
+    },
+    {
+      "members": [
+        "Farigiraf",
+        "Kingambit"
+      ],
+      "frequency": 0.07,
+      "winRate": 0.51,
+      "sampleSize": 48
+    },
+    {
+      "members": [
+        "Aegislash",
+        "Hydreigon"
+      ],
+      "frequency": 0.07,
+      "winRate": 0.5,
+      "sampleSize": 46
+    }
+  ]
+}

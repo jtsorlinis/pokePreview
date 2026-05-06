@@ -1,0 +1,5990 @@
+{
+  "format": "Pokemon Champions Doubles Regulation M-A Public Meta Overlay",
+  "updatedAt": "2026-05-06T00:09:42.000Z",
+  "sourceNotes": [
+    "Usage, win-rate, moves, abilities, and teammate data are parsed from https://championsmeta.io/meta.",
+    "Champions-specific visible stat tables are parsed from https://thegamehaus.com/pokemon-champions/full-list-of-pokemon-champions-stats-regulation-m-a/2026/04/11/.",
+    "All sources are public, non-authenticated pages; raw HTML responses are cached in src/data/raw/meta for reproducible refreshes."
+  ],
+  "teamCount": 12764,
+  "tournamentCount": 159,
+  "species": [
+    {
+      "species": "Sneasler",
+      "displayName": "Sneasler",
+      "usage": 0.498,
+      "usageRank": 1,
+      "winRate": 0.59,
+      "sampleSize": 6358,
+      "commonMoves": [
+        "Close Combat",
+        "Dire Claw",
+        "Fake Out",
+        "Protect",
+        "Coaching",
+        "Rock Tomb",
+        "Rock Slide",
+        "Throat Chop"
+      ],
+      "abilities": [
+        "Unburden",
+        "Poison Touch",
+        "Pressure"
+      ],
+      "roleTags": [
+        "fake-out",
+        "support",
+        "spread"
+      ],
+      "baseStats": {
+        "hp": 155,
+        "attack": 150,
+        "defense": 80,
+        "specialAttack": 60,
+        "specialDefense": 100,
+        "speed": 140
+      }
+    },
+    {
+      "species": "Incineroar",
+      "displayName": "Incineroar",
+      "usage": 0.405,
+      "usageRank": 2,
+      "winRate": 0.563,
+      "sampleSize": 5175,
+      "commonMoves": [
+        "Fake Out",
+        "Parting Shot",
+        "Flare Blitz",
+        "Throat Chop",
+        "Darkest Lariat",
+        "Protect",
+        "Will-o-wisp",
+        "Taunt"
+      ],
+      "abilities": [
+        "Intimidate",
+        "Blaze"
+      ],
+      "roleTags": [
+        "fake-out",
+        "support",
+        "pivot",
+        "intimidate"
+      ],
+      "baseStats": {
+        "hp": 170,
+        "attack": 135,
+        "defense": 110,
+        "specialAttack": 100,
+        "specialDefense": 110,
+        "speed": 80
+      }
+    },
+    {
+      "species": "Garchomp",
+      "displayName": "Garchomp",
+      "usage": 0.39899999999999997,
+      "usageRank": 3,
+      "winRate": 0.5920000000000001,
+      "sampleSize": 5090,
+      "commonMoves": [
+        "Earthquake",
+        "Dragon Claw",
+        "Rock Slide",
+        "Protect",
+        "Stomping Tantrum",
+        "Scale Shot",
+        "Swords Dance",
+        "Poison Jab"
+      ],
+      "abilities": [
+        "Rough Skin",
+        "Sand Veil"
+      ],
+      "roleTags": [
+        "spread"
+      ],
+      "baseStats": {
+        "hp": 183,
+        "attack": 190,
+        "defense": 135,
+        "specialAttack": 140,
+        "specialDefense": 115,
+        "speed": 112
+      }
+    },
+    {
+      "species": "Kingambit",
+      "displayName": "Kingambit",
+      "usage": 0.314,
+      "usageRank": 4,
+      "winRate": 0.619,
+      "sampleSize": 4003,
+      "commonMoves": [
+        "Sucker Punch",
+        "Kowtow Cleave",
+        "Protect",
+        "Iron Head",
+        "Low Kick",
+        "Swords Dance"
+      ],
+      "abilities": [
+        "Defiant",
+        "Supreme Overlord"
+      ],
+      "roleTags": [
+        "priority"
+      ],
+      "baseStats": {
+        "hp": 175,
+        "attack": 155,
+        "defense": 140,
+        "specialAttack": 80,
+        "specialDefense": 105,
+        "speed": 70
+      }
+    },
+    {
+      "species": "Basculegion (Male)",
+      "displayName": "Basculegion (Male)",
+      "usage": 0.27699999999999997,
+      "usageRank": 5,
+      "winRate": 0.611,
+      "sampleSize": 3532,
+      "commonMoves": [
+        "Last Respects",
+        "Aqua Jet",
+        "Wave Crash",
+        "Flip Turn",
+        "Protect",
+        "Liquidation",
+        "Icy Wind",
+        "Psychic Fangs"
+      ],
+      "abilities": [
+        "Adaptability",
+        "Swift Swim"
+      ],
+      "roleTags": [
+        "speed-control",
+        "priority",
+        "pivot"
+      ],
+      "baseStats": {
+        "hp": 195,
+        "attack": 132,
+        "defense": 85,
+        "specialAttack": 100,
+        "specialDefense": 95,
+        "speed": 98
+      }
+    },
+    {
+      "species": "Sinistcha",
+      "displayName": "Sinistcha",
+      "usage": 0.276,
+      "usageRank": 6,
+      "winRate": 0.565,
+      "sampleSize": 3526,
+      "commonMoves": [
+        "Matcha Gotcha",
+        "Rage Powder",
+        "Trick Room",
+        "Life Dew",
+        "Protect",
+        "Strength Sap",
+        "Shadow Ball",
+        "Imprison"
+      ],
+      "abilities": [
+        "Hospitality",
+        "Heatproof"
+      ],
+      "roleTags": [
+        "trick-room",
+        "speed-control",
+        "support",
+        "redirection"
+      ],
+      "baseStats": {
+        "hp": 146,
+        "attack": 80,
+        "defense": 126,
+        "specialAttack": 141,
+        "specialDefense": 100,
+        "speed": 90
+      }
+    },
+    {
+      "species": "Aerodactyl",
+      "displayName": "Aerodactyl",
+      "usage": 0.228,
+      "usageRank": 7,
+      "winRate": 0.607,
+      "sampleSize": 2908,
+      "commonMoves": [
+        "Rock Slide",
+        "Tailwind",
+        "Protect",
+        "Dual Wingbeat",
+        "Wide Guard",
+        "Taunt",
+        "Iron Head"
+      ],
+      "abilities": [
+        "Unnerve",
+        "Rock Head",
+        "Pressure"
+      ],
+      "roleTags": [
+        "tailwind",
+        "speed-control",
+        "support",
+        "wide-guard",
+        "spread"
+      ],
+      "baseStats": {
+        "hp": 155,
+        "attack": 125,
+        "defense": 85,
+        "specialAttack": 80,
+        "specialDefense": 95,
+        "speed": 150
+      }
+    },
+    {
+      "species": "Charizard",
+      "displayName": "Charizard",
+      "usage": 0.192,
+      "usageRank": 8,
+      "winRate": 0.578,
+      "sampleSize": 2448,
+      "commonMoves": [
+        "Protect",
+        "Heat Wave",
+        "Solar Beam",
+        "Weather Ball",
+        "Air Slash",
+        "Overheat",
+        "Flare Blitz",
+        "Dragon Claw"
+      ],
+      "abilities": [
+        "Blaze",
+        "Solar Power",
+        "Drought"
+      ],
+      "roleTags": [
+        "spread"
+      ],
+      "baseStats": {
+        "hp": 153,
+        "attack": 104,
+        "defense": 98,
+        "specialAttack": 129,
+        "specialDefense": 105,
+        "speed": 120
+      }
+    },
+    {
+      "species": "Rotom (Wash Rotom)",
+      "displayName": "Rotom (Wash Rotom)",
+      "usage": 0.17300000000000001,
+      "usageRank": 9,
+      "winRate": 0.578,
+      "sampleSize": 2206,
+      "commonMoves": [],
+      "abilities": [],
+      "roleTags": []
+    },
+    {
+      "species": "Milotic",
+      "displayName": "Milotic",
+      "usage": 0.146,
+      "usageRank": 10,
+      "winRate": 0.556,
+      "sampleSize": 1868,
+      "commonMoves": [
+        "Scald",
+        "Protect",
+        "Icy Wind",
+        "Recover",
+        "Ice Beam",
+        "Muddy Water",
+        "Life Dew",
+        "Coil"
+      ],
+      "abilities": [
+        "Competitive",
+        "Marvel Scale"
+      ],
+      "roleTags": [
+        "speed-control",
+        "spread"
+      ],
+      "baseStats": {
+        "hp": 170,
+        "attack": 80,
+        "defense": 99,
+        "specialAttack": 120,
+        "specialDefense": 145,
+        "speed": 101
+      }
+    },
+    {
+      "species": "Whimsicott",
+      "displayName": "Whimsicott",
+      "usage": 0.141,
+      "usageRank": 11,
+      "winRate": 0.5529999999999999,
+      "sampleSize": 1797,
+      "commonMoves": [
+        "Tailwind",
+        "Moonblast",
+        "Encore",
+        "Protect",
+        "Sunny Day",
+        "Taunt",
+        "Fake Tears",
+        "Helping Hand"
+      ],
+      "abilities": [
+        "Prankster",
+        "Chlorophyll"
+      ],
+      "roleTags": [
+        "tailwind",
+        "speed-control",
+        "support"
+      ],
+      "baseStats": {
+        "hp": 135,
+        "attack": 87,
+        "defense": 105,
+        "specialAttack": 97,
+        "specialDefense": 95,
+        "speed": 136
+      }
+    },
+    {
+      "species": "Tyranitar",
+      "displayName": "Tyranitar",
+      "usage": 0.14,
+      "usageRank": 12,
+      "winRate": 0.563,
+      "sampleSize": 1783,
+      "commonMoves": [
+        "Rock Slide",
+        "Protect",
+        "Knock Off",
+        "Low Kick",
+        "Ice Punch",
+        "Crunch",
+        "Dragon Dance",
+        "Stone Edge"
+      ],
+      "abilities": [
+        "Sand Stream"
+      ],
+      "roleTags": [
+        "spread"
+      ],
+      "baseStats": {
+        "hp": 175,
+        "attack": 154,
+        "defense": 130,
+        "specialAttack": 115,
+        "specialDefense": 120,
+        "speed": 81
+      }
+    },
+    {
+      "species": "Pelipper",
+      "displayName": "Pelipper",
+      "usage": 0.138,
+      "usageRank": 13,
+      "winRate": 0.574,
+      "sampleSize": 1760,
+      "commonMoves": [
+        "Hurricane",
+        "Weather Ball",
+        "Tailwind",
+        "Protect",
+        "Wide Guard",
+        "Muddy Water",
+        "Icy Wind",
+        "U-turn"
+      ],
+      "abilities": [
+        "Drizzle",
+        "Keen Eye"
+      ],
+      "roleTags": [
+        "tailwind",
+        "speed-control",
+        "support",
+        "wide-guard",
+        "spread",
+        "pivot"
+      ],
+      "baseStats": {
+        "hp": 135,
+        "attack": 70,
+        "defense": 120,
+        "specialAttack": 115,
+        "specialDefense": 90,
+        "speed": 85
+      }
+    },
+    {
+      "species": "Farigiraf",
+      "displayName": "Farigiraf",
+      "usage": 0.133,
+      "usageRank": 14,
+      "winRate": 0.555,
+      "sampleSize": 1698,
+      "commonMoves": [
+        "Trick Room",
+        "Hyper Voice",
+        "Psychic",
+        "Helping Hand",
+        "Protect",
+        "Twin Beam",
+        "Imprison"
+      ],
+      "abilities": [
+        "Armor Tail"
+      ],
+      "roleTags": [
+        "trick-room",
+        "speed-control",
+        "support",
+        "spread"
+      ],
+      "baseStats": {
+        "hp": 195,
+        "attack": 110,
+        "defense": 90,
+        "specialAttack": 130,
+        "specialDefense": 90,
+        "speed": 80
+      }
+    },
+    {
+      "species": "Archaludon",
+      "displayName": "Archaludon",
+      "usage": 0.12,
+      "usageRank": 15,
+      "winRate": 0.5589999999999999,
+      "sampleSize": 1538,
+      "commonMoves": [
+        "Electro Shot",
+        "Flash Cannon",
+        "Protect",
+        "Draco Meteor",
+        "Dragon Pulse",
+        "Aura Sphere",
+        "Snarl",
+        "Thunderbolt"
+      ],
+      "abilities": [
+        "Stamina",
+        "Sturdy",
+        "Stalwart"
+      ],
+      "roleTags": [],
+      "baseStats": {
+        "hp": 165,
+        "attack": 125,
+        "defense": 150,
+        "specialAttack": 145,
+        "specialDefense": 85,
+        "speed": 105
+      }
+    },
+    {
+      "species": "Venusaur",
+      "displayName": "Venusaur",
+      "usage": 0.114,
+      "usageRank": 16,
+      "winRate": 0.546,
+      "sampleSize": 1456,
+      "commonMoves": [
+        "Sludge Bomb",
+        "Protect",
+        "Sleep Powder",
+        "Earth Power",
+        "Energy Ball",
+        "Leaf Storm",
+        "Giga Drain",
+        "Leech Seed"
+      ],
+      "abilities": [
+        "Chlorophyll",
+        "Overgrow"
+      ],
+      "roleTags": [],
+      "baseStats": {
+        "hp": 155,
+        "attack": 102,
+        "defense": 103,
+        "specialAttack": 120,
+        "specialDefense": 120,
+        "speed": 100
+      }
+    },
+    {
+      "species": "Froslass",
+      "displayName": "Froslass",
+      "usage": 0.1,
+      "usageRank": 17,
+      "winRate": 0.585,
+      "sampleSize": 1282,
+      "commonMoves": [
+        "Blizzard",
+        "Protect",
+        "Shadow Ball",
+        "Aurora Veil",
+        "Substitute",
+        "Thunderbolt",
+        "Nasty Plot",
+        "Taunt"
+      ],
+      "abilities": [
+        "Cursed Body",
+        "Snow Cloak",
+        "Snow Warning"
+      ],
+      "roleTags": [],
+      "baseStats": {
+        "hp": 145,
+        "attack": 100,
+        "defense": 90,
+        "specialAttack": 100,
+        "specialDefense": 90,
+        "speed": 130
+      }
+    },
+    {
+      "species": "Dragonite",
+      "displayName": "Dragonite",
+      "usage": 0.09300000000000001,
+      "usageRank": 18,
+      "winRate": 0.5539999999999999,
+      "sampleSize": 1192,
+      "commonMoves": [
+        "Protect",
+        "Hurricane",
+        "Extreme Speed",
+        "Draco Meteor",
+        "Tailwind",
+        "Dragon Pulse",
+        "Scale Shot",
+        "Thunder"
+      ],
+      "abilities": [
+        "Multiscale",
+        "Inner Focus"
+      ],
+      "roleTags": [
+        "tailwind",
+        "speed-control",
+        "support",
+        "priority"
+      ],
+      "baseStats": {
+        "hp": 166,
+        "attack": 144,
+        "defense": 135,
+        "specialAttack": 165,
+        "specialDefense": 145,
+        "speed": 120
+      }
+    },
+    {
+      "species": "Corviknight",
+      "displayName": "Corviknight",
+      "usage": 0.078,
+      "usageRank": 20,
+      "winRate": 0.579,
+      "sampleSize": 998,
+      "commonMoves": [
+        "Brave Bird",
+        "Tailwind",
+        "Roost",
+        "Body Press",
+        "Iron Head",
+        "Bulk Up",
+        "Iron Defense",
+        "Protect"
+      ],
+      "abilities": [
+        "Mirror Armor",
+        "Pressure",
+        "Unnerve"
+      ],
+      "roleTags": [
+        "tailwind",
+        "speed-control",
+        "support"
+      ],
+      "baseStats": {
+        "hp": 173,
+        "attack": 107,
+        "defense": 125,
+        "specialAttack": 73,
+        "specialDefense": 105,
+        "speed": 87
+      }
+    },
+    {
+      "species": "Delphox",
+      "displayName": "Delphox",
+      "usage": 0.078,
+      "usageRank": 21,
+      "winRate": 0.596,
+      "sampleSize": 994,
+      "commonMoves": [
+        "Heat Wave",
+        "Protect",
+        "Psychic",
+        "Substitute",
+        "Encore",
+        "Nasty Plot",
+        "Psyshock",
+        "Dazzling Gleam"
+      ],
+      "abilities": [
+        "Blaze",
+        "Magician",
+        "Levitate"
+      ],
+      "roleTags": [
+        "spread"
+      ],
+      "baseStats": {
+        "hp": 150,
+        "attack": 89,
+        "defense": 92,
+        "specialAttack": 134,
+        "specialDefense": 120,
+        "speed": 124
+      }
+    },
+    {
+      "species": "Gengar",
+      "displayName": "Gengar",
+      "usage": 0.078,
+      "usageRank": 22,
+      "winRate": 0.5489999999999999,
+      "sampleSize": 992,
+      "commonMoves": [
+        "Shadow Ball",
+        "Protect",
+        "Sludge Bomb",
+        "Perish Song",
+        "Disable",
+        "Substitute",
+        "Icy Wind",
+        "Sludge Wave"
+      ],
+      "abilities": [
+        "Cursed Body",
+        "Shadow Tag"
+      ],
+      "roleTags": [
+        "speed-control"
+      ],
+      "baseStats": {
+        "hp": 135,
+        "attack": 85,
+        "defense": 80,
+        "specialAttack": 150,
+        "specialDefense": 95,
+        "speed": 130
+      }
+    },
+    {
+      "species": "Aegislash",
+      "displayName": "Aegislash",
+      "usage": 0.07400000000000001,
+      "usageRank": 23,
+      "winRate": 0.599,
+      "sampleSize": 941,
+      "commonMoves": [
+        "King's Shield",
+        "Shadow Sneak",
+        "Poltergeist",
+        "Iron Head",
+        "Sacred Sword",
+        "Shadow Ball",
+        "Flash Cannon",
+        "Wide Guard"
+      ],
+      "abilities": [
+        "Stance Change"
+      ],
+      "roleTags": [
+        "wide-guard",
+        "support"
+      ],
+      "baseStats": {
+        "hp": 135,
+        "attack": 70,
+        "defense": 160,
+        "specialAttack": 70,
+        "specialDefense": 160,
+        "speed": 80
+      }
+    },
+    {
+      "species": "Meganium",
+      "displayName": "Meganium",
+      "usage": 0.073,
+      "usageRank": 24,
+      "winRate": 0.581,
+      "sampleSize": 932,
+      "commonMoves": [
+        "Solar Beam",
+        "Dazzling Gleam",
+        "Weather Ball",
+        "Protect",
+        "Synthesis",
+        "Earth Power",
+        "Leech Seed"
+      ],
+      "abilities": [
+        "Overgrow",
+        "Leaf Guard"
+      ],
+      "roleTags": [
+        "spread"
+      ],
+      "baseStats": {
+        "hp": 155,
+        "attack": 102,
+        "defense": 120,
+        "specialAttack": 103,
+        "specialDefense": 120,
+        "speed": 100
+      }
+    },
+    {
+      "species": "Talonflame",
+      "displayName": "Talonflame",
+      "usage": 0.07,
+      "usageRank": 25,
+      "winRate": 0.593,
+      "sampleSize": 893,
+      "commonMoves": [
+        "Tailwind",
+        "Protect",
+        "Flare Blitz",
+        "Dual Wingbeat",
+        "Brave Bird",
+        "Acrobatics",
+        "Will-o-wisp",
+        "Taunt"
+      ],
+      "abilities": [
+        "Gale Wings",
+        "Flame Body"
+      ],
+      "roleTags": [
+        "tailwind",
+        "speed-control",
+        "support"
+      ],
+      "baseStats": {
+        "hp": 156,
+        "attack": 101,
+        "defense": 91,
+        "specialAttack": 94,
+        "specialDefense": 89,
+        "speed": 146
+      }
+    },
+    {
+      "species": "Maushold",
+      "displayName": "Maushold",
+      "usage": 0.068,
+      "usageRank": 26,
+      "winRate": 0.573,
+      "sampleSize": 864,
+      "commonMoves": [
+        "Follow Me",
+        "Protect",
+        "Super Fang",
+        "Taunt",
+        "Helping Hand",
+        "Encore",
+        "Population Bomb",
+        "Feint"
+      ],
+      "abilities": [
+        "Friend Guard",
+        "Technician"
+      ],
+      "roleTags": [
+        "redirection",
+        "support"
+      ],
+      "baseStats": {
+        "hp": 149,
+        "attack": 95,
+        "defense": 90,
+        "specialAttack": 85,
+        "specialDefense": 95,
+        "speed": 131
+      }
+    },
+    {
+      "species": "Excadrill",
+      "displayName": "Excadrill",
+      "usage": 0.063,
+      "usageRank": 27,
+      "winRate": 0.547,
+      "sampleSize": 806,
+      "commonMoves": [
+        "Protect",
+        "Iron Head",
+        "Rock Slide",
+        "Earthquake",
+        "High Horsepower",
+        "Swords Dance",
+        "Drill Run",
+        "Horn Drill"
+      ],
+      "abilities": [
+        "Sand Rush",
+        "Mold Breaker",
+        "Sand Force"
+      ],
+      "roleTags": [
+        "spread"
+      ],
+      "baseStats": {
+        "hp": 185,
+        "attack": 155,
+        "defense": 80,
+        "specialAttack": 70,
+        "specialDefense": 85,
+        "speed": 108
+      }
+    },
+    {
+      "species": "Gardevoir",
+      "displayName": "Gardevoir",
+      "usage": 0.061,
+      "usageRank": 28,
+      "winRate": 0.564,
+      "sampleSize": 777,
+      "commonMoves": [
+        "Protect",
+        "Hyper Voice",
+        "Psychic",
+        "Trick Room",
+        "Psyshock",
+        "Moonblast",
+        "Dazzling Gleam",
+        "Aura Sphere"
+      ],
+      "abilities": [
+        "Trace",
+        "Telepathy",
+        "Synchronize",
+        "Pixilate"
+      ],
+      "roleTags": [
+        "trick-room",
+        "speed-control",
+        "support",
+        "spread"
+      ],
+      "baseStats": {
+        "hp": 143,
+        "attack": 105,
+        "defense": 85,
+        "specialAttack": 185,
+        "specialDefense": 155,
+        "speed": 120
+      }
+    },
+    {
+      "species": "Scizor",
+      "displayName": "Scizor",
+      "usage": 0.059000000000000004,
+      "usageRank": 29,
+      "winRate": 0.611,
+      "sampleSize": 755,
+      "commonMoves": [
+        "Bullet Punch",
+        "Protect",
+        "Bug Bite",
+        "Swords Dance",
+        "Close Combat",
+        "Dual Wingbeat",
+        "Assurance",
+        "U-turn"
+      ],
+      "abilities": [
+        "Technician",
+        "Light Metal",
+        "Swarm"
+      ],
+      "roleTags": [
+        "priority",
+        "pivot"
+      ],
+      "baseStats": {
+        "hp": 145,
+        "attack": 150,
+        "defense": 120,
+        "specialAttack": 75,
+        "specialDefense": 100,
+        "speed": 85
+      }
+    },
+    {
+      "species": "Primarina",
+      "displayName": "Primarina",
+      "usage": 0.055,
+      "usageRank": 31,
+      "winRate": 0.56,
+      "sampleSize": 700,
+      "commonMoves": [
+        "Hyper Voice",
+        "Protect",
+        "Moonblast",
+        "Calm Mind",
+        "Icy Wind",
+        "Ice Beam",
+        "Dazzling Gleam",
+        "Hydro Cannon"
+      ],
+      "abilities": [
+        "Liquid Voice",
+        "Torrent"
+      ],
+      "roleTags": [
+        "speed-control",
+        "spread"
+      ],
+      "baseStats": {
+        "hp": 155,
+        "attack": 94,
+        "defense": 94,
+        "specialAttack": 146,
+        "specialDefense": 136,
+        "speed": 80
+      }
+    },
+    {
+      "species": "Kommo-o",
+      "displayName": "Kommo-o",
+      "usage": 0.054000000000000006,
+      "usageRank": 32,
+      "winRate": 0.603,
+      "sampleSize": 695,
+      "commonMoves": [
+        "Protect",
+        "Clanging Scales",
+        "Aura Sphere",
+        "Clangorous Soul",
+        "Body Press",
+        "Iron Defense",
+        "Flamethrower",
+        "Draco Meteor"
+      ],
+      "abilities": [
+        "Soundproof",
+        "Overcoat",
+        "Bulletproof"
+      ],
+      "roleTags": [],
+      "baseStats": {
+        "hp": 150,
+        "attack": 130,
+        "defense": 145,
+        "specialAttack": 120,
+        "specialDefense": 125,
+        "speed": 105
+      }
+    },
+    {
+      "species": "Torkoal",
+      "displayName": "Torkoal",
+      "usage": 0.047,
+      "usageRank": 33,
+      "winRate": 0.53,
+      "sampleSize": 594,
+      "commonMoves": [
+        "Eruption",
+        "Protect",
+        "Heat Wave",
+        "Earth Power",
+        "Weather Ball",
+        "Solar Beam",
+        "Helping Hand",
+        "Overheat"
+      ],
+      "abilities": [
+        "Drought",
+        "White Smoke"
+      ],
+      "roleTags": [
+        "spread"
+      ],
+      "baseStats": {
+        "hp": 145,
+        "attack": 105,
+        "defense": 160,
+        "specialAttack": 105,
+        "specialDefense": 90,
+        "speed": 40
+      }
+    },
+    {
+      "species": "Kangaskhan",
+      "displayName": "Kangaskhan",
+      "usage": 0.040999999999999995,
+      "usageRank": 34,
+      "winRate": 0.58,
+      "sampleSize": 524,
+      "commonMoves": [
+        "Fake Out",
+        "Double-edge",
+        "Sucker Punch",
+        "Drain Punch",
+        "Low Kick",
+        "Protect",
+        "Body Slam",
+        "Crunch"
+      ],
+      "abilities": [
+        "Scrappy",
+        "Inner Focus"
+      ],
+      "roleTags": [
+        "fake-out",
+        "support",
+        "priority"
+      ],
+      "baseStats": {
+        "hp": 180,
+        "attack": 145,
+        "defense": 120,
+        "specialAttack": 80,
+        "specialDefense": 120,
+        "speed": 120
+      }
+    },
+    {
+      "species": "Politoed",
+      "displayName": "Politoed",
+      "usage": 0.038,
+      "usageRank": 35,
+      "winRate": 0.517,
+      "sampleSize": 479,
+      "commonMoves": [
+        "Protect",
+        "Weather Ball",
+        "Perish Song",
+        "Icy Wind",
+        "Encore",
+        "Helping Hand",
+        "Muddy Water",
+        "Ice Beam"
+      ],
+      "abilities": [
+        "Drizzle",
+        "Water Absorb"
+      ],
+      "roleTags": [
+        "speed-control",
+        "spread"
+      ],
+      "baseStats": {
+        "hp": 165,
+        "attack": 95,
+        "defense": 95,
+        "specialAttack": 110,
+        "specialDefense": 120,
+        "speed": 90
+      }
+    },
+    {
+      "species": "Floette",
+      "displayName": "Floette",
+      "usage": 0.035,
+      "usageRank": 38,
+      "winRate": 0.625,
+      "sampleSize": 446,
+      "commonMoves": [
+        "Protect",
+        "Dazzling Gleam",
+        "Moonblast",
+        "Light Of Ruin",
+        "Calm Mind",
+        "Draining Kiss",
+        "Psychic",
+        "Giga Drain"
+      ],
+      "abilities": [
+        "Flower Veil",
+        "Fairy Aura",
+        "Symbiosis"
+      ],
+      "roleTags": [
+        "spread"
+      ],
+      "baseStats": {
+        "hp": 149,
+        "attack": 85,
+        "defense": 87,
+        "specialAttack": 145,
+        "specialDefense": 148,
+        "speed": 112
+      }
+    },
+    {
+      "species": "Ninetales (Alolan Form)",
+      "displayName": "Ninetales (Alolan Form)",
+      "usage": 0.035,
+      "usageRank": 36,
+      "winRate": 0.557,
+      "sampleSize": 449,
+      "commonMoves": [],
+      "abilities": [],
+      "roleTags": [],
+      "baseStats": {
+        "hp": 148,
+        "attack": 87,
+        "defense": 95,
+        "specialAttack": 101,
+        "specialDefense": 120,
+        "speed": 129
+      }
+    },
+    {
+      "species": "Glimmora",
+      "displayName": "Glimmora",
+      "usage": 0.035,
+      "usageRank": 37,
+      "winRate": 0.535,
+      "sampleSize": 447,
+      "commonMoves": [
+        "Power Gem",
+        "Sludge Bomb",
+        "Spiky Shield",
+        "Earth Power",
+        "Sludge Wave",
+        "Protect",
+        "Mortal Spin",
+        "Dazzling Gleam"
+      ],
+      "abilities": [
+        "Toxic Debris"
+      ],
+      "roleTags": [
+        "hazard",
+        "spread"
+      ],
+      "baseStats": {
+        "hp": 158,
+        "attack": 75,
+        "defense": 110,
+        "specialAttack": 150,
+        "specialDefense": 101,
+        "speed": 106
+      }
+    },
+    {
+      "species": "Sylveon",
+      "displayName": "Sylveon",
+      "usage": 0.034,
+      "usageRank": 39,
+      "winRate": 0.5429999999999999,
+      "sampleSize": 430,
+      "commonMoves": [
+        "Hyper Voice",
+        "Protect",
+        "Quick Attack",
+        "Hyper Beam",
+        "Calm Mind",
+        "Moonblast",
+        "Detect",
+        "Shadow Ball"
+      ],
+      "abilities": [
+        "Pixilate",
+        "Cute Charm"
+      ],
+      "roleTags": [
+        "spread"
+      ],
+      "baseStats": {
+        "hp": 170,
+        "attack": 85,
+        "defense": 85,
+        "specialAttack": 130,
+        "specialDefense": 150,
+        "speed": 80
+      }
+    },
+    {
+      "species": "Rotom (Heat Rotom)",
+      "displayName": "Rotom (Heat Rotom)",
+      "usage": 0.032,
+      "usageRank": 40,
+      "winRate": 0.561,
+      "sampleSize": 412,
+      "commonMoves": [],
+      "abilities": [],
+      "roleTags": []
+    },
+    {
+      "species": "Scovillain",
+      "displayName": "Scovillain",
+      "usage": 0.028999999999999998,
+      "usageRank": 41,
+      "winRate": 0.604,
+      "sampleSize": 368,
+      "commonMoves": [
+        "Rage Powder",
+        "Protect",
+        "Leech Seed",
+        "Overheat",
+        "Flamethrower",
+        "Giga Drain",
+        "Leaf Storm",
+        "Helping Hand"
+      ],
+      "abilities": [
+        "Moody",
+        "Chlorophyll",
+        "Insomnia",
+        "Spicy Spray"
+      ],
+      "roleTags": [
+        "redirection",
+        "support"
+      ],
+      "baseStats": {
+        "hp": 140,
+        "attack": 128,
+        "defense": 85,
+        "specialAttack": 128,
+        "specialDefense": 85,
+        "speed": 95
+      }
+    },
+    {
+      "species": "Palafin",
+      "displayName": "Palafin",
+      "usage": 0.028999999999999998,
+      "usageRank": 42,
+      "winRate": 0.588,
+      "sampleSize": 367,
+      "commonMoves": [
+        "Jet Punch",
+        "Wave Crash",
+        "Protect",
+        "Close Combat",
+        "Flip Turn",
+        "Ice Punch",
+        "Bulk Up",
+        "Drain Punch"
+      ],
+      "abilities": [
+        "Zero To Hero"
+      ],
+      "roleTags": [
+        "pivot"
+      ]
+    },
+    {
+      "species": "Hydreigon",
+      "displayName": "Hydreigon",
+      "usage": 0.028999999999999998,
+      "usageRank": 43,
+      "winRate": 0.5670000000000001,
+      "sampleSize": 364,
+      "commonMoves": [
+        "Draco Meteor",
+        "Dark Pulse",
+        "Snarl",
+        "Protect",
+        "Heat Wave",
+        "Earth Power",
+        "Tailwind",
+        "Flamethrower"
+      ],
+      "abilities": [
+        "Levitate"
+      ],
+      "roleTags": [
+        "tailwind",
+        "speed-control",
+        "support",
+        "spread"
+      ],
+      "baseStats": {
+        "hp": 167,
+        "attack": 125,
+        "defense": 110,
+        "specialAttack": 145,
+        "specialDefense": 110,
+        "speed": 118
+      }
+    },
+    {
+      "species": "Dragapult",
+      "displayName": "Dragapult",
+      "usage": 0.027000000000000003,
+      "usageRank": 44,
+      "winRate": 0.544,
+      "sampleSize": 349,
+      "commonMoves": [
+        "Dragon Darts",
+        "Protect",
+        "Phantom Force",
+        "Will-o-wisp",
+        "Shadow Ball",
+        "Psychic Fangs",
+        "Draco Meteor",
+        "U-turn"
+      ],
+      "abilities": [
+        "Clear Body",
+        "Infiltrator",
+        "Cursed Body"
+      ],
+      "roleTags": [
+        "pivot"
+      ],
+      "baseStats": {
+        "hp": 163,
+        "attack": 140,
+        "defense": 95,
+        "specialAttack": 120,
+        "specialDefense": 95,
+        "speed": 162
+      }
+    },
+    {
+      "species": "Clefable",
+      "displayName": "Clefable",
+      "usage": 0.027000000000000003,
+      "usageRank": 45,
+      "winRate": 0.575,
+      "sampleSize": 344,
+      "commonMoves": [
+        "Follow Me",
+        "Moonblast",
+        "Protect",
+        "Helping Hand",
+        "Life Dew",
+        "Thunder Wave",
+        "Icy Wind",
+        "Encore"
+      ],
+      "abilities": [
+        "Unaware",
+        "Magic Guard",
+        "Cute Charm"
+      ],
+      "roleTags": [
+        "redirection",
+        "support",
+        "speed-control"
+      ],
+      "baseStats": {
+        "hp": 170,
+        "attack": 90,
+        "defense": 93,
+        "specialAttack": 115,
+        "specialDefense": 110,
+        "speed": 80
+      }
+    },
+    {
+      "species": "Gyarados",
+      "displayName": "Gyarados",
+      "usage": 0.027000000000000003,
+      "usageRank": 46,
+      "winRate": 0.524,
+      "sampleSize": 344,
+      "commonMoves": [
+        "Waterfall",
+        "Protect",
+        "Thunder Wave",
+        "Taunt",
+        "Dragon Dance",
+        "Crunch",
+        "Ice Fang",
+        "Earthquake"
+      ],
+      "abilities": [
+        "Intimidate",
+        "Moxie"
+      ],
+      "roleTags": [
+        "intimidate",
+        "pivot",
+        "support"
+      ],
+      "baseStats": {
+        "hp": 170,
+        "attack": 175,
+        "defense": 129,
+        "specialAttack": 90,
+        "specialDefense": 150,
+        "speed": 101
+      }
+    },
+    {
+      "species": "Arcanine (Hisuian Form)",
+      "displayName": "Arcanine (Hisuian Form)",
+      "usage": 0.026000000000000002,
+      "usageRank": 47,
+      "winRate": 0.59,
+      "sampleSize": 334,
+      "commonMoves": [],
+      "abilities": [],
+      "roleTags": [],
+      "baseStats": {
+        "hp": 165,
+        "attack": 135,
+        "defense": 100,
+        "specialAttack": 115,
+        "specialDefense": 100,
+        "speed": 110
+      }
+    },
+    {
+      "species": "Sableye",
+      "displayName": "Sableye",
+      "usage": 0.026000000000000002,
+      "usageRank": 48,
+      "winRate": 0.531,
+      "sampleSize": 327,
+      "commonMoves": [
+        "Encore",
+        "Rain Dance",
+        "Light Screen",
+        "Foul Play",
+        "Disable",
+        "Fake Out",
+        "Reflect",
+        "Will-o-wisp"
+      ],
+      "abilities": [
+        "Prankster",
+        "Keen Eye"
+      ],
+      "roleTags": [
+        "fake-out",
+        "support",
+        "speed-control"
+      ],
+      "baseStats": {
+        "hp": 125,
+        "attack": 95,
+        "defense": 95,
+        "specialAttack": 85,
+        "specialDefense": 85,
+        "speed": 70
+      }
+    },
+    {
+      "species": "Blastoise",
+      "displayName": "Blastoise",
+      "usage": 0.025,
+      "usageRank": 49,
+      "winRate": 0.534,
+      "sampleSize": 316,
+      "commonMoves": [
+        "Water Spout",
+        "Protect",
+        "Dark Pulse",
+        "Fake Out",
+        "Aura Sphere",
+        "Shell Smash",
+        "Water Pulse",
+        "Ice Beam"
+      ],
+      "abilities": [
+        "Rain Dish",
+        "Torrent",
+        "Mega Launcher"
+      ],
+      "roleTags": [
+        "fake-out",
+        "support"
+      ],
+      "baseStats": {
+        "hp": 154,
+        "attack": 103,
+        "defense": 120,
+        "specialAttack": 105,
+        "specialDefense": 125,
+        "speed": 98
+      }
+    },
+    {
+      "species": "Aggron",
+      "displayName": "Aggron",
+      "usage": 0.02,
+      "usageRank": 50,
+      "winRate": 0.518,
+      "sampleSize": 259,
+      "commonMoves": [
+        "Body Press",
+        "Protect",
+        "Heavy Slam",
+        "Iron Defense",
+        "Iron Head",
+        "Stone Edge",
+        "Rock Slide",
+        "Head Smash"
+      ],
+      "abilities": [
+        "Sturdy",
+        "Heavy Metal",
+        "Rock Head",
+        "Filter"
+      ],
+      "roleTags": [
+        "spread"
+      ],
+      "baseStats": {
+        "hp": 145,
+        "attack": 130,
+        "defense": 200,
+        "specialAttack": 80,
+        "specialDefense": 80,
+        "speed": 70
+      }
+    },
+    {
+      "species": "Abomasnow",
+      "displayName": "Abomasnow",
+      "baseStats": {
+        "hp": 165,
+        "attack": 112,
+        "defense": 95,
+        "specialAttack": 112,
+        "specialDefense": 105,
+        "speed": 80
+      }
+    },
+    {
+      "species": "Absol",
+      "displayName": "Absol",
+      "baseStats": {
+        "hp": 140,
+        "attack": 150,
+        "defense": 80,
+        "specialAttack": 95,
+        "specialDefense": 80,
+        "speed": 95
+      }
+    },
+    {
+      "species": "Alakazam",
+      "displayName": "Alakazam",
+      "baseStats": {
+        "hp": 130,
+        "attack": 70,
+        "defense": 65,
+        "specialAttack": 155,
+        "specialDefense": 115,
+        "speed": 140
+      }
+    },
+    {
+      "species": "Alcremie",
+      "displayName": "Alcremie",
+      "baseStats": {
+        "hp": 140,
+        "attack": 80,
+        "defense": 95,
+        "specialAttack": 130,
+        "specialDefense": 141,
+        "speed": 84
+      }
+    },
+    {
+      "species": "Raichu (Alolan Form)",
+      "displayName": "Raichu (Alolan Form)",
+      "baseStats": {
+        "hp": 135,
+        "attack": 105,
+        "defense": 70,
+        "specialAttack": 115,
+        "specialDefense": 105,
+        "speed": 130
+      }
+    },
+    {
+      "species": "Altaria",
+      "displayName": "Altaria",
+      "baseStats": {
+        "hp": 150,
+        "attack": 90,
+        "defense": 110,
+        "specialAttack": 90,
+        "specialDefense": 125,
+        "speed": 100
+      }
+    },
+    {
+      "species": "Ampharos",
+      "displayName": "Ampharos",
+      "baseStats": {
+        "hp": 165,
+        "attack": 95,
+        "defense": 105,
+        "specialAttack": 135,
+        "specialDefense": 110,
+        "speed": 75
+      }
+    },
+    {
+      "species": "Appletun",
+      "displayName": "Appletun",
+      "baseStats": {
+        "hp": 185,
+        "attack": 105,
+        "defense": 100,
+        "specialAttack": 120,
+        "specialDefense": 100,
+        "speed": 50
+      }
+    },
+    {
+      "species": "Araquanid",
+      "displayName": "Araquanid",
+      "baseStats": {
+        "hp": 143,
+        "attack": 90,
+        "defense": 112,
+        "specialAttack": 70,
+        "specialDefense": 152,
+        "speed": 62
+      }
+    },
+    {
+      "species": "Arbok",
+      "displayName": "Arbok",
+      "baseStats": {
+        "hp": 135,
+        "attack": 115,
+        "defense": 89,
+        "specialAttack": 85,
+        "specialDefense": 99,
+        "speed": 100
+      }
+    },
+    {
+      "species": "Arcanine",
+      "displayName": "Arcanine",
+      "baseStats": {
+        "hp": 170,
+        "attack": 135,
+        "defense": 100,
+        "specialAttack": 115,
+        "specialDefense": 100,
+        "speed": 110
+      }
+    },
+    {
+      "species": "Ariados",
+      "displayName": "Ariados",
+      "baseStats": {
+        "hp": 145,
+        "attack": 110,
+        "defense": 90,
+        "specialAttack": 80,
+        "specialDefense": 90,
+        "speed": 60
+      }
+    },
+    {
+      "species": "Armarouge",
+      "displayName": "Armarouge",
+      "baseStats": {
+        "hp": 160,
+        "attack": 80,
+        "defense": 120,
+        "specialAttack": 145,
+        "specialDefense": 100,
+        "speed": 95
+      }
+    },
+    {
+      "species": "Aromatisse",
+      "displayName": "Aromatisse",
+      "baseStats": {
+        "hp": 176,
+        "attack": 92,
+        "defense": 92,
+        "specialAttack": 119,
+        "specialDefense": 109,
+        "speed": 49
+      }
+    },
+    {
+      "species": "Aurorus",
+      "displayName": "Aurorus",
+      "baseStats": {
+        "hp": 198,
+        "attack": 97,
+        "defense": 92,
+        "specialAttack": 119,
+        "specialDefense": 112,
+        "speed": 78
+      }
+    },
+    {
+      "species": "Avalugg",
+      "displayName": "Avalugg",
+      "baseStats": {
+        "hp": 170,
+        "attack": 137,
+        "defense": 204,
+        "specialAttack": 64,
+        "specialDefense": 66,
+        "speed": 48
+      }
+    },
+    {
+      "species": "Azumarill",
+      "displayName": "Azumarill",
+      "baseStats": {
+        "hp": 175,
+        "attack": 70,
+        "defense": 100,
+        "specialAttack": 80,
+        "specialDefense": 100,
+        "speed": 70
+      }
+    },
+    {
+      "species": "Banette",
+      "displayName": "Banette",
+      "baseStats": {
+        "hp": 139,
+        "attack": 135,
+        "defense": 85,
+        "specialAttack": 103,
+        "specialDefense": 83,
+        "speed": 85
+      }
+    },
+    {
+      "species": "Basculegion (Female)",
+      "displayName": "Basculegion (Female)",
+      "baseStats": {
+        "hp": 195,
+        "attack": 112,
+        "defense": 85,
+        "specialAttack": 120,
+        "specialDefense": 95,
+        "speed": 98
+      }
+    },
+    {
+      "species": "Bastiodon",
+      "displayName": "Bastiodon",
+      "baseStats": {
+        "hp": 135,
+        "attack": 72,
+        "defense": 188,
+        "specialAttack": 67,
+        "specialDefense": 158,
+        "speed": 50
+      }
+    },
+    {
+      "species": "Beartic",
+      "displayName": "Beartic",
+      "baseStats": {
+        "hp": 170,
+        "attack": 150,
+        "defense": 100,
+        "specialAttack": 90,
+        "specialDefense": 100,
+        "speed": 70
+      }
+    },
+    {
+      "species": "Beedrill",
+      "displayName": "Beedrill",
+      "baseStats": {
+        "hp": 140,
+        "attack": 110,
+        "defense": 60,
+        "specialAttack": 65,
+        "specialDefense": 100,
+        "speed": 95
+      }
+    },
+    {
+      "species": "Bellibolt",
+      "displayName": "Bellibolt",
+      "baseStats": {
+        "hp": 184,
+        "attack": 84,
+        "defense": 111,
+        "specialAttack": 123,
+        "specialDefense": 103,
+        "speed": 65
+      }
+    },
+    {
+      "species": "Camerupt",
+      "displayName": "Camerupt",
+      "baseStats": {
+        "hp": 145,
+        "attack": 120,
+        "defense": 90,
+        "specialAttack": 125,
+        "specialDefense": 95,
+        "speed": 60
+      }
+    },
+    {
+      "species": "Castform",
+      "displayName": "Castform",
+      "baseStats": {
+        "hp": 145,
+        "attack": 90,
+        "defense": 90,
+        "specialAttack": 90,
+        "specialDefense": 90,
+        "speed": 90
+      }
+    },
+    {
+      "species": "Ceruledge",
+      "displayName": "Ceruledge",
+      "baseStats": {
+        "hp": 150,
+        "attack": 145,
+        "defense": 100,
+        "specialAttack": 80,
+        "specialDefense": 120,
+        "speed": 105
+      }
+    },
+    {
+      "species": "Chandelure",
+      "displayName": "Chandelure",
+      "baseStats": {
+        "hp": 135,
+        "attack": 75,
+        "defense": 110,
+        "specialAttack": 165,
+        "specialDefense": 110,
+        "speed": 100
+      }
+    },
+    {
+      "species": "Chesnaught",
+      "displayName": "Chesnaught",
+      "baseStats": {
+        "hp": 163,
+        "attack": 127,
+        "defense": 142,
+        "specialAttack": 94,
+        "specialDefense": 95,
+        "speed": 84
+      }
+    },
+    {
+      "species": "Chimecho",
+      "displayName": "Chimecho",
+      "baseStats": {
+        "hp": 150,
+        "attack": 70,
+        "defense": 100,
+        "specialAttack": 115,
+        "specialDefense": 110,
+        "speed": 85
+      }
+    },
+    {
+      "species": "Clawitzer",
+      "displayName": "Clawitzer",
+      "baseStats": {
+        "hp": 146,
+        "attack": 93,
+        "defense": 108,
+        "specialAttack": 140,
+        "specialDefense": 109,
+        "speed": 79
+      }
+    },
+    {
+      "species": "Cofagrigus",
+      "displayName": "Cofagrigus",
+      "baseStats": {
+        "hp": 133,
+        "attack": 70,
+        "defense": 165,
+        "specialAttack": 115,
+        "specialDefense": 125,
+        "speed": 50
+      }
+    },
+    {
+      "species": "Conkeldurr",
+      "displayName": "Conkeldurr",
+      "baseStats": {
+        "hp": 180,
+        "attack": 160,
+        "defense": 115,
+        "specialAttack": 75,
+        "specialDefense": 85,
+        "speed": 65
+      }
+    },
+    {
+      "species": "Crabominable",
+      "displayName": "Crabominable",
+      "baseStats": {
+        "hp": 172,
+        "attack": 152,
+        "defense": 97,
+        "specialAttack": 82,
+        "specialDefense": 87,
+        "speed": 63
+      }
+    },
+    {
+      "species": "Decidueye",
+      "displayName": "Decidueye",
+      "baseStats": {
+        "hp": 163,
+        "attack": 132,
+        "defense": 100,
+        "specialAttack": 115,
+        "specialDefense": 115,
+        "speed": 80
+      }
+    },
+    {
+      "species": "Dedenne",
+      "displayName": "Dedenne",
+      "baseStats": {
+        "hp": 142,
+        "attack": 78,
+        "defense": 77,
+        "specialAttack": 101,
+        "specialDefense": 87,
+        "speed": 121
+      }
+    },
+    {
+      "species": "Diggersby",
+      "displayName": "Diggersby",
+      "baseStats": {
+        "hp": 160,
+        "attack": 76,
+        "defense": 97,
+        "specialAttack": 70,
+        "specialDefense": 97,
+        "speed": 98
+      }
+    },
+    {
+      "species": "Ditto",
+      "displayName": "Ditto",
+      "baseStats": {
+        "hp": 123,
+        "attack": 68,
+        "defense": 68,
+        "specialAttack": 68,
+        "specialDefense": 68,
+        "speed": 68
+      }
+    },
+    {
+      "species": "Drampa",
+      "displayName": "Drampa",
+      "baseStats": {
+        "hp": 153,
+        "attack": 80,
+        "defense": 105,
+        "specialAttack": 155,
+        "specialDefense": 111,
+        "speed": 56
+      }
+    },
+    {
+      "species": "Emboar",
+      "displayName": "Emboar",
+      "baseStats": {
+        "hp": 185,
+        "attack": 143,
+        "defense": 85,
+        "specialAttack": 120,
+        "specialDefense": 85,
+        "speed": 85
+      }
+    },
+    {
+      "species": "Emolga",
+      "displayName": "Emolga",
+      "baseStats": {
+        "hp": 130,
+        "attack": 95,
+        "defense": 80,
+        "specialAttack": 95,
+        "specialDefense": 80,
+        "speed": 123
+      }
+    },
+    {
+      "species": "Empoleon",
+      "displayName": "Empoleon",
+      "baseStats": {
+        "hp": 159,
+        "attack": 106,
+        "defense": 108,
+        "specialAttack": 131,
+        "specialDefense": 121,
+        "speed": 80
+      }
+    },
+    {
+      "species": "Espeon",
+      "displayName": "Espeon",
+      "baseStats": {
+        "hp": 140,
+        "attack": 85,
+        "defense": 80,
+        "specialAttack": 150,
+        "specialDefense": 115,
+        "speed": 130
+      }
+    },
+    {
+      "species": "Espathra",
+      "displayName": "Espathra",
+      "baseStats": {
+        "hp": 170,
+        "attack": 80,
+        "defense": 80,
+        "specialAttack": 121,
+        "specialDefense": 80,
+        "speed": 125
+      }
+    },
+    {
+      "species": "Feraligatr",
+      "displayName": "Feraligatr",
+      "baseStats": {
+        "hp": 160,
+        "attack": 125,
+        "defense": 120,
+        "specialAttack": 99,
+        "specialDefense": 103,
+        "speed": 98
+      }
+    },
+    {
+      "species": "Flapple",
+      "displayName": "Flapple",
+      "baseStats": {
+        "hp": 145,
+        "attack": 130,
+        "defense": 100,
+        "specialAttack": 115,
+        "specialDefense": 80,
+        "speed": 90
+      }
+    },
+    {
+      "species": "Flareon",
+      "displayName": "Flareon",
+      "baseStats": {
+        "hp": 140,
+        "attack": 150,
+        "defense": 80,
+        "specialAttack": 115,
+        "specialDefense": 130,
+        "speed": 85
+      }
+    },
+    {
+      "species": "Florges",
+      "displayName": "Florges",
+      "baseStats": {
+        "hp": 153,
+        "attack": 85,
+        "defense": 88,
+        "specialAttack": 132,
+        "specialDefense": 174,
+        "speed": 95
+      }
+    },
+    {
+      "species": "Forretress",
+      "displayName": "Forretress",
+      "baseStats": {
+        "hp": 150,
+        "attack": 110,
+        "defense": 160,
+        "specialAttack": 80,
+        "specialDefense": 80,
+        "speed": 60
+      }
+    },
+    {
+      "species": "Furfrou",
+      "displayName": "Furfrou",
+      "baseStats": {
+        "hp": 150,
+        "attack": 100,
+        "defense": 80,
+        "specialAttack": 85,
+        "specialDefense": 110,
+        "speed": 122
+      }
+    },
+    {
+      "species": "Gallade",
+      "displayName": "Gallade",
+      "baseStats": {
+        "hp": 143,
+        "attack": 145,
+        "defense": 85,
+        "specialAttack": 85,
+        "specialDefense": 135,
+        "speed": 100
+      }
+    },
+    {
+      "species": "Slowbro (Galarian Form)",
+      "displayName": "Slowbro (Galarian Form)",
+      "baseStats": {
+        "hp": 170,
+        "attack": 120,
+        "defense": 115,
+        "specialAttack": 120,
+        "specialDefense": 90,
+        "speed": 50
+      }
+    },
+    {
+      "species": "Slowking (Galarian Form)",
+      "displayName": "Slowking (Galarian Form)",
+      "baseStats": {
+        "hp": 170,
+        "attack": 85,
+        "defense": 100,
+        "specialAttack": 130,
+        "specialDefense": 130,
+        "speed": 50
+      }
+    },
+    {
+      "species": "Stunfisk (Galarian Form)",
+      "displayName": "Stunfisk (Galarian Form)",
+      "baseStats": {
+        "hp": 184,
+        "attack": 101,
+        "defense": 119,
+        "specialAttack": 86,
+        "specialDefense": 104,
+        "speed": 52
+      }
+    },
+    {
+      "species": "Garbodor",
+      "displayName": "Garbodor",
+      "baseStats": {
+        "hp": 155,
+        "attack": 115,
+        "defense": 102,
+        "specialAttack": 80,
+        "specialDefense": 102,
+        "speed": 95
+      }
+    },
+    {
+      "species": "Garganacl",
+      "displayName": "Garganacl",
+      "baseStats": {
+        "hp": 175,
+        "attack": 120,
+        "defense": 150,
+        "specialAttack": 65,
+        "specialDefense": 110,
+        "speed": 55
+      }
+    },
+    {
+      "species": "Glalie",
+      "displayName": "Glalie",
+      "baseStats": {
+        "hp": 155,
+        "attack": 100,
+        "defense": 100,
+        "specialAttack": 100,
+        "specialDefense": 100,
+        "speed": 100
+      }
+    },
+    {
+      "species": "Glaceon",
+      "displayName": "Glaceon",
+      "baseStats": {
+        "hp": 140,
+        "attack": 80,
+        "defense": 130,
+        "specialAttack": 150,
+        "specialDefense": 115,
+        "speed": 85
+      }
+    },
+    {
+      "species": "Gliscor",
+      "displayName": "Gliscor",
+      "baseStats": {
+        "hp": 150,
+        "attack": 115,
+        "defense": 145,
+        "specialAttack": 65,
+        "specialDefense": 95,
+        "speed": 115
+      }
+    },
+    {
+      "species": "Golurk",
+      "displayName": "Golurk",
+      "baseStats": {
+        "hp": 164,
+        "attack": 144,
+        "defense": 100,
+        "specialAttack": 75,
+        "specialDefense": 100,
+        "speed": 75
+      }
+    },
+    {
+      "species": "Goodra",
+      "displayName": "Goodra",
+      "baseStats": {
+        "hp": 165,
+        "attack": 120,
+        "defense": 90,
+        "specialAttack": 130,
+        "specialDefense": 170,
+        "speed": 100
+      }
+    },
+    {
+      "species": "Greninja",
+      "displayName": "Greninja",
+      "baseStats": {
+        "hp": 147,
+        "attack": 115,
+        "defense": 87,
+        "specialAttack": 123,
+        "specialDefense": 91,
+        "speed": 142
+      }
+    },
+    {
+      "species": "Hatterene",
+      "displayName": "Hatterene",
+      "baseStats": {
+        "hp": 132,
+        "attack": 110,
+        "defense": 115,
+        "specialAttack": 156,
+        "specialDefense": 123,
+        "speed": 49
+      }
+    },
+    {
+      "species": "Hawlucha",
+      "displayName": "Hawlucha",
+      "baseStats": {
+        "hp": 153,
+        "attack": 112,
+        "defense": 95,
+        "specialAttack": 94,
+        "specialDefense": 83,
+        "speed": 138
+      }
+    },
+    {
+      "species": "Heliolisk",
+      "displayName": "Heliolisk",
+      "baseStats": {
+        "hp": 137,
+        "attack": 75,
+        "defense": 72,
+        "specialAttack": 129,
+        "specialDefense": 114,
+        "speed": 129
+      }
+    },
+    {
+      "species": "Heracross",
+      "displayName": "Heracross",
+      "baseStats": {
+        "hp": 155,
+        "attack": 145,
+        "defense": 95,
+        "specialAttack": 60,
+        "specialDefense": 115,
+        "speed": 105
+      }
+    },
+    {
+      "species": "Hippowdon",
+      "displayName": "Hippowdon",
+      "baseStats": {
+        "hp": 183,
+        "attack": 132,
+        "defense": 138,
+        "specialAttack": 88,
+        "specialDefense": 92,
+        "speed": 67
+      }
+    },
+    {
+      "species": "Avalugg (Hisuian Form)",
+      "displayName": "Avalugg (Hisuian Form)",
+      "baseStats": {
+        "hp": 170,
+        "attack": 147,
+        "defense": 204,
+        "specialAttack": 54,
+        "specialDefense": 56,
+        "speed": 58
+      }
+    },
+    {
+      "species": "Decidueye (Hisuian Form)",
+      "displayName": "Decidueye (Hisuian Form)",
+      "baseStats": {
+        "hp": 153,
+        "attack": 127,
+        "defense": 95,
+        "specialAttack": 120,
+        "specialDefense": 120,
+        "speed": 90
+      }
+    },
+    {
+      "species": "Goodra (Hisuian Form)",
+      "displayName": "Goodra (Hisuian Form)",
+      "baseStats": {
+        "hp": 155,
+        "attack": 120,
+        "defense": 120,
+        "specialAttack": 130,
+        "specialDefense": 170,
+        "speed": 80
+      }
+    },
+    {
+      "species": "Samurott (Hisuian Form)",
+      "displayName": "Samurott (Hisuian Form)",
+      "baseStats": {
+        "hp": 165,
+        "attack": 128,
+        "defense": 100,
+        "specialAttack": 120,
+        "specialDefense": 85,
+        "speed": 105
+      }
+    },
+    {
+      "species": "Typhlosion (Hisuian Form)",
+      "displayName": "Typhlosion (Hisuian Form)",
+      "baseStats": {
+        "hp": 148,
+        "attack": 104,
+        "defense": 98,
+        "specialAttack": 139,
+        "specialDefense": 105,
+        "speed": 115
+      }
+    },
+    {
+      "species": "Zoroark (Hisuian Form)",
+      "displayName": "Zoroark (Hisuian Form)",
+      "baseStats": {
+        "hp": 130,
+        "attack": 120,
+        "defense": 80,
+        "specialAttack": 145,
+        "specialDefense": 80,
+        "speed": 130
+      }
+    },
+    {
+      "species": "Houndoom",
+      "displayName": "Houndoom",
+      "baseStats": {
+        "hp": 150,
+        "attack": 110,
+        "defense": 70,
+        "specialAttack": 130,
+        "specialDefense": 100,
+        "speed": 115
+      }
+    },
+    {
+      "species": "Hydrapple",
+      "displayName": "Hydrapple",
+      "baseStats": {
+        "hp": 181,
+        "attack": 100,
+        "defense": 130,
+        "specialAttack": 140,
+        "specialDefense": 100,
+        "speed": 64
+      }
+    },
+    {
+      "species": "Infernape",
+      "displayName": "Infernape",
+      "baseStats": {
+        "hp": 151,
+        "attack": 124,
+        "defense": 91,
+        "specialAttack": 124,
+        "specialDefense": 91,
+        "speed": 128
+      }
+    },
+    {
+      "species": "Jolteon",
+      "displayName": "Jolteon",
+      "baseStats": {
+        "hp": 140,
+        "attack": 85,
+        "defense": 80,
+        "specialAttack": 130,
+        "specialDefense": 115,
+        "speed": 150
+      }
+    },
+    {
+      "species": "Kleavor",
+      "displayName": "Kleavor",
+      "baseStats": {
+        "hp": 145,
+        "attack": 155,
+        "defense": 115,
+        "specialAttack": 65,
+        "specialDefense": 90,
+        "speed": 105
+      }
+    },
+    {
+      "species": "Klefki",
+      "displayName": "Klefki",
+      "baseStats": {
+        "hp": 132,
+        "attack": 100,
+        "defense": 111,
+        "specialAttack": 100,
+        "specialDefense": 107,
+        "speed": 95
+      }
+    },
+    {
+      "species": "Krookodile",
+      "displayName": "Krookodile",
+      "baseStats": {
+        "hp": 170,
+        "attack": 137,
+        "defense": 100,
+        "specialAttack": 85,
+        "specialDefense": 90,
+        "speed": 112
+      }
+    },
+    {
+      "species": "Leafeon",
+      "displayName": "Leafeon",
+      "baseStats": {
+        "hp": 140,
+        "attack": 130,
+        "defense": 150,
+        "specialAttack": 80,
+        "specialDefense": 85,
+        "speed": 115
+      }
+    },
+    {
+      "species": "Liepard",
+      "displayName": "Liepard",
+      "baseStats": {
+        "hp": 139,
+        "attack": 108,
+        "defense": 70,
+        "specialAttack": 108,
+        "specialDefense": 70,
+        "speed": 126
+      }
+    },
+    {
+      "species": "Lopunny",
+      "displayName": "Lopunny",
+      "baseStats": {
+        "hp": 140,
+        "attack": 96,
+        "defense": 104,
+        "specialAttack": 74,
+        "specialDefense": 116,
+        "speed": 125
+      }
+    },
+    {
+      "species": "Lucario",
+      "displayName": "Lucario",
+      "baseStats": {
+        "hp": 145,
+        "attack": 130,
+        "defense": 90,
+        "specialAttack": 135,
+        "specialDefense": 90,
+        "speed": 110
+      }
+    },
+    {
+      "species": "Luxray",
+      "displayName": "Luxray",
+      "baseStats": {
+        "hp": 155,
+        "attack": 140,
+        "defense": 99,
+        "specialAttack": 115,
+        "specialDefense": 99,
+        "speed": 90
+      }
+    },
+    {
+      "species": "Machamp",
+      "displayName": "Machamp",
+      "baseStats": {
+        "hp": 165,
+        "attack": 150,
+        "defense": 100,
+        "specialAttack": 85,
+        "specialDefense": 105,
+        "speed": 75
+      }
+    },
+    {
+      "species": "Mamoswine",
+      "displayName": "Mamoswine",
+      "baseStats": {
+        "hp": 185,
+        "attack": 150,
+        "defense": 100,
+        "specialAttack": 90,
+        "specialDefense": 80,
+        "speed": 100
+      }
+    },
+    {
+      "species": "Manectric",
+      "displayName": "Manectric",
+      "baseStats": {
+        "hp": 145,
+        "attack": 95,
+        "defense": 80,
+        "specialAttack": 125,
+        "specialDefense": 80,
+        "speed": 125
+      }
+    },
+    {
+      "species": "Medicham",
+      "displayName": "Medicham",
+      "baseStats": {
+        "hp": 135,
+        "attack": 80,
+        "defense": 95,
+        "specialAttack": 80,
+        "specialDefense": 95,
+        "speed": 100
+      }
+    },
+    {
+      "species": "Mega Abomasnow",
+      "displayName": "Mega Abomasnow",
+      "baseStats": {
+        "hp": 165,
+        "attack": 152,
+        "defense": 125,
+        "specialAttack": 152,
+        "specialDefense": 125,
+        "speed": 50
+      }
+    },
+    {
+      "species": "Mega Absol",
+      "displayName": "Mega Absol",
+      "baseStats": {
+        "hp": 140,
+        "attack": 170,
+        "defense": 80,
+        "specialAttack": 135,
+        "specialDefense": 80,
+        "speed": 135
+      }
+    },
+    {
+      "species": "Mega Aerodactyl",
+      "displayName": "Mega Aerodactyl",
+      "baseStats": {
+        "hp": 155,
+        "attack": 155,
+        "defense": 105,
+        "specialAttack": 90,
+        "specialDefense": 115,
+        "speed": 170
+      }
+    },
+    {
+      "species": "Mega Aggron",
+      "displayName": "Mega Aggron",
+      "baseStats": {
+        "hp": 145,
+        "attack": 160,
+        "defense": 250,
+        "specialAttack": 80,
+        "specialDefense": 100,
+        "speed": 70
+      }
+    },
+    {
+      "species": "Mega Alakazam",
+      "displayName": "Mega Alakazam",
+      "baseStats": {
+        "hp": 130,
+        "attack": 70,
+        "defense": 85,
+        "specialAttack": 195,
+        "specialDefense": 125,
+        "speed": 170
+      }
+    },
+    {
+      "species": "Mega Ampharos",
+      "displayName": "Mega Ampharos",
+      "baseStats": {
+        "hp": 165,
+        "attack": 115,
+        "defense": 125,
+        "specialAttack": 185,
+        "specialDefense": 130,
+        "speed": 65
+      }
+    },
+    {
+      "species": "Mega Audino",
+      "displayName": "Mega Audino",
+      "baseStats": {
+        "hp": 178,
+        "attack": 80,
+        "defense": 146,
+        "specialAttack": 100,
+        "specialDefense": 146,
+        "speed": 70
+      }
+    },
+    {
+      "species": "Mega Banette",
+      "displayName": "Mega Banette",
+      "baseStats": {
+        "hp": 139,
+        "attack": 185,
+        "defense": 95,
+        "specialAttack": 113,
+        "specialDefense": 103,
+        "speed": 95
+      }
+    },
+    {
+      "species": "Mega Beedrill",
+      "displayName": "Mega Beedrill",
+      "baseStats": {
+        "hp": 140,
+        "attack": 170,
+        "defense": 60,
+        "specialAttack": 35,
+        "specialDefense": 100,
+        "speed": 165
+      }
+    },
+    {
+      "species": "Mega Blastoise",
+      "displayName": "Mega Blastoise",
+      "baseStats": {
+        "hp": 154,
+        "attack": 123,
+        "defense": 140,
+        "specialAttack": 155,
+        "specialDefense": 135,
+        "speed": 98
+      }
+    },
+    {
+      "species": "Mega Camerupt",
+      "displayName": "Mega Camerupt",
+      "baseStats": {
+        "hp": 145,
+        "attack": 140,
+        "defense": 120,
+        "specialAttack": 165,
+        "specialDefense": 125,
+        "speed": 40
+      }
+    },
+    {
+      "species": "Mega Chandelure",
+      "displayName": "Mega Chandelure",
+      "baseStats": {
+        "hp": 135,
+        "attack": 95,
+        "defense": 130,
+        "specialAttack": 195,
+        "specialDefense": 130,
+        "speed": 110
+      }
+    },
+    {
+      "species": "Mega Charizard X",
+      "displayName": "Mega Charizard X",
+      "baseStats": {
+        "hp": 153,
+        "attack": 150,
+        "defense": 131,
+        "specialAttack": 150,
+        "specialDefense": 105,
+        "speed": 120
+      }
+    },
+    {
+      "species": "Mega Charizard Y",
+      "displayName": "Mega Charizard Y",
+      "baseStats": {
+        "hp": 153,
+        "attack": 124,
+        "defense": 98,
+        "specialAttack": 179,
+        "specialDefense": 135,
+        "speed": 120
+      }
+    },
+    {
+      "species": "Mega Chesnaught",
+      "displayName": "Mega Chesnaught",
+      "baseStats": {
+        "hp": 163,
+        "attack": 157,
+        "defense": 192,
+        "specialAttack": 94,
+        "specialDefense": 135,
+        "speed": 64
+      }
+    },
+    {
+      "species": "Mega Clefable",
+      "displayName": "Mega Clefable",
+      "baseStats": {
+        "hp": 170,
+        "attack": 100,
+        "defense": 113,
+        "specialAttack": 155,
+        "specialDefense": 130,
+        "speed": 90
+      }
+    },
+    {
+      "species": "Mega Crabominable",
+      "displayName": "Mega Crabominable",
+      "baseStats": {
+        "hp": 172,
+        "attack": 177,
+        "defense": 142,
+        "specialAttack": 82,
+        "specialDefense": 127,
+        "speed": 53
+      }
+    },
+    {
+      "species": "Mega Delphox",
+      "displayName": "Mega Delphox",
+      "baseStats": {
+        "hp": 144,
+        "attack": 89,
+        "defense": 92,
+        "specialAttack": 179,
+        "specialDefense": 145,
+        "speed": 154
+      }
+    },
+    {
+      "species": "Mega Drampa",
+      "displayName": "Mega Drampa",
+      "baseStats": {
+        "hp": 153,
+        "attack": 105,
+        "defense": 130,
+        "specialAttack": 180,
+        "specialDefense": 136,
+        "speed": 56
+      }
+    },
+    {
+      "species": "Mega Emboar",
+      "displayName": "Mega Emboar",
+      "baseStats": {
+        "hp": 185,
+        "attack": 168,
+        "defense": 95,
+        "specialAttack": 130,
+        "specialDefense": 130,
+        "speed": 95
+      }
+    },
+    {
+      "species": "Mega Excadrill",
+      "displayName": "Mega Excadrill",
+      "baseStats": {
+        "hp": 185,
+        "attack": 185,
+        "defense": 120,
+        "specialAttack": 85,
+        "specialDefense": 85,
+        "speed": 123
+      }
+    },
+    {
+      "species": "Mega Feraligatr",
+      "displayName": "Mega Feraligatr",
+      "baseStats": {
+        "hp": 160,
+        "attack": 180,
+        "defense": 145,
+        "specialAttack": 109,
+        "specialDefense": 113,
+        "speed": 98
+      }
+    },
+    {
+      "species": "Mega Froslass",
+      "displayName": "Mega Froslass",
+      "baseStats": {
+        "hp": 145,
+        "attack": 100,
+        "defense": 90,
+        "specialAttack": 160,
+        "specialDefense": 120,
+        "speed": 140
+      }
+    },
+    {
+      "species": "Mega Gallade",
+      "displayName": "Mega Gallade",
+      "baseStats": {
+        "hp": 143,
+        "attack": 185,
+        "defense": 115,
+        "specialAttack": 85,
+        "specialDefense": 135,
+        "speed": 130
+      }
+    },
+    {
+      "species": "Mega Gengar",
+      "displayName": "Mega Gengar",
+      "baseStats": {
+        "hp": 135,
+        "attack": 85,
+        "defense": 100,
+        "specialAttack": 190,
+        "specialDefense": 115,
+        "speed": 150
+      }
+    },
+    {
+      "species": "Mega Glalie",
+      "displayName": "Mega Glalie",
+      "baseStats": {
+        "hp": 155,
+        "attack": 140,
+        "defense": 100,
+        "specialAttack": 140,
+        "specialDefense": 100,
+        "speed": 120
+      }
+    },
+    {
+      "species": "Mega Glimmora",
+      "displayName": "Mega Glimmora",
+      "baseStats": {
+        "hp": 158,
+        "attack": 110,
+        "defense": 125,
+        "specialAttack": 170,
+        "specialDefense": 116,
+        "speed": 121
+      }
+    },
+    {
+      "species": "Mega Golurk",
+      "displayName": "Mega Golurk",
+      "baseStats": {
+        "hp": 164,
+        "attack": 179,
+        "defense": 125,
+        "specialAttack": 90,
+        "specialDefense": 125,
+        "speed": 75
+      }
+    },
+    {
+      "species": "Mega Greninja",
+      "displayName": "Mega Greninja",
+      "baseStats": {
+        "hp": 147,
+        "attack": 145,
+        "defense": 97,
+        "specialAttack": 153,
+        "specialDefense": 101,
+        "speed": 162
+      }
+    },
+    {
+      "species": "Mega Hawlucha",
+      "displayName": "Mega Hawlucha",
+      "baseStats": {
+        "hp": 153,
+        "attack": 157,
+        "defense": 120,
+        "specialAttack": 94,
+        "specialDefense": 113,
+        "speed": 138
+      }
+    },
+    {
+      "species": "Mega Heracross",
+      "displayName": "Mega Heracross",
+      "baseStats": {
+        "hp": 155,
+        "attack": 205,
+        "defense": 135,
+        "specialAttack": 60,
+        "specialDefense": 125,
+        "speed": 95
+      }
+    },
+    {
+      "species": "Mega Houndoom",
+      "displayName": "Mega Houndoom",
+      "baseStats": {
+        "hp": 150,
+        "attack": 110,
+        "defense": 110,
+        "specialAttack": 160,
+        "specialDefense": 110,
+        "speed": 135
+      }
+    },
+    {
+      "species": "Mega Lopunny",
+      "displayName": "Mega Lopunny",
+      "baseStats": {
+        "hp": 140,
+        "attack": 156,
+        "defense": 114,
+        "specialAttack": 74,
+        "specialDefense": 116,
+        "speed": 155
+      }
+    },
+    {
+      "species": "Mega Lucario",
+      "displayName": "Mega Lucario",
+      "baseStats": {
+        "hp": 145,
+        "attack": 165,
+        "defense": 108,
+        "specialAttack": 160,
+        "specialDefense": 90,
+        "speed": 132
+      }
+    },
+    {
+      "species": "Mega Manectric",
+      "displayName": "Mega Manectric",
+      "baseStats": {
+        "hp": 145,
+        "attack": 95,
+        "defense": 100,
+        "specialAttack": 155,
+        "specialDefense": 100,
+        "speed": 155
+      }
+    },
+    {
+      "species": "Mega Medicham",
+      "displayName": "Mega Medicham",
+      "baseStats": {
+        "hp": 135,
+        "attack": 120,
+        "defense": 105,
+        "specialAttack": 100,
+        "specialDefense": 105,
+        "speed": 120
+      }
+    },
+    {
+      "species": "Mega Meganium",
+      "displayName": "Mega Meganium",
+      "baseStats": {
+        "hp": 155,
+        "attack": 112,
+        "defense": 135,
+        "specialAttack": 163,
+        "specialDefense": 135,
+        "speed": 100
+      }
+    },
+    {
+      "species": "Mega Meowstic",
+      "displayName": "Mega Meowstic",
+      "baseStats": {
+        "hp": 149,
+        "attack": 68,
+        "defense": 96,
+        "specialAttack": 163,
+        "specialDefense": 121,
+        "speed": 144
+      }
+    },
+    {
+      "species": "Mega Pidgeot",
+      "displayName": "Mega Pidgeot",
+      "baseStats": {
+        "hp": 158,
+        "attack": 100,
+        "defense": 100,
+        "specialAttack": 155,
+        "specialDefense": 100,
+        "speed": 141
+      }
+    },
+    {
+      "species": "Mega Pinsir",
+      "displayName": "Mega Pinsir",
+      "baseStats": {
+        "hp": 140,
+        "attack": 175,
+        "defense": 140,
+        "specialAttack": 85,
+        "specialDefense": 110,
+        "speed": 125
+      }
+    },
+    {
+      "species": "Mega Sableye",
+      "displayName": "Mega Sableye",
+      "baseStats": {
+        "hp": 125,
+        "attack": 105,
+        "defense": 145,
+        "specialAttack": 105,
+        "specialDefense": 135,
+        "speed": 40
+      }
+    },
+    {
+      "species": "Mega Scizor",
+      "displayName": "Mega Scizor",
+      "baseStats": {
+        "hp": 145,
+        "attack": 170,
+        "defense": 160,
+        "specialAttack": 85,
+        "specialDefense": 120,
+        "speed": 95
+      }
+    },
+    {
+      "species": "Mega Scovillain",
+      "displayName": "Mega Scovillain",
+      "baseStats": {
+        "hp": 140,
+        "attack": 158,
+        "defense": 105,
+        "specialAttack": 158,
+        "specialDefense": 105,
+        "speed": 95
+      }
+    },
+    {
+      "species": "Mega Sharpedo",
+      "displayName": "Mega Sharpedo",
+      "baseStats": {
+        "hp": 145,
+        "attack": 160,
+        "defense": 90,
+        "specialAttack": 130,
+        "specialDefense": 85,
+        "speed": 125
+      }
+    },
+    {
+      "species": "Mega Skarmory",
+      "displayName": "Mega Skarmory",
+      "baseStats": {
+        "hp": 140,
+        "attack": 160,
+        "defense": 130,
+        "specialAttack": 60,
+        "specialDefense": 120,
+        "speed": 130
+      }
+    },
+    {
+      "species": "Mega Slowbro",
+      "displayName": "Mega Slowbro",
+      "baseStats": {
+        "hp": 170,
+        "attack": 95,
+        "defense": 200,
+        "specialAttack": 150,
+        "specialDefense": 100,
+        "speed": 50
+      }
+    },
+    {
+      "species": "Mega Starmie",
+      "displayName": "Mega Starmie",
+      "baseStats": {
+        "hp": 135,
+        "attack": 120,
+        "defense": 125,
+        "specialAttack": 150,
+        "specialDefense": 125,
+        "speed": 140
+      }
+    },
+    {
+      "species": "Mega Venusaur",
+      "displayName": "Mega Venusaur",
+      "baseStats": {
+        "hp": 155,
+        "attack": 122,
+        "defense": 143,
+        "specialAttack": 142,
+        "specialDefense": 140,
+        "speed": 100
+      }
+    },
+    {
+      "species": "Mega Victreebel",
+      "displayName": "Mega Victreebel",
+      "baseStats": {
+        "hp": 155,
+        "attack": 145,
+        "defense": 105,
+        "specialAttack": 155,
+        "specialDefense": 115,
+        "speed": 90
+      }
+    },
+    {
+      "species": "Meowscarada",
+      "displayName": "Meowscarada",
+      "baseStats": {
+        "hp": 151,
+        "attack": 130,
+        "defense": 90,
+        "specialAttack": 101,
+        "specialDefense": 90,
+        "speed": 143
+      }
+    },
+    {
+      "species": "Meowstic (Female)",
+      "displayName": "Meowstic (Female)",
+      "baseStats": {
+        "hp": 149,
+        "attack": 68,
+        "defense": 96,
+        "specialAttack": 103,
+        "specialDefense": 101,
+        "speed": 124
+      }
+    },
+    {
+      "species": "Meowstic (Male)",
+      "displayName": "Meowstic (Male)",
+      "baseStats": {
+        "hp": 149,
+        "attack": 68,
+        "defense": 96,
+        "specialAttack": 103,
+        "specialDefense": 101,
+        "speed": 124
+      }
+    },
+    {
+      "species": "Mimikyu",
+      "displayName": "Mimikyu",
+      "baseStats": {
+        "hp": 130,
+        "attack": 110,
+        "defense": 100,
+        "specialAttack": 70,
+        "specialDefense": 125,
+        "speed": 116
+      }
+    },
+    {
+      "species": "Morpeko",
+      "displayName": "Morpeko",
+      "baseStats": {
+        "hp": 133,
+        "attack": 115,
+        "defense": 78,
+        "specialAttack": 90,
+        "specialDefense": 78,
+        "speed": 117
+      }
+    },
+    {
+      "species": "Mr. Rime",
+      "displayName": "Mr. Rime",
+      "baseStats": {
+        "hp": 155,
+        "attack": 105,
+        "defense": 95,
+        "specialAttack": 130,
+        "specialDefense": 120,
+        "speed": 90
+      }
+    },
+    {
+      "species": "Mudsdale",
+      "displayName": "Mudsdale",
+      "baseStats": {
+        "hp": 175,
+        "attack": 145,
+        "defense": 120,
+        "specialAttack": 75,
+        "specialDefense": 105,
+        "speed": 55
+      }
+    },
+    {
+      "species": "Ninetales",
+      "displayName": "Ninetales",
+      "baseStats": {
+        "hp": 148,
+        "attack": 96,
+        "defense": 95,
+        "specialAttack": 101,
+        "specialDefense": 120,
+        "speed": 120
+      }
+    },
+    {
+      "species": "Noivern",
+      "displayName": "Noivern",
+      "baseStats": {
+        "hp": 160,
+        "attack": 90,
+        "defense": 100,
+        "specialAttack": 117,
+        "specialDefense": 100,
+        "speed": 143
+      }
+    },
+    {
+      "species": "Oranguru",
+      "displayName": "Oranguru",
+      "baseStats": {
+        "hp": 165,
+        "attack": 80,
+        "defense": 100,
+        "specialAttack": 110,
+        "specialDefense": 130,
+        "speed": 80
+      }
+    },
+    {
+      "species": "Orthworm",
+      "displayName": "Orthworm",
+      "baseStats": {
+        "hp": 145,
+        "attack": 105,
+        "defense": 165,
+        "specialAttack": 80,
+        "specialDefense": 75,
+        "speed": 85
+      }
+    },
+    {
+      "species": "Pangoro",
+      "displayName": "Pangoro",
+      "baseStats": {
+        "hp": 170,
+        "attack": 144,
+        "defense": 98,
+        "specialAttack": 89,
+        "specialDefense": 91,
+        "speed": 78
+      }
+    },
+    {
+      "species": "Passimian",
+      "displayName": "Passimian",
+      "baseStats": {
+        "hp": 175,
+        "attack": 140,
+        "defense": 110,
+        "specialAttack": 60,
+        "specialDefense": 80,
+        "speed": 100
+      }
+    },
+    {
+      "species": "Pidgeot",
+      "displayName": "Pidgeot",
+      "baseStats": {
+        "hp": 158,
+        "attack": 100,
+        "defense": 95,
+        "specialAttack": 90,
+        "specialDefense": 90,
+        "speed": 121
+      }
+    },
+    {
+      "species": "Pikachu",
+      "displayName": "Pikachu",
+      "baseStats": {
+        "hp": 110,
+        "attack": 75,
+        "defense": 60,
+        "specialAttack": 70,
+        "specialDefense": 70,
+        "speed": 110
+      }
+    },
+    {
+      "species": "Pinsir",
+      "displayName": "Pinsir",
+      "baseStats": {
+        "hp": 140,
+        "attack": 145,
+        "defense": 120,
+        "specialAttack": 75,
+        "specialDefense": 90,
+        "speed": 105
+      }
+    },
+    {
+      "species": "Polteageist",
+      "displayName": "Polteageist",
+      "baseStats": {
+        "hp": 135,
+        "attack": 85,
+        "defense": 85,
+        "specialAttack": 154,
+        "specialDefense": 134,
+        "speed": 90
+      }
+    },
+    {
+      "species": "Quaquaval",
+      "displayName": "Quaquaval",
+      "baseStats": {
+        "hp": 160,
+        "attack": 140,
+        "defense": 100,
+        "specialAttack": 105,
+        "specialDefense": 95,
+        "speed": 105
+      }
+    },
+    {
+      "species": "Raichu",
+      "displayName": "Raichu",
+      "baseStats": {
+        "hp": 135,
+        "attack": 110,
+        "defense": 75,
+        "specialAttack": 110,
+        "specialDefense": 100,
+        "speed": 130
+      }
+    },
+    {
+      "species": "Rampardos",
+      "displayName": "Rampardos",
+      "baseStats": {
+        "hp": 172,
+        "attack": 185,
+        "defense": 80,
+        "specialAttack": 85,
+        "specialDefense": 70,
+        "speed": 78
+      }
+    },
+    {
+      "species": "Reuniclus",
+      "displayName": "Reuniclus",
+      "baseStats": {
+        "hp": 185,
+        "attack": 85,
+        "defense": 95,
+        "specialAttack": 145,
+        "specialDefense": 105,
+        "speed": 50
+      }
+    },
+    {
+      "species": "Rhyperior",
+      "displayName": "Rhyperior",
+      "baseStats": {
+        "hp": 190,
+        "attack": 160,
+        "defense": 150,
+        "specialAttack": 75,
+        "specialDefense": 75,
+        "speed": 60
+      }
+    },
+    {
+      "species": "Roserade",
+      "displayName": "Roserade",
+      "baseStats": {
+        "hp": 135,
+        "attack": 90,
+        "defense": 85,
+        "specialAttack": 145,
+        "specialDefense": 125,
+        "speed": 110
+      }
+    },
+    {
+      "species": "Rotom",
+      "displayName": "Rotom",
+      "baseStats": {
+        "hp": 125,
+        "attack": 70,
+        "defense": 97,
+        "specialAttack": 115,
+        "specialDefense": 97,
+        "speed": 111
+      }
+    },
+    {
+      "species": "Runerigus",
+      "displayName": "Runerigus",
+      "baseStats": {
+        "hp": 133,
+        "attack": 115,
+        "defense": 165,
+        "specialAttack": 70,
+        "specialDefense": 125,
+        "speed": 50
+      }
+    },
+    {
+      "species": "Salazzle",
+      "displayName": "Salazzle",
+      "baseStats": {
+        "hp": 143,
+        "attack": 84,
+        "defense": 80,
+        "specialAttack": 131,
+        "specialDefense": 80,
+        "speed": 137
+      }
+    },
+    {
+      "species": "Samurott",
+      "displayName": "Samurott",
+      "baseStats": {
+        "hp": 170,
+        "attack": 120,
+        "defense": 105,
+        "specialAttack": 128,
+        "specialDefense": 90,
+        "speed": 90
+      }
+    },
+    {
+      "species": "Sandaconda",
+      "displayName": "Sandaconda",
+      "baseStats": {
+        "hp": 147,
+        "attack": 127,
+        "defense": 145,
+        "specialAttack": 85,
+        "specialDefense": 90,
+        "speed": 91
+      }
+    },
+    {
+      "species": "Serperior",
+      "displayName": "Serperior",
+      "baseStats": {
+        "hp": 150,
+        "attack": 95,
+        "defense": 115,
+        "specialAttack": 95,
+        "specialDefense": 115,
+        "speed": 133
+      }
+    },
+    {
+      "species": "Sharpedo",
+      "displayName": "Sharpedo",
+      "baseStats": {
+        "hp": 145,
+        "attack": 140,
+        "defense": 60,
+        "specialAttack": 115,
+        "specialDefense": 60,
+        "speed": 115
+      }
+    },
+    {
+      "species": "Simipour",
+      "displayName": "Simipour",
+      "baseStats": {
+        "hp": 150,
+        "attack": 118,
+        "defense": 83,
+        "specialAttack": 118,
+        "specialDefense": 83,
+        "speed": 121
+      }
+    },
+    {
+      "species": "Simisage",
+      "displayName": "Simisage",
+      "baseStats": {
+        "hp": 150,
+        "attack": 118,
+        "defense": 83,
+        "specialAttack": 118,
+        "specialDefense": 83,
+        "speed": 121
+      }
+    },
+    {
+      "species": "Simisear",
+      "displayName": "Simisear",
+      "baseStats": {
+        "hp": 150,
+        "attack": 118,
+        "defense": 83,
+        "specialAttack": 118,
+        "specialDefense": 83,
+        "speed": 121
+      }
+    },
+    {
+      "species": "Skarmory",
+      "displayName": "Skarmory",
+      "baseStats": {
+        "hp": 140,
+        "attack": 100,
+        "defense": 160,
+        "specialAttack": 60,
+        "specialDefense": 90,
+        "speed": 90
+      }
+    },
+    {
+      "species": "Skeledirge",
+      "displayName": "Skeledirge",
+      "baseStats": {
+        "hp": 179,
+        "attack": 95,
+        "defense": 120,
+        "specialAttack": 130,
+        "specialDefense": 95,
+        "speed": 86
+      }
+    },
+    {
+      "species": "Slowbro",
+      "displayName": "Slowbro",
+      "baseStats": {
+        "hp": 170,
+        "attack": 95,
+        "defense": 130,
+        "specialAttack": 120,
+        "specialDefense": 100,
+        "speed": 50
+      }
+    },
+    {
+      "species": "Slowking",
+      "displayName": "Slowking",
+      "baseStats": {
+        "hp": 170,
+        "attack": 95,
+        "defense": 100,
+        "specialAttack": 120,
+        "specialDefense": 130,
+        "speed": 50
+      }
+    },
+    {
+      "species": "Slurpuff",
+      "displayName": "Slurpuff",
+      "baseStats": {
+        "hp": 157,
+        "attack": 100,
+        "defense": 106,
+        "specialAttack": 105,
+        "specialDefense": 95,
+        "speed": 92
+      }
+    },
+    {
+      "species": "Snorlax",
+      "displayName": "Snorlax",
+      "baseStats": {
+        "hp": 235,
+        "attack": 130,
+        "defense": 85,
+        "specialAttack": 85,
+        "specialDefense": 130,
+        "speed": 50
+      }
+    },
+    {
+      "species": "Spiritomb",
+      "displayName": "Spiritomb",
+      "baseStats": {
+        "hp": 125,
+        "attack": 112,
+        "defense": 128,
+        "specialAttack": 112,
+        "specialDefense": 128,
+        "speed": 55
+      }
+    },
+    {
+      "species": "Starmie",
+      "displayName": "Starmie",
+      "baseStats": {
+        "hp": 135,
+        "attack": 95,
+        "defense": 105,
+        "specialAttack": 120,
+        "specialDefense": 105,
+        "speed": 135
+      }
+    },
+    {
+      "species": "Steelix",
+      "displayName": "Steelix",
+      "baseStats": {
+        "hp": 150,
+        "attack": 105,
+        "defense": 220,
+        "specialAttack": 75,
+        "specialDefense": 85,
+        "speed": 50
+      }
+    },
+    {
+      "species": "Stunfisk",
+      "displayName": "Stunfisk",
+      "baseStats": {
+        "hp": 184,
+        "attack": 86,
+        "defense": 104,
+        "specialAttack": 101,
+        "specialDefense": 119,
+        "speed": 52
+      }
+    },
+    {
+      "species": "Tauros",
+      "displayName": "Tauros",
+      "baseStats": {
+        "hp": 150,
+        "attack": 120,
+        "defense": 115,
+        "specialAttack": 60,
+        "specialDefense": 90,
+        "speed": 130
+      }
+    },
+    {
+      "species": "Tinkaton",
+      "displayName": "Tinkaton",
+      "baseStats": {
+        "hp": 160,
+        "attack": 95,
+        "defense": 97,
+        "specialAttack": 90,
+        "specialDefense": 125,
+        "speed": 114
+      }
+    },
+    {
+      "species": "Torterra",
+      "displayName": "Torterra",
+      "baseStats": {
+        "hp": 170,
+        "attack": 129,
+        "defense": 125,
+        "specialAttack": 95,
+        "specialDefense": 105,
+        "speed": 76
+      }
+    },
+    {
+      "species": "Toucannon",
+      "displayName": "Toucannon",
+      "baseStats": {
+        "hp": 155,
+        "attack": 140,
+        "defense": 95,
+        "specialAttack": 95,
+        "specialDefense": 95,
+        "speed": 80
+      }
+    },
+    {
+      "species": "Toxapex",
+      "displayName": "Toxapex",
+      "baseStats": {
+        "hp": 125,
+        "attack": 83,
+        "defense": 172,
+        "specialAttack": 73,
+        "specialDefense": 162,
+        "speed": 55
+      }
+    },
+    {
+      "species": "Toxicroak",
+      "displayName": "Toxicroak",
+      "baseStats": {
+        "hp": 158,
+        "attack": 126,
+        "defense": 85,
+        "specialAttack": 106,
+        "specialDefense": 85,
+        "speed": 105
+      }
+    },
+    {
+      "species": "Trevenant",
+      "displayName": "Trevenant",
+      "baseStats": {
+        "hp": 160,
+        "attack": 130,
+        "defense": 96,
+        "specialAttack": 85,
+        "specialDefense": 102,
+        "speed": 76
+      }
+    },
+    {
+      "species": "Tsareena",
+      "displayName": "Tsareena",
+      "baseStats": {
+        "hp": 147,
+        "attack": 140,
+        "defense": 118,
+        "specialAttack": 70,
+        "specialDefense": 118,
+        "speed": 92
+      }
+    },
+    {
+      "species": "Typhlosion",
+      "displayName": "Typhlosion",
+      "baseStats": {
+        "hp": 153,
+        "attack": 104,
+        "defense": 98,
+        "specialAttack": 129,
+        "specialDefense": 105,
+        "speed": 120
+      }
+    },
+    {
+      "species": "Tyrantrum",
+      "displayName": "Tyrantrum",
+      "baseStats": {
+        "hp": 157,
+        "attack": 141,
+        "defense": 139,
+        "specialAttack": 89,
+        "specialDefense": 79,
+        "speed": 91
+      }
+    },
+    {
+      "species": "Umbreon",
+      "displayName": "Umbreon",
+      "baseStats": {
+        "hp": 170,
+        "attack": 85,
+        "defense": 130,
+        "specialAttack": 80,
+        "specialDefense": 150,
+        "speed": 85
+      }
+    },
+    {
+      "species": "Vanilluxe",
+      "displayName": "Vanilluxe",
+      "baseStats": {
+        "hp": 146,
+        "attack": 115,
+        "defense": 105,
+        "specialAttack": 130,
+        "specialDefense": 115,
+        "speed": 99
+      }
+    },
+    {
+      "species": "Vaporeon",
+      "displayName": "Vaporeon",
+      "baseStats": {
+        "hp": 205,
+        "attack": 85,
+        "defense": 80,
+        "specialAttack": 130,
+        "specialDefense": 115,
+        "speed": 85
+      }
+    },
+    {
+      "species": "Victreebel",
+      "displayName": "Victreebel",
+      "baseStats": {
+        "hp": 155,
+        "attack": 125,
+        "defense": 85,
+        "specialAttack": 120,
+        "specialDefense": 90,
+        "speed": 90
+      }
+    },
+    {
+      "species": "Vivillon",
+      "displayName": "Vivillon",
+      "baseStats": {
+        "hp": 155,
+        "attack": 72,
+        "defense": 70,
+        "specialAttack": 110,
+        "specialDefense": 70,
+        "speed": 109
+      }
+    },
+    {
+      "species": "Volcarona",
+      "displayName": "Volcarona",
+      "baseStats": {
+        "hp": 160,
+        "attack": 80,
+        "defense": 85,
+        "specialAttack": 155,
+        "specialDefense": 125,
+        "speed": 120
+      }
+    },
+    {
+      "species": "Watchog",
+      "displayName": "Watchog",
+      "baseStats": {
+        "hp": 135,
+        "attack": 105,
+        "defense": 89,
+        "specialAttack": 80,
+        "specialDefense": 89,
+        "speed": 97
+      }
+    },
+    {
+      "species": "Weavile",
+      "displayName": "Weavile",
+      "baseStats": {
+        "hp": 145,
+        "attack": 140,
+        "defense": 85,
+        "specialAttack": 65,
+        "specialDefense": 105,
+        "speed": 145
+      }
+    },
+    {
+      "species": "Wyrdeer",
+      "displayName": "Wyrdeer",
+      "baseStats": {
+        "hp": 178,
+        "attack": 125,
+        "defense": 92,
+        "specialAttack": 125,
+        "specialDefense": 95,
+        "speed": 85
+      }
+    },
+    {
+      "species": "Zoroark",
+      "displayName": "Zoroark",
+      "baseStats": {
+        "hp": 135,
+        "attack": 125,
+        "defense": 80,
+        "specialAttack": 140,
+        "specialDefense": 80,
+        "speed": 125
+      }
+    }
+  ],
+  "pairs": [
+    {
+      "members": [
+        "Garchomp",
+        "Sneasler"
+      ],
+      "frequency": 0.2117,
+      "sampleSize": 2702
+    },
+    {
+      "members": [
+        "Kingambit",
+        "Sneasler"
+      ],
+      "frequency": 0.1953,
+      "sampleSize": 2493
+    },
+    {
+      "members": [
+        "Incineroar",
+        "Sneasler"
+      ],
+      "frequency": 0.1723,
+      "sampleSize": 2199
+    },
+    {
+      "members": [
+        "Basculegion (Male)",
+        "Sneasler"
+      ],
+      "frequency": 0.164,
+      "sampleSize": 2093
+    },
+    {
+      "members": [
+        "Garchomp",
+        "Incineroar"
+      ],
+      "frequency": 0.1484,
+      "sampleSize": 1894
+    },
+    {
+      "members": [
+        "Sinistcha",
+        "Incineroar"
+      ],
+      "frequency": 0.1479,
+      "sampleSize": 1888
+    },
+    {
+      "members": [
+        "Kingambit",
+        "Garchomp"
+      ],
+      "frequency": 0.1382,
+      "sampleSize": 1764
+    },
+    {
+      "members": [
+        "Aerodactyl",
+        "Sneasler"
+      ],
+      "frequency": 0.1345,
+      "sampleSize": 1717
+    },
+    {
+      "members": [
+        "Sinistcha",
+        "Sneasler"
+      ],
+      "frequency": 0.1286,
+      "sampleSize": 1641
+    },
+    {
+      "members": [
+        "Charizard",
+        "Garchomp"
+      ],
+      "frequency": 0.1256,
+      "sampleSize": 1603
+    },
+    {
+      "members": [
+        "Basculegion (Male)",
+        "Kingambit"
+      ],
+      "frequency": 0.1219,
+      "sampleSize": 1556
+    },
+    {
+      "members": [
+        "Charizard",
+        "Sneasler"
+      ],
+      "frequency": 0.1217,
+      "sampleSize": 1553
+    },
+    {
+      "members": [
+        "Aerodactyl",
+        "Garchomp"
+      ],
+      "frequency": 0.1117,
+      "sampleSize": 1426
+    },
+    {
+      "members": [
+        "Rotom (Wash Rotom)",
+        "Garchomp"
+      ],
+      "frequency": 0.1012,
+      "sampleSize": 1292
+    },
+    {
+      "members": [
+        "Charizard",
+        "Incineroar"
+      ],
+      "frequency": 0.0996,
+      "sampleSize": 1271
+    },
+    {
+      "members": [
+        "Aerodactyl",
+        "Kingambit"
+      ],
+      "frequency": 0.0948,
+      "sampleSize": 1210
+    },
+    {
+      "members": [
+        "Pelipper",
+        "Basculegion (Male)"
+      ],
+      "frequency": 0.0922,
+      "sampleSize": 1177
+    },
+    {
+      "members": [
+        "Basculegion (Male)",
+        "Garchomp"
+      ],
+      "frequency": 0.0897,
+      "sampleSize": 1145
+    },
+    {
+      "members": [
+        "Archaludon",
+        "Pelipper"
+      ],
+      "frequency": 0.0887,
+      "sampleSize": 1132
+    },
+    {
+      "members": [
+        "Basculegion (Male)",
+        "Incineroar"
+      ],
+      "frequency": 0.0792,
+      "sampleSize": 1011
+    },
+    {
+      "members": [
+        "Milotic",
+        "Sneasler"
+      ],
+      "frequency": 0.0781,
+      "sampleSize": 997
+    },
+    {
+      "members": [
+        "Rotom (Wash Rotom)",
+        "Sneasler"
+      ],
+      "frequency": 0.077,
+      "sampleSize": 983
+    },
+    {
+      "members": [
+        "Archaludon",
+        "Basculegion (Male)"
+      ],
+      "frequency": 0.0751,
+      "sampleSize": 959
+    },
+    {
+      "members": [
+        "Aerodactyl",
+        "Basculegion (Male)"
+      ],
+      "frequency": 0.0743,
+      "sampleSize": 948
+    },
+    {
+      "members": [
+        "Kingambit",
+        "Incineroar"
+      ],
+      "frequency": 0.0735,
+      "sampleSize": 938
+    },
+    {
+      "members": [
+        "Rotom (Wash Rotom)",
+        "Incineroar"
+      ],
+      "frequency": 0.0734,
+      "sampleSize": 937
+    },
+    {
+      "members": [
+        "Froslass",
+        "Sneasler"
+      ],
+      "frequency": 0.0731,
+      "sampleSize": 933
+    },
+    {
+      "members": [
+        "Venusaur",
+        "Garchomp"
+      ],
+      "frequency": 0.0726,
+      "sampleSize": 927
+    },
+    {
+      "members": [
+        "Whimsicott",
+        "Sneasler"
+      ],
+      "frequency": 0.0723,
+      "sampleSize": 923
+    },
+    {
+      "members": [
+        "Venusaur",
+        "Charizard"
+      ],
+      "frequency": 0.0712,
+      "sampleSize": 909
+    },
+    {
+      "members": [
+        "Venusaur",
+        "Incineroar"
+      ],
+      "frequency": 0.0707,
+      "sampleSize": 902
+    },
+    {
+      "members": [
+        "Aerodactyl",
+        "Incineroar"
+      ],
+      "frequency": 0.0705,
+      "sampleSize": 900
+    },
+    {
+      "members": [
+        "Whimsicott",
+        "Garchomp"
+      ],
+      "frequency": 0.0704,
+      "sampleSize": 899
+    },
+    {
+      "members": [
+        "Milotic",
+        "Incineroar"
+      ],
+      "frequency": 0.0699,
+      "sampleSize": 892
+    },
+    {
+      "members": [
+        "Tyranitar",
+        "Sinistcha"
+      ],
+      "frequency": 0.0686,
+      "sampleSize": 876
+    },
+    {
+      "members": [
+        "Milotic",
+        "Garchomp"
+      ],
+      "frequency": 0.0672,
+      "sampleSize": 858
+    },
+    {
+      "members": [
+        "Sinistcha",
+        "Kingambit"
+      ],
+      "frequency": 0.0656,
+      "sampleSize": 837
+    },
+    {
+      "members": [
+        "Pelipper",
+        "Sneasler"
+      ],
+      "frequency": 0.0653,
+      "sampleSize": 833
+    },
+    {
+      "members": [
+        "Milotic",
+        "Charizard"
+      ],
+      "frequency": 0.0632,
+      "sampleSize": 807
+    },
+    {
+      "members": [
+        "Whimsicott",
+        "Charizard"
+      ],
+      "frequency": 0.0594,
+      "sampleSize": 758
+    },
+    {
+      "members": [
+        "Excadrill",
+        "Tyranitar"
+      ],
+      "frequency": 0.0591,
+      "sampleSize": 754
+    },
+    {
+      "members": [
+        "Froslass",
+        "Kingambit"
+      ],
+      "frequency": 0.0583,
+      "sampleSize": 744
+    },
+    {
+      "members": [
+        "Sinistcha",
+        "Garchomp"
+      ],
+      "frequency": 0.0566,
+      "sampleSize": 722
+    },
+    {
+      "members": [
+        "Whimsicott",
+        "Incineroar"
+      ],
+      "frequency": 0.0565,
+      "sampleSize": 721
+    },
+    {
+      "members": [
+        "Sinistcha",
+        "Basculegion (Male)"
+      ],
+      "frequency": 0.0563,
+      "sampleSize": 719
+    },
+    {
+      "members": [
+        "Venusaur",
+        "Sneasler"
+      ],
+      "frequency": 0.0549,
+      "sampleSize": 701
+    },
+    {
+      "members": [
+        "Farigiraf",
+        "Sneasler"
+      ],
+      "frequency": 0.0548,
+      "sampleSize": 699
+    },
+    {
+      "members": [
+        "Gengar",
+        "Incineroar"
+      ],
+      "frequency": 0.054,
+      "sampleSize": 689
+    },
+    {
+      "members": [
+        "Farigiraf",
+        "Kingambit"
+      ],
+      "frequency": 0.0531,
+      "sampleSize": 678
+    },
+    {
+      "members": [
+        "Delphox",
+        "Sneasler"
+      ],
+      "frequency": 0.053,
+      "sampleSize": 676
+    },
+    {
+      "members": [
+        "Tyranitar",
+        "Incineroar"
+      ],
+      "frequency": 0.0526,
+      "sampleSize": 671
+    },
+    {
+      "members": [
+        "Pelipper",
+        "Incineroar"
+      ],
+      "frequency": 0.0511,
+      "sampleSize": 652
+    },
+    {
+      "members": [
+        "Dragonite",
+        "Sneasler"
+      ],
+      "frequency": 0.0502,
+      "sampleSize": 641
+    },
+    {
+      "members": [
+        "Farigiraf",
+        "Incineroar"
+      ],
+      "frequency": 0.05,
+      "sampleSize": 638
+    },
+    {
+      "members": [
+        "Aerodactyl",
+        "Sinistcha"
+      ],
+      "frequency": 0.0499,
+      "sampleSize": 637
+    },
+    {
+      "members": [
+        "Archaludon",
+        "Sneasler"
+      ],
+      "frequency": 0.0497,
+      "sampleSize": 634
+    },
+    {
+      "members": [
+        "Talonflame",
+        "Garchomp"
+      ],
+      "frequency": 0.0494,
+      "sampleSize": 631
+    },
+    {
+      "members": [
+        "Delphox",
+        "Garchomp"
+      ],
+      "frequency": 0.0491,
+      "sampleSize": 627
+    },
+    {
+      "members": [
+        "Froslass",
+        "Garchomp"
+      ],
+      "frequency": 0.049,
+      "sampleSize": 625
+    },
+    {
+      "members": [
+        "Dragonite",
+        "Basculegion (Male)"
+      ],
+      "frequency": 0.0485,
+      "sampleSize": 619
+    },
+    {
+      "members": [
+        "Pelipper",
+        "Sinistcha"
+      ],
+      "frequency": 0.0482,
+      "sampleSize": 615
+    },
+    {
+      "members": [
+        "Milotic",
+        "Sinistcha"
+      ],
+      "frequency": 0.0457,
+      "sampleSize": 583
+    },
+    {
+      "members": [
+        "Corviknight",
+        "Tyranitar"
+      ],
+      "frequency": 0.0455,
+      "sampleSize": 581
+    },
+    {
+      "members": [
+        "Tyranitar",
+        "Sneasler"
+      ],
+      "frequency": 0.0441,
+      "sampleSize": 563
+    },
+    {
+      "members": [
+        "Archaludon",
+        "Incineroar"
+      ],
+      "frequency": 0.0437,
+      "sampleSize": 558
+    },
+    {
+      "members": [
+        "Dragonite",
+        "Pelipper"
+      ],
+      "frequency": 0.0417,
+      "sampleSize": 532
+    },
+    {
+      "members": [
+        "Rotom (Wash Rotom)",
+        "Aerodactyl"
+      ],
+      "frequency": 0.0412,
+      "sampleSize": 526
+    },
+    {
+      "members": [
+        "Tyranitar",
+        "Rotom (Wash Rotom)"
+      ],
+      "frequency": 0.0412,
+      "sampleSize": 526
+    },
+    {
+      "members": [
+        "Delphox",
+        "Kingambit"
+      ],
+      "frequency": 0.0412,
+      "sampleSize": 526
+    },
+    {
+      "members": [
+        "Whimsicott",
+        "Kingambit"
+      ],
+      "frequency": 0.0396,
+      "sampleSize": 505
+    },
+    {
+      "members": [
+        "Aegislash",
+        "Garchomp"
+      ],
+      "frequency": 0.039,
+      "sampleSize": 498
+    },
+    {
+      "members": [
+        "Meganium",
+        "Sneasler"
+      ],
+      "frequency": 0.0382,
+      "sampleSize": 488
+    },
+    {
+      "members": [
+        "Rotom (Wash Rotom)",
+        "Kingambit"
+      ],
+      "frequency": 0.0377,
+      "sampleSize": 481
+    },
+    {
+      "members": [
+        "Meganium",
+        "Basculegion (Male)"
+      ],
+      "frequency": 0.0372,
+      "sampleSize": 475
+    },
+    {
+      "members": [
+        "Maushold",
+        "Garchomp"
+      ],
+      "frequency": 0.0369,
+      "sampleSize": 471
+    },
+    {
+      "members": [
+        "Archaludon",
+        "Sinistcha"
+      ],
+      "frequency": 0.0355,
+      "sampleSize": 453
+    },
+    {
+      "members": [
+        "Corviknight",
+        "Garchomp"
+      ],
+      "frequency": 0.0353,
+      "sampleSize": 451
+    },
+    {
+      "members": [
+        "Gardevoir",
+        "Garchomp"
+      ],
+      "frequency": 0.0345,
+      "sampleSize": 440
+    },
+    {
+      "members": [
+        "Venusaur",
+        "Milotic"
+      ],
+      "frequency": 0.0336,
+      "sampleSize": 429
+    },
+    {
+      "members": [
+        "Kommo-o",
+        "Incineroar"
+      ],
+      "frequency": 0.0336,
+      "sampleSize": 429
+    },
+    {
+      "members": [
+        "Torkoal",
+        "Farigiraf"
+      ],
+      "frequency": 0.0328,
+      "sampleSize": 419
+    },
+    {
+      "members": [
+        "Dragonite",
+        "Archaludon"
+      ],
+      "frequency": 0.0324,
+      "sampleSize": 414
+    },
+    {
+      "members": [
+        "Floette",
+        "Sneasler"
+      ],
+      "frequency": 0.0306,
+      "sampleSize": 391
+    },
+    {
+      "members": [
+        "Froslass",
+        "Basculegion (Male)"
+      ],
+      "frequency": 0.0302,
+      "sampleSize": 385
+    },
+    {
+      "members": [
+        "Excadrill",
+        "Sinistcha"
+      ],
+      "frequency": 0.0299,
+      "sampleSize": 382
+    },
+    {
+      "members": [
+        "Dragonite",
+        "Incineroar"
+      ],
+      "frequency": 0.0296,
+      "sampleSize": 378
+    },
+    {
+      "members": [
+        "Floette",
+        "Incineroar"
+      ],
+      "frequency": 0.0293,
+      "sampleSize": 374
+    },
+    {
+      "members": [
+        "Floette",
+        "Garchomp"
+      ],
+      "frequency": 0.0292,
+      "sampleSize": 373
+    },
+    {
+      "members": [
+        "Farigiraf",
+        "Garchomp"
+      ],
+      "frequency": 0.0286,
+      "sampleSize": 365
+    },
+    {
+      "members": [
+        "Scizor",
+        "Sneasler"
+      ],
+      "frequency": 0.0286,
+      "sampleSize": 365
+    },
+    {
+      "members": [
+        "Corviknight",
+        "Rotom (Wash Rotom)"
+      ],
+      "frequency": 0.0284,
+      "sampleSize": 362
+    },
+    {
+      "members": [
+        "Farigiraf",
+        "Charizard"
+      ],
+      "frequency": 0.0281,
+      "sampleSize": 359
+    },
+    {
+      "members": [
+        "Meganium",
+        "Aerodactyl"
+      ],
+      "frequency": 0.0274,
+      "sampleSize": 350
+    },
+    {
+      "members": [
+        "Talonflame",
+        "Kingambit"
+      ],
+      "frequency": 0.0273,
+      "sampleSize": 348
+    },
+    {
+      "members": [
+        "Scizor",
+        "Incineroar"
+      ],
+      "frequency": 0.0273,
+      "sampleSize": 348
+    },
+    {
+      "members": [
+        "Dragonite",
+        "Kingambit"
+      ],
+      "frequency": 0.0269,
+      "sampleSize": 343
+    },
+    {
+      "members": [
+        "Aegislash",
+        "Incineroar"
+      ],
+      "frequency": 0.0263,
+      "sampleSize": 336
+    },
+    {
+      "members": [
+        "Froslass",
+        "Incineroar"
+      ],
+      "frequency": 0.0262,
+      "sampleSize": 334
+    },
+    {
+      "members": [
+        "Delphox",
+        "Aerodactyl"
+      ],
+      "frequency": 0.0262,
+      "sampleSize": 334
+    },
+    {
+      "members": [
+        "Whimsicott",
+        "Basculegion (Male)"
+      ],
+      "frequency": 0.0259,
+      "sampleSize": 331
+    },
+    {
+      "members": [
+        "Excadrill",
+        "Rotom (Wash Rotom)"
+      ],
+      "frequency": 0.0258,
+      "sampleSize": 329
+    },
+    {
+      "members": [
+        "Aegislash",
+        "Aerodactyl"
+      ],
+      "frequency": 0.0256,
+      "sampleSize": 327
+    },
+    {
+      "members": [
+        "Torkoal",
+        "Incineroar"
+      ],
+      "frequency": 0.0256,
+      "sampleSize": 327
+    },
+    {
+      "members": [
+        "Excadrill",
+        "Corviknight"
+      ],
+      "frequency": 0.0246,
+      "sampleSize": 314
+    },
+    {
+      "members": [
+        "Meganium",
+        "Pelipper"
+      ],
+      "frequency": 0.0246,
+      "sampleSize": 314
+    },
+    {
+      "members": [
+        "Gengar",
+        "Sinistcha"
+      ],
+      "frequency": 0.0244,
+      "sampleSize": 311
+    },
+    {
+      "members": [
+        "Talonflame",
+        "Sneasler"
+      ],
+      "frequency": 0.0244,
+      "sampleSize": 311
+    },
+    {
+      "members": [
+        "Scizor",
+        "Sinistcha"
+      ],
+      "frequency": 0.0244,
+      "sampleSize": 311
+    },
+    {
+      "members": [
+        "Kommo-o",
+        "Sinistcha"
+      ],
+      "frequency": 0.0243,
+      "sampleSize": 310
+    },
+    {
+      "members": [
+        "Maushold",
+        "Kingambit"
+      ],
+      "frequency": 0.0242,
+      "sampleSize": 309
+    },
+    {
+      "members": [
+        "Aegislash",
+        "Rotom (Wash Rotom)"
+      ],
+      "frequency": 0.0241,
+      "sampleSize": 308
+    },
+    {
+      "members": [
+        "Corviknight",
+        "Incineroar"
+      ],
+      "frequency": 0.0238,
+      "sampleSize": 304
+    },
+    {
+      "members": [
+        "Meganium",
+        "Archaludon"
+      ],
+      "frequency": 0.0238,
+      "sampleSize": 304
+    },
+    {
+      "members": [
+        "Scizor",
+        "Basculegion (Male)"
+      ],
+      "frequency": 0.0238,
+      "sampleSize": 304
+    },
+    {
+      "members": [
+        "Froslass",
+        "Aerodactyl"
+      ],
+      "frequency": 0.0236,
+      "sampleSize": 301
+    },
+    {
+      "members": [
+        "Aegislash",
+        "Sneasler"
+      ],
+      "frequency": 0.0231,
+      "sampleSize": 295
+    },
+    {
+      "members": [
+        "Gardevoir",
+        "Incineroar"
+      ],
+      "frequency": 0.023,
+      "sampleSize": 294
+    },
+    {
+      "members": [
+        "Delphox",
+        "Basculegion (Male)"
+      ],
+      "frequency": 0.0228,
+      "sampleSize": 291
+    },
+    {
+      "members": [
+        "Maushold",
+        "Sneasler"
+      ],
+      "frequency": 0.0227,
+      "sampleSize": 290
+    },
+    {
+      "members": [
+        "Excadrill",
+        "Incineroar"
+      ],
+      "frequency": 0.0224,
+      "sampleSize": 286
+    },
+    {
+      "members": [
+        "Corviknight",
+        "Sinistcha"
+      ],
+      "frequency": 0.0223,
+      "sampleSize": 285
+    },
+    {
+      "members": [
+        "Politoed",
+        "Incineroar"
+      ],
+      "frequency": 0.022,
+      "sampleSize": 281
+    },
+    {
+      "members": [
+        "Primarina",
+        "Sneasler"
+      ],
+      "frequency": 0.0219,
+      "sampleSize": 280
+    },
+    {
+      "members": [
+        "Kommo-o",
+        "Gengar"
+      ],
+      "frequency": 0.0218,
+      "sampleSize": 278
+    },
+    {
+      "members": [
+        "Gengar",
+        "Kingambit"
+      ],
+      "frequency": 0.0213,
+      "sampleSize": 272
+    },
+    {
+      "members": [
+        "Maushold",
+        "Basculegion (Male)"
+      ],
+      "frequency": 0.0213,
+      "sampleSize": 272
+    },
+    {
+      "members": [
+        "Gardevoir",
+        "Kingambit"
+      ],
+      "frequency": 0.0213,
+      "sampleSize": 272
+    },
+    {
+      "members": [
+        "Primarina",
+        "Incineroar"
+      ],
+      "frequency": 0.0213,
+      "sampleSize": 272
+    },
+    {
+      "members": [
+        "Meganium",
+        "Kingambit"
+      ],
+      "frequency": 0.021,
+      "sampleSize": 268
+    },
+    {
+      "members": [
+        "Floette",
+        "Sinistcha"
+      ],
+      "frequency": 0.021,
+      "sampleSize": 268
+    },
+    {
+      "members": [
+        "Scizor",
+        "Pelipper"
+      ],
+      "frequency": 0.0209,
+      "sampleSize": 267
+    },
+    {
+      "members": [
+        "Floette",
+        "Aerodactyl"
+      ],
+      "frequency": 0.0209,
+      "sampleSize": 267
+    },
+    {
+      "members": [
+        "Maushold",
+        "Incineroar"
+      ],
+      "frequency": 0.0208,
+      "sampleSize": 265
+    },
+    {
+      "members": [
+        "Talonflame",
+        "Rotom (Wash Rotom)"
+      ],
+      "frequency": 0.0207,
+      "sampleSize": 264
+    },
+    {
+      "members": [
+        "Venusaur",
+        "Rotom (Wash Rotom)"
+      ],
+      "frequency": 0.0198,
+      "sampleSize": 253
+    },
+    {
+      "members": [
+        "Maushold",
+        "Talonflame"
+      ],
+      "frequency": 0.0198,
+      "sampleSize": 253
+    },
+    {
+      "members": [
+        "Floette",
+        "Kingambit"
+      ],
+      "frequency": 0.0198,
+      "sampleSize": 253
+    },
+    {
+      "members": [
+        "Gardevoir",
+        "Sneasler"
+      ],
+      "frequency": 0.0197,
+      "sampleSize": 251
+    },
+    {
+      "members": [
+        "Politoed",
+        "Gengar"
+      ],
+      "frequency": 0.0184,
+      "sampleSize": 235
+    },
+    {
+      "members": [
+        "Talonflame",
+        "Basculegion (Male)"
+      ],
+      "frequency": 0.0179,
+      "sampleSize": 228
+    },
+    {
+      "members": [
+        "Aegislash",
+        "Milotic"
+      ],
+      "frequency": 0.0178,
+      "sampleSize": 227
+    },
+    {
+      "members": [
+        "Gengar",
+        "Sneasler"
+      ],
+      "frequency": 0.0176,
+      "sampleSize": 225
+    },
+    {
+      "members": [
+        "Primarina",
+        "Garchomp"
+      ],
+      "frequency": 0.0176,
+      "sampleSize": 225
+    },
+    {
+      "members": [
+        "Kommo-o",
+        "Kingambit"
+      ],
+      "frequency": 0.017,
+      "sampleSize": 217
+    },
+    {
+      "members": [
+        "Arcanine (Hisuian Form)",
+        "Sneasler"
+      ],
+      "frequency": 0.017,
+      "sampleSize": 217
+    },
+    {
+      "members": [
+        "Gardevoir",
+        "Talonflame"
+      ],
+      "frequency": 0.0166,
+      "sampleSize": 212
+    },
+    {
+      "members": [
+        "Scovillain",
+        "Sneasler"
+      ],
+      "frequency": 0.0165,
+      "sampleSize": 211
+    },
+    {
+      "members": [
+        "Delphox",
+        "Rotom (Wash Rotom)"
+      ],
+      "frequency": 0.016,
+      "sampleSize": 204
+    },
+    {
+      "members": [
+        "Primarina",
+        "Sinistcha"
+      ],
+      "frequency": 0.016,
+      "sampleSize": 204
+    },
+    {
+      "members": [
+        "Ninetales (Alolan Form)",
+        "Incineroar"
+      ],
+      "frequency": 0.0159,
+      "sampleSize": 203
+    },
+    {
+      "members": [
+        "Kangaskhan",
+        "Aerodactyl"
+      ],
+      "frequency": 0.0158,
+      "sampleSize": 202
+    },
+    {
+      "members": [
+        "Primarina",
+        "Kingambit"
+      ],
+      "frequency": 0.0156,
+      "sampleSize": 199
+    },
+    {
+      "members": [
+        "Rotom (Heat Rotom)",
+        "Garchomp"
+      ],
+      "frequency": 0.0155,
+      "sampleSize": 198
+    },
+    {
+      "members": [
+        "Clefable",
+        "Sneasler"
+      ],
+      "frequency": 0.0155,
+      "sampleSize": 198
+    },
+    {
+      "members": [
+        "Scizor",
+        "Archaludon"
+      ],
+      "frequency": 0.0154,
+      "sampleSize": 197
+    },
+    {
+      "members": [
+        "Rotom (Heat Rotom)",
+        "Tyranitar"
+      ],
+      "frequency": 0.0154,
+      "sampleSize": 197
+    },
+    {
+      "members": [
+        "Arcanine (Hisuian Form)",
+        "Froslass"
+      ],
+      "frequency": 0.0153,
+      "sampleSize": 195
+    },
+    {
+      "members": [
+        "Excadrill",
+        "Sneasler"
+      ],
+      "frequency": 0.0152,
+      "sampleSize": 194
+    },
+    {
+      "members": [
+        "Clefable",
+        "Kingambit"
+      ],
+      "frequency": 0.0151,
+      "sampleSize": 193
+    },
+    {
+      "members": [
+        "Blastoise",
+        "Sinistcha"
+      ],
+      "frequency": 0.015,
+      "sampleSize": 191
+    },
+    {
+      "members": [
+        "Primarina",
+        "Tyranitar"
+      ],
+      "frequency": 0.0149,
+      "sampleSize": 190
+    },
+    {
+      "members": [
+        "Gardevoir",
+        "Maushold"
+      ],
+      "frequency": 0.0148,
+      "sampleSize": 189
+    },
+    {
+      "members": [
+        "Politoed",
+        "Basculegion (Male)"
+      ],
+      "frequency": 0.0148,
+      "sampleSize": 189
+    },
+    {
+      "members": [
+        "Politoed",
+        "Archaludon"
+      ],
+      "frequency": 0.0147,
+      "sampleSize": 188
+    },
+    {
+      "members": [
+        "Torkoal",
+        "Kingambit"
+      ],
+      "frequency": 0.0145,
+      "sampleSize": 185
+    },
+    {
+      "members": [
+        "Torkoal",
+        "Venusaur"
+      ],
+      "frequency": 0.0145,
+      "sampleSize": 185
+    },
+    {
+      "members": [
+        "Aggron",
+        "Sinistcha"
+      ],
+      "frequency": 0.0144,
+      "sampleSize": 184
+    },
+    {
+      "members": [
+        "Ninetales (Alolan Form)",
+        "Sneasler"
+      ],
+      "frequency": 0.0143,
+      "sampleSize": 183
+    },
+    {
+      "members": [
+        "Palafin",
+        "Incineroar"
+      ],
+      "frequency": 0.0143,
+      "sampleSize": 183
+    },
+    {
+      "members": [
+        "Kommo-o",
+        "Tyranitar"
+      ],
+      "frequency": 0.0139,
+      "sampleSize": 177
+    },
+    {
+      "members": [
+        "Palafin",
+        "Sinistcha"
+      ],
+      "frequency": 0.0138,
+      "sampleSize": 176
+    },
+    {
+      "members": [
+        "Scovillain",
+        "Aerodactyl"
+      ],
+      "frequency": 0.0132,
+      "sampleSize": 168
+    },
+    {
+      "members": [
+        "Arcanine (Hisuian Form)",
+        "Kingambit"
+      ],
+      "frequency": 0.013,
+      "sampleSize": 166
+    },
+    {
+      "members": [
+        "Dragapult",
+        "Sneasler"
+      ],
+      "frequency": 0.0128,
+      "sampleSize": 163
+    },
+    {
+      "members": [
+        "Politoed",
+        "Sinistcha"
+      ],
+      "frequency": 0.0127,
+      "sampleSize": 162
+    },
+    {
+      "members": [
+        "Clefable",
+        "Delphox"
+      ],
+      "frequency": 0.0126,
+      "sampleSize": 161
+    },
+    {
+      "members": [
+        "Scovillain",
+        "Basculegion (Male)"
+      ],
+      "frequency": 0.0123,
+      "sampleSize": 157
+    },
+    {
+      "members": [
+        "Gyarados",
+        "Garchomp"
+      ],
+      "frequency": 0.0123,
+      "sampleSize": 157
+    },
+    {
+      "members": [
+        "Torkoal",
+        "Sneasler"
+      ],
+      "frequency": 0.0122,
+      "sampleSize": 156
+    },
+    {
+      "members": [
+        "Scovillain",
+        "Kingambit"
+      ],
+      "frequency": 0.0121,
+      "sampleSize": 154
+    },
+    {
+      "members": [
+        "Sylveon",
+        "Garchomp"
+      ],
+      "frequency": 0.0119,
+      "sampleSize": 152
+    },
+    {
+      "members": [
+        "Sylveon",
+        "Incineroar"
+      ],
+      "frequency": 0.0118,
+      "sampleSize": 151
+    },
+    {
+      "members": [
+        "Torkoal",
+        "Golurk"
+      ],
+      "frequency": 0.0117,
+      "sampleSize": 149
+    },
+    {
+      "members": [
+        "Clefable",
+        "Basculegion (Male)"
+      ],
+      "frequency": 0.0113,
+      "sampleSize": 144
+    },
+    {
+      "members": [
+        "Kommo-o",
+        "Basculegion (Male)"
+      ],
+      "frequency": 0.0112,
+      "sampleSize": 143
+    },
+    {
+      "members": [
+        "Kangaskhan",
+        "Garchomp"
+      ],
+      "frequency": 0.0112,
+      "sampleSize": 143
+    },
+    {
+      "members": [
+        "Palafin",
+        "Sneasler"
+      ],
+      "frequency": 0.0112,
+      "sampleSize": 143
+    },
+    {
+      "members": [
+        "Politoed",
+        "Sneasler"
+      ],
+      "frequency": 0.0111,
+      "sampleSize": 142
+    },
+    {
+      "members": [
+        "Glimmora",
+        "Incineroar"
+      ],
+      "frequency": 0.011,
+      "sampleSize": 140
+    },
+    {
+      "members": [
+        "Kangaskhan",
+        "Incineroar"
+      ],
+      "frequency": 0.0108,
+      "sampleSize": 138
+    },
+    {
+      "members": [
+        "Rotom (Heat Rotom)",
+        "Sneasler"
+      ],
+      "frequency": 0.0107,
+      "sampleSize": 137
+    },
+    {
+      "members": [
+        "Gyarados",
+        "Sneasler"
+      ],
+      "frequency": 0.0107,
+      "sampleSize": 137
+    },
+    {
+      "members": [
+        "Kangaskhan",
+        "Sneasler"
+      ],
+      "frequency": 0.0106,
+      "sampleSize": 135
+    },
+    {
+      "members": [
+        "Aggron",
+        "Incineroar"
+      ],
+      "frequency": 0.0106,
+      "sampleSize": 135
+    },
+    {
+      "members": [
+        "Glimmora",
+        "Basculegion (Male)"
+      ],
+      "frequency": 0.0105,
+      "sampleSize": 134
+    },
+    {
+      "members": [
+        "Rotom (Heat Rotom)",
+        "Corviknight"
+      ],
+      "frequency": 0.0105,
+      "sampleSize": 134
+    },
+    {
+      "members": [
+        "Sylveon",
+        "Sneasler"
+      ],
+      "frequency": 0.0104,
+      "sampleSize": 133
+    },
+    {
+      "members": [
+        "Hydreigon",
+        "Tyranitar"
+      ],
+      "frequency": 0.0104,
+      "sampleSize": 133
+    },
+    {
+      "members": [
+        "Arcanine (Hisuian Form)",
+        "Sinistcha"
+      ],
+      "frequency": 0.0104,
+      "sampleSize": 133
+    },
+    {
+      "members": [
+        "Ninetales (Alolan Form)",
+        "Garchomp"
+      ],
+      "frequency": 0.0102,
+      "sampleSize": 130
+    },
+    {
+      "members": [
+        "Blastoise",
+        "Farigiraf"
+      ],
+      "frequency": 0.0102,
+      "sampleSize": 130
+    },
+    {
+      "members": [
+        "Gyarados",
+        "Sinistcha"
+      ],
+      "frequency": 0.01,
+      "sampleSize": 128
+    },
+    {
+      "members": [
+        "Kangaskhan",
+        "Basculegion (Male)"
+      ],
+      "frequency": 0.0099,
+      "sampleSize": 126
+    },
+    {
+      "members": [
+        "Hydreigon",
+        "Rotom (Wash Rotom)"
+      ],
+      "frequency": 0.0099,
+      "sampleSize": 126
+    },
+    {
+      "members": [
+        "Glimmora",
+        "Whimsicott"
+      ],
+      "frequency": 0.0098,
+      "sampleSize": 125
+    },
+    {
+      "members": [
+        "Sableye",
+        "Archaludon"
+      ],
+      "frequency": 0.0097,
+      "sampleSize": 124
+    },
+    {
+      "members": [
+        "Hydreigon",
+        "Corviknight"
+      ],
+      "frequency": 0.0096,
+      "sampleSize": 123
+    },
+    {
+      "members": [
+        "Palafin",
+        "Kingambit"
+      ],
+      "frequency": 0.0095,
+      "sampleSize": 121
+    },
+    {
+      "members": [
+        "Hydreigon",
+        "Excadrill"
+      ],
+      "frequency": 0.0095,
+      "sampleSize": 121
+    },
+    {
+      "members": [
+        "Sableye",
+        "Basculegion (Male)"
+      ],
+      "frequency": 0.0095,
+      "sampleSize": 121
+    },
+    {
+      "members": [
+        "Sylveon",
+        "Aerodactyl"
+      ],
+      "frequency": 0.0092,
+      "sampleSize": 117
+    },
+    {
+      "members": [
+        "Clefable",
+        "Garchomp"
+      ],
+      "frequency": 0.0091,
+      "sampleSize": 116
+    },
+    {
+      "members": [
+        "Blastoise",
+        "Kingambit"
+      ],
+      "frequency": 0.009,
+      "sampleSize": 115
+    },
+    {
+      "members": [
+        "Ninetales (Alolan Form)",
+        "Sinistcha"
+      ],
+      "frequency": 0.0089,
+      "sampleSize": 114
+    },
+    {
+      "members": [
+        "Glimmora",
+        "Garchomp"
+      ],
+      "frequency": 0.0089,
+      "sampleSize": 114
+    },
+    {
+      "members": [
+        "Blastoise",
+        "Sneasler"
+      ],
+      "frequency": 0.0089,
+      "sampleSize": 114
+    },
+    {
+      "members": [
+        "Hydreigon",
+        "Sneasler"
+      ],
+      "frequency": 0.0088,
+      "sampleSize": 112
+    },
+    {
+      "members": [
+        "Kangaskhan",
+        "Sinistcha"
+      ],
+      "frequency": 0.0087,
+      "sampleSize": 111
+    },
+    {
+      "members": [
+        "Ninetales (Alolan Form)",
+        "Kingambit"
+      ],
+      "frequency": 0.0086,
+      "sampleSize": 110
+    },
+    {
+      "members": [
+        "Glimmora",
+        "Sneasler"
+      ],
+      "frequency": 0.0085,
+      "sampleSize": 108
+    },
+    {
+      "members": [
+        "Sylveon",
+        "Sinistcha"
+      ],
+      "frequency": 0.0084,
+      "sampleSize": 107
+    },
+    {
+      "members": [
+        "Rotom (Heat Rotom)",
+        "Venusaur"
+      ],
+      "frequency": 0.0084,
+      "sampleSize": 107
+    },
+    {
+      "members": [
+        "Glimmora",
+        "Sinistcha"
+      ],
+      "frequency": 0.0083,
+      "sampleSize": 106
+    },
+    {
+      "members": [
+        "Rotom (Heat Rotom)",
+        "Sinistcha"
+      ],
+      "frequency": 0.0083,
+      "sampleSize": 106
+    },
+    {
+      "members": [
+        "Scovillain",
+        "Pelipper"
+      ],
+      "frequency": 0.0083,
+      "sampleSize": 106
+    },
+    {
+      "members": [
+        "Sableye",
+        "Pelipper"
+      ],
+      "frequency": 0.0083,
+      "sampleSize": 106
+    },
+    {
+      "members": [
+        "Palafin",
+        "Froslass"
+      ],
+      "frequency": 0.0081,
+      "sampleSize": 103
+    },
+    {
+      "members": [
+        "Dragapult",
+        "Incineroar"
+      ],
+      "frequency": 0.008,
+      "sampleSize": 102
+    },
+    {
+      "members": [
+        "Ninetales (Alolan Form)",
+        "Basculegion (Male)"
+      ],
+      "frequency": 0.0077,
+      "sampleSize": 98
+    },
+    {
+      "members": [
+        "Palafin",
+        "Gengar"
+      ],
+      "frequency": 0.0074,
+      "sampleSize": 94
+    },
+    {
+      "members": [
+        "Sylveon",
+        "Kingambit"
+      ],
+      "frequency": 0.007,
+      "sampleSize": 89
+    },
+    {
+      "members": [
+        "Scovillain",
+        "Garchomp"
+      ],
+      "frequency": 0.007,
+      "sampleSize": 89
+    },
+    {
+      "members": [
+        "Sableye",
+        "Sneasler"
+      ],
+      "frequency": 0.007,
+      "sampleSize": 89
+    },
+    {
+      "members": [
+        "Gyarados",
+        "Tyranitar"
+      ],
+      "frequency": 0.0069,
+      "sampleSize": 88
+    },
+    {
+      "members": [
+        "Hydreigon",
+        "Mimikyu"
+      ],
+      "frequency": 0.0068,
+      "sampleSize": 87
+    },
+    {
+      "members": [
+        "Dragapult",
+        "Kingambit"
+      ],
+      "frequency": 0.0066,
+      "sampleSize": 84
+    },
+    {
+      "members": [
+        "Clefable",
+        "Dragonite"
+      ],
+      "frequency": 0.0066,
+      "sampleSize": 84
+    },
+    {
+      "members": [
+        "Arcanine (Hisuian Form)",
+        "Palafin"
+      ],
+      "frequency": 0.0061,
+      "sampleSize": 78
+    },
+    {
+      "members": [
+        "Sableye",
+        "Sinistcha"
+      ],
+      "frequency": 0.006,
+      "sampleSize": 77
+    },
+    {
+      "members": [
+        "Dragapult",
+        "Tyranitar"
+      ],
+      "frequency": 0.0059,
+      "sampleSize": 75
+    },
+    {
+      "members": [
+        "Aggron",
+        "Sneasler"
+      ],
+      "frequency": 0.0059,
+      "sampleSize": 75
+    },
+    {
+      "members": [
+        "Blastoise",
+        "Incineroar"
+      ],
+      "frequency": 0.0057,
+      "sampleSize": 73
+    },
+    {
+      "members": [
+        "Blastoise",
+        "Garchomp"
+      ],
+      "frequency": 0.0057,
+      "sampleSize": 73
+    },
+    {
+      "members": [
+        "Dragapult",
+        "Rotom (Wash Rotom)"
+      ],
+      "frequency": 0.0056,
+      "sampleSize": 71
+    },
+    {
+      "members": [
+        "Dragapult",
+        "Whimsicott"
+      ],
+      "frequency": 0.0056,
+      "sampleSize": 71
+    },
+    {
+      "members": [
+        "Sableye",
+        "Incineroar"
+      ],
+      "frequency": 0.0056,
+      "sampleSize": 71
+    },
+    {
+      "members": [
+        "Gyarados",
+        "Kingambit"
+      ],
+      "frequency": 0.0053,
+      "sampleSize": 68
+    },
+    {
+      "members": [
+        "Aggron",
+        "Pelipper"
+      ],
+      "frequency": 0.0053,
+      "sampleSize": 68
+    },
+    {
+      "members": [
+        "Aggron",
+        "Basculegion (Male)"
+      ],
+      "frequency": 0.0051,
+      "sampleSize": 65
+    },
+    {
+      "members": [
+        "Gyarados",
+        "Incineroar"
+      ],
+      "frequency": 0.0049,
+      "sampleSize": 63
+    },
+    {
+      "members": [
+        "Aggron",
+        "Farigiraf"
+      ],
+      "frequency": 0.0046,
+      "sampleSize": 59
+    },
+    {
+      "members": [
+        "Arcanine (Hisuian Form)",
+        "Garchomp"
+      ],
+      "frequency": 0.0045,
+      "sampleSize": 57
+    }
+  ]
+}
