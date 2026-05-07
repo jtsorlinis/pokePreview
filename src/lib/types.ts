@@ -156,6 +156,26 @@ export interface ScoreReason {
   tone: 'positive' | 'warning' | 'neutral';
 }
 
+export interface OpponentBringFour {
+  members: string[];
+  score: number;
+  probability: number;
+  confidence: number;
+  reasons: string[];
+}
+
+export interface BenchNote {
+  pokemon: PokemonEntry;
+  reason: string;
+}
+
+export interface ModeCheck {
+  mode: string;
+  status: 'covered' | 'thin';
+  detail: string;
+  score: number;
+}
+
 export interface Recommendation extends BattlePlan {
   score: number;
   confidence: number;
@@ -167,6 +187,27 @@ export interface Recommendation extends BattlePlan {
     defense: number;
     speed: number;
     lead: number;
+    roles: number;
+    meta: number;
+  };
+}
+
+export interface BringRecommendation {
+  brought: PokemonEntry[];
+  score: number;
+  confidence: number;
+  tags: string[];
+  reasons: ScoreReason[];
+  warnings: string[];
+  opponentRead?: OpponentBringFour;
+  benchNotes: BenchNote[];
+  modeChecks: ModeCheck[];
+  breakdown: {
+    offense: number;
+    defense: number;
+    speed: number;
+    modes: number;
+    risk: number;
     roles: number;
     meta: number;
   };
@@ -224,6 +265,7 @@ export interface OpponentInference {
   formGuesses: OpponentFormGuess[];
   similarTeams: SimilarPublicTeam[];
   likelyLeadPairs: LikelyLeadPair[];
+  likelyBringFours: OpponentBringFour[];
   archetypes: string[];
   confidence: number;
 }

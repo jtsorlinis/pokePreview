@@ -56,5 +56,18 @@ describe('advisor app flow', () => {
     const list = await screen.findByTestId('recommendation-list');
     expect(within(list).getAllByRole('button').length).toBeGreaterThan(0);
     expect(screen.getByTestId('recommendation-detail')).toHaveTextContent(/confidence/i);
+    expect(screen.getByTestId('recommendation-detail')).toHaveTextContent(/selected four/i);
+    expect(screen.getByTestId('recommendation-detail')).toHaveTextContent(/opponent context read/i);
+    expect(screen.getByTestId('mode-checks')).toBeInTheDocument();
+    expect(screen.getByTestId('bench-notes')).toBeInTheDocument();
+    expect(screen.queryByText(/suggested lead/i)).not.toBeInTheDocument();
+
+    const leadOne = screen.getByLabelText('Lead 1');
+    const leadTwo = screen.getByLabelText('Lead 2');
+    const leadOptions = within(leadOne).getAllByRole('option');
+    fireEvent.change(leadOne, { target: { value: leadOptions[1].getAttribute('value') ?? '' } });
+    fireEvent.change(leadTwo, { target: { value: leadOptions[2].getAttribute('value') ?? '' } });
+    expect(screen.getByTestId('lead-assignment')).toHaveTextContent(/Back/i);
+    expect(screen.getByTestId('lead-assignment')).not.toHaveTextContent(/Choose two leads/i);
   });
 });

@@ -716,6 +716,108 @@ button {
   padding: 6px 9px;
 }
 
+.leadAssignment {
+  background: #fbfaf6;
+  border: 1px solid #e3dbcd;
+  border-radius: 8px;
+  display: grid;
+  gap: 10px;
+  margin: 0 0 14px;
+  padding: 10px;
+}
+
+.leadSelectors {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.backlineReadout {
+  align-items: center;
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+  padding-top: 9px;
+}
+
+.backlineReadout span {
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.backlineReadout strong {
+  font-size: 13px;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.selectionInsight,
+.selectionNotes {
+  background: #fbfaf6;
+  border: 1px solid #e3dbcd;
+  border-radius: 8px;
+  display: grid;
+  gap: 6px;
+  margin: 0 0 14px;
+  min-width: 0;
+  padding: 10px;
+}
+
+.selectionInsight span,
+.selectionNotes > span {
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.selectionInsight strong {
+  font-size: 13px;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.selectionInsight small,
+.noteItem small {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 750;
+  line-height: 1.35;
+}
+
+.noteGrid {
+  display: grid;
+  gap: 6px;
+}
+
+.noteItem {
+  border-left: 3px solid var(--gold);
+  display: grid;
+  gap: 3px;
+  padding-left: 9px;
+}
+
+.noteItem.covered {
+  border-left-color: var(--accent);
+}
+
+.noteItem.thin {
+  border-left-color: var(--danger);
+}
+
+.noteItem strong {
+  font-size: 12px;
+}
+
 .reasonItem {
   border-left: 3px solid var(--accent);
   padding-left: 10px;
@@ -994,7 +1096,8 @@ button {
 
   .entryGrid,
   .opponentColumn .entryGrid,
-  .movesGrid {
+  .movesGrid,
+  .leadSelectors {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
@@ -1036,7 +1139,8 @@ button {
   .entryTopline,
   .entryGrid,
   .opponentColumn .entryGrid,
-  .movesGrid {
+  .movesGrid,
+  .leadSelectors {
     grid-template-columns: 1fr;
   }
 

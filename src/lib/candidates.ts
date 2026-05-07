@@ -29,3 +29,14 @@ export const enumerateBattlePlans = (team: PokemonEntry[]): BattlePlan[] => {
     })
   );
 };
+
+export const enumerateBringFours = (team: PokemonEntry[]): BattlePlan[] => {
+  const available = filledEntries(team);
+  if (available.length < 4) return [];
+
+  return combinations(available, 4).map((brought) => ({
+    brought,
+    leads: [],
+    backs: []
+  }));
+};

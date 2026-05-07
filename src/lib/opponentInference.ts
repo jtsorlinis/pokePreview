@@ -1,8 +1,9 @@
-import { filledEntries } from './candidates';
+import { combinations, filledEntries } from './candidates';
 import { baseSpeciesForMega, findPair, findSpecies, indexedData, isMegaSpecies, normalizeKey } from './data';
 import type {
   IndexedData,
   LikelyLeadPair,
+  OpponentBringFour,
   OpponentFormGuess,
   OpponentInference,
   OpponentSetGuess,
@@ -45,7 +46,6 @@ const derivePreviewArchetypes = (speciesNames: string[]): string[] => {
   if (/(ninetalesalolanform|froslass|abomasnow)/.test(text)) archetypes.push('Snow');
   if (/(whimsicott|talonflame|aerodactyl|pelipper|charizard)/.test(text)) archetypes.push('Tailwind');
   if (/(farigiraf|sinistcha|hatterene|aromatisse|slowbro|slowking|oranguru)/.test(text)) archetypes.push('Trick Room');
-  if (/(glimmora)/.test(text)) archetypes.push('Hazard');
 
   return uniqueStrings(archetypes);
 };
@@ -185,7 +185,8 @@ const inferOpponentForms = (previewNames: string[], similarTeams: SimilarPublicT
     };
   });
 
-const tagSetFor = (species: string, data: IndexedData): Set<string> => new Set(findSpecies(species, data)?.roleTags ?? []);
+const tagSetFor = (species: string, data: IndexedData): Set<string> =>
+  new Set((findSpecies(species, data)?.roleTags ?? []).filter((tag) => tag !== 'hazard'));
 
 const itemLeadScore = (species: string, data: IndexedData): number => {
   const itemKeys = (findSpecies(species, data)?.commonItems ?? []).map(normalizeKey);
@@ -211,7 +212,6 @@ const individualLeadScore = (species: string, data: IndexedData): number => {
   if (tags.has('fake-out')) score += 0.9;
   if (tags.has('tailwind') || tags.has('trick-room')) score += 0.8;
   if (tags.has('speed-control')) score += 0.5;
-  if (tags.has('hazard')) score += 0.75;
   if (tags.has('weather')) score += 0.45;
   if (tags.has('intimidate')) score += 0.45;
   if (tags.has('redirection')) score += 0.35;
@@ -243,8 +243,8 @@ const pairSynergyScore = (first: string, second: string, data: IndexedData): num
   const pairText = normalizeKey(`${first} ${second}`);
   let score = 0;
 
-  if ((firstTags.has('fake-out') && (secondTags.has('tailwind') || secondTags.has('trick-room') || secondTags.has('hazard'))) ||
-      (secondTags.has('fake-out') && (firstTags.has('tailwind') || firstTags.has('trick-room') || firstTags.has('hazard')))) {
+  if ((firstTags.has('fake-out') && (secondTags.has('tailwind') || secondTags.has('trick-room'))) ||
+      (secondTags.has('fake-out') && (firstTags.has('tailwind') || firstTags.has('trick-room')))) {
     score += 1.2;
   }
   if (both.has('tailwind') && (firstTags.has('physical-attacker') || secondTags.has('physical-attacker') || firstTags.has('special-attacker') || secondTags.has('special-attacker'))) {
@@ -346,10 +346,135 @@ const buildLikelyLeadPairs = (previewNames: string[], similarTeams: SimilarPubli
     .sort((first, second) => second.probability - first.probability);
 };
 
+const groupHasAny = (members: string[], options: string[]): boolean => {
+  const memberKeys = new Set(members.map(normalizeKey));
+  return options.some((option) => memberKeys.has(normalizeKey(option)));
+};
+
+const modeCoreScore = (members: string[], archetypes: string[], data: IndexedData): { score: number; modes: string[] } => {
+  let score = 0;
+  const modes: string[] = [];
+
+  archetypes.forEach((archetype) => {
+    const key = normalizeKey(archetype);
+    if (
+      key === 'rain' &&
+      groupHasAny(members, ['Pelipper', 'Politoed']) &&
+      groupHasAny(members, ['Archaludon', 'Basculegion (Male)', 'Basculegion (Female)', 'Dragonite'])
+    ) {
+      score += 1.3;
+      modes.push('rain core');
+    }
+    if (
+      key === 'sun' &&
+      groupHasAny(members, ['Charizard', 'Torkoal', 'Ninetales']) &&
+      groupHasAny(members, ['Venusaur', 'Meganium', 'Typhlosion', 'Hatterene'])
+    ) {
+      score += 1.2;
+      modes.push('sun core');
+    }
+    if (key === 'sand' && groupHasAny(members, ['Tyranitar']) && groupHasAny(members, ['Excadrill'])) {
+      score += 1.35;
+      modes.push('sand core');
+    }
+    if (key === 'tailwind' && members.some((member) => tagSetFor(member, data).has('tailwind'))) {
+      score += 0.8;
+      modes.push('Tailwind');
+    }
+    if (key === 'trickroom' && members.some((member) => tagSetFor(member, data).has('trick-room'))) {
+      score += 0.8;
+      modes.push('Trick Room');
+    }
+  });
+
+  return { score, modes: uniqueStrings(modes) };
+};
+
+const similarFourEvidenceFor = (members: string[], similarTeams: SimilarPublicTeam[], data: IndexedData): { score: number; count: number } => {
+  const memberKeys = new Set(members.map((member) => previewKeyFor(member, data)));
+
+  return similarTeams.reduce(
+    (evidence, team) => {
+      const teamKeys = new Set(team.members.map((member) => previewKeyFor(member, data)));
+      const overlap = Array.from(memberKeys).filter((member) => teamKeys.has(member)).length;
+      if (overlap < Math.min(3, members.length)) return evidence;
+
+      const fullMatchBoost = overlap === members.length ? 2.2 : 0;
+      return {
+        score: evidence.score + team.score * (overlap / Math.max(members.length, 1)) + fullMatchBoost,
+        count: evidence.count + 1
+      };
+    },
+    { score: 0, count: 0 }
+  );
+};
+
+const buildLikelyBringFours = (
+  previewNames: string[],
+  similarTeams: SimilarPublicTeam[],
+  likelyLeadPairs: LikelyLeadPair[],
+  archetypes: string[],
+  data: IndexedData
+): OpponentBringFour[] => {
+  if (previewNames.length === 0) return [];
+
+  const groups = previewNames.length <= 4 ? [previewNames] : combinations(previewNames, 4);
+  const weightedGroups = groups.map((members) => {
+    const publicEvidence = similarFourEvidenceFor(members, similarTeams, data);
+    const modeEvidence = modeCoreScore(members, archetypes, data);
+    const leadEvidence = likelyLeadPairs
+      .filter((pair) => pair.members.every((member) => members.some((candidate) => previewKeyFor(candidate, data) === previewKeyFor(member, data))))
+      .reduce((total, pair) => total + pair.probability * clamp(pair.confidence + 0.25, 0.45, 1), 0);
+    const usagePrior = members.reduce((total, member) => total + (findSpecies(member, data)?.usage ?? 0.03), 0);
+    const roleSpread = new Set(members.flatMap((member) => Array.from(tagSetFor(member, data)))).size;
+    const rawScore =
+      publicEvidence.score * 0.58 +
+      leadEvidence * 6.5 +
+      modeEvidence.score * 1.35 +
+      usagePrior * 1.6 +
+      clamp(roleSpread / 10, 0, 1.3);
+    const weight = Math.exp(rawScore / 2.4);
+    const reasons: string[] = [];
+
+    if (publicEvidence.count > 0) reasons.push('similar public teams');
+    if (leadEvidence >= 0.08) reasons.push('likely lead pair included');
+    if (modeEvidence.modes.length) reasons.push(...modeEvidence.modes);
+    if (usagePrior >= 0.22) reasons.push('usage prior');
+
+    return {
+      members,
+      weight,
+      publicEvidence,
+      leadEvidence,
+      reasons: reasons.length ? uniqueStrings(reasons).slice(0, 4) : ['preview balance']
+    };
+  });
+
+  const totalWeight = weightedGroups.reduce((total, group) => total + group.weight, 0) || 1;
+
+  return weightedGroups
+    .map((group) => {
+      const probability = group.weight / totalWeight;
+
+      return {
+        members: group.members,
+        score: Math.round(probability * 1000) / 10,
+        probability,
+        confidence: clamp(
+          0.25 + probability * 0.5 + clamp(group.publicEvidence.score / 14, 0, 0.2) + clamp(group.leadEvidence * 0.45, 0, 0.18),
+          0.25,
+          0.88
+        ),
+        reasons: group.reasons
+      };
+    })
+    .sort((first, second) => second.probability - first.probability);
+};
+
 export const inferOpponentPreview = (opponents: PokemonEntry[], data: IndexedData = indexedData): OpponentInference => {
   const previewNames = uniqueStrings(visibleSpeciesNames(opponents, data));
   if (previewNames.length === 0) {
-    return { setGuesses: [], formGuesses: [], similarTeams: [], likelyLeadPairs: [], archetypes: [], confidence: 0 };
+    return { setGuesses: [], formGuesses: [], similarTeams: [], likelyLeadPairs: [], likelyBringFours: [], archetypes: [], confidence: 0 };
   }
 
   const similarTeams = (data.publicTeams ?? [])
@@ -366,25 +491,29 @@ export const inferOpponentPreview = (opponents: PokemonEntry[], data: IndexedDat
     });
   });
 
+  const archetypes = Array.from(archetypeScores.entries())
+    .sort((first, second) => second[1] - first[1])
+    .map(([archetype]) => archetype)
+    .slice(0, 5);
   const likelyLeadPairs = buildLikelyLeadPairs(previewNames, similarTeams, data);
+  const likelyBringFours = buildLikelyBringFours(previewNames, similarTeams, likelyLeadPairs, archetypes, data);
   const setGuesses = setGuessesFor(previewNames, similarTeams, data);
   const formGuesses = inferOpponentForms(previewNames, similarTeams, data);
   const publicSetCoverage = setGuesses.filter((guess) => guess.moves.length || guess.items.length).length / previewNames.length;
   const matchCoverage = similarTeams[0] ? similarTeams[0].overlap.length / previewNames.length : 0;
   const leadProbabilityConcentration = likelyLeadPairs[0]?.probability ?? 0;
   const leadEvidence = likelyLeadPairs[0]?.confidence ?? 0;
+  const bringEvidence = likelyBringFours[0]?.confidence ?? 0;
 
   return {
     setGuesses,
     formGuesses,
     similarTeams,
     likelyLeadPairs,
-    archetypes: Array.from(archetypeScores.entries())
-      .sort((first, second) => second[1] - first[1])
-      .map(([archetype]) => archetype)
-      .slice(0, 5),
+    likelyBringFours,
+    archetypes,
     confidence: clamp(
-      0.22 + publicSetCoverage * 0.2 + matchCoverage * 0.22 + leadProbabilityConcentration * 0.22 + leadEvidence * 0.14,
+      0.22 + publicSetCoverage * 0.18 + matchCoverage * 0.2 + leadProbabilityConcentration * 0.18 + leadEvidence * 0.12 + bringEvidence * 0.12,
       0.24,
       0.86
     )

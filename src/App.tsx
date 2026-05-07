@@ -19,16 +19,20 @@ import {
 import { abilityOptions, findSpecies, indexedData, moveOptions, normalizeKey, opponentSpeciesOptions, previewSpecies, speciesOptions } from './lib/data';
 import { filledEntries } from './lib/candidates';
 import { inferOpponentPreview } from './lib/opponentInference';
-import { recommendPlans } from './lib/scoring';
+import { recommendBringFours } from './lib/scoring';
 import { createBlankOpponentTeam, createBlankTeam, exportTeamJson, importTeamJson, loadSavedTeam, saveTeam } from './lib/storage';
 import { sampleOpponentTeam, samplePlayerTeam } from './lib/sampleTeams';
-import { BLANK_ENTRY, type OpponentInference, type PokemonEntry, type Recommendation } from './lib/types';
+import { BLANK_ENTRY, type BringRecommendation, type OpponentInference, type PokemonEntry } from './lib/types';
 
 const formatPercent = (value: number): string => `${Math.round(value * 100)}%`;
 
 const entryLabel = (pokemon: PokemonEntry): string => pokemon.species || 'Empty slot';
 
+const bringKey = (pokemon: PokemonEntry[]): string => pokemon.map((entry) => entry.id).sort().join('|');
+
 const AUTOCOMPLETE_LIMIT = 10;
+
+type LeadAssignment = [string, string];
 
 const autocompleteMatches = (options: string[], value: string): string[] => {
   const query = normalizeKey(value);
@@ -351,7 +355,7 @@ function RecommendationRow({
   selected,
   onSelect
 }: {
-  recommendation: Recommendation;
+  recommendation: BringRecommendation;
   rank: number;
   selected: boolean;
   onSelect: () => void;
@@ -360,8 +364,8 @@ function RecommendationRow({
     <button className={`recommendationRow ${selected ? 'isSelected' : ''}`} type="button" onClick={onSelect}>
       <span className="rank">{rank}</span>
       <span className="planNames">
-        <strong>{recommendation.leads.map(entryLabel).join(' + ')}</strong>
-        <small>Back: {recommendation.backs.map(entryLabel).join(' + ')}</small>
+        <strong>{recommendation.brought.map(entryLabel).join(' + ')}</strong>
+        <small>{recommendation.tags.length ? recommendation.tags.slice(0, 3).join(' · ') : 'Bring 4'}</small>
       </span>
       <span className="scorePill">{recommendation.score.toFixed(1)}</span>
       <span className="confidence">{formatPercent(recommendation.confidence)}</span>
@@ -382,7 +386,15 @@ function BreakdownBar({ label, value, max }: { label: string; value: number; max
   );
 }
 
-function DetailPanel({ recommendation }: { recommendation?: Recommendation }) {
+function DetailPanel({
+  recommendation,
+  leadAssignment,
+  onAssignLead
+}: {
+  recommendation?: BringRecommendation;
+  leadAssignment: LeadAssignment;
+  onAssignLead: (slotIndex: 0 | 1, pokemonId: string) => void;
+}) {
   if (!recommendation) {
     return (
       <section className="detailPanel emptyState" data-testid="empty-detail">
@@ -393,13 +405,17 @@ function DetailPanel({ recommendation }: { recommendation?: Recommendation }) {
     );
   }
 
+  const broughtIds = new Set(recommendation.brought.map((pokemon) => pokemon.id));
+  const selectedLeadIds = leadAssignment.filter((pokemonId) => broughtIds.has(pokemonId));
+  const selectedLeadIdSet = new Set(selectedLeadIds);
+  const backline = selectedLeadIds.length === 2 ? recommendation.brought.filter((pokemon) => !selectedLeadIdSet.has(pokemon.id)) : [];
+
   return (
     <section className="detailPanel" data-testid="recommendation-detail">
       <div className="detailHeader">
         <div>
-          <p className="eyebrow">Selected plan</p>
-          <h2>{recommendation.leads.map(entryLabel).join(' + ')}</h2>
-          <p>Back: {recommendation.backs.map(entryLabel).join(' + ')}</p>
+          <p className="eyebrow">Selected four</p>
+          <h2>{recommendation.brought.map(entryLabel).join(' + ')}</h2>
         </div>
         <div className="scoreBlock">
           <strong>{recommendation.score.toFixed(1)}</strong>
@@ -410,6 +426,75 @@ function DetailPanel({ recommendation }: { recommendation?: Recommendation }) {
       <div className="tagRail">
         {recommendation.tags.length ? recommendation.tags.map((tag) => <span key={tag}>{tag}</span>) : <span>Balanced</span>}
       </div>
+
+      {recommendation.opponentRead ? (
+        <div className="selectionInsight">
+          <span>Opponent context read</span>
+          <strong>{recommendation.opponentRead.members.join(' + ')}</strong>
+          <small>
+            Secondary {formatPercent(recommendation.opponentRead.probability)} read · {recommendation.opponentRead.reasons.slice(0, 2).join(', ')}
+          </small>
+        </div>
+      ) : null}
+
+      <div className="leadAssignment" data-testid="lead-assignment">
+        <div className="leadSelectors">
+          <label className="field">
+            <span>Lead 1</span>
+            <select aria-label="Lead 1" value={leadAssignment[0]} onChange={(event) => onAssignLead(0, event.target.value)}>
+              <option value="">Choose lead</option>
+              {recommendation.brought.map((pokemon) => (
+                <option disabled={pokemon.id === leadAssignment[1]} key={pokemon.id} value={pokemon.id}>
+                  {entryLabel(pokemon)}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label className="field">
+            <span>Lead 2</span>
+            <select aria-label="Lead 2" value={leadAssignment[1]} onChange={(event) => onAssignLead(1, event.target.value)}>
+              <option value="">Choose lead</option>
+              {recommendation.brought.map((pokemon) => (
+                <option disabled={pokemon.id === leadAssignment[0]} key={pokemon.id} value={pokemon.id}>
+                  {entryLabel(pokemon)}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
+        <div className="backlineReadout">
+          <span>Back</span>
+          <strong>{backline.length === 2 ? backline.map(entryLabel).join(' + ') : 'Choose two leads'}</strong>
+        </div>
+      </div>
+
+      {recommendation.modeChecks.length > 0 ? (
+        <div className="selectionNotes" data-testid="mode-checks">
+          <span>Mode checks</span>
+          <div className="noteGrid">
+            {recommendation.modeChecks.slice(0, 4).map((check) => (
+              <div className={`noteItem ${check.status}`} key={check.mode}>
+                <strong>{check.mode}</strong>
+                <small>{check.detail}</small>
+              </div>
+            ))}
+          </div>
+        </div>
+      ) : null}
+
+      {recommendation.benchNotes.length > 0 ? (
+        <div className="selectionNotes" data-testid="bench-notes">
+          <span>Bench notes</span>
+          <div className="noteGrid">
+            {recommendation.benchNotes.map((note) => (
+              <div className="noteItem" key={note.pokemon.id}>
+                <strong>{entryLabel(note.pokemon)}</strong>
+                <small>{note.reason}</small>
+              </div>
+            ))}
+          </div>
+        </div>
+      ) : null}
 
       <div className="reasonList">
         {recommendation.reasons.map((reason) => (
@@ -435,7 +520,8 @@ function DetailPanel({ recommendation }: { recommendation?: Recommendation }) {
         <BreakdownBar label="Offense" value={recommendation.breakdown.offense} max={28} />
         <BreakdownBar label="Defense" value={recommendation.breakdown.defense} max={24} />
         <BreakdownBar label="Speed" value={recommendation.breakdown.speed} max={18} />
-        <BreakdownBar label="Lead" value={recommendation.breakdown.lead} max={18} />
+        <BreakdownBar label="Modes" value={recommendation.breakdown.modes} max={12} />
+        {recommendation.breakdown.risk > 0 ? <BreakdownBar label="Risk" value={recommendation.breakdown.risk} max={12} /> : null}
         <BreakdownBar label="Roles" value={recommendation.breakdown.roles} max={17} />
         <BreakdownBar label="Meta" value={recommendation.breakdown.meta} max={10} />
       </div>
@@ -548,16 +634,19 @@ function App() {
   const [team, setTeam] = useState<PokemonEntry[]>(() => normalizeTeamLength(initialLoad.team, 'team'));
   const [opponents, setOpponents] = useState<PokemonEntry[]>(() => createBlankOpponentTeam());
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [leadAssignments, setLeadAssignments] = useState<Record<string, LeadAssignment>>({});
   const [activeTab, setActiveTab] = useState<'setup' | 'battle'>('setup');
   const [notice, setNotice] = useState(initialLoad.error ?? '');
   const importInputRef = useRef<HTMLInputElement>(null);
 
   const playerCount = filledEntries(team).length;
   const opponentCount = filledEntries(opponents).length;
-  const recommendations = useMemo(() => recommendPlans(team, opponents), [team, opponents]);
+  const recommendations = useMemo(() => recommendBringFours(team, opponents), [team, opponents]);
   const opponentIntel = useMemo(() => inferOpponentPreview(opponents), [opponents]);
   const topRecommendations = useMemo(() => recommendations.slice(0, 8), [recommendations]);
   const selectedRecommendation = topRecommendations[selectedIndex] ?? topRecommendations[0];
+  const selectedBringKey = selectedRecommendation ? bringKey(selectedRecommendation.brought) : '';
+  const selectedLeadAssignment: LeadAssignment = selectedBringKey ? leadAssignments[selectedBringKey] ?? ['', ''] : ['', ''];
   const canShowRecommendations = playerCount >= 4 && opponentCount >= 1;
 
   const setTeamEntry = (index: number, entry: PokemonEntry) => {
@@ -568,6 +657,28 @@ function App() {
   const setOpponentEntry = (index: number, entry: PokemonEntry) => {
     setOpponents((current) => current.map((item, itemIndex) => (itemIndex === index ? entry : item)));
     setSelectedIndex(0);
+  };
+
+  const assignLead = (slotIndex: 0 | 1, pokemonId: string) => {
+    if (!selectedRecommendation || !selectedBringKey) return;
+
+    const validIds = new Set(selectedRecommendation.brought.map((pokemon) => pokemon.id));
+    if (pokemonId && !validIds.has(pokemonId)) return;
+
+    setLeadAssignments((current) => {
+      const next: LeadAssignment = [...(current[selectedBringKey] ?? ['', ''])] as LeadAssignment;
+      const otherSlot = slotIndex === 0 ? 1 : 0;
+
+      if (pokemonId && next[otherSlot] === pokemonId) {
+        next[otherSlot] = '';
+      }
+      next[slotIndex] = pokemonId;
+
+      return {
+        ...current,
+        [selectedBringKey]: next
+      };
+    });
   };
 
   const handleSave = () => {
@@ -647,7 +758,7 @@ function App() {
         </div>
         <div>
           <BarChart3 size={18} />
-          <span>Candidate plans</span>
+          <span>Bring options</span>
           <strong>{recommendations.length}</strong>
         </div>
         <div>
@@ -780,7 +891,7 @@ function App() {
                 <div className="recommendationList" data-testid="recommendation-list">
                   {topRecommendations.map((recommendation, index) => (
                     <RecommendationRow
-                      key={`${recommendation.leads.map((pokemon) => pokemon.id).join('-')}-${recommendation.backs.map((pokemon) => pokemon.id).join('-')}`}
+                      key={bringKey(recommendation.brought)}
                       recommendation={recommendation}
                       rank={index + 1}
                       selected={index === selectedIndex}
@@ -796,7 +907,7 @@ function App() {
                 </div>
               )}
 
-              <DetailPanel recommendation={canShowRecommendations ? selectedRecommendation : undefined} />
+              <DetailPanel recommendation={canShowRecommendations ? selectedRecommendation : undefined} leadAssignment={selectedLeadAssignment} onAssignLead={assignLead} />
             </section>
           </div>
         </div>

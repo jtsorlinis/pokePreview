@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { recommendPlans } from '../src/lib/scoring';
+import { recommendBringFours, recommendPlans } from '../src/lib/scoring';
 import { sampleOpponentTeam, samplePlayerTeam } from '../src/lib/sampleTeams';
 import type { PokemonEntry } from '../src/lib/types';
 
@@ -28,6 +28,31 @@ describe('recommendation scoring', () => {
     expect(recommendations).toHaveLength(90);
     expect(recommendations[0].score).toBeGreaterThanOrEqual(recommendations.at(-1)!.score);
     expect(recommendations[0].reasons.length).toBeGreaterThan(0);
+  });
+
+  it('returns one ranked lead-free recommendation per bring-four group', () => {
+    const recommendations = recommendBringFours(samplePlayerTeam, sampleOpponentTeam);
+
+    expect(recommendations).toHaveLength(15);
+    expect(recommendations[0].brought).toHaveLength(4);
+    expect(Object.prototype.hasOwnProperty.call(recommendations[0], 'leads')).toBe(false);
+    expect(Object.prototype.hasOwnProperty.call(recommendations[0], 'backs')).toBe(false);
+    expect(recommendations[0].opponentRead?.members).toHaveLength(4);
+    expect(recommendations[0].benchNotes).toHaveLength(2);
+    expect(recommendations[0].modeChecks.length).toBeGreaterThan(0);
+    expect(recommendations[0].breakdown).toHaveProperty('modes');
+    expect(recommendations[0].breakdown).toHaveProperty('risk');
+    expect(recommendations[0].reasons.some((reason) => reason.label === 'Whole preview')).toBe(true);
+    expect(recommendations[0].score).toBeGreaterThanOrEqual(recommendations.at(-1)!.score);
+  });
+
+  it('adjusts the likely opposing four for the player matchup', () => {
+    const recommendations = recommendBringFours(samplePlayerTeam, sampleOpponentTeam);
+    const readMembers = new Set(recommendations[0].opponentRead?.members ?? []);
+
+    expect(readMembers.has('Tyranitar')).toBe(true);
+    expect(readMembers.has('Excadrill')).toBe(true);
+    expect(recommendations[0].opponentRead?.reasons).toContain('answers your sun mode');
   });
 
   it('prefers plans that bring clear offensive coverage', () => {
@@ -102,7 +127,7 @@ describe('recommendation scoring', () => {
     expect(dualMegaPlan!.warnings.some((warning) => warning.includes('Glimmora is scored as regular'))).toBe(true);
   });
 
-  it('surfaces Weavile plus Glimmora as a strong tempo lead', () => {
+  it('does not surface hazard pressure as a recommendation metric', () => {
     const tempoTeam = [
       { ...member('team-1', 'Weavile', ['Dark', 'Ice'], ['Fake Out', 'Triple Axel', 'Knock Off', 'Beat Up']), speedStat: 172 },
       {
@@ -116,14 +141,14 @@ describe('recommendation scoring', () => {
       member('team-6', 'Primarina', ['Water', 'Fairy'], ['Hyper Voice'])
     ];
 
-    const recommendations = recommendPlans(tempoTeam, sampleOpponentTeam);
-    const tempoLead = recommendations.slice(0, 8).find((recommendation) => {
-      const leadIds = new Set(recommendation.leads.map((pokemon) => pokemon.id));
-      return leadIds.has('team-1') && leadIds.has('team-2');
-    });
+    const recommendations = recommendBringFours(tempoTeam, sampleOpponentTeam);
+    const tags = recommendations.flatMap((recommendation) => recommendation.tags);
+    const modeNames = recommendations.flatMap((recommendation) => recommendation.modeChecks.map((check) => check.mode));
+    const reasonText = recommendations.flatMap((recommendation) => recommendation.reasons.map((reason) => `${reason.label} ${reason.detail}`));
 
-    expect(tempoLead).toBeDefined();
-    expect(tempoLead!.reasons.some((reason) => reason.label === 'Lead pressure')).toBe(true);
+    expect(tags).not.toContain('Hazard Pressure');
+    expect(modeNames).not.toContain('Hazard');
+    expect(reasonText.join(' ')).not.toMatch(/hazard pressure/i);
   });
 
   it('demotes Basculegion leads when public data expects Kingambit pressure', () => {

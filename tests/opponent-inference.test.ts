@@ -20,6 +20,9 @@ describe('opponent preview inference', () => {
     expect(intel.similarTeams[0].overlap.length).toBeGreaterThanOrEqual(4);
     expect(intel.likelyLeadPairs.length).toBeGreaterThan(0);
     expect(intel.likelyLeadPairs.reduce((total, pair) => total + pair.probability, 0)).toBeCloseTo(1, 5);
+    expect(intel.likelyBringFours.length).toBeGreaterThan(0);
+    expect(intel.likelyBringFours[0].members).toHaveLength(4);
+    expect(intel.likelyBringFours.reduce((total, group) => total + group.probability, 0)).toBeCloseTo(1, 5);
     expect(intel.confidence).toBeGreaterThan(0.45);
   });
 

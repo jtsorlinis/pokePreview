@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { enumerateBattlePlans } from '../src/lib/candidates';
+import { enumerateBattlePlans, enumerateBringFours } from '../src/lib/candidates';
 import { samplePlayerTeam } from '../src/lib/sampleTeams';
 
 describe('candidate generation', () => {
@@ -14,5 +14,13 @@ describe('candidate generation', () => {
 
   it('does not recommend plans until at least four team members are filled', () => {
     expect(enumerateBattlePlans(samplePlayerTeam.slice(0, 3))).toHaveLength(0);
+    expect(enumerateBringFours(samplePlayerTeam.slice(0, 3))).toHaveLength(0);
+  });
+
+  it('creates one lead-free candidate per bring-4 group', () => {
+    const bringFours = enumerateBringFours(samplePlayerTeam);
+
+    expect(bringFours).toHaveLength(15);
+    expect(bringFours.every((plan) => plan.brought.length === 4 && plan.leads.length === 0 && plan.backs.length === 0)).toBe(true);
   });
 });
