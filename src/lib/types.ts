@@ -169,7 +169,6 @@ export interface Recommendation extends BattlePlan {
     lead: number;
     roles: number;
     meta: number;
-    robustness: number;
   };
 }
 

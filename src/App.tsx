@@ -19,7 +19,7 @@ import {
 import { abilityOptions, findSpecies, indexedData, moveOptions, normalizeKey, opponentSpeciesOptions, previewSpecies, speciesOptions } from './lib/data';
 import { filledEntries } from './lib/candidates';
 import { inferOpponentPreview } from './lib/opponentInference';
-import { recommendPlans, selectRecommendationHighlights } from './lib/scoring';
+import { recommendPlans } from './lib/scoring';
 import { createBlankOpponentTeam, createBlankTeam, exportTeamJson, importTeamJson, loadSavedTeam, saveTeam } from './lib/storage';
 import { sampleOpponentTeam, samplePlayerTeam } from './lib/sampleTeams';
 import { BLANK_ENTRY, type OpponentInference, type PokemonEntry, type Recommendation } from './lib/types';
@@ -438,7 +438,6 @@ function DetailPanel({ recommendation }: { recommendation?: Recommendation }) {
         <BreakdownBar label="Lead" value={recommendation.breakdown.lead} max={18} />
         <BreakdownBar label="Roles" value={recommendation.breakdown.roles} max={17} />
         <BreakdownBar label="Meta" value={recommendation.breakdown.meta} max={10} />
-        <BreakdownBar label="Robust" value={recommendation.breakdown.robustness} max={18} />
       </div>
     </section>
   );
@@ -557,7 +556,7 @@ function App() {
   const opponentCount = filledEntries(opponents).length;
   const recommendations = useMemo(() => recommendPlans(team, opponents), [team, opponents]);
   const opponentIntel = useMemo(() => inferOpponentPreview(opponents), [opponents]);
-  const topRecommendations = useMemo(() => selectRecommendationHighlights(recommendations, 8), [recommendations]);
+  const topRecommendations = useMemo(() => recommendations.slice(0, 8), [recommendations]);
   const selectedRecommendation = topRecommendations[selectedIndex] ?? topRecommendations[0];
   const canShowRecommendations = playerCount >= 4 && opponentCount >= 1;
 

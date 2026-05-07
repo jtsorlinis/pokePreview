@@ -45,7 +45,7 @@ const derivePreviewArchetypes = (speciesNames: string[]): string[] => {
   if (/(ninetalesalolanform|froslass|abomasnow)/.test(text)) archetypes.push('Snow');
   if (/(whimsicott|talonflame|aerodactyl|pelipper|charizard)/.test(text)) archetypes.push('Tailwind');
   if (/(farigiraf|sinistcha|hatterene|aromatisse|slowbro|slowking|oranguru)/.test(text)) archetypes.push('Trick Room');
-  if ((/gengar/.test(text) && /politoed/.test(text)) || /(perishsong|shadowtag)/.test(text)) archetypes.push('Perish Trap');
+  if (/(glimmora)/.test(text)) archetypes.push('Hazard');
 
   return uniqueStrings(archetypes);
 };
@@ -81,15 +81,14 @@ const setTagsFrom = (moves: string[], abilities: string[], items: string[]): str
   if (moveKeys.includes('wideguard')) tags.push('wide-guard', 'support');
   if (moveKeys.some((move) => ['followme', 'ragepowder'].includes(move))) tags.push('redirection', 'support');
   if (moveKeys.some((move) => ['icywind', 'electroweb', 'scaryface', 'rocktomb'].includes(move))) tags.push('speed-control');
-  if (moveKeys.includes('perishsong')) tags.push('perish');
-  if (moveKeys.some((move) => ['encore', 'disable', 'taunt'].includes(move))) tags.push('disruption');
+  if (moveKeys.some((move) => ['mortalspin', 'toxicspikes', 'stealthrock', 'spikes'].includes(move))) tags.push('hazard');
   if (moveKeys.some((move) => ['rockslide', 'heatwave', 'muddywater', 'hypervoice', 'dazzlinggleam', 'eruption'].includes(move))) tags.push('spread');
   if (moveKeys.some((move) => ['suckerpunch', 'bulletpunch', 'iceshard', 'aquajet', 'extremespeed', 'shadowsneak'].includes(move))) tags.push('priority');
   if (moveKeys.some((move) => ['partingshot', 'uturn', 'voltswitch', 'flipturn'].includes(move))) tags.push('pivot');
   if (moveKeys.some((move) => ['lastrespects', 'supremeoverlord'].includes(move))) tags.push('late-game');
-  if (abilityKeys.includes('shadowtag')) tags.push('trap');
   if (abilityKeys.includes('intimidate')) tags.push('intimidate', 'pivot', 'support');
   if (abilityKeys.includes('prankster')) tags.push('support', 'speed-control');
+  if (abilityKeys.includes('toxicdebris')) tags.push('hazard');
   if (abilityKeys.includes('drought') || abilityKeys.includes('drizzle') || abilityKeys.includes('sandstream') || abilityKeys.includes('snowwarning')) tags.push('weather');
   if (itemKeys.some((item) => ['focussash', 'mentalherb', 'whiteherb'].includes(item))) tags.push('lead-pressure');
 
@@ -115,9 +114,7 @@ const setGuessesFor = (previewNames: string[], similarTeams: SimilarPublicTeam[]
         moves: uniqueStrings([...sheetMoves, ...meta.commonMoves]).slice(0, 5),
         items: uniqueStrings([...sheetItems, ...(meta.commonItems ?? [])]).slice(0, 4),
         abilities: uniqueStrings([...sheetAbilities, ...meta.abilities]).slice(0, 3),
-        tags: uniqueStrings([...setTagsFrom(sheetMoves, sheetAbilities, sheetItems), ...meta.roleTags])
-          .filter((tag) => tag !== 'hazard')
-          .slice(0, 5)
+        tags: uniqueStrings([...setTagsFrom(sheetMoves, sheetAbilities, sheetItems), ...meta.roleTags]).slice(0, 5)
       };
     })
     .filter((guess): guess is OpponentSetGuess => Boolean(guess));
@@ -188,11 +185,7 @@ const inferOpponentForms = (previewNames: string[], similarTeams: SimilarPublicT
     };
   });
 
-const tagSetFor = (species: string, data: IndexedData): Set<string> => {
-  const tags = new Set(findSpecies(species, data)?.roleTags ?? []);
-  tags.delete('hazard');
-  return tags;
-};
+const tagSetFor = (species: string, data: IndexedData): Set<string> => new Set(findSpecies(species, data)?.roleTags ?? []);
 
 const itemLeadScore = (species: string, data: IndexedData): number => {
   const itemKeys = (findSpecies(species, data)?.commonItems ?? []).map(normalizeKey);
@@ -218,6 +211,7 @@ const individualLeadScore = (species: string, data: IndexedData): number => {
   if (tags.has('fake-out')) score += 0.9;
   if (tags.has('tailwind') || tags.has('trick-room')) score += 0.8;
   if (tags.has('speed-control')) score += 0.5;
+  if (tags.has('hazard')) score += 0.75;
   if (tags.has('weather')) score += 0.45;
   if (tags.has('intimidate')) score += 0.45;
   if (tags.has('redirection')) score += 0.35;
@@ -249,8 +243,8 @@ const pairSynergyScore = (first: string, second: string, data: IndexedData): num
   const pairText = normalizeKey(`${first} ${second}`);
   let score = 0;
 
-  if ((firstTags.has('fake-out') && (secondTags.has('tailwind') || secondTags.has('trick-room'))) ||
-      (secondTags.has('fake-out') && (firstTags.has('tailwind') || firstTags.has('trick-room')))) {
+  if ((firstTags.has('fake-out') && (secondTags.has('tailwind') || secondTags.has('trick-room') || secondTags.has('hazard'))) ||
+      (secondTags.has('fake-out') && (firstTags.has('tailwind') || firstTags.has('trick-room') || firstTags.has('hazard')))) {
     score += 1.2;
   }
   if (both.has('tailwind') && (firstTags.has('physical-attacker') || secondTags.has('physical-attacker') || firstTags.has('special-attacker') || secondTags.has('special-attacker'))) {
@@ -372,12 +366,8 @@ export const inferOpponentPreview = (opponents: PokemonEntry[], data: IndexedDat
     });
   });
 
-  const setGuesses = setGuessesFor(previewNames, similarTeams, data);
-  if (setGuesses.some((guess) => guess.tags.includes('perish')) && setGuesses.some((guess) => guess.tags.includes('trap'))) {
-    archetypeScores.set('Perish Trap', (archetypeScores.get('Perish Trap') ?? 0) + 2.2);
-  }
-
   const likelyLeadPairs = buildLikelyLeadPairs(previewNames, similarTeams, data);
+  const setGuesses = setGuessesFor(previewNames, similarTeams, data);
   const formGuesses = inferOpponentForms(previewNames, similarTeams, data);
   const publicSetCoverage = setGuesses.filter((guess) => guess.moves.length || guess.items.length).length / previewNames.length;
   const matchCoverage = similarTeams[0] ? similarTeams[0].overlap.length / previewNames.length : 0;
