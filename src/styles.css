@@ -590,8 +590,8 @@ button {
   color: var(--ink);
   display: grid;
   gap: 10px;
-  grid-template-columns: 30px minmax(0, 1fr) 66px 48px;
-  min-height: 72px;
+  grid-template-columns: 30px minmax(0, 1fr) 66px 72px;
+  min-height: 86px;
   padding: 10px;
   text-align: left;
 }
@@ -619,21 +619,28 @@ button {
   min-width: 0;
 }
 
-.planNames strong,
-.planNames small {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
 .planNames strong {
+  display: -webkit-box;
+  overflow: hidden;
   font-size: 14px;
+  line-height: 1.18;
+  overflow-wrap: anywhere;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  white-space: normal;
 }
 
 .planNames small {
   color: var(--muted);
+  display: -webkit-box;
   font-size: 12px;
   font-weight: 700;
+  line-height: 1.25;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  white-space: normal;
 }
 
 .scorePill {
@@ -649,6 +656,7 @@ button {
   color: var(--muted);
   font-size: 12px;
   font-weight: 850;
+  line-height: 1.15;
   text-align: right;
 }
 

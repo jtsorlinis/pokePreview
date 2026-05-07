@@ -37,22 +37,27 @@ describe('recommendation scoring', () => {
     expect(recommendations[0].brought).toHaveLength(4);
     expect(Object.prototype.hasOwnProperty.call(recommendations[0], 'leads')).toBe(false);
     expect(Object.prototype.hasOwnProperty.call(recommendations[0], 'backs')).toBe(false);
-    expect(recommendations[0].opponentRead?.members).toHaveLength(4);
+    expect(Object.prototype.hasOwnProperty.call(recommendations[0], 'opponentRead')).toBe(false);
+    expect(recommendations[0].safestLeads).toHaveLength(2);
+    expect(recommendations[0].safestLeads.every((lead) => recommendations[0].brought.some((pokemon) => pokemon.id === lead.id))).toBe(true);
     expect(recommendations[0].benchNotes).toHaveLength(2);
     expect(recommendations[0].modeChecks.length).toBeGreaterThan(0);
     expect(recommendations[0].breakdown).toHaveProperty('modes');
-    expect(recommendations[0].breakdown).toHaveProperty('risk');
+    expect(recommendations[0].breakdown).not.toHaveProperty('risk');
     expect(recommendations[0].reasons.some((reason) => reason.label === 'Whole preview')).toBe(true);
     expect(recommendations[0].score).toBeGreaterThanOrEqual(recommendations.at(-1)!.score);
   });
 
-  it('adjusts the likely opposing four for the player matchup', () => {
+  it('scores bring-4 plans directly into the visible opposing six', () => {
     const recommendations = recommendBringFours(samplePlayerTeam, sampleOpponentTeam);
-    const readMembers = new Set(recommendations[0].opponentRead?.members ?? []);
 
-    expect(readMembers.has('Tyranitar')).toBe(true);
-    expect(readMembers.has('Excadrill')).toBe(true);
-    expect(recommendations[0].opponentRead?.reasons).toContain('answers your sun mode');
+    expect(recommendations[0].reasons).toContainEqual(
+      expect.objectContaining({
+        label: 'Whole preview',
+        detail: 'Scored into all 6 opposing preview slots.'
+      })
+    );
+    expect(recommendations[0].warnings.join(' ')).not.toMatch(/likely opposing four|lead risk|public data points/i);
   });
 
   it('prefers plans that bring clear offensive coverage', () => {
@@ -151,7 +156,29 @@ describe('recommendation scoring', () => {
     expect(reasonText.join(' ')).not.toMatch(/hazard pressure/i);
   });
 
-  it('demotes Basculegion leads when public data expects Kingambit pressure', () => {
+  it('demotes picks that are hard-countered by visible ability and type immunities', () => {
+    const basculegionTeam = [
+      { ...member('team-1', 'Basculegion (Male)', [], ['Last Respects', 'Aqua Jet', 'Wave Crash', 'Protect']), ability: 'Adaptability', speedStat: 78 },
+      member('team-2', 'Garchomp', [], ['Earthquake', 'Dragon Claw', 'Rock Slide', 'Protect']),
+      member('team-3', 'Sneasler', [], ['Close Combat', 'Dire Claw', 'Fake Out', 'Protect']),
+      member('team-4', 'Incineroar', [], ['Fake Out', 'Flare Blitz', 'Knock Off', 'Parting Shot']),
+      member('team-5', 'Venusaur', [], ['Giga Drain', 'Sludge Bomb', 'Sleep Powder', 'Protect']),
+      member('team-6', 'Primarina', [], ['Moonblast', 'Hyper Voice', 'Icy Wind', 'Protect'])
+    ];
+    const helioliskPreview = [opponent('Heliolisk', [])];
+
+    const recommendations = recommendBringFours(basculegionTeam, helioliskPreview);
+    const topNames = recommendations[0].brought.map((pokemon) => pokemon.species);
+    const basculegionPlan = recommendations.find((recommendation) =>
+      recommendation.brought.some((pokemon) => pokemon.species === 'Basculegion (Male)')
+    );
+
+    expect(topNames).not.toContain('Basculegion (Male)');
+    expect(basculegionPlan?.warnings.join(' ')).toMatch(/Basculegion \(Male\) into Heliolisk/);
+    expect(basculegionPlan?.reasons.some((reason) => reason.label === 'Hard counter risk')).toBe(true);
+  });
+
+  it('does not demote leads from predicted opposing lead pairs', () => {
     const basculegionTeam = [
       member('team-1', 'Basculegion (Male)', [], ['Last Respects', 'Aqua Jet', 'Wave Crash', 'Protect']),
       member('team-2', 'Incineroar', [], ['Fake Out', 'Parting Shot', 'Flare Blitz', 'Throat Chop']),
@@ -165,12 +192,11 @@ describe('recommendation scoring', () => {
     );
 
     const recommendations = recommendPlans(basculegionTeam, kingambitPreview);
-    const topLeadNames = recommendations.slice(0, 8).map((recommendation) => recommendation.leads.map((pokemon) => pokemon.species));
     const firstBasculegionLead = recommendations.find((recommendation) =>
       recommendation.leads.some((pokemon) => pokemon.species === 'Basculegion (Male)')
     );
 
-    expect(topLeadNames.flat()).not.toContain('Basculegion (Male)');
-    expect(firstBasculegionLead?.warnings.some((warning) => warning.includes('Basculegion (Male) into Kingambit'))).toBe(true);
+    expect(firstBasculegionLead).toBeDefined();
+    expect(recommendations.flatMap((recommendation) => recommendation.warnings).join(' ')).not.toMatch(/likely lead|public data points|lead counter risk/i);
   });
 });

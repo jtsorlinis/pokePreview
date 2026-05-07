@@ -55,9 +55,11 @@ describe('advisor app flow', () => {
 
     const list = await screen.findByTestId('recommendation-list');
     expect(within(list).getAllByRole('button').length).toBeGreaterThan(0);
-    expect(screen.getByTestId('recommendation-detail')).toHaveTextContent(/confidence/i);
+    expect(within(list).getAllByText(/Safest leads:/i).length).toBeGreaterThan(0);
+    expect(screen.getByTestId('recommendation-detail')).toHaveTextContent(/data support/i);
     expect(screen.getByTestId('recommendation-detail')).toHaveTextContent(/selected four/i);
-    expect(screen.getByTestId('recommendation-detail')).toHaveTextContent(/opponent context read/i);
+    expect(screen.getByTestId('recommendation-detail')).not.toHaveTextContent(/opponent context read/i);
+    expect(screen.queryByTestId('opponent-intel')).not.toBeInTheDocument();
     expect(screen.getByTestId('mode-checks')).toBeInTheDocument();
     expect(screen.getByTestId('bench-notes')).toBeInTheDocument();
     expect(screen.queryByText(/suggested lead/i)).not.toBeInTheDocument();

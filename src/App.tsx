@@ -18,17 +18,23 @@ import {
 } from 'lucide-react';
 import { abilityOptions, findSpecies, indexedData, moveOptions, normalizeKey, opponentSpeciesOptions, previewSpecies, speciesOptions } from './lib/data';
 import { filledEntries } from './lib/candidates';
-import { inferOpponentPreview } from './lib/opponentInference';
 import { recommendBringFours } from './lib/scoring';
 import { createBlankOpponentTeam, createBlankTeam, exportTeamJson, importTeamJson, loadSavedTeam, saveTeam } from './lib/storage';
 import { sampleOpponentTeam, samplePlayerTeam } from './lib/sampleTeams';
-import { BLANK_ENTRY, type BringRecommendation, type OpponentInference, type PokemonEntry } from './lib/types';
+import { BLANK_ENTRY, type BringRecommendation, type PokemonEntry } from './lib/types';
 
 const formatPercent = (value: number): string => `${Math.round(value * 100)}%`;
 
 const entryLabel = (pokemon: PokemonEntry): string => pokemon.species || 'Empty slot';
 
 const bringKey = (pokemon: PokemonEntry[]): string => pokemon.map((entry) => entry.id).sort().join('|');
+
+const safestLeadsLabel = (recommendation: BringRecommendation): string =>
+  recommendation.safestLeads.length >= 2
+    ? `Safest leads: ${recommendation.safestLeads.map(entryLabel).join(' + ')}`
+    : recommendation.tags.length
+      ? recommendation.tags.slice(0, 3).join(' · ')
+      : 'Best four';
 
 const AUTOCOMPLETE_LIMIT = 10;
 
@@ -365,10 +371,10 @@ function RecommendationRow({
       <span className="rank">{rank}</span>
       <span className="planNames">
         <strong>{recommendation.brought.map(entryLabel).join(' + ')}</strong>
-        <small>{recommendation.tags.length ? recommendation.tags.slice(0, 3).join(' · ') : 'Bring 4'}</small>
+        <small>{safestLeadsLabel(recommendation)}</small>
       </span>
       <span className="scorePill">{recommendation.score.toFixed(1)}</span>
-      <span className="confidence">{formatPercent(recommendation.confidence)}</span>
+      <span className="confidence">{formatPercent(recommendation.confidence)} data</span>
     </button>
   );
 }
@@ -419,23 +425,13 @@ function DetailPanel({
         </div>
         <div className="scoreBlock">
           <strong>{recommendation.score.toFixed(1)}</strong>
-          <span>{formatPercent(recommendation.confidence)} confidence</span>
+          <span>{formatPercent(recommendation.confidence)} data support</span>
         </div>
       </div>
 
       <div className="tagRail">
         {recommendation.tags.length ? recommendation.tags.map((tag) => <span key={tag}>{tag}</span>) : <span>Balanced</span>}
       </div>
-
-      {recommendation.opponentRead ? (
-        <div className="selectionInsight">
-          <span>Opponent context read</span>
-          <strong>{recommendation.opponentRead.members.join(' + ')}</strong>
-          <small>
-            Secondary {formatPercent(recommendation.opponentRead.probability)} read · {recommendation.opponentRead.reasons.slice(0, 2).join(', ')}
-          </small>
-        </div>
-      ) : null}
 
       <div className="leadAssignment" data-testid="lead-assignment">
         <div className="leadSelectors">
@@ -470,7 +466,7 @@ function DetailPanel({
 
       {recommendation.modeChecks.length > 0 ? (
         <div className="selectionNotes" data-testid="mode-checks">
-          <span>Mode checks</span>
+          <span>Enemy six checks</span>
           <div className="noteGrid">
             {recommendation.modeChecks.slice(0, 4).map((check) => (
               <div className={`noteItem ${check.status}`} key={check.mode}>
@@ -521,109 +517,8 @@ function DetailPanel({
         <BreakdownBar label="Defense" value={recommendation.breakdown.defense} max={24} />
         <BreakdownBar label="Speed" value={recommendation.breakdown.speed} max={18} />
         <BreakdownBar label="Modes" value={recommendation.breakdown.modes} max={12} />
-        {recommendation.breakdown.risk > 0 ? <BreakdownBar label="Risk" value={recommendation.breakdown.risk} max={12} /> : null}
         <BreakdownBar label="Roles" value={recommendation.breakdown.roles} max={17} />
         <BreakdownBar label="Meta" value={recommendation.breakdown.meta} max={10} />
-      </div>
-    </section>
-  );
-}
-
-function OpponentIntelPanel({ inference, active }: { inference: OpponentInference; active: boolean }) {
-  if (!active) {
-    return (
-      <section className="intelPanel emptyIntel" data-testid="opponent-intel-empty">
-        <BarChart3 size={18} />
-        <h2>Preview intel</h2>
-        <p>Enter opponent names to infer likely sets, leads, and public-team matches.</p>
-      </section>
-    );
-  }
-
-  return (
-    <section className="intelPanel" data-testid="opponent-intel">
-      <div className="sectionHeader compactHeader">
-        <div>
-          <p className="eyebrow">Opponent read</p>
-          <h2>Preview intel</h2>
-        </div>
-        <span className="confidenceChip">{formatPercent(inference.confidence)}</span>
-      </div>
-
-      {inference.archetypes.length > 0 ? (
-        <div className="tagRail compactTags">
-          {inference.archetypes.map((archetype) => (
-            <span key={archetype}>{archetype}</span>
-          ))}
-        </div>
-      ) : null}
-
-      <div className="intelGrid">
-        <div className="intelBlock">
-          <strong>Public lead priors</strong>
-          <div className="miniList">
-            {inference.likelyLeadPairs.slice(0, 3).map((pair) => (
-              <div className="setGuess" key={pair.members.join('-')}>
-                <span>{pair.members.join(' + ')}</span>
-                <small>{formatPercent(pair.probability)} public prior · {pair.reasons.slice(0, 2).join(', ')}</small>
-                <small>
-                  {pair.evidence.publicPairSamples
-                    ? `Public pair sample: ${pair.evidence.publicPairSamples.toLocaleString()}`
-                    : 'Public pair sample: low or unavailable'}
-                </small>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="intelBlock">
-          <strong>Likely sets</strong>
-          <div className="miniList">
-            {inference.setGuesses.slice(0, 4).map((guess) => (
-              <div className="setGuess" key={guess.species}>
-                <span>{guess.species}</span>
-                <small>{guess.items.length ? `Items: ${guess.items.slice(0, 2).join(', ')}` : 'Items: low public sample'}</small>
-                <small>{guess.moves.length ? `Moves: ${guess.moves.slice(0, 3).join(', ')}` : 'Moves: low public sample'}</small>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="intelBlock">
-          <strong>Similar teams</strong>
-          <div className="miniList">
-            {inference.similarTeams.slice(0, 3).map((team) => (
-              <div className="setGuess" key={team.id}>
-                <span>{team.title}</span>
-                <small>
-                  {team.source === 'tournament' ? team.event ?? 'Tournament' : 'Community'} · overlap {team.overlap.length}/6
-                </small>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {inference.formGuesses.some((guess) => guess.forms.length > 1) ? (
-          <div className="intelBlock">
-            <strong>Mega reads</strong>
-            <div className="miniList">
-              {inference.formGuesses
-                .filter((guess) => guess.forms.length > 1)
-                .slice(0, 3)
-                .map((guess) => (
-                  <div className="setGuess" key={guess.previewSpecies}>
-                    <span>{guess.previewSpecies}</span>
-                    <small>
-                      {guess.forms
-                        .slice(0, 2)
-                        .map((form) => `${form.species} ${formatPercent(form.probability)}`)
-                        .join(' · ')}
-                    </small>
-                  </div>
-                ))}
-            </div>
-          </div>
-        ) : null}
       </div>
     </section>
   );
@@ -642,7 +537,6 @@ function App() {
   const playerCount = filledEntries(team).length;
   const opponentCount = filledEntries(opponents).length;
   const recommendations = useMemo(() => recommendBringFours(team, opponents), [team, opponents]);
-  const opponentIntel = useMemo(() => inferOpponentPreview(opponents), [opponents]);
   const topRecommendations = useMemo(() => recommendations.slice(0, 8), [recommendations]);
   const selectedRecommendation = topRecommendations[selectedIndex] ?? topRecommendations[0];
   const selectedBringKey = selectedRecommendation ? bringKey(selectedRecommendation.brought) : '';
@@ -875,13 +769,13 @@ function App() {
                   />
                 ))}
               </div>
-              <OpponentIntelPanel inference={opponentIntel} active={opponentCount >= 1} />
+              <DetailPanel recommendation={canShowRecommendations ? selectedRecommendation : undefined} leadAssignment={selectedLeadAssignment} onAssignLead={assignLead} />
             </section>
 
             <section className="recommendationColumn">
               <div className="sectionHeader">
                 <div>
-                  <p className="eyebrow">Bring 4</p>
+                  <p className="eyebrow">Best four</p>
                   <h2>Recommendations</h2>
                 </div>
                 <Shield size={20} />
@@ -906,8 +800,6 @@ function App() {
                   <p>Fill at least four of your slots and one opposing slot.</p>
                 </div>
               )}
-
-              <DetailPanel recommendation={canShowRecommendations ? selectedRecommendation : undefined} leadAssignment={selectedLeadAssignment} onAssignLead={assignLead} />
             </section>
           </div>
         </div>

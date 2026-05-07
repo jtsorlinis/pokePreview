@@ -1,6 +1,5 @@
 import { enumerateBattlePlans, enumerateBringFours, filledEntries } from './candidates';
 import { baseSpeciesForMega, findMove, findPair, findSpecies, indexedData, isMegaSpecies, normalizeKey } from './data';
-import { inferOpponentPreview } from './opponentInference';
 import { effectiveness, multiplierLabel } from './typeChart';
 import type {
   BattlePlan,
@@ -10,8 +9,6 @@ import type {
   MetaSpecies,
   ModeCheck,
   MoveData,
-  OpponentBringFour,
-  OpponentInference,
   PokemonEntry,
   PokemonType,
   Recommendation,
@@ -125,77 +122,70 @@ const entryTags = (pokemon: PokemonEntry, data: IndexedData): Set<string> => {
   return tags;
 };
 
-const inferredFormFor = (species: string, inference: OpponentInference | undefined, data: IndexedData): string => {
-  const previewKey = normalizeKey(baseSpeciesForMega(species, data));
-  const formGuess = inference?.formGuesses.find((guess) => normalizeKey(guess.previewSpecies) === previewKey);
-  const topForm = formGuess?.forms[0];
-  if (!topForm || topForm.probability < 0.42) return species;
-
-  return topForm.species;
+const abilityNamesFor = (pokemon: PokemonEntry, data: IndexedData): string[] => {
+  const explicitAbility = pokemon.ability?.trim();
+  if (explicitAbility) return [explicitAbility];
+  return speciesMeta(pokemon, data)?.abilities ?? [];
 };
 
-const inferredSetFor = (species: string, inference: OpponentInference | undefined, data: IndexedData) => {
-  const previewKey = normalizeKey(baseSpeciesForMega(species, data));
-  return inference?.setGuesses.find((guess) => normalizeKey(guess.species) === previewKey);
+const hasKnownAbility = (pokemon: PokemonEntry, data: IndexedData, abilities: string[]): boolean => {
+  const abilityKeys = new Set(abilities.map(normalizeKey));
+  return abilityNamesFor(pokemon, data).some((ability) => abilityKeys.has(normalizeKey(ability)));
 };
 
-const inferredOpponentEntry = (species: string, data: IndexedData, inference?: OpponentInference): PokemonEntry => {
-  const inferredSpecies = inferredFormFor(species, inference, data);
-  const meta = findSpecies(inferredSpecies, data) ?? findSpecies(species, data);
-  const setGuess = inferredSetFor(species, inference, data);
-  const setAbility = setGuess?.abilities[0] ?? '';
-  const ability = setAbility && meta?.abilities.includes(setAbility) ? setAbility : meta?.abilities[0] ?? setAbility;
-
-  return {
-    id: `inferred-${species}`,
-    species: meta?.displayName ?? species,
-    types: meta?.types ?? [],
-    ability,
-    moves: [...(setGuess?.moves ?? []), ...(meta?.commonMoves ?? []), '', '', '', ''].slice(0, 4),
-    speedStat: null
-  };
+const ignoresDefensiveAbilities = (pokemon: PokemonEntry): boolean => {
+  const ability = normalizeKey(pokemon.ability ?? '');
+  return ability === 'moldbreaker' || ability === 'teravolt' || ability === 'turboblaze';
 };
 
-const opponentEntryForScoring = (pokemon: PokemonEntry, inference: OpponentInference, data: IndexedData): PokemonEntry => {
-  const inferred = inferredOpponentEntry(pokemon.species, data, inference);
+const abilityImmunity = (attackType: PokemonType, attacker: PokemonEntry, defender: PokemonEntry, data: IndexedData): string | undefined => {
+  if (ignoresDefensiveAbilities(attacker)) return undefined;
+
+  if (attackType === 'Water' && hasKnownAbility(defender, data, ['Dry Skin', 'Storm Drain', 'Water Absorb'])) return 'Water immunity';
+  if (attackType === 'Electric' && hasKnownAbility(defender, data, ['Lightning Rod', 'Motor Drive', 'Volt Absorb'])) return 'Electric immunity';
+  if (attackType === 'Fire' && hasKnownAbility(defender, data, ['Flash Fire', 'Well-Baked Body'])) return 'Fire immunity';
+  if (attackType === 'Ground' && hasKnownAbility(defender, data, ['Earth Eater', 'Levitate'])) return 'Ground immunity';
+  if (attackType === 'Grass' && hasKnownAbility(defender, data, ['Sap Sipper'])) return 'Grass immunity';
+
+  return undefined;
+};
+
+const attackMultiplierInto = (attackType: PokemonType, attacker: PokemonEntry, defender: PokemonEntry, data: IndexedData): number => {
+  if (abilityImmunity(attackType, attacker, defender, data)) return 0;
+  return effectiveness(attackType, entryTypes(defender, data));
+};
+
+const opponentEntryForScoring = (pokemon: PokemonEntry, data: IndexedData): PokemonEntry => {
+  const meta = findSpecies(pokemon.species, data);
   return {
     ...pokemon,
-    species: inferred.species,
-    types: inferred.types,
-    ability: inferred.ability,
-    moves: inferred.moves,
-    speedStat: pokemon.speedStat ?? inferred.speedStat
+    species: meta?.displayName ?? pokemon.species,
+    types: meta?.types ?? pokemon.types,
+    moves: [...pokemon.moves, '', '', '', ''].slice(0, 4),
+    speedStat: pokemon.speedStat ?? null
   };
-};
-
-const previewKeyForScoring = (species: string, data: IndexedData): string => {
-  const meta = findSpecies(species, data);
-  return normalizeKey(baseSpeciesForMega(meta?.displayName ?? species, data));
-};
-
-const opponentEntriesForRead = (
-  visibleOpponents: PokemonEntry[],
-  read: OpponentBringFour | undefined,
-  data: IndexedData
-): PokemonEntry[] => {
-  if (!read || read.members.length === 0) return visibleOpponents;
-
-  const readKeys = new Set(read.members.map((member) => previewKeyForScoring(member, data)));
-  const selected = visibleOpponents.filter((opponent) => readKeys.has(previewKeyForScoring(opponent.species, data)));
-
-  return selected.length >= Math.min(read.members.length, visibleOpponents.length) ? selected : visibleOpponents;
 };
 
 const attackingTypes = (pokemon: PokemonEntry, data: IndexedData): PokemonType[] => {
-  const moveTypes = nonEmptyMoves(pokemon)
-    .map((moveName) => findMove(moveName, data)?.type)
+  const knownMoves = nonEmptyMoves(pokemon)
+    .map((moveName) => findMove(moveName, data))
+    .filter((move): move is MoveData => Boolean(move));
+  const moveTypes = knownMoves
+    .filter((move) => move.category !== 'Status' && Boolean(move.power))
+    .map((move) => move.type)
     .filter((type): type is PokemonType => Boolean(type));
 
-  if (moveTypes.length > 0) return Array.from(new Set(moveTypes));
+  if (knownMoves.length > 0) return Array.from(new Set(moveTypes));
 
-  const commonMoveTypes = (speciesMeta(pokemon, data)?.commonMoves ?? [])
-    .map((moveName) => findMove(moveName, data)?.type)
+  const commonMoves = (speciesMeta(pokemon, data)?.commonMoves ?? [])
+    .map((moveName) => findMove(moveName, data))
+    .filter((move): move is MoveData => Boolean(move));
+  const commonMoveTypes = commonMoves
+    .filter((move) => move.category !== 'Status' && Boolean(move.power))
+    .map((move) => move.type)
     .filter((type): type is PokemonType => Boolean(type));
+
+  if (commonMoves.length > 0) return Array.from(new Set(commonMoveTypes));
 
   return Array.from(new Set([...commonMoveTypes, ...entryTypes(pokemon, data)]));
 };
@@ -205,9 +195,9 @@ const bestOffensiveMultiplier = (attacker: PokemonEntry, defender: PokemonEntry,
   if (defenderTypes.length === 0) return 1;
 
   const attackTypes = attackingTypes(attacker, data);
-  if (attackTypes.length === 0) return 1;
+  if (attackTypes.length === 0) return 0;
 
-  return Math.max(...attackTypes.map((type) => effectiveness(type, defenderTypes)));
+  return Math.max(...attackTypes.map((type) => attackMultiplierInto(type, attacker, defender, data)));
 };
 
 const threatMultiplierInto = (attacker: PokemonEntry, defender: PokemonEntry, data: IndexedData): number => {
@@ -215,9 +205,9 @@ const threatMultiplierInto = (attacker: PokemonEntry, defender: PokemonEntry, da
   if (defenderTypes.length === 0) return 1;
 
   const attackTypes = attackingTypes(attacker, data);
-  if (attackTypes.length === 0) return 1;
+  if (attackTypes.length === 0) return 0;
 
-  return Math.max(...attackTypes.map((type) => effectiveness(type, defenderTypes)));
+  return Math.max(...attackTypes.map((type) => attackMultiplierInto(type, attacker, defender, data)));
 };
 
 const movePoolFor = (pokemon: PokemonEntry, data: IndexedData): MoveData[] => {
@@ -247,7 +237,7 @@ const bestDamagePressure = (
 
   return moves.reduce(
     (best, move) => {
-      const multiplier = effectiveness(move.type, defenderTypes);
+      const multiplier = attackMultiplierInto(move.type, attacker, defender, data);
       if (move.category === 'Status' || !move.power || multiplier === 0) {
         const utilityScore =
           move.tags.includes('speed-control') || move.tags.includes('tailwind') || move.tags.includes('trick-room')
@@ -270,14 +260,6 @@ const bestDamagePressure = (
     },
     { score: 0, multiplier: 0, move: undefined as MoveData | undefined }
   );
-};
-
-const damagePressureScore = (pressure: number): number => {
-  if (pressure >= 2.6) return 1.65;
-  if (pressure >= 1.8) return 1.15;
-  if (pressure >= 1.15) return 0.55;
-  if (pressure >= 0.65) return 0.05;
-  return -0.55;
 };
 
 const addReason = (reasons: ScoreReason[], label: string, detail: string, weight: number, tone: ScoreReason['tone'] = 'positive') => {
@@ -358,6 +340,50 @@ const scoreDefense = (plan: BattlePlan, opponents: PokemonEntry[], data: Indexed
   if (vulnerable.length >= 5) addReason(reasons, 'Defensive strain', 'The opponent has multiple clean damage routes into this four.', -3, 'warning');
 
   return clamp(score, -8, 24);
+};
+
+const scoreIndividualCounterRisk = (
+  plan: BattlePlan,
+  opponents: PokemonEntry[],
+  data: IndexedData,
+  reasons: ScoreReason[],
+  warnings: string[]
+): number => {
+  if (opponents.length === 0) return 0;
+
+  const hardCounters: string[] = [];
+  const softCounters: string[] = [];
+
+  plan.brought.forEach((pokemon) => {
+    opponents.forEach((opponent) => {
+      const outgoingPressure = bestDamagePressure(pokemon, opponent, data).score;
+      const incomingPressure = bestDamagePressure(opponent, pokemon, data).score;
+      const outgoingMultiplier = bestOffensiveMultiplier(pokemon, opponent, data);
+      const incomingMultiplier = threatMultiplierInto(opponent, pokemon, data);
+      const opponentSpeed = entrySpeed(opponent, data) ?? 0;
+      const pokemonSpeed = entrySpeed(pokemon, data) ?? 0;
+      const opponentIsFaster = opponentSpeed > pokemonSpeed + 15;
+
+      if (outgoingMultiplier === 0 && outgoingPressure <= 0.35 && (incomingPressure >= 1.35 || incomingMultiplier >= 2)) {
+        hardCounters.push(`${pokemon.species} into ${opponent.species}`);
+      } else if (outgoingPressure < 0.65 && incomingPressure >= 1.8 && (incomingMultiplier >= 2 || opponentIsFaster)) {
+        softCounters.push(`${pokemon.species} into ${opponent.species}`);
+      }
+    });
+  });
+
+  const hardPenalty = Math.min(hardCounters.length * 5.5, 14);
+  const softPenalty = Math.min(softCounters.length * 2.4, 8);
+  const penalty = hardPenalty + softPenalty;
+  if (penalty === 0) return 0;
+
+  const examples = [...hardCounters, ...softCounters].slice(0, 3).join(', ');
+  addReason(reasons, 'Hard counter risk', `${examples} ${hardCounters.length + softCounters.length === 1 ? 'is' : 'are'} heavily checked by the visible preview.`, -Math.min(penalty, 6), 'warning');
+  if (hardCounters.length > 0) {
+    warnings.push(`Hard counter risk: ${hardCounters.slice(0, 2).join(', ')} may need to stay on the bench.`);
+  }
+
+  return -penalty;
 };
 
 const scoreSpeed = (plan: BattlePlan, opponents: PokemonEntry[], data: IndexedData, reasons: ScoreReason[], warnings: string[]): number => {
@@ -458,22 +484,34 @@ const displayModeName = (mode: string): string => {
   return labels[normalizeKey(mode)] ?? mode;
 };
 
+const visibleModeNames = (opponents: PokemonEntry[], data: IndexedData): string[] => {
+  const names = opponents.map((pokemon) => findSpecies(pokemon.species, data)?.displayName ?? pokemon.species);
+  const previewText = normalizeKey(names.join(' '));
+  const opponentTags = opponents.flatMap((pokemon) => Array.from(entryTags(pokemon, data)));
+  const modeNames = new Map<string, string>();
+  const addMode = (mode: string) => modeNames.set(normalizeKey(mode), displayModeName(mode));
+
+  if (/(pelipper|politoed|archaludon|basculegion)/.test(previewText)) addMode('Rain');
+  if (/(charizard|ninetales|venusaur|torkoal|typhlosion)/.test(previewText)) addMode('Sun');
+  if (/(tyranitar|excadrill|hippowdon)/.test(previewText)) addMode('Sand');
+  if (/(ninetalesalolanform|froslass|abomasnow)/.test(previewText)) addMode('Snow');
+  if (opponentTags.includes('tailwind')) addMode('Tailwind');
+  if (opponentTags.includes('trick-room')) addMode('Trick Room');
+  if (opponentTags.includes('redirection')) addMode('Redirection');
+  if (opponentTags.includes('late-game')) addMode('Endgame');
+  if (opponentTags.includes('priority')) addMode('Priority');
+
+  return Array.from(modeNames.values());
+};
+
 const scoreModeCoverage = (
   plan: BattlePlan,
   opponents: PokemonEntry[],
   data: IndexedData,
-  inference: OpponentInference,
   reasons: ScoreReason[],
   warnings: string[]
 ): { score: number; checks: ModeCheck[] } => {
-  const opponentTags = opponents.flatMap((pokemon) => Array.from(entryTags(pokemon, data)));
-  const modeNames = new Map<string, string>();
-  inference.archetypes.forEach((mode) => modeNames.set(normalizeKey(mode), displayModeName(mode)));
-  if (opponentTags.includes('redirection')) modeNames.set('redirection', 'Redirection');
-  if (opponentTags.includes('late-game')) modeNames.set('endgame', 'Endgame');
-  if (opponentTags.includes('priority')) modeNames.set('priority', 'Priority');
-
-  const checks: ModeCheck[] = Array.from(modeNames.values()).map((mode) => {
+  const checks: ModeCheck[] = visibleModeNames(opponents, data).map((mode) => {
     const key = normalizeKey(mode);
     let covered = false;
     let detail = '';
@@ -541,173 +579,7 @@ const scoreModeCoverage = (
   return { score, checks };
 };
 
-const scoreRiskFloor = (
-  plan: BattlePlan,
-  allOpponents: PokemonEntry[],
-  data: IndexedData,
-  inference: OpponentInference,
-  reasons: ScoreReason[],
-  warnings: string[]
-): number => {
-  const reads = inference.likelyBringFours.filter((read) => read.members.length >= 4).slice(0, 4);
-  if (reads.length === 0 || allOpponents.length === 0) return 0;
-
-  const probabilityTotal = reads.reduce((total, read) => total + read.probability, 0) || 1;
-  const risks = reads.map((read) => {
-    const opponents = opponentEntriesForRead(allOpponents, read, data);
-    const scratchReasons: ScoreReason[] = [];
-    const scratchWarnings: string[] = [];
-    const offense = scoreOffense(plan, opponents, data, scratchReasons);
-    const defense = scoreDefense(plan, opponents, data, scratchReasons, scratchWarnings);
-    const speed = scoreBringSpeed(plan, opponents, data, scratchReasons, scratchWarnings);
-    const mode = scoreModeCoverage(plan, opponents, data, inference, scratchReasons, scratchWarnings).score;
-    const coreScore = offense + defense + speed + mode;
-    const weakTargets = opponents.filter((opponent) => Math.max(...plan.brought.map((pokemon) => bestDamagePressure(pokemon, opponent, data).score)) < 0.75);
-    const pressuredBrought = plan.brought.filter((pokemon) => Math.max(...opponents.map((opponent) => bestDamagePressure(opponent, pokemon, data).score)) >= 2.4);
-    const risk =
-      Math.max(0, 34 - coreScore) * 0.25 +
-      weakTargets.length * 1.1 +
-      Math.max(0, pressuredBrought.length - 2) * 0.75;
-
-    return {
-      read,
-      risk,
-      weakTargets,
-      pressuredBrought
-    };
-  });
-
-  const weightedRisk = risks.reduce((total, risk) => total + risk.risk * (risk.read.probability / probabilityTotal), 0);
-  const worst = risks.sort((first, second) => second.risk - first.risk)[0];
-  const penalty = clamp(weightedRisk + Math.max(0, (worst?.risk ?? 0) - 4) * 0.45, 0, 12);
-
-  if (penalty >= 2.2 && worst) {
-    const weakText = worst.weakTargets.length ? `; limited pressure into ${worst.weakTargets.slice(0, 2).map((pokemon) => pokemon.species).join(', ')}` : '';
-    addReason(
-      reasons,
-      'Risk floor',
-      `Worst likely opposing four is ${worst.read.members.join(' + ')}${weakText}.`,
-      -penalty,
-      'warning'
-    );
-  }
-  if (penalty >= 4.5 && worst) {
-    warnings.push(`Risk floor: ${worst.read.members.join(' + ')} is the roughest likely opposing four.`);
-  }
-
-  return penalty;
-};
-
-const predictedLeadMatchup = (
-  plan: BattlePlan,
-  inference: OpponentInference,
-  data: IndexedData,
-  warnings: string[]
-): { score: number; topLead?: string; topLeadProbability?: number; risk?: string } => {
-  const predicted = inference.likelyLeadPairs
-    .filter((pair) => pair.probability >= 0.015)
-    .slice(0, 8);
-  if (predicted.length === 0) return { score: 0 };
-
-  const totalWeight = predicted.reduce((total, pair) => total + pair.probability, 0) || 1;
-  const ourLeadSpeed = plan.leads
-    .map((pokemon) => entrySpeed(pokemon, data))
-    .filter((speed): speed is number => typeof speed === 'number')
-    .reduce((total, speed, _, speeds) => total + speed / speeds.length, 0);
-  const ourLeadTags = plan.leads.map((pokemon) => entryTags(pokemon, data));
-  const hasSpeedControl = ourLeadTags.some((tags) => tags.has('speed-control') || tags.has('tailwind') || tags.has('trick-room'));
-  const hasWideGuard = ourLeadTags.some((tags) => tags.has('wide-guard'));
-  const hasFakeOut = ourLeadTags.some((tags) => tags.has('fake-out'));
-
-  let totalScore = 0;
-  const riskScores = new Map<string, number>();
-  predicted.forEach((pair) => {
-    const enemyLeads = pair.members.map((member) => inferredOpponentEntry(member, data, inference));
-    const enemyTags = enemyLeads.map((pokemon) => entryTags(pokemon, data));
-    const enemySpeed = enemyLeads
-      .map((pokemon) => entrySpeed(pokemon, data))
-      .filter((speed): speed is number => typeof speed === 'number')
-      .reduce((total, speed, _, speeds) => total + speed / speeds.length, 0);
-    const pressure = plan.leads.reduce((total, lead) => {
-      const best = Math.max(...enemyLeads.map((enemy) => bestDamagePressure(lead, enemy, data).score));
-      return total + damagePressureScore(best);
-    }, 0);
-    const danger = enemyLeads.reduce((total, enemy) => {
-      const best = Math.max(...plan.leads.map((lead) => bestDamagePressure(enemy, lead, data).score));
-      return total + damagePressureScore(best);
-    }, 0);
-    const enemyHasSpread = enemyTags.some((tags) => tags.has('spread'));
-    const enemyHasSpeedControl = enemyTags.some((tags) => tags.has('speed-control') || tags.has('tailwind') || tags.has('trick-room'));
-    const enemyHasFakeOut = enemyTags.some((tags) => tags.has('fake-out'));
-    const probabilityWeight = pair.probability / totalWeight;
-    const evidenceWeight = probabilityWeight * clamp(pair.confidence + 0.25, 0.45, 1);
-    let pairScore = pressure - danger;
-    let counterPenalty = 0;
-
-    plan.leads.forEach((lead) => {
-      const leadName = lead.species;
-      const leadTags = entryTags(lead, data);
-      const leadSpeed = entrySpeed(lead, data) ?? 0;
-      enemyLeads.forEach((enemy, enemyIndex) => {
-        const enemyName = enemy.species;
-        const enemyTagSet = enemyTags[enemyIndex];
-        const enemySpeedValue = entrySpeed(enemy, data) ?? 0;
-        const enemyPressure = bestDamagePressure(enemy, lead, data);
-        const leadPressure = bestDamagePressure(lead, enemy, data);
-        const enemyIntoLead = enemyPressure.multiplier;
-        const leadIntoEnemy = leadPressure.multiplier;
-        const enemyHasPriority = enemyTagSet.has('priority');
-        const priorityPunishesLead = (enemyHasPriority || enemyPressure.move?.tags.includes('priority')) && enemyPressure.score >= 1.25;
-        const speedPunishesLead = enemySpeedValue > leadSpeed + 10 && !leadTags.has('priority') && !leadTags.has('speed-control');
-        const checkedWithoutReturnDamage = enemyPressure.score >= 1.45 && leadPressure.score <= 0.95;
-        const hardWall = leadPressure.score <= 0.45 || leadIntoEnemy === 0;
-
-        if (!checkedWithoutReturnDamage && !hardWall) return;
-
-        const penalty =
-          0.75 +
-          clamp(enemyPressure.score - leadPressure.score, 0, 1.4) +
-          (enemyIntoLead >= 4 ? 0.7 : 0) +
-          (priorityPunishesLead ? 1.05 : 0) +
-          (speedPunishesLead ? 0.35 : 0) +
-          (hardWall ? 0.65 : 0) +
-          (leadTags.has('late-game') ? 0.55 : 0);
-        counterPenalty += penalty;
-        const riskKey = `${leadName} into ${enemyName}`;
-        riskScores.set(riskKey, (riskScores.get(riskKey) ?? 0) + penalty * evidenceWeight * 6);
-      });
-    });
-
-    if (ourLeadSpeed > enemySpeed + 12) pairScore += 0.55;
-    if (ourLeadSpeed < enemySpeed - 18 && !hasSpeedControl) pairScore -= 0.75;
-    if (hasSpeedControl && enemyHasSpeedControl) pairScore += 0.45;
-    if (hasWideGuard && enemyHasSpread) pairScore += 0.65;
-    if (hasFakeOut && !enemyHasFakeOut) pairScore += 0.35;
-    pairScore -= clamp(counterPenalty, 0, 3.2);
-
-    totalScore += pairScore * probabilityWeight;
-  });
-
-  const topLead = predicted[0] ? predicted[0].members.join(' + ') : undefined;
-  const topLeadProbability = predicted[0]?.probability;
-  const sortedRisks = Array.from(riskScores.entries()).sort((first, second) => second[1] - first[1]);
-  const topRisk = sortedRisks[0];
-  const stackedRiskPenalty = sortedRisks.reduce((total, [, riskScore]) => total + Math.max(0, riskScore - 0.85), 0);
-  const directRiskPenalty = topRisk ? clamp(topRisk[1] * 1.25 + stackedRiskPenalty * 0.85, 0, 5.8) : 0;
-  const score = clamp(totalScore - directRiskPenalty, -7.5, 4.5);
-  if (score < -1.6 && topLead) {
-    const probabilityText = topLeadProbability ? ` (${Math.round(topLeadProbability * 100)}%)` : '';
-    warnings.push(`Likely lead risk: public data points toward ${topLead}${probabilityText}, which pressures this lead pair.`);
-  }
-  sortedRisks
-    .filter(([, riskScore]) => riskScore >= 1.2)
-    .slice(0, 2)
-    .forEach(([risk]) => warnings.push(`Lead counter risk: ${risk} looks unfavorable from public moves and typing.`));
-
-  return { score, topLead, topLeadProbability, risk: topRisk?.[0] };
-};
-
-const scoreLead = (plan: BattlePlan, opponents: PokemonEntry[], data: IndexedData, reasons: ScoreReason[], warnings: string[], inference: OpponentInference): number => {
+const scoreLead = (plan: BattlePlan, opponents: PokemonEntry[], data: IndexedData, reasons: ScoreReason[], warnings: string[]): number => {
   let score = 7;
   const leadTags = plan.leads.map((pokemon) => entryTags(pokemon, data));
   const leadNames = plan.leads.map((pokemon) => pokemon.species).join(' + ');
@@ -730,7 +602,6 @@ const scoreLead = (plan: BattlePlan, opponents: PokemonEntry[], data: IndexedDat
     if (!pokemon.inactiveMegaSpecies) return total;
     return total + (1 - regularFormViability(pokemon, data)) * 2.2;
   }, 0);
-  const predictedMatchup = predictedLeadMatchup(plan, inference, data, warnings);
 
   if (leadTags.some((tags) => tags.has('fake-out'))) score += 3;
   if (leadTags.some((tags) => tags.has('redirection'))) score += 2.5;
@@ -738,7 +609,6 @@ const scoreLead = (plan: BattlePlan, opponents: PokemonEntry[], data: IndexedDat
   if (leadTags.some((tags) => tags.has('wide-guard'))) score += opponents.some((opponent) => entryTags(opponent, data).has('spread')) ? 2.5 : 0.8;
   if (hasWeavileGlimmoraLead) score += 1.2;
   score += publicLeadPrior;
-  score += predictedMatchup.score;
   score -= lateGameLeadPenalty;
   score -= inactiveMegaLeadPenalty;
   if (leadTags.every((tags) => tags.has('support') || tags.has('redirection'))) score -= 3;
@@ -756,21 +626,6 @@ const scoreLead = (plan: BattlePlan, opponents: PokemonEntry[], data: IndexedDat
   }
   if (publicLeadPrior >= 1.5) {
     addReason(reasons, 'Public lead data', `${leadNames} has useful lead usage in public Regulation M-A data.`, 1.5, 'neutral');
-  }
-  if (predictedMatchup.topLead && Math.abs(predictedMatchup.score) >= 1.2) {
-    const tone = predictedMatchup.score > 0 ? 'positive' : 'warning';
-    const topLeadText = predictedMatchup.topLeadProbability
-      ? `${predictedMatchup.topLead} (${Math.round(predictedMatchup.topLeadProbability * 100)}%)`
-      : predictedMatchup.topLead;
-    addReason(
-      reasons,
-      'Opponent lead read',
-      predictedMatchup.risk
-        ? `${leadNames} may struggle into likely ${topLeadText}; ${predictedMatchup.risk} is the main concern.`
-        : `${leadNames} ${predictedMatchup.score > 0 ? 'matches up well into' : 'may struggle into'} likely ${topLeadText}.`,
-      predictedMatchup.score,
-      tone
-    );
   }
   if (lateGameLeadPenalty >= 1) {
     addReason(reasons, 'Backline value', `${leadNames} includes a late-game cleaner that often gains value from the back.`, -lateGameLeadPenalty, 'warning');
@@ -849,7 +704,7 @@ const scoreMeta = (plan: BattlePlan, data: IndexedData, reasons: ScoreReason[]):
   return clamp(score, -4, 10);
 };
 
-const confidenceFor = (plan: BattlePlan, opponents: PokemonEntry[], data: IndexedData, inference: OpponentInference): number => {
+const confidenceFor = (plan: BattlePlan, opponents: PokemonEntry[], data: IndexedData): number => {
   const allVisible = [...plan.brought, ...opponents];
   const knownSpecies = allVisible.filter((pokemon) => speciesMeta(pokemon, data)).length;
   const knownTypes = allVisible.filter((pokemon) => entryTypes(pokemon, data).length > 0).length;
@@ -859,11 +714,12 @@ const confidenceFor = (plan: BattlePlan, opponents: PokemonEntry[], data: Indexe
     return total;
   }, 0);
 
-  const base = 0.42;
+  const base = 0.32;
   const dataScore = allVisible.length ? (knownSpecies + knownTypes) / (allVisible.length * 2) : 0.25;
   const setScore = clamp(knownMoveSlots / 24, 0, 1);
+  const previewCompleteness = clamp(opponents.length / 6, 0, 1);
   const previewScore = opponents.length ? clamp(opponentDetail / opponents.length, 0, 1) : 0;
-  return clamp(base + dataScore * 0.25 + setScore * 0.2 + previewScore * 0.08 + inference.confidence * 0.12, 0.25, 0.92);
+  return clamp(base + dataScore * 0.24 + setScore * 0.18 + previewCompleteness * 0.12 + previewScore * 0.08, 0.2, 0.82);
 };
 
 const recommendationTags = (plan: BattlePlan, data: IndexedData): string[] => {
@@ -881,37 +737,82 @@ const recommendationTags = (plan: BattlePlan, data: IndexedData): string[] => {
   return Array.from(tags).slice(0, 5);
 };
 
+const safestLeadScore = (pokemon: PokemonEntry, opponents: PokemonEntry[], data: IndexedData): number => {
+  const tags = entryTags(pokemon, data);
+  const meta = speciesMeta(pokemon, data);
+  if (opponents.length === 0) return 0;
+
+  const incomingPressure = opponents.map((opponent) => bestDamagePressure(opponent, pokemon, data).score);
+  const averagePressure = incomingPressure.reduce((total, pressure) => total + pressure, 0) / incomingPressure.length;
+  const worstPressure = Math.max(...incomingPressure);
+  const highThreats = incomingPressure.filter((pressure) => pressure >= 1.8).length;
+  const severeThreats = incomingPressure.filter((pressure) => pressure >= 2.6).length;
+  const defensiveMultipliers = opponents.map((opponent) => threatMultiplierInto(opponent, pokemon, data));
+  const weakRoutes = defensiveMultipliers.filter((multiplier) => multiplier >= 2).length;
+  const sturdyRoutes = defensiveMultipliers.filter((multiplier) => multiplier <= 0.5).length;
+  const bulkScore = meta
+    ? clamp((meta.baseStats.hp + meta.baseStats.defense + meta.baseStats.specialDefense - 250) / 120, -0.75, 1.1)
+    : 0;
+  const speed = entrySpeed(pokemon, data) ?? 80;
+  const utilityScore =
+    (tags.has('fake-out') ? 0.75 : 0) +
+    (tags.has('intimidate') ? 0.7 : 0) +
+    (tags.has('redirection') ? 0.55 : 0) +
+    (tags.has('wide-guard') ? 0.55 : 0) +
+    (tags.has('speed-control') || tags.has('tailwind') || tags.has('trick-room') ? 0.45 : 0) +
+    (tags.has('priority') ? 0.25 : 0) +
+    (speed >= 115 ? 0.18 : 0);
+
+  return (
+    10 +
+    bulkScore +
+    utilityScore +
+    sturdyRoutes * 0.28 -
+    averagePressure * 1.55 -
+    worstPressure * 1.05 -
+    highThreats * 0.42 -
+    severeThreats * 0.55 -
+    weakRoutes * 0.38
+  );
+};
+
+const safestLeadsFor = (plan: BattlePlan, opponents: PokemonEntry[], data: IndexedData): PokemonEntry[] =>
+  [...plan.brought]
+    .sort((first, second) => {
+      const scoreDelta = safestLeadScore(second, opponents, data) - safestLeadScore(first, opponents, data);
+      return scoreDelta || first.species.localeCompare(second.species);
+    })
+    .slice(0, 2);
+
 export const scoreBattlePlan = (
   plan: BattlePlan,
   opponents: PokemonEntry[],
-  data: IndexedData = indexedData,
-  inference: OpponentInference = inferOpponentPreview(opponents, data)
+  data: IndexedData = indexedData
 ): Recommendation => {
   const variants = withMegaLimit(plan, data);
   if (variants.length > 1) {
     return variants
-      .map((variant) => scoreSingleBattlePlan(variant.plan, opponents, data, inference, variant.warning))
+      .map((variant) => scoreSingleBattlePlan(variant.plan, opponents, data, variant.warning))
       .sort((a, b) => b.score - a.score)[0];
   }
 
-  return scoreSingleBattlePlan(variants[0].plan, opponents, data, inference, variants[0].warning);
+  return scoreSingleBattlePlan(variants[0].plan, opponents, data, variants[0].warning);
 };
 
 const scoreSingleBattlePlan = (
   plan: BattlePlan,
   opponents: PokemonEntry[],
   data: IndexedData,
-  inference: OpponentInference,
   megaLimitWarning?: string
 ): Recommendation => {
   const reasons: ScoreReason[] = [];
   const warnings: string[] = megaLimitWarning ? [megaLimitWarning] : [];
-  const visibleOpponents = filledEntries(opponents).map((opponent) => opponentEntryForScoring(opponent, inference, data));
+  const visibleOpponents = filledEntries(opponents).map((opponent) => opponentEntryForScoring(opponent, data));
 
   const offense = scoreOffense(plan, visibleOpponents, data, reasons);
-  const defense = scoreDefense(plan, visibleOpponents, data, reasons, warnings);
+  const defense = scoreDefense(plan, visibleOpponents, data, reasons, warnings) + scoreIndividualCounterRisk(plan, visibleOpponents, data, reasons, warnings);
   const speed = scoreSpeed(plan, visibleOpponents, data, reasons, warnings);
-  const lead = scoreLead(plan, visibleOpponents, data, reasons, warnings, inference);
+  const lead = scoreLead(plan, visibleOpponents, data, reasons, warnings);
   const roles = scoreRoles(plan, data, reasons, warnings);
   const meta = scoreMeta(plan, data, reasons);
   const score = clamp(offense + defense + speed + lead + roles + meta, 0, 100);
@@ -923,7 +824,7 @@ const scoreSingleBattlePlan = (
   return {
     ...plan,
     score: Math.round(score * 10) / 10,
-    confidence: confidenceFor(plan, visibleOpponents, data, inference),
+    confidence: confidenceFor(plan, visibleOpponents, data),
     tags: recommendationTags(plan, data),
     reasons: sortedReasons,
     warnings: Array.from(new Set(warnings)).slice(0, 4),
@@ -934,44 +835,39 @@ const scoreSingleBattlePlan = (
 export const scoreBringFour = (
   plan: BattlePlan,
   opponents: PokemonEntry[],
-  data: IndexedData = indexedData,
-  inference: OpponentInference = inferOpponentPreview(opponents, data)
+  data: IndexedData = indexedData
 ): BringRecommendation => {
   const variants = withMegaLimit(plan, data);
   if (variants.length > 1) {
     return variants
-      .map((variant) => scoreSingleBringFour(variant.plan, opponents, data, inference, variant.warning))
+      .map((variant) => scoreSingleBringFour(variant.plan, opponents, data, variant.warning))
       .sort((a, b) => b.score - a.score)[0];
   }
 
-  return scoreSingleBringFour(variants[0].plan, opponents, data, inference, variants[0].warning);
+  return scoreSingleBringFour(variants[0].plan, opponents, data, variants[0].warning);
 };
 
 const scoreSingleBringFour = (
   plan: BattlePlan,
   opponents: PokemonEntry[],
   data: IndexedData,
-  inference: OpponentInference,
   megaLimitWarning?: string
 ): BringRecommendation => {
   const reasons: ScoreReason[] = [];
   const warnings: string[] = megaLimitWarning ? [megaLimitWarning] : [];
-  const allVisibleOpponents = filledEntries(opponents).map((opponent) => opponentEntryForScoring(opponent, inference, data));
-  const opponentRead = inference.likelyBringFours[0];
-  const visibleOpponents = allVisibleOpponents;
+  const visibleOpponents = filledEntries(opponents).map((opponent) => opponentEntryForScoring(opponent, data));
 
   if (visibleOpponents.length > 0) {
     addReason(reasons, 'Whole preview', `Scored into all ${visibleOpponents.length} opposing preview slots.`, 1.5, 'neutral');
   }
 
   const offense = scoreOffense(plan, visibleOpponents, data, reasons);
-  const defense = scoreDefense(plan, visibleOpponents, data, reasons, warnings);
+  const defense = scoreDefense(plan, visibleOpponents, data, reasons, warnings) + scoreIndividualCounterRisk(plan, visibleOpponents, data, reasons, warnings);
   const speed = scoreBringSpeed(plan, visibleOpponents, data, reasons, warnings);
-  const modeCoverage = scoreModeCoverage(plan, visibleOpponents, data, inference, reasons, warnings);
+  const modeCoverage = scoreModeCoverage(plan, visibleOpponents, data, reasons, warnings);
   const roles = scoreRoles(plan, data, reasons, warnings);
   const meta = scoreMeta(plan, data, reasons);
-  const risk = scoreRiskFloor(plan, allVisibleOpponents, data, inference, reasons, warnings) * 0.45;
-  const score = clamp(offense + defense + speed + modeCoverage.score + roles + meta - risk, 0, 100);
+  const score = clamp(offense + defense + speed + modeCoverage.score + roles + meta, 0, 100);
 
   const sortedReasons = reasons
     .sort((a, b) => Math.abs(b.weight) - Math.abs(a.weight))
@@ -979,15 +875,15 @@ const scoreSingleBringFour = (
 
   return {
     brought: plan.brought,
+    safestLeads: safestLeadsFor(plan, visibleOpponents, data),
     score: Math.round(score * 10) / 10,
-    confidence: confidenceFor(plan, visibleOpponents, data, inference),
+    confidence: confidenceFor(plan, visibleOpponents, data),
     tags: recommendationTags(plan, data),
     reasons: sortedReasons,
     warnings: Array.from(new Set(warnings)).slice(0, 4),
-    opponentRead,
     benchNotes: [],
     modeChecks: modeCoverage.checks,
-    breakdown: { offense, defense, speed, modes: modeCoverage.score, risk, roles, meta }
+    breakdown: { offense, defense, speed, modes: modeCoverage.score, roles, meta }
   };
 };
 
@@ -1012,13 +908,12 @@ const benchNotesFor = (
   recommendation: BringRecommendation,
   team: PokemonEntry[],
   opponents: PokemonEntry[],
-  data: IndexedData,
-  inference: OpponentInference
+  data: IndexedData
 ): BenchNote[] => {
   const broughtIds = new Set(recommendation.brought.map((pokemon) => pokemon.id));
   const selectedTags = new Set(recommendation.brought.flatMap((pokemon) => Array.from(entryTags(pokemon, data))));
   const selectedHasMega = recommendation.brought.some((pokemon) => isMegaSpecies(pokemon.species));
-  const allVisibleOpponents = filledEntries(opponents).map((opponent) => opponentEntryForScoring(opponent, inference, data));
+  const allVisibleOpponents = filledEntries(opponents).map((opponent) => opponentEntryForScoring(opponent, data));
   const previewOpponents = allVisibleOpponents;
 
   return filledEntries(team)
@@ -1046,138 +941,11 @@ const benchNotesFor = (
         return { pokemon, reason: `Selected four already covers ${uniqueStrings(overlappingRoles).slice(0, 2).join(' and ')}.` };
       }
       if (threat && threat.pressure >= 2.4) {
-        return { pokemon, reason: `Takes heavy pressure from likely ${threat.opponent.species}.` };
+        return { pokemon, reason: `Takes heavy pressure from opposing ${threat.opponent.species}.` };
       }
 
-      return { pokemon, reason: 'Lower matchup fit than the selected four after mode and risk checks.' };
+      return { pokemon, reason: 'Lower matchup fit than the selected four after matchup and mode checks.' };
     });
-};
-
-const speciesNameSet = (entries: PokemonEntry[], data: IndexedData): Set<string> =>
-  new Set(entries.map((pokemon) => previewKeyForScoring(pokemon.species, data)));
-
-const hasSpecies = (entries: PokemonEntry[], data: IndexedData, species: string[]): boolean => {
-  const keys = speciesNameSet(entries, data);
-  return species.some((name) => keys.has(previewKeyForScoring(name, data)));
-};
-
-const hasAllSpecies = (entries: PokemonEntry[], data: IndexedData, species: string[]): boolean => {
-  const keys = speciesNameSet(entries, data);
-  return species.every((name) => keys.has(previewKeyForScoring(name, data)));
-};
-
-const averageSpeed = (entries: PokemonEntry[], data: IndexedData): number => {
-  const speeds = entries.map((pokemon) => entrySpeed(pokemon, data)).filter((speed): speed is number => typeof speed === 'number');
-  return speeds.length ? speeds.reduce((total, speed) => total + speed, 0) / speeds.length : 90;
-};
-
-const matchupModeResponse = (opponents: PokemonEntry[], players: PokemonEntry[], data: IndexedData): { score: number; reasons: string[] } => {
-  const playerTags = players.flatMap((pokemon) => Array.from(entryTags(pokemon, data)));
-  const opponentTags = opponents.flatMap((pokemon) => Array.from(entryTags(pokemon, data)));
-  const playerNames = speciesNameSet(players, data);
-  const reasons: string[] = [];
-  let score = 0;
-
-  const playerHasSun =
-    playerTags.includes('weather') &&
-    (playerNames.has(previewKeyForScoring('Charizard', data)) || playerNames.has(previewKeyForScoring('Torkoal', data)) || playerNames.has(previewKeyForScoring('Venusaur', data)));
-  const playerHasTailwind = playerTags.includes('tailwind');
-  const playerHasTrickRoom = playerTags.includes('trick-room');
-  const playerHasIntimidate = playerTags.includes('intimidate');
-  const opponentHasSpeedControl = opponentTags.includes('speed-control') || opponentTags.includes('tailwind') || opponentTags.includes('trick-room');
-
-  if (playerHasSun && (hasAllSpecies(opponents, data, ['Tyranitar', 'Excadrill']) || hasSpecies(opponents, data, ['Primarina', 'Milotic', 'Pelipper']))) {
-    score += 2.1;
-    reasons.push('answers your sun mode');
-  }
-  if (playerHasTailwind && opponentHasSpeedControl) {
-    score += 1.25;
-    reasons.push('contests your speed mode');
-  }
-  if (playerHasTrickRoom && (opponentTags.includes('trick-room') || opponentTags.includes('fake-out'))) {
-    score += 1.1;
-    reasons.push('respects your Trick Room');
-  }
-  if (playerHasIntimidate && opponents.some((pokemon) => entryTags(pokemon, data).has('special-attacker') || pokemon.ability?.toLowerCase().includes('competitive'))) {
-    score += 0.7;
-    reasons.push('punishes Intimidate lines');
-  }
-  if (hasAllSpecies(opponents, data, ['Tyranitar', 'Excadrill'])) {
-    score += 1.3;
-    reasons.push('keeps sand core intact');
-  } else if (hasSpecies(opponents, data, ['Tyranitar', 'Excadrill'])) {
-    score -= 1.15;
-  }
-
-  return { score, reasons };
-};
-
-const matchupAdjustedOpponentInference = (
-  inference: OpponentInference,
-  team: PokemonEntry[],
-  opponents: PokemonEntry[],
-  data: IndexedData
-): OpponentInference => {
-  const playerTeam = filledEntries(team);
-  const visibleOpponents = filledEntries(opponents).map((opponent) => opponentEntryForScoring(opponent, inference, data));
-  const reads = inference.likelyBringFours.filter((read) => read.members.length >= Math.min(4, visibleOpponents.length));
-  if (playerTeam.length === 0 || visibleOpponents.length === 0 || reads.length === 0) return inference;
-
-  const playerFastAverage = averageSpeed([...playerTeam].sort((first, second) => (entrySpeed(second, data) ?? 0) - (entrySpeed(first, data) ?? 0)).slice(0, 2), data);
-  const weightedReads = reads.map((read) => {
-    const readOpponents = opponentEntriesForRead(visibleOpponents, read, data);
-    const pressureIntoPlayer = playerTeam.reduce((total, player) => {
-      const best = Math.max(...readOpponents.map((opponent) => bestDamagePressure(opponent, player, data).score));
-      return total + damagePressureScore(best);
-    }, 0);
-    const exposedToPlayer = readOpponents.reduce((total, opponent) => {
-      const best = Math.max(...playerTeam.map((player) => bestDamagePressure(player, opponent, data).score));
-      return total + damagePressureScore(best);
-    }, 0);
-    const threatenedPlayerCount = playerTeam.filter((player) => Math.max(...readOpponents.map((opponent) => bestDamagePressure(opponent, player, data).score)) >= 1.15).length;
-    const modeResponse = matchupModeResponse(readOpponents, playerTeam, data);
-    const opponentFastAverage = averageSpeed([...readOpponents].sort((first, second) => (entrySpeed(second, data) ?? 0) - (entrySpeed(first, data) ?? 0)).slice(0, 2), data);
-    const hasSpeedControl = readOpponents.some((opponent) => {
-      const tags = entryTags(opponent, data);
-      return tags.has('speed-control') || tags.has('tailwind') || tags.has('trick-room');
-    });
-    const speedResponse =
-      opponentFastAverage > playerFastAverage + 8 ? 0.8 : hasSpeedControl ? 0.75 : opponentFastAverage < playerFastAverage - 18 ? -0.55 : 0;
-    const priorScore = Math.log(clamp(read.probability, 0.002, 1)) * 1.15;
-    const matchupScore =
-      priorScore +
-      pressureIntoPlayer * 0.68 -
-      exposedToPlayer * 0.32 +
-      threatenedPlayerCount * 0.36 +
-      modeResponse.score +
-      speedResponse +
-      read.confidence * 0.55;
-    const weight = Math.exp(matchupScore / 2.45);
-    const reasons = uniqueStrings([
-      ...modeResponse.reasons,
-      ...(threatenedPlayerCount >= 4 ? ['strong into your six'] : []),
-      ...(speedResponse > 0.5 ? ['speed matchup'] : []),
-      ...read.reasons
-    ]).slice(0, 4);
-
-    return { read, weight, reasons, matchupScore };
-  });
-
-  const totalWeight = weightedReads.reduce((total, read) => total + read.weight, 0) || 1;
-  const likelyBringFours = weightedReads
-    .map(({ read, weight, reasons, matchupScore }) => ({
-      ...read,
-      probability: weight / totalWeight,
-      score: Math.round((weight / totalWeight) * 1000) / 10,
-      confidence: clamp(read.confidence + clamp((matchupScore + 6) / 28, 0, 0.22), 0.25, 0.9),
-      reasons
-    }))
-    .sort((first, second) => second.probability - first.probability);
-
-  return {
-    ...inference,
-    likelyBringFours
-  };
 };
 
 export const recommendPlans = (
@@ -1185,13 +953,12 @@ export const recommendPlans = (
   opponents: PokemonEntry[],
   data: IndexedData = indexedData
 ): Recommendation[] => {
-  const inference = inferOpponentPreview(opponents, data);
   return enumerateBattlePlans(team)
-    .map((plan) => scoreBattlePlan(plan, opponents, data, inference))
+    .map((plan) => scoreBattlePlan(plan, opponents, data))
     .sort((a, b) => b.score - a.score)
     .map((recommendation, index, all) => ({
       ...recommendation,
-      confidence: clamp(recommendation.confidence - index * 0.002 + (recommendation.score - (all.at(-1)?.score ?? 0)) / 1000, 0.25, 0.94)
+      confidence: clamp(recommendation.confidence - index * 0.002 + (recommendation.score - (all.at(-1)?.score ?? 0)) / 1000, 0.2, 0.86)
     }));
 };
 
@@ -1200,14 +967,13 @@ export const recommendBringFours = (
   opponents: PokemonEntry[],
   data: IndexedData = indexedData
 ): BringRecommendation[] => {
-  const inference = matchupAdjustedOpponentInference(inferOpponentPreview(opponents, data), team, opponents, data);
   const available = filledEntries(team);
   return enumerateBringFours(team)
-    .map((plan) => scoreBringFour(plan, opponents, data, inference))
+    .map((plan) => scoreBringFour(plan, opponents, data))
     .sort((a, b) => b.score - a.score)
     .map((recommendation, index, all) => ({
       ...recommendation,
-      benchNotes: benchNotesFor(recommendation, available, opponents, data, inference),
-      confidence: clamp(recommendation.confidence - index * 0.002 + (recommendation.score - (all.at(-1)?.score ?? 0)) / 1000, 0.25, 0.94)
+      benchNotes: benchNotesFor(recommendation, available, opponents, data),
+      confidence: clamp(recommendation.confidence - index * 0.002 + (recommendation.score - (all.at(-1)?.score ?? 0)) / 1000, 0.2, 0.86)
     }));
 };

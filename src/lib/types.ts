@@ -194,12 +194,12 @@ export interface Recommendation extends BattlePlan {
 
 export interface BringRecommendation {
   brought: PokemonEntry[];
+  safestLeads: PokemonEntry[];
   score: number;
   confidence: number;
   tags: string[];
   reasons: ScoreReason[];
   warnings: string[];
-  opponentRead?: OpponentBringFour;
   benchNotes: BenchNote[];
   modeChecks: ModeCheck[];
   breakdown: {
@@ -207,7 +207,6 @@ export interface BringRecommendation {
     defense: number;
     speed: number;
     modes: number;
-    risk: number;
     roles: number;
     meta: number;
   };
