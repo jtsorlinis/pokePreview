@@ -27,6 +27,7 @@ describe('recommendation scoring', () => {
 
     expect(recommendations).toHaveLength(90);
     expect(recommendations[0].score).toBeGreaterThanOrEqual(recommendations.at(-1)!.score);
+    expect(recommendations[0].breakdown.robustness).toBeGreaterThan(0);
     expect(recommendations[0].reasons.length).toBeGreaterThan(0);
   });
 
@@ -186,6 +187,87 @@ describe('recommendation scoring', () => {
     expect(recommendations[0].warnings.some((warning) => warning.includes('weak to Water'))).toBe(true);
   });
 
+  it('avoids weather support leads into fast super-effective spread pressure', () => {
+    const charizardTeam = [
+      { ...member('team-1', 'Mega Charizard Y', [], ['Heat Wave', 'Solar Beam', 'Tailwind', 'Protect']), speedStat: 167 },
+      { ...member('team-2', 'Whimsicott', [], ['Tailwind', 'Encore', 'Moonblast', 'Protect']), ability: 'Prankster', speedStat: 184 },
+      { ...member('team-3', 'Garchomp', [], ['Earthquake', 'Dragon Claw', 'Rock Slide', 'Protect']), speedStat: 154 },
+      { ...member('team-4', 'Primarina', [], ['Hyper Voice', 'Moonblast', 'Icy Wind', 'Protect']), speedStat: 101 },
+      { ...member('team-5', 'Incineroar', [], ['Fake Out', 'Parting Shot', 'Flare Blitz', 'Throat Chop']), ability: 'Intimidate', speedStat: 80 },
+      { ...member('team-6', 'Weavile', [], ['Fake Out', 'Triple Axel', 'Knock Off', 'Beat Up']), speedStat: 172 }
+    ];
+    const aerodactylPreview = ['Aerodactyl', 'Sneasler', 'Garchomp', 'Kingambit', 'Incineroar', 'Primarina'].map((species) =>
+      opponent(species, [])
+    );
+
+    const recommendations = recommendPlans(charizardTeam, aerodactylPreview);
+    const topLeadIds = new Set(recommendations[0].leads.map((pokemon) => pokemon.id));
+    const charizardWhimsicottLead = recommendations.find((recommendation) => {
+      const leadIds = new Set(recommendation.leads.map((pokemon) => pokemon.id));
+      return leadIds.has('team-1') && leadIds.has('team-2');
+    });
+
+    expect(topLeadIds.has('team-1') && topLeadIds.has('team-2')).toBe(false);
+    expect(charizardWhimsicottLead).toBeDefined();
+    expect(charizardWhimsicottLead!.breakdown.lead).toBeLessThan(recommendations[0].breakdown.lead);
+    expect(charizardWhimsicottLead!.warnings.some((warning) => warning.includes('Lead risk'))).toBe(true);
+  });
+
+  it('flags passive setup leads that lose turn-one agency', () => {
+    const setupTeam = [
+      { ...member('team-1', 'Whimsicott', [], ['Tailwind', 'Encore', 'Moonblast', 'Protect']), ability: 'Prankster', speedStat: 184 },
+      { ...member('team-2', 'Milotic', [], ['Recover', 'Icy Wind', 'Protect', 'Muddy Water']), speedStat: 101 },
+      { ...member('team-3', 'Garchomp', [], ['Earthquake', 'Dragon Claw', 'Rock Slide', 'Protect']), speedStat: 154 },
+      { ...member('team-4', 'Incineroar', [], ['Fake Out', 'Parting Shot', 'Flare Blitz', 'Throat Chop']), ability: 'Intimidate', speedStat: 80 },
+      { ...member('team-5', 'Primarina', [], ['Hyper Voice', 'Moonblast', 'Icy Wind', 'Protect']), speedStat: 101 },
+      { ...member('team-6', 'Weavile', [], ['Fake Out', 'Triple Axel', 'Knock Off', 'Beat Up']), speedStat: 172 }
+    ];
+    const pressurePreview = ['Aerodactyl', 'Sneasler', 'Garchomp', 'Kingambit', 'Incineroar', 'Primarina'].map((species) =>
+      opponent(species, [])
+    );
+
+    const recommendations = recommendPlans(setupTeam, pressurePreview);
+    const passiveLead = recommendations.find((recommendation) => {
+      const leadIds = new Set(recommendation.leads.map((pokemon) => pokemon.id));
+      return leadIds.has('team-1') && leadIds.has('team-2');
+    });
+    const topLeadIds = new Set(recommendations[0].leads.map((pokemon) => pokemon.id));
+
+    expect(topLeadIds.has('team-1') && topLeadIds.has('team-2')).toBe(false);
+    expect(passiveLead).toBeDefined();
+    expect(passiveLead!.breakdown.lead).toBeLessThan(6);
+    expect(passiveLead!.warnings.some((warning) => warning.includes('Turn-one risk'))).toBe(true);
+  });
+
+  it('penalizes Fake Out and Prankster disruption into priority-block previews', () => {
+    const priorityTeam = [
+      { ...member('team-1', 'Mega Charizard Y', [], ['Heat Wave', 'Solar Beam', 'Tailwind', 'Protect']), speedStat: 167 },
+      { ...member('team-2', 'Garchomp', [], ['Earthquake', 'Dragon Claw', 'Rock Slide', 'Protect']), speedStat: 154 },
+      { ...member('team-3', 'Weavile', [], ['Fake Out', 'Triple Axel', 'Knock Off', 'Beat Up']), speedStat: 172 },
+      { ...member('team-4', 'Whimsicott', [], ['Tailwind', 'Encore', 'Moonblast', 'Protect']), ability: 'Prankster', speedStat: 184 },
+      { ...member('team-5', 'Incineroar', [], ['Fake Out', 'Parting Shot', 'Flare Blitz', 'Throat Chop']), ability: 'Intimidate', speedStat: 80 },
+      { ...member('team-6', 'Primarina', [], ['Hyper Voice', 'Moonblast', 'Icy Wind', 'Protect']), speedStat: 101 }
+    ];
+    const farigirafPreview = ['Farigiraf', 'Kingambit', 'Incineroar', 'Garchomp', 'Primarina', 'Charizard'].map((species) =>
+      opponent(species, [])
+    );
+
+    const recommendations = recommendPlans(priorityTeam, farigirafPreview);
+    const topLeadNames = recommendations[0].leads.map((pokemon) => pokemon.species);
+    const weavileWhimsicottLead = recommendations.find((recommendation) => {
+      const leadIds = new Set(recommendation.leads.map((pokemon) => pokemon.id));
+      return leadIds.has('team-3') && leadIds.has('team-4');
+    });
+    const incineroarLead = recommendations.find((recommendation) =>
+      recommendation.leads.some((pokemon) => pokemon.species === 'Incineroar')
+    );
+
+    expect(topLeadNames).toEqual(expect.arrayContaining(['Mega Charizard Y', 'Garchomp']));
+    expect(weavileWhimsicottLead?.reasons.some((reason) => reason.label === 'Priority blocked')).toBe(true);
+    expect(weavileWhimsicottLead?.warnings.some((warning) => warning.includes('Farigiraf priority block'))).toBe(true);
+    expect(incineroarLead?.warnings.some((warning) => warning.includes('Fake Out'))).toBe(true);
+  });
+
   it('anchors Perish Trap plans around leading the trapper', () => {
     const perishTeam = [
       member('team-1', 'Mega Gengar', [], ['Perish Song', 'Shadow Ball', 'Sludge Bomb', 'Protect']),
@@ -255,7 +337,7 @@ describe('recommendation scoring', () => {
     expect(passiveLead?.warnings.some((warning) => warning.includes('Enemy Perish Trap risk'))).toBe(true);
   });
 
-  it('demotes Basculegion leads when public data expects Kingambit pressure', () => {
+  it('does not score plans from a single predicted opposing lead pair', () => {
     const basculegionTeam = [
       member('team-1', 'Basculegion (Male)', [], ['Last Respects', 'Aqua Jet', 'Wave Crash', 'Protect']),
       member('team-2', 'Incineroar', [], ['Fake Out', 'Parting Shot', 'Flare Blitz', 'Throat Chop']),
@@ -269,12 +351,23 @@ describe('recommendation scoring', () => {
     );
 
     const recommendations = recommendPlans(basculegionTeam, kingambitPreview);
-    const topLeadNames = recommendations.slice(0, 8).map((recommendation) => recommendation.leads.map((pokemon) => pokemon.species));
-    const firstBasculegionLead = recommendations.find((recommendation) =>
-      recommendation.leads.some((pokemon) => pokemon.species === 'Basculegion (Male)')
-    );
+    const topRecommendations = recommendations.slice(0, 8);
+    const topLeadNames = topRecommendations.flatMap((recommendation) => recommendation.leads.map((pokemon) => pokemon.species));
+    const topReasons = topRecommendations.flatMap((recommendation) => recommendation.reasons.map((reason) => reason.label));
+    const topWarnings = topRecommendations.flatMap((recommendation) => recommendation.warnings);
 
-    expect(topLeadNames.flat()).not.toContain('Basculegion (Male)');
-    expect(firstBasculegionLead?.warnings.some((warning) => warning.includes('Basculegion (Male) into Kingambit'))).toBe(true);
+    expect(topLeadNames).not.toContain('Basculegion (Male)');
+    expect(topRecommendations[0].breakdown.lead).toBeGreaterThan(8);
+    expect(topReasons).not.toContain('Opponent lead read');
+    expect(topWarnings.join(' ')).not.toMatch(/Likely lead risk|Lead counter risk/);
+  });
+
+  it('rewards plans with a stronger lower-tail scenario floor', () => {
+    const recommendations = recommendPlans(samplePlayerTeam, sampleOpponentTeam);
+    const best = recommendations[0];
+    const worst = recommendations.at(-1)!;
+
+    expect(best.breakdown.robustness).toBeGreaterThan(worst.breakdown.robustness);
+    expect(recommendations.some((recommendation) => recommendation.reasons.some((reason) => reason.label === 'Stable across scenarios'))).toBe(true);
   });
 });

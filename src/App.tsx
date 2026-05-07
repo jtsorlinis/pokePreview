@@ -438,6 +438,7 @@ function DetailPanel({ recommendation }: { recommendation?: Recommendation }) {
         <BreakdownBar label="Lead" value={recommendation.breakdown.lead} max={18} />
         <BreakdownBar label="Roles" value={recommendation.breakdown.roles} max={17} />
         <BreakdownBar label="Meta" value={recommendation.breakdown.meta} max={10} />
+        <BreakdownBar label="Robust" value={recommendation.breakdown.robustness} max={18} />
       </div>
     </section>
   );
@@ -474,12 +475,12 @@ function OpponentIntelPanel({ inference, active }: { inference: OpponentInferenc
 
       <div className="intelGrid">
         <div className="intelBlock">
-          <strong>Likely leads</strong>
+          <strong>Public lead priors</strong>
           <div className="miniList">
             {inference.likelyLeadPairs.slice(0, 3).map((pair) => (
               <div className="setGuess" key={pair.members.join('-')}>
                 <span>{pair.members.join(' + ')}</span>
-                <small>{formatPercent(pair.probability)} lead probability · {pair.reasons.slice(0, 2).join(', ')}</small>
+                <small>{formatPercent(pair.probability)} public prior · {pair.reasons.slice(0, 2).join(', ')}</small>
                 <small>
                   {pair.evidence.publicPairSamples
                     ? `Public pair sample: ${pair.evidence.publicPairSamples.toLocaleString()}`
