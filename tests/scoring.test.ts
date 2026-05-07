@@ -1,7 +1,8 @@
 import { describe, expect, it } from 'vitest';
-import { recommendBringFours, recommendPlans } from '../src/lib/scoring';
+import { buildIndex, findSpecies, metaDataset } from '../src/lib/data';
+import { recommendBringFours, recommendPlans, scoreBringFour } from '../src/lib/scoring';
 import { sampleOpponentTeam, samplePlayerTeam } from '../src/lib/sampleTeams';
-import type { PokemonEntry } from '../src/lib/types';
+import type { MetaSpecies, PokemonEntry } from '../src/lib/types';
 
 const opponent = (species: string, types: PokemonEntry['types']): PokemonEntry => ({
   id: `opponent-${species}`,
@@ -20,6 +21,22 @@ const member = (id: string, species: string, types: PokemonEntry['types'], moves
   teraType: '',
   speedStat: 100
 });
+
+const dataWithSpeciesOverrides = (overrides: MetaSpecies[]) => {
+  const overridesByName = new Map(
+    overrides.flatMap((species) => [
+      [species.species, species],
+      [species.displayName, species]
+    ])
+  );
+
+  return buildIndex({
+    ...metaDataset,
+    species: metaDataset.species.map(
+      (species) => overridesByName.get(species.species) ?? overridesByName.get(species.displayName) ?? species
+    )
+  });
+};
 
 describe('recommendation scoring', () => {
   it('returns all 90 ranked plans and includes explanations', () => {
@@ -130,6 +147,102 @@ describe('recommendation scoring', () => {
     expect(dualMegaPlan!.brought.map((pokemon) => pokemon.species)).toContain('Glimmora');
     expect(dualMegaPlan!.brought.map((pokemon) => pokemon.species)).not.toContain('Charizard');
     expect(dualMegaPlan!.warnings.some((warning) => warning.includes('Glimmora is scored as regular'))).toBe(true);
+  });
+
+  it('scores a single Mega slot as both the active Mega and regular form', () => {
+    const glimmora = findSpecies('Glimmora')!;
+    const megaGlimmora = findSpecies('Mega Glimmora')!;
+    const customData = dataWithSpeciesOverrides([
+      {
+        ...glimmora,
+        usage: 0.35,
+        winRate: 0.75,
+        sampleSize: 300,
+        commonItems: ['Focus Sash', 'Power Herb', 'Assault Vest'],
+        roleTags: ['lead-pressure', 'special-attacker', 'speed-control'],
+        baseStats: {
+          hp: 158,
+          attack: 75,
+          defense: 110,
+          specialAttack: 150,
+          specialDefense: 101,
+          speed: 106
+        }
+      },
+      {
+        ...megaGlimmora,
+        usage: 0,
+        winRate: 0.3,
+        sampleSize: 300,
+        baseStats: {
+          hp: 1,
+          attack: 1,
+          defense: 1,
+          specialAttack: 1,
+          specialDefense: 1,
+          speed: 1
+        }
+      }
+    ]);
+    const plan = {
+      brought: [
+        member('team-1', 'Mega Glimmora', [], ['Mortal Spin', 'Power Gem', 'Earth Power', 'Spiky Shield']),
+        member('team-2', 'Incineroar', [], ['Fake Out', 'Parting Shot', 'Flare Blitz', 'Throat Chop']),
+        member('team-3', 'Whimsicott', [], ['Tailwind', 'Moonblast', 'Encore', 'Protect']),
+        member('team-4', 'Primarina', [], ['Hyper Voice', 'Moonblast', 'Icy Wind', 'Protect'])
+      ],
+      leads: [],
+      backs: []
+    };
+
+    const scored = scoreBringFour(plan, [], customData);
+
+    expect(scored.brought.map((pokemon) => pokemon.species)).toContain('Glimmora');
+    expect(scored.brought.map((pokemon) => pokemon.species)).not.toContain('Mega Glimmora');
+    expect(scored.brought.find((pokemon) => pokemon.species === 'Glimmora')?.inactiveMegaSpecies).toBe('Mega Glimmora');
+    expect(scored.warnings.some((warning) => warning.includes('Mega Glimmora is scored as regular Glimmora'))).toBe(true);
+  });
+
+  it('rewards bringing a viable regular-form Mega slot beside another active Mega', () => {
+    const mixedMegaTeam = [
+      member('team-1', 'Mega Charizard Y', [], ['Heat Wave', 'Solar Beam', 'Weather Ball', 'Protect']),
+      member('team-2', 'Mega Glimmora', [], ['Mortal Spin', 'Power Gem', 'Earth Power', 'Spiky Shield']),
+      member('team-3', 'Sneasler', [], ['Close Combat', 'Dire Claw', 'Fake Out', 'Protect']),
+      member('team-4', 'Garchomp', [], ['Earthquake', 'Dragon Claw', 'Rock Slide', 'Protect']),
+      member('team-5', 'Incineroar', [], ['Fake Out', 'Parting Shot', 'Flare Blitz', 'Throat Chop']),
+      member('team-6', 'Primarina', [], ['Hyper Voice', 'Moonblast', 'Icy Wind', 'Protect'])
+    ];
+
+    const recommendations = recommendBringFours(mixedMegaTeam, sampleOpponentTeam);
+    const coreIndex = recommendations.findIndex((recommendation) => {
+      const species = recommendation.brought.map((pokemon) => pokemon.species);
+      return species.includes('Mega Charizard Y') && species.includes('Glimmora');
+    });
+    const core = recommendations[coreIndex];
+
+    expect(coreIndex).toBeGreaterThanOrEqual(0);
+    expect(coreIndex).toBeLessThan(4);
+    expect(core.reasons.some((reason) => reason.label === 'Mega flexibility')).toBe(true);
+    expect(core.reasons.some((reason) => reason.label === 'Core synergy')).toBe(false);
+    expect(core.warnings.join(' ')).not.toMatch(/Inactive Mega cost: Glimmora/);
+  });
+
+  it('counts shared defensive strain by selected Pokémon instead of repeated opponent routes', () => {
+    const plan = {
+      brought: [
+        member('team-1', 'Mega Charizard Y', [], ['Heat Wave', 'Solar Beam', 'Weather Ball', 'Protect']),
+        member('team-2', 'Mega Glimmora', [], ['Mortal Spin', 'Power Gem', 'Earth Power', 'Spiky Shield']),
+        member('team-5', 'Incineroar', [], ['Fake Out', 'Parting Shot', 'Flare Blitz', 'Throat Chop']),
+        member('team-6', 'Primarina', [], ['Hyper Voice', 'Moonblast', 'Icy Wind', 'Protect'])
+      ],
+      leads: [],
+      backs: []
+    };
+
+    const scored = scoreBringFour(plan, sampleOpponentTeam);
+
+    expect(scored.warnings.join(' ')).not.toMatch(/[5-9] weak to/);
+    expect(scored.warnings.join(' ')).not.toMatch(/Shared defensive strain/);
   });
 
   it('does not surface hazard pressure as a recommendation metric', () => {

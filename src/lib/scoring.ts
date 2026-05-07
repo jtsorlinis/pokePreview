@@ -23,6 +23,16 @@ const nonEmptyMoves = (pokemon: PokemonEntry): string[] => pokemon.moves.map((mo
 
 const speciesMeta = (pokemon: PokemonEntry, data: IndexedData): MetaSpecies | undefined => findSpecies(pokemon.species, data);
 
+const publicSpeciesMeta = (pokemon: PokemonEntry, data: IndexedData): MetaSpecies | undefined => {
+  const meta = speciesMeta(pokemon, data);
+  if (!isMegaSpecies(pokemon.species)) return meta;
+
+  const baseMeta = findSpecies(baseSpeciesForMega(pokemon.species, data), data);
+  if (!baseMeta) return meta;
+
+  return (baseMeta.sampleSize ?? 0) > (meta?.sampleSize ?? 0) ? baseMeta : meta;
+};
+
 const demoteMegaEntry = (pokemon: PokemonEntry, data: IndexedData): PokemonEntry => {
   const species = baseSpeciesForMega(pokemon.species, data);
   const meta = findSpecies(species, data);
@@ -40,19 +50,33 @@ const demoteMegaEntry = (pokemon: PokemonEntry, data: IndexedData): PokemonEntry
   };
 };
 
+const megaVariantKey = (plan: BattlePlan): string =>
+  plan.brought
+    .map((pokemon) => `${pokemon.id}:${pokemon.species}:${pokemon.inactiveMegaSpecies ?? ''}`)
+    .join('|');
+
 const withMegaLimit = (plan: BattlePlan, data: IndexedData): Array<{ plan: BattlePlan; warning?: string }> => {
   const megaEntries = plan.brought.filter((pokemon) => isMegaSpecies(pokemon.species));
-  if (megaEntries.length <= 1) return [{ plan }];
+  if (megaEntries.length === 0) return [{ plan }];
 
-  return megaEntries.map((activeMega) => {
+  const buildVariant = (activeMega?: PokemonEntry): { plan: BattlePlan; warning?: string } => {
     const demoted = new Map(
       megaEntries
-        .filter((pokemon) => pokemon.id !== activeMega.id)
+        .filter((pokemon) => pokemon.id !== activeMega?.id)
         .map((pokemon) => [pokemon.id, demoteMegaEntry(pokemon, data)])
     );
     const applyLimit = (pokemon: PokemonEntry) => demoted.get(pokemon.id) ?? pokemon;
-    const demotedNames = [...demoted.values()].map((pokemon) => pokemon.species);
-    const warning = `Mega limit: ${activeMega.species} is the active Mega; ${demotedNames.join(', ')} ${demotedNames.length === 1 ? 'is' : 'are'} scored as regular.`;
+    const demotedEntries = [...demoted.values()];
+    const demotedNames = demotedEntries.map((pokemon) => pokemon.species);
+    const warning = activeMega
+      ? demotedEntries.length > 0
+        ? `Mega limit: ${activeMega.species} is the active Mega; ${demotedNames.join(', ')} ${
+            demotedNames.length === 1 ? 'is' : 'are'
+          } scored as regular.`
+        : undefined
+      : `Mega option: ${demotedEntries
+          .map((pokemon) => `${pokemon.inactiveMegaSpecies ?? pokemon.species} is scored as regular ${pokemon.species}`)
+          .join('; ')}.`;
 
     return {
       plan: {
@@ -62,6 +86,15 @@ const withMegaLimit = (plan: BattlePlan, data: IndexedData): Array<{ plan: Battl
       },
       warning
     };
+  };
+
+  const variants = [...megaEntries.map((activeMega) => buildVariant(activeMega)), buildVariant()];
+  const seen = new Set<string>();
+  return variants.filter((variant) => {
+    const key = megaVariantKey(variant.plan);
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
   });
 };
 
@@ -82,9 +115,11 @@ const regularFormViability = (pokemon: PokemonEntry, data: IndexedData): number 
     ? commonItems.filter((item) => !isLikelyMegaStoneForBase(item, meta.displayName)).length / commonItems.length
     : 0.25;
   const tags = new Set(meta.roleTags);
+  const spreadUtility = tags.has('spread') ? 0.1 * clamp(nonMegaItemShare / 0.35, 0, 1) : 0;
   const utilityScore =
     (tags.has('lead-pressure') ? 0.16 : 0) +
     (tags.has('fake-out') ? 0.18 : 0) +
+    spreadUtility +
     (tags.has('tailwind') || tags.has('trick-room') || tags.has('speed-control') ? 0.16 : 0) +
     (tags.has('intimidate') || tags.has('redirection') || tags.has('wide-guard') ? 0.14 : 0) +
     (tags.has('pivot') ? 0.08 : 0);
@@ -266,6 +301,13 @@ const addReason = (reasons: ScoreReason[], label: string, detail: string, weight
   reasons.push({ label, detail, weight, tone });
 };
 
+const topReasons = (reasons: ScoreReason[], requiredLabel?: string): ScoreReason[] => {
+  const sorted = reasons.sort((a, b) => Math.abs(b.weight) - Math.abs(a.weight)).slice(0, 5);
+  const required = requiredLabel ? reasons.find((reason) => reason.label === requiredLabel) : undefined;
+  if (!required || sorted.some((reason) => reason.label === required.label)) return sorted;
+  return [...sorted.slice(0, 4), required];
+};
+
 const scoreOffense = (plan: BattlePlan, opponents: PokemonEntry[], data: IndexedData, reasons: ScoreReason[]): number => {
   if (opponents.length === 0) return 16;
 
@@ -307,6 +349,7 @@ const scoreDefense = (plan: BattlePlan, opponents: PokemonEntry[], data: Indexed
   const vulnerable: string[] = [];
   const sturdy: string[] = [];
   const sharedWeaknesses = new Map<PokemonType, number>();
+  const incomingTypes = Array.from(new Set(opponents.flatMap((opponent) => attackingTypes(opponent, data))));
 
   plan.brought.forEach((pokemon) => {
     const pokemonTypes = entryTypes(pokemon, data);
@@ -318,7 +361,6 @@ const scoreDefense = (plan: BattlePlan, opponents: PokemonEntry[], data: Indexed
       if (mult <= 0.5) sturdy.push(`${pokemon.species} into ${opponent.species}`);
     });
 
-    const incomingTypes = opponents.flatMap((opponent) => attackingTypes(opponent, data));
     incomingTypes.forEach((type) => {
       if (effectiveness(type, pokemonTypes) >= 2) {
         sharedWeaknesses.set(type, (sharedWeaknesses.get(type) ?? 0) + 1);
@@ -663,10 +705,63 @@ const scoreRoles = (plan: BattlePlan, data: IndexedData, reasons: ScoreReason[],
   return clamp(score, -4, 17);
 };
 
+const publicPairAliases = (pokemon: PokemonEntry, data: IndexedData): string[] => {
+  const aliases = [pokemon.species];
+  if (isMegaSpecies(pokemon.species)) aliases.push(baseSpeciesForMega(pokemon.species, data));
+  if (pokemon.inactiveMegaSpecies) aliases.push(pokemon.inactiveMegaSpecies);
+  return uniqueStrings(aliases);
+};
+
+const publicPairBoost = (first: PokemonEntry, second: PokemonEntry, data: IndexedData): number => {
+  const firstAliases = publicPairAliases(first, data);
+  const secondAliases = publicPairAliases(second, data);
+  let bestBoost = 0;
+
+  firstAliases.forEach((firstAlias) => {
+    secondAliases.forEach((secondAlias) => {
+      const pair = findPair(firstAlias, secondAlias, data);
+      if (!pair) return;
+
+      const confidence = clamp((pair.sampleSize ?? 0) / 180, 0, 1);
+      const boost = pair.frequency * 8 + ((pair.winRate ?? 0.5) - 0.5) * 10 * confidence;
+      bestBoost = Math.max(bestBoost, boost);
+    });
+  });
+
+  return bestBoost;
+};
+
+const scoreMegaFlexibility = (plan: BattlePlan, data: IndexedData, reasons: ScoreReason[]): number => {
+  const activeMegas = plan.brought.filter((pokemon) => isMegaSpecies(pokemon.species));
+  const regularMegaSlots = plan.brought
+    .filter((pokemon) => pokemon.inactiveMegaSpecies)
+    .map((pokemon) => ({ pokemon, viability: regularFormViability(pokemon, data) }))
+    .filter(({ viability }) => viability >= 0.55);
+
+  if (activeMegas.length === 0 || regularMegaSlots.length === 0) return 0;
+
+  const boost = clamp(
+    regularMegaSlots.reduce((total, { viability }) => total + 0.75 + (viability - 0.55) * 3.5, 0),
+    0,
+    2.4
+  );
+  const regularNames = regularMegaSlots.map(({ pokemon }) => pokemon.species).join(', ');
+  const activeNames = activeMegas.map((pokemon) => pokemon.species).join(', ');
+  addReason(
+    reasons,
+    'Mega flexibility',
+    `${regularNames} ${regularMegaSlots.length === 1 ? 'keeps' : 'keep'} enough regular-form utility beside active ${activeNames}.`,
+    Math.max(2.1, Math.min(boost, 2.2)),
+    'neutral'
+  );
+  return boost;
+};
+
 const scoreMeta = (plan: BattlePlan, data: IndexedData, reasons: ScoreReason[]): number => {
   let score = 0;
+  const activeMegaNames = plan.brought.filter((pokemon) => isMegaSpecies(pokemon.species)).map((pokemon) => pokemon.species);
   const usageBoost = plan.brought.reduce((total, pokemon) => {
-    const meta = speciesMeta(pokemon, data);
+    const meta = publicSpeciesMeta(pokemon, data);
     if (!meta) return total;
     const sampleConfidence = clamp((meta.sampleSize ?? 0) / 300, 0, 1);
     const winDelta = ((meta.winRate ?? 0.5) - 0.5) * 12 * sampleConfidence;
@@ -678,30 +773,31 @@ const scoreMeta = (plan: BattlePlan, data: IndexedData, reasons: ScoreReason[]):
     return (
       total +
       plan.brought.slice(index + 1).reduce((pairTotal, second) => {
-        const pair = findPair(first.species, second.species, data);
-        if (!pair) return pairTotal;
-        const confidence = clamp((pair.sampleSize ?? 0) / 180, 0, 1);
         const inactiveMultiplier = inactiveMegaMultiplier(first, data) * inactiveMegaMultiplier(second, data);
-        return pairTotal + (pair.frequency * 8 + ((pair.winRate ?? 0.5) - 0.5) * 10 * confidence) * inactiveMultiplier;
+        return pairTotal + publicPairBoost(first, second, data) * inactiveMultiplier;
       }, 0)
     );
   }, 0);
+  const megaFlexibilityBoost = scoreMegaFlexibility(plan, data, reasons);
   const inactiveMegaAdjustment = plan.brought.reduce((total, pokemon) => {
     if (!pokemon.inactiveMegaSpecies) return total;
 
     const viability = regularFormViability(pokemon, data);
     const penalty = (1 - viability) * 4.4;
     if (viability >= 0.55) {
-      addReason(reasons, 'Flexible Mega slot', `${pokemon.species} keeps enough regular-form utility if another Mega is active.`, 1, 'neutral');
+      const detail = activeMegaNames.length
+        ? `${pokemon.species} keeps enough regular-form utility while ${activeMegaNames.join(', ')} is active.`
+        : `${pokemon.species} has enough regular-form evidence to be considered without Mega evolving.`;
+      addReason(reasons, 'Flexible Mega slot', detail, 1, 'neutral');
     } else {
       addReason(reasons, 'Inactive Mega cost', `${pokemon.species} has little regular-form evidence when ${pokemon.inactiveMegaSpecies} is not active.`, -penalty, 'warning');
     }
-    return total - penalty + (viability >= 0.55 ? 0.8 : 0);
+    return total - (viability >= 0.55 ? penalty * 0.45 : penalty) + (viability >= 0.55 ? 0.6 : 0);
   }, 0);
 
-  score = usageBoost + pairBoost + inactiveMegaAdjustment;
+  score = usageBoost + pairBoost + inactiveMegaAdjustment + megaFlexibilityBoost;
   if (pairBoost > 1.2) addReason(reasons, 'Known core', 'This four includes pairings with useful public-meta priors.', 1.2, 'neutral');
-  return clamp(score, -4, 10);
+  return clamp(score, -4, 12);
 };
 
 const confidenceFor = (plan: BattlePlan, opponents: PokemonEntry[], data: IndexedData): number => {
@@ -817,9 +913,7 @@ const scoreSingleBattlePlan = (
   const meta = scoreMeta(plan, data, reasons);
   const score = clamp(offense + defense + speed + lead + roles + meta, 0, 100);
 
-  const sortedReasons = reasons
-    .sort((a, b) => Math.abs(b.weight) - Math.abs(a.weight))
-    .slice(0, 5);
+  const sortedReasons = topReasons(reasons);
 
   return {
     ...plan,
@@ -869,9 +963,7 @@ const scoreSingleBringFour = (
   const meta = scoreMeta(plan, data, reasons);
   const score = clamp(offense + defense + speed + modeCoverage.score + roles + meta, 0, 100);
 
-  const sortedReasons = reasons
-    .sort((a, b) => Math.abs(b.weight) - Math.abs(a.weight))
-    .slice(0, 5);
+  const sortedReasons = topReasons(reasons, 'Whole preview');
 
   return {
     brought: plan.brought,
@@ -932,7 +1024,11 @@ const benchNotesFor = (
         .sort((first, second) => second.pressure - first.pressure)[0];
 
       if (selectedHasMega && isMegaSpecies(pokemon.species)) {
-        return { pokemon, reason: 'Would compete for the active Mega slot in this four.' };
+        const regularForm = demoteMegaEntry(pokemon, data);
+        if (regularFormViability(regularForm, data) >= 0.55) {
+          return { pokemon, reason: `${regularForm.species} can still be brought as a regular form, but this four scored higher.` };
+        }
+        return { pokemon, reason: 'Mostly competes for the active Mega slot in this four.' };
       }
       if (bestPressure < 0.75) {
         return { pokemon, reason: 'Low immediate damage pressure into the opposing preview.' };

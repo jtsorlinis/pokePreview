@@ -63,13 +63,8 @@ describe('advisor app flow', () => {
     expect(screen.getByTestId('mode-checks')).toBeInTheDocument();
     expect(screen.getByTestId('bench-notes')).toBeInTheDocument();
     expect(screen.queryByText(/suggested lead/i)).not.toBeInTheDocument();
-
-    const leadOne = screen.getByLabelText('Lead 1');
-    const leadTwo = screen.getByLabelText('Lead 2');
-    const leadOptions = within(leadOne).getAllByRole('option');
-    fireEvent.change(leadOne, { target: { value: leadOptions[1].getAttribute('value') ?? '' } });
-    fireEvent.change(leadTwo, { target: { value: leadOptions[2].getAttribute('value') ?? '' } });
-    expect(screen.getByTestId('lead-assignment')).toHaveTextContent(/Back/i);
-    expect(screen.getByTestId('lead-assignment')).not.toHaveTextContent(/Choose two leads/i);
+    expect(screen.queryByLabelText('Lead 1')).not.toBeInTheDocument();
+    expect(screen.queryByLabelText('Lead 2')).not.toBeInTheDocument();
+    expect(screen.queryByTestId('lead-assignment')).not.toBeInTheDocument();
   });
 });
