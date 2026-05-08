@@ -77,6 +77,36 @@ describe('recommendation scoring', () => {
     expect(recommendations[0].warnings.join(' ')).not.toMatch(/likely opposing four|lead risk|public data points/i);
   });
 
+  it('scores likely Mega opponent forms from base preview names', () => {
+    const plan = {
+      brought: samplePlayerTeam.slice(0, 4),
+      leads: [],
+      backs: []
+    };
+
+    const scored = scoreBringFour(plan, [opponent('Charizard', [])]);
+
+    expect(scored.warnings.some((warning) => warning.includes('Charizard scored as likely Mega Charizard Y'))).toBe(true);
+  });
+
+  it('ignores unknown opponent names instead of counting them as scored preview slots', () => {
+    const plan = {
+      brought: samplePlayerTeam.slice(0, 4),
+      leads: [],
+      backs: []
+    };
+
+    const scored = scoreBringFour(plan, [opponent('Charzard', []), opponent('Garchomp', [])]);
+
+    expect(scored.warnings).toContain('Unknown opponent ignored: Charzard.');
+    expect(scored.reasons).toContainEqual(
+      expect.objectContaining({
+        label: 'Whole preview',
+        detail: 'Scored into all 1 opposing preview slots.'
+      })
+    );
+  });
+
   it('prefers plans that bring clear offensive coverage', () => {
     const coverageTeam = [
       member('team-1', 'Water Specialist', ['Water'], ['Muddy Water']),
@@ -278,7 +308,7 @@ describe('recommendation scoring', () => {
       member('team-5', 'Venusaur', [], ['Giga Drain', 'Sludge Bomb', 'Sleep Powder', 'Protect']),
       member('team-6', 'Primarina', [], ['Moonblast', 'Hyper Voice', 'Icy Wind', 'Protect'])
     ];
-    const helioliskPreview = [opponent('Heliolisk', [])];
+    const helioliskPreview = [{ ...opponent('Heliolisk', []), ability: 'Dry Skin' }];
 
     const recommendations = recommendBringFours(basculegionTeam, helioliskPreview);
     const topNames = recommendations[0].brought.map((pokemon) => pokemon.species);
@@ -289,6 +319,29 @@ describe('recommendation scoring', () => {
     expect(topNames).not.toContain('Basculegion (Male)');
     expect(basculegionPlan?.warnings.join(' ')).toMatch(/Basculegion \(Male\) into Heliolisk/);
     expect(basculegionPlan?.reasons.some((reason) => reason.label === 'Hard counter risk')).toBe(true);
+  });
+
+  it('does not assume optional defensive ability immunities from species-only preview', () => {
+    const basculegionTeam = [
+      { ...member('team-1', 'Basculegion (Male)', [], ['Last Respects', 'Aqua Jet', 'Wave Crash', 'Protect']), ability: 'Adaptability', speedStat: 78 },
+      member('team-2', 'Garchomp', [], ['Earthquake', 'Dragon Claw', 'Rock Slide', 'Protect']),
+      member('team-3', 'Sneasler', [], ['Close Combat', 'Dire Claw', 'Fake Out', 'Protect']),
+      member('team-4', 'Incineroar', [], ['Fake Out', 'Flare Blitz', 'Knock Off', 'Parting Shot']),
+      member('team-5', 'Venusaur', [], ['Giga Drain', 'Sludge Bomb', 'Sleep Powder', 'Protect']),
+      member('team-6', 'Primarina', [], ['Moonblast', 'Hyper Voice', 'Icy Wind', 'Protect'])
+    ];
+    const helioliskPreview = [opponent('Heliolisk', [])];
+
+    const recommendations = recommendBringFours(basculegionTeam, helioliskPreview);
+    const basculegionPlan = recommendations.find((recommendation) =>
+      recommendation.brought.some((pokemon) => pokemon.species === 'Basculegion (Male)')
+    );
+    const basculegionCounterReason = basculegionPlan?.reasons.find(
+      (reason) => reason.label === 'Hard counter risk' && reason.detail.includes('Basculegion (Male) into Heliolisk')
+    );
+
+    expect(basculegionPlan?.warnings.join(' ')).not.toMatch(/Basculegion \(Male\) into Heliolisk/);
+    expect(basculegionCounterReason).toBeUndefined();
   });
 
   it('does not demote leads from predicted opposing lead pairs', () => {

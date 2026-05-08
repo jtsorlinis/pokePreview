@@ -39,6 +39,10 @@ describe('advisor app flow', () => {
     expect(screen.queryByRole('spinbutton', { name: /speed/i })).not.toBeInTheDocument();
     expect(screen.queryByText(/known move/i)).not.toBeInTheDocument();
     const opponentSpeciesInput = screen.getAllByRole('combobox', { name: /species/i })[0];
+    fireEvent.change(opponentSpeciesInput, { target: { value: 'Charzard' } });
+    expect(screen.getByTestId('recommendation-empty')).toBeInTheDocument();
+    expect(screen.queryByTestId('recommendation-list')).not.toBeInTheDocument();
+
     fireEvent.change(opponentSpeciesInput, { target: { value: 'Mega Garchomp' } });
     expect(screen.getByDisplayValue('Garchomp')).toBeInTheDocument();
 

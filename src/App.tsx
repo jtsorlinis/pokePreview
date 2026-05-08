@@ -489,10 +489,11 @@ function App() {
 
   const playerCount = filledEntries(team).length;
   const opponentCount = filledEntries(opponents).length;
+  const recognizedOpponentCount = filledEntries(opponents).filter((opponent) => findSpecies(opponent.species)).length;
   const recommendations = useMemo(() => recommendBringFours(team, opponents), [team, opponents]);
   const topRecommendations = useMemo(() => recommendations.slice(0, 8), [recommendations]);
   const selectedRecommendation = topRecommendations[selectedIndex] ?? topRecommendations[0];
-  const canShowRecommendations = playerCount >= 4 && opponentCount >= 1;
+  const canShowRecommendations = playerCount >= 4 && recognizedOpponentCount >= 1;
 
   const setTeamEntry = (index: number, entry: PokemonEntry) => {
     setTeam((current) => current.map((item, itemIndex) => (itemIndex === index ? entry : item)));
@@ -726,7 +727,7 @@ function App() {
                 <div className="emptyState compactState" data-testid="recommendation-empty">
                   <Swords size={20} />
                   <h2>Need a preview</h2>
-                  <p>Fill at least four of your slots and one opposing slot.</p>
+                  <p>Fill at least four of your slots and one recognized opposing species.</p>
                 </div>
               )}
             </section>

@@ -1,5 +1,6 @@
 import { enumerateBattlePlans, enumerateBringFours, filledEntries } from './candidates';
 import { baseSpeciesForMega, findMove, findPair, findSpecies, indexedData, isMegaSpecies, normalizeKey } from './data';
+import { inferOpponentPreview } from './opponentInference';
 import { effectiveness, multiplierLabel } from './typeChart';
 import type {
   BattlePlan,
@@ -160,7 +161,9 @@ const entryTags = (pokemon: PokemonEntry, data: IndexedData): Set<string> => {
 const abilityNamesFor = (pokemon: PokemonEntry, data: IndexedData): string[] => {
   const explicitAbility = pokemon.ability?.trim();
   if (explicitAbility) return [explicitAbility];
-  return speciesMeta(pokemon, data)?.abilities ?? [];
+
+  const possibleAbilities = (speciesMeta(pokemon, data)?.abilities ?? []).filter(Boolean);
+  return possibleAbilities.length === 1 ? possibleAbilities : [];
 };
 
 const hasKnownAbility = (pokemon: PokemonEntry, data: IndexedData, abilities: string[]): boolean => {
@@ -199,6 +202,50 @@ const opponentEntryForScoring = (pokemon: PokemonEntry, data: IndexedData): Poke
     moves: [...pokemon.moves, '', '', '', ''].slice(0, 4),
     speedStat: pokemon.speedStat ?? null
   };
+};
+
+const likelyScoringSpeciesFor = (
+  opponent: PokemonEntry,
+  formGuesses: ReturnType<typeof inferOpponentPreview>['formGuesses'],
+  data: IndexedData
+): { species: string; probability?: number } | undefined => {
+  const meta = findSpecies(opponent.species, data);
+  if (!meta) return undefined;
+  if (isMegaSpecies(meta.displayName)) return { species: meta.displayName };
+
+  const guess = formGuesses.find((formGuess) => normalizeKey(formGuess.previewSpecies) === normalizeKey(meta.displayName));
+  const topForm = guess?.forms[0];
+  if (!topForm || !isMegaSpecies(topForm.species) || topForm.probability < 0.45) {
+    return { species: meta.displayName };
+  }
+
+  return { species: topForm.species, probability: topForm.probability };
+};
+
+const opponentEntriesForScoring = (opponents: PokemonEntry[], data: IndexedData, warnings: string[]): PokemonEntry[] => {
+  const filledOpponents = filledEntries(opponents);
+  const knownOpponents = filledOpponents.filter((opponent) => findSpecies(opponent.species, data));
+  const unknownNames = uniqueStrings(
+    filledOpponents.filter((opponent) => !findSpecies(opponent.species, data)).map((opponent) => opponent.species.trim())
+  );
+
+  if (unknownNames.length > 0) {
+    warnings.push(`Unknown opponent ignored: ${unknownNames.slice(0, 3).join(', ')}.`);
+  }
+
+  const formGuesses = inferOpponentPreview(knownOpponents, data).formGuesses;
+  return knownOpponents.flatMap((opponent) => {
+    const originalMeta = findSpecies(opponent.species, data);
+    const scoringSpecies = likelyScoringSpeciesFor(opponent, formGuesses, data);
+    if (!scoringSpecies) return [];
+
+    if (originalMeta && scoringSpecies.species !== originalMeta.displayName) {
+      const probability = typeof scoringSpecies.probability === 'number' ? ` (${Math.round(scoringSpecies.probability * 100)}%)` : '';
+      warnings.push(`Opponent form read: ${originalMeta.displayName} scored as likely ${scoringSpecies.species}${probability}.`);
+    }
+
+    return opponentEntryForScoring({ ...opponent, species: scoringSpecies.species }, data);
+  });
 };
 
 const attackingTypes = (pokemon: PokemonEntry, data: IndexedData): PokemonType[] => {
@@ -903,7 +950,7 @@ const scoreSingleBattlePlan = (
 ): Recommendation => {
   const reasons: ScoreReason[] = [];
   const warnings: string[] = megaLimitWarning ? [megaLimitWarning] : [];
-  const visibleOpponents = filledEntries(opponents).map((opponent) => opponentEntryForScoring(opponent, data));
+  const visibleOpponents = opponentEntriesForScoring(opponents, data, warnings);
 
   const offense = scoreOffense(plan, visibleOpponents, data, reasons);
   const defense = scoreDefense(plan, visibleOpponents, data, reasons, warnings) + scoreIndividualCounterRisk(plan, visibleOpponents, data, reasons, warnings);
@@ -949,7 +996,7 @@ const scoreSingleBringFour = (
 ): BringRecommendation => {
   const reasons: ScoreReason[] = [];
   const warnings: string[] = megaLimitWarning ? [megaLimitWarning] : [];
-  const visibleOpponents = filledEntries(opponents).map((opponent) => opponentEntryForScoring(opponent, data));
+  const visibleOpponents = opponentEntriesForScoring(opponents, data, warnings);
 
   if (visibleOpponents.length > 0) {
     addReason(reasons, 'Whole preview', `Scored into all ${visibleOpponents.length} opposing preview slots.`, 1.5, 'neutral');
